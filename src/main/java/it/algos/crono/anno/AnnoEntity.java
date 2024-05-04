@@ -5,6 +5,7 @@ import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
 import lombok.*;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.stereotype.*;
 
 @Component
@@ -13,14 +14,16 @@ import org.springframework.stereotype.*;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = true)
-@AEntity(collectionName = "anno", typeList = TypeList.hardCode)
+@AEntity(collectionName = "anno")
 public class AnnoEntity extends AbstractEntity {
 
+    @Indexed(unique = true)
     @AField(type = TypeField.integer, headerText = "#", widthList = 6, caption = "Ordine a partire dal 1.000 a.C.")
     private int ordine;
 
+    @Indexed(unique = true)
     @AField(type = TypeField.text, widthList = 7, caption = "Nome corrente")
-    private String nome;
+    private String code;
 
     //    @DBRef
     @AField(type = TypeField.linkDBRef, widthList = 10, linkClazz = SecoloEntity.class)
@@ -32,9 +35,10 @@ public class AnnoEntity extends AbstractEntity {
     @AField(type = TypeField.booleano, headerText = "BS")
     private boolean bisestile;
 
+
     @Override
     public String toString() {
-        return nome;
+        return code;
     }
 
 }// end of Entity class

@@ -6,6 +6,7 @@ import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
 import lombok.*;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.stereotype.*;
 
 @Component
@@ -14,12 +15,14 @@ import org.springframework.stereotype.*;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = true)
-@AEntity(collectionName = "giorno", typeList = TypeList.hardCode)
+@AEntity(collectionName = "giorno")
 public class GiornoEntity extends AbstractEntity {
 
+    @Indexed(unique = true)
     @AField(type = TypeField.integer, headerText = "#", widthList = 3, caption = "Ordinamento da inizio anno")
     private int ordine;
 
+    @Indexed(unique = true)
     @AField(type = TypeField.text, caption = "Nome corrente")
     private String nome;
 

@@ -4,6 +4,7 @@ import ch.carnet.kasparscherrer.*;
 import com.vaadin.flow.component.combobox.*;
 import com.vaadin.flow.component.orderedlayout.*;
 import com.vaadin.flow.spring.annotation.*;
+import it.algos.crono.list.*;
 import it.algos.crono.secolo.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.list.*;
@@ -14,7 +15,7 @@ import org.springframework.context.annotation.*;
 
 @SpringComponent
 @Scope(value = SCOPE_PROTOTYPE)
-public class AnnoList extends CrudList {
+public class AnnoList extends CronoList {
 
     @Autowired
     public SecoloService secoloModulo;
@@ -27,10 +28,6 @@ public class AnnoList extends CrudList {
 
 
 
-    //--non utilizzato. Serve SOLO per evitare un bug di IntelliJIDEA che segnala errore.
-    public AnnoList() {
-        super();
-    }
 
     /**
      * @param parentCrudView che crea questa istanza

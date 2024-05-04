@@ -1,6 +1,7 @@
 package it.algos.crono.mese;
 
 import com.vaadin.flow.spring.annotation.*;
+import it.algos.crono.list.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.list.*;
 import static org.springframework.beans.factory.config.BeanDefinition.*;
@@ -8,14 +9,8 @@ import org.springframework.context.annotation.*;
 
 @SpringComponent
 @Scope(value = SCOPE_PROTOTYPE)
-public class MeseList extends CrudList {
+public class MeseList extends CronoList {
 
-
-
-    //--non utilizzato. Serve SOLO per evitare un bug di IntelliJIDEA che segnala errore.
-    public MeseList() {
-        super();
-    }
 
     /**
      * @param parentCrudView che crea questa istanza

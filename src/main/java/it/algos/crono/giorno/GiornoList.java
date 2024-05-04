@@ -2,6 +2,7 @@ package it.algos.crono.giorno;
 
 import com.vaadin.flow.component.combobox.*;
 import com.vaadin.flow.spring.annotation.*;
+import it.algos.crono.list.*;
 import it.algos.crono.mese.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.list.*;
@@ -11,7 +12,7 @@ import org.springframework.context.annotation.*;
 
 @SpringComponent
 @Scope(value = SCOPE_PROTOTYPE)
-public class GiornoList extends CrudList {
+public class GiornoList extends CronoList {
 
     @Autowired
     public MeseService meseModulo;
@@ -19,10 +20,6 @@ public class GiornoList extends CrudList {
     private ComboBox comboMese;
 
 
-    //--non utilizzato. Serve SOLO per evitare un bug di IntelliJIDEA che segnala errore.
-    public GiornoList() {
-        super();
-    }
 
     /**
      * @param parentCrudView che crea questa istanza

@@ -45,32 +45,22 @@ public class AnnoService extends CrudService {
 
     /**
      * Creazione in memoria di una nuova entity che NON viene salvata <br>
-     *
-     * @return la nuova entity appena creata (con keyID ma non salvata)
-     */
-    @Override
-    public AnnoEntity newEntity() {
-        return newEntity(0, VUOTA, null, false, false);
-    }
-
-    /**
-     * Creazione in memoria di una nuova entity che NON viene salvata <br>
      * Usa il @Builder di Lombok <br>
      * Eventuali regolazioni iniziali delle property <br>
      * All properties <br>
      *
      * @param ordine     di presentazione nel popup/combobox (obbligatorio, unico)
-     * @param nome       corrente
+     * @param code       corrente
      * @param secolo     di appartenenza
      * @param dopoCristo flag per gli anni prima/dopo cristo
      * @param bisestile  flag per gli anni bisestili
      *
      * @return la nuova entity appena creata (non salvata e senza keyID)
      */
-    public AnnoEntity newEntity(final int ordine, final String nome, final SecoloEntity secolo, final boolean dopoCristo, final boolean bisestile) {
+    public AnnoEntity newEntity(final int ordine, final String code, final SecoloEntity secolo, final boolean dopoCristo, final boolean bisestile) {
         AnnoEntity newEntityBean = AnnoEntity.builder()
                 .ordine(ordine == 0 ? nextOrdine() : ordine)
-                .nome(textService.isValid(nome) ? nome : null)
+                .code(textService.isValid(code) ? code : null)
                 .secolo(secolo)
                 .dopoCristo(dopoCristo)
                 .bisestile(bisestile)

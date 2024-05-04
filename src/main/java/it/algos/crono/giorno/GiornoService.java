@@ -33,6 +33,7 @@ public class GiornoService extends CrudService {
     @Inject
     public DateService dateService;
 
+
     /**
      * Costruttore invocato dalla sottoclasse concreta obbligatoriamente con due parametri <br>
      * Regola la entityClazz associata a questo Modulo <br>
@@ -43,15 +44,6 @@ public class GiornoService extends CrudService {
     }
 
 
-    /**
-     * Creazione in memoria di una nuova entity che NON viene salvata <br>
-     *
-     * @return la nuova entity appena creata (con keyID ma non salvata)
-     */
-    @Override
-    public GiornoEntity newEntity() {
-        return newEntity(0, VUOTA, null, 0, 0);
-    }
 
     /**
      * Creazione in memoria di una nuova entity che NON viene salvata <br>

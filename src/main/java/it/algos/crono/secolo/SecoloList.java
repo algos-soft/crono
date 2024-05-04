@@ -5,6 +5,7 @@ import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.*;
 import com.vaadin.flow.spring.annotation.*;
+import it.algos.crono.list.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.components.*;
 import it.algos.vbase.backend.list.*;
@@ -15,14 +16,10 @@ import org.springframework.context.annotation.*;
 
 @SpringComponent
 @Scope(value = SCOPE_PROTOTYPE)
-public class SecoloList extends CrudList {
+public class SecoloList extends CronoList {
 
     private IndeterminateCheckbox boxCristo;
 
-    //--non utilizzato. Serve SOLO per evitare un bug di IntelliJIDEA che segnala errore.
-    public SecoloList() {
-        super();
-    }
 
     /**
      * @param parentCrudView che crea questa istanza
