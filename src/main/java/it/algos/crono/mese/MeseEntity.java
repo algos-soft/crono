@@ -1,10 +1,11 @@
-package it.algos.crono.modules.mese;
+package it.algos.crono.mese;
 
 import com.vaadin.flow.component.icon.*;
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
 import lombok.*;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.stereotype.*;
 
 @Component
@@ -13,15 +14,18 @@ import org.springframework.stereotype.*;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = true)
-@AEntity(collectionName = "mese", keyPropertyName = "nome", typeList = TypeList.hardEnum)
+@AEntity(collectionName = "mese",usaResetStartup = true)
 public class MeseEntity extends AbstractEntity {
 
+    @Indexed(unique = true)
     @AField(type = TypeField.integer, widthList = 6)
     private int ordine;
 
+    @Indexed(unique = true)
     @AField(type = TypeField.text)
-    private String sigla;
+    private String code;
 
+    @Indexed(unique = true)
     @AField(type = TypeField.text)
     private String nome;
 
@@ -34,9 +38,10 @@ public class MeseEntity extends AbstractEntity {
     @AField(type = TypeField.integer, widthList = 6, headerIcon = VaadinIcon.STEP_FORWARD, caption = "Ultimo giorno (annuo) del mese")
     private int ultimo;
 
+
     @Override
     public String toString() {
-        return nome;
+        return code;
     }
 
 }// end of Entity class

@@ -1,4 +1,4 @@
-package it.algos.crono.modules.anno;
+package it.algos.crono.giorno;
 
 import com.vaadin.flow.spring.annotation.*;
 import it.algos.vbase.backend.entity.*;
@@ -10,17 +10,16 @@ import org.springframework.context.annotation.*;
 
 @SpringComponent
 @Scope(value = SCOPE_PROTOTYPE)
-public class AnnoForm extends CrudForm {
+public class GiornoForm extends CrudForm {
 
 
     //--non utilizzato. Serve SOLO per evitare un bug di IntelliJIDEA che segnala errore.
-    public AnnoForm() {
+    public GiornoForm() {
         super();
     }
 
-
     //--new entityBean and update existing entityBean
-    public AnnoForm(final CrudList parentCrudList, AbstractEntity entityBean, CrudOperation operation) {
+    public GiornoForm(final CrudList parentCrudList, AbstractEntity entityBean, CrudOperation operation) {
         super(parentCrudList, entityBean, operation);
     }
 
@@ -29,6 +28,5 @@ public class AnnoForm extends CrudForm {
     protected void override() {
         //--qui eventuali regolazioni specifiche delle variabili
     }
-
 
 }// end of CrudForm class

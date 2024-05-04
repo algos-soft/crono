@@ -1,6 +1,6 @@
-package it.algos.crono.modules.anno;
+package it.algos.crono.anno;
 
-import it.algos.crono.modules.secolo.*;
+import it.algos.crono.secolo.*;
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;

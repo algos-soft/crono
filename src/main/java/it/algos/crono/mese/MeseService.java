@@ -1,9 +1,9 @@
-package it.algos.crono.modules.mese;
+package it.algos.crono.mese;
 
 import static it.algos.vbase.backend.boot.BaseCost.*;
-import it.algos.vbase.backend.boot.*;
 import it.algos.vbase.backend.enumeration.*;
 import it.algos.vbase.backend.logic.*;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
 import java.util.*;
@@ -24,6 +24,10 @@ import java.util.*;
 @Service
 public class MeseService extends CrudService {
 
+    @Value("${algos.project.crea.directory.crono}")
+    private String creaDirectoryCronoTxt;
+
+
     /**
      * Costruttore invocato dalla sottoclasse concreta obbligatoriamente con due parametri <br>
      * Regola la entityClazz associata a questo Modulo <br>
@@ -37,42 +41,35 @@ public class MeseService extends CrudService {
     /**
      * Creazione in memoria di una nuova entity che NON viene salvata <br>
      *
-     * @return la nuova entity appena creata (con keyID ma non salvata)
-     */
-    @Override
-    public MeseEntity newEntity() {
-        return newEntity(0, VUOTA, VUOTA, 0, 0, 0);
-    }
-
-    /**
-     * Creazione in memoria di una nuova entity che NON viene salvata <br>
-     *
      * @param nome (obbligatorio, unico)
      *
      * @return la nuova entity appena creata (con keyID ma non salvata)
      */
-    public MeseEntity newEntity(int ordine, String sigla, String nome, int giorni, int primo, int ultimo) {
+    public MeseEntity newEntity(int ordine, String code, String nome, int giorni, int primo, int ultimo) {
         MeseEntity newEntityBean = MeseEntity.builder()
                 .ordine(ordine == 0 ? nextOrdine() : ordine)
-                .sigla(textService.isValid(sigla) ? sigla : null)
+                .code(textService.isValid(code) ? code : null)
                 .nome(textService.isValid(nome) ? nome : null)
                 .giorni(giorni)
                 .primo(primo)
                 .ultimo(ultimo)
                 .build();
 
-        return (MeseEntity) fixKey(newEntityBean);
+        return newEntityBean;
     }
+
 
     @Override
     public List<MeseEntity> findAll() {
         return super.findAll();
     }
 
+
     @Override
     public MeseEntity findByKey(final Object keyPropertyValue) {
         return (MeseEntity) super.findByKey(keyPropertyValue);
     }
+
 
     @Override
     public RisultatoReset reset() {
@@ -84,7 +81,7 @@ public class MeseService extends CrudService {
         int primo = 1;
         int ultimo = 0;
 
-        if (!BaseVar.creaDirectoryCrono) {
+        if (!Boolean.parseBoolean(creaDirectoryCronoTxt)) {
             return RisultatoReset.nonCostruito;
         }
 

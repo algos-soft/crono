@@ -1,4 +1,4 @@
-package it.algos.crono.modules.mese;
+package it.algos.crono.anno;
 
 import com.vaadin.flow.router.*;
 import it.algos.vbase.backend.annotation.*;
@@ -10,15 +10,15 @@ import org.springframework.beans.factory.annotation.*;
  * Project base24
  * Created by Algos
  * User: gac
- * Date: Sun, 05-Nov-2023
- * Time: 18:38
+ * Date: Mon, 06-Nov-2023
+ * Time: 18:52
  *
  * @Route chiamata dal menu generale o dalla barra del browser <br>
  */
-@PageTitle("Mesi")
-@Route(value = "mese", layout = MainLayout.class)
+@PageTitle("Anni")
+@Route(value = "anno", layout = MainLayout.class)
 @AView(menuGroup = MenuGroup.crono)
-public class MeseView extends CrudView {
+public class AnnoView extends CrudView {
 
 
     /**
@@ -27,8 +27,9 @@ public class MeseView extends CrudView {
      * Mantiene il riferimento ad una listClazz (CrudList) per creare l'istanza prototype <br>
      * Mantiene il riferimento ad una formClazz (CrudForm) per creare l'istanza prototype <br>
      */
-    public MeseView(@Autowired MeseService moduloCrudService) {
-        super(moduloCrudService, MeseList.class, MeseForm.class);
+    public AnnoView(@Autowired AnnoService moduloCrudService) {
+        super(moduloCrudService, AnnoList.class, AnnoForm.class);
     }
+
 
 }// end of @Route CrudView class

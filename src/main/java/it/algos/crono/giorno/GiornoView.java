@@ -1,4 +1,4 @@
-package it.algos.crono.modules.giorno;
+package it.algos.crono.giorno;
 
 import com.vaadin.flow.router.*;
 import it.algos.vbase.backend.annotation.*;

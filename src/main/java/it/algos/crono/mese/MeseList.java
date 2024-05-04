@@ -1,4 +1,4 @@
-package it.algos.crono.modules.mese;
+package it.algos.crono.mese;
 
 import com.vaadin.flow.spring.annotation.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;

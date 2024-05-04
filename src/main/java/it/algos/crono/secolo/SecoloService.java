@@ -1,4 +1,4 @@
-package it.algos.crono.modules.secolo;
+package it.algos.crono.secolo;
 
 import it.algos.vbase.backend.boot.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
@@ -6,6 +6,7 @@ import it.algos.vbase.backend.enumeration.*;
 import it.algos.vbase.backend.exception.*;
 import it.algos.vbase.backend.logic.*;
 import it.algos.vbase.backend.wrapper.*;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.data.mongodb.core.query.*;
 import org.springframework.stereotype.*;
 
@@ -20,6 +21,9 @@ import java.util.*;
  */
 @Service
 public class SecoloService extends CrudService {
+
+    @Value("${algos.project.crea.directory.crono}")
+    private String creaDirectoryCronoTxt;
 
     public static final String INIZIO = "inizio";
 
@@ -147,7 +151,7 @@ public class SecoloService extends CrudService {
         String message;
         SecoloEntity newBean;
 
-        if (!BaseVar.creaDirectoryCrono) {
+        if (!Boolean.parseBoolean(creaDirectoryCronoTxt)) {
             return RisultatoReset.nonCostruito;
         }
 

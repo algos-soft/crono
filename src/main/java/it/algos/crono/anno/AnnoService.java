@@ -1,6 +1,6 @@
-package it.algos.crono.modules.anno;
+package it.algos.crono.anno;
 
-import it.algos.crono.modules.secolo.*;
+import it.algos.crono.secolo.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.boot.*;
 import it.algos.vbase.backend.enumeration.*;
@@ -8,6 +8,7 @@ import it.algos.vbase.backend.exception.*;
 import it.algos.vbase.backend.logic.*;
 import it.algos.vbase.backend.service.*;
 import it.algos.vbase.backend.wrapper.*;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
 import javax.inject.*;
@@ -21,6 +22,9 @@ import javax.inject.*;
  */
 @Service
 public class AnnoService extends CrudService {
+
+    @Value("${algos.project.crea.directory.crono}")
+    private String creaDirectoryCronoTxt;
 
     @Inject
     public SecoloService secoloModulo;
@@ -78,7 +82,7 @@ public class AnnoService extends CrudService {
 
     @Override
     public RisultatoReset reset() {
-        if (!BaseVar.creaDirectoryCrono) {
+        if (!Boolean.parseBoolean(creaDirectoryCronoTxt)) {
             return RisultatoReset.nonCostruito;
         }
 

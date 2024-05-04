@@ -1,4 +1,4 @@
-package it.algos.crono.modules.secolo;
+package it.algos.crono.secolo;
 
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.*;

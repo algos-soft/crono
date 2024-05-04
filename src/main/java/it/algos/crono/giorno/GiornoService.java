@@ -1,6 +1,6 @@
-package it.algos.crono.modules.giorno;
+package it.algos.crono.giorno;
 
-import it.algos.crono.modules.mese.*;
+import it.algos.crono.mese.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.boot.*;
 import it.algos.vbase.backend.enumeration.*;
@@ -8,6 +8,7 @@ import it.algos.vbase.backend.exception.*;
 import it.algos.vbase.backend.logic.*;
 import it.algos.vbase.backend.service.*;
 import it.algos.vbase.backend.wrapper.*;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
 import javax.inject.*;
@@ -22,6 +23,9 @@ import java.util.*;
  */
 @Service
 public class GiornoService extends CrudService {
+
+    @Value("${algos.project.crea.directory.crono}")
+    private String creaDirectoryCronoTxt;
 
     @Inject
     public MeseService meseModulo;
@@ -88,7 +92,7 @@ public class GiornoService extends CrudService {
         GiornoEntity newBean;
         List<HashMap<String, Object>> lista;
 
-        if (!BaseVar.creaDirectoryCrono) {
+        if (!Boolean.parseBoolean(creaDirectoryCronoTxt)) {
             return RisultatoReset.nonCostruito;
         }
 

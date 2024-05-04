@@ -1,4 +1,4 @@
-package it.algos.crono.modules.secolo;
+package it.algos.crono.secolo;
 
 import ch.carnet.kasparscherrer.*;
 import com.vaadin.flow.component.*;

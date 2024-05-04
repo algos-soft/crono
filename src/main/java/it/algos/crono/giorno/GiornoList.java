@@ -1,8 +1,8 @@
-package it.algos.crono.modules.giorno;
+package it.algos.crono.giorno;
 
 import com.vaadin.flow.component.combobox.*;
 import com.vaadin.flow.spring.annotation.*;
-import it.algos.crono.modules.mese.*;
+import it.algos.crono.mese.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.list.*;
 import org.springframework.beans.factory.annotation.*;

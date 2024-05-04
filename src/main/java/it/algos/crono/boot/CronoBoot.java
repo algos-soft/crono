@@ -1,6 +1,6 @@
 package it.algos.crono.boot;
 
-import it.algos.crono.modules.mese.*;
+import it.algos.crono.mese.*;
 import it.algos.vbase.backend.boot.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import static it.algos.vbase.backend.boot.BaseVar.*;

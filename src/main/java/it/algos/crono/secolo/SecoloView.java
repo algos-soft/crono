@@ -1,4 +1,4 @@
-package it.algos.crono.modules.secolo;
+package it.algos.crono.secolo;
 
 import com.vaadin.flow.router.*;
 import it.algos.vbase.backend.annotation.*;

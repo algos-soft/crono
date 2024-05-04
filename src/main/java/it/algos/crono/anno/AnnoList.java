@@ -1,10 +1,10 @@
-package it.algos.crono.modules.anno;
+package it.algos.crono.anno;
 
 import ch.carnet.kasparscherrer.*;
 import com.vaadin.flow.component.combobox.*;
 import com.vaadin.flow.component.orderedlayout.*;
 import com.vaadin.flow.spring.annotation.*;
-import it.algos.crono.modules.secolo.*;
+import it.algos.crono.secolo.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.list.*;
 import it.algos.vbase.ui.wrapper.*;
