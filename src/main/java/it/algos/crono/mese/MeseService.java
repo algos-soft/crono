@@ -1,6 +1,5 @@
 package it.algos.crono.mese;
 
-import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.enumeration.*;
 import it.algos.vbase.backend.logic.*;
 import org.springframework.beans.factory.annotation.*;
@@ -22,7 +21,7 @@ import java.util.*;
  * NOT annotated with @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON) (inutile, esiste già @Service) <br>
  */
 @Service
-public class MeseService extends CrudService {
+public class MeseService extends ModuloService {
 
     @Value("${algos.project.crea.directory.crono}")
     private String creaDirectoryCronoTxt;
@@ -74,11 +73,11 @@ public class MeseService extends CrudService {
     @Override
     public RisultatoReset reset() {
         MeseEntity newBean;
-        int ordine = 0;
-        String sigla = VUOTA;
-        String nome = VUOTA;
-        int giorni = 0;
-        int primo = 1;
+        int ordine;
+        String sigla;
+        String nome;
+        int giorni;
+        int primo;
         int ultimo = 0;
 
         if (!Boolean.parseBoolean(creaDirectoryCronoTxt)) {
@@ -98,7 +97,7 @@ public class MeseService extends CrudService {
             }
         }
 
-        mappaBeans.values().stream().forEach(bean -> insertSave(bean));
+        mappaBeans.values().stream().forEach(bean -> creaIfNotExists(bean));
         return RisultatoReset.vuotoMaCostruito;
     }
 

@@ -22,7 +22,7 @@ import java.util.*;
  * Time: 15:34
  */
 @Service
-public class GiornoService extends CrudService {
+public class GiornoService extends ModuloService {
 
     @Value("${algos.project.crea.directory.crono}")
     private String creaDirectoryCronoTxt;

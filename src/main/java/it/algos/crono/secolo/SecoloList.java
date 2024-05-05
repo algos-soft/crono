@@ -3,22 +3,25 @@ package it.algos.crono.secolo;
 import ch.carnet.kasparscherrer.*;
 import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.html.*;
-import com.vaadin.flow.component.orderedlayout.*;
 import com.vaadin.flow.spring.annotation.*;
 import it.algos.crono.list.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.components.*;
-import it.algos.vbase.backend.list.*;
 import it.algos.vbase.ui.dialog.*;
 import it.algos.vbase.ui.wrapper.*;
+import jakarta.annotation.*;
 import static org.springframework.beans.factory.config.BeanDefinition.*;
 import org.springframework.context.annotation.*;
+import org.springframework.data.domain.*;
 
 @SpringComponent
 @Scope(value = SCOPE_PROTOTYPE)
 public class SecoloList extends CronoList {
 
-    private IndeterminateCheckbox boxCristo;
+    static final String FIELD_DOPO_CRISTO = "dopoCristo";
+
+    //--checkBox locale per selezionare la property booleana
+    IndeterminateCheckbox checkDopoCristo;
 
 
     /**
@@ -28,10 +31,10 @@ public class SecoloList extends CronoList {
         super(parentCrudView);
     }
 
-
-    @Override
     protected void fixPreferenze() {
         super.fixPreferenze();
+
+        super.basicSort = Sort.by(Sort.Direction.ASC, FIELD_NAME_ORDINE);
     }
 
 
@@ -53,32 +56,23 @@ public class SecoloList extends CronoList {
 
     /**
      * Aggiunge componenti al Top della Lista <br>
-     * Può essere sovrascritto, invocando PRIMA il metodo della superclasse se si vogliono aggiungere componenti IN CODA <br>
-     * Può essere sovrascritto, SENZA invocare il metodo della superclasse se si vogliono aggiungere componenti in ordine diverso <br>
      */
-    @Override
-    protected void fixTop() {
-        super.fixTop();
+    @PostConstruct
+    private void regolazioniDellaClasseSpecificaDopoAverRegolatoLaSuperclasse() {
 
-        boxCristo = new IndeterminateCheckbox();
-        boxCristo.setLabel("DopoCristo");
-        boxCristo.setIndeterminate(false);
-        boxCristo.setValue(true);
-        boxCristo.addValueChangeListener(event -> sync());
-        HorizontalLayout layout1 = new HorizontalLayout(boxCristo);
-        layout1.setAlignItems(Alignment.CENTER);
-        topPlaceHolder.add(layout1);
+        //--creazione 'ad hoc' di un checkBox (semistandard) per selezionare la property booleana
+        checkDopoCristo = this.creaFiltroCheckBox(FIELD_DOPO_CRISTO);
+        checkDopoCristo.setIndeterminate(false);
+        checkDopoCristo.setValue(true);
     }
+
 
     @Override
     protected void syncFiltri() {
-        if (boxCristo != null && !boxCristo.isIndeterminate()) {
-            filtri.uguale("dopoCristo", boxCristo.getValue());
-        }
-        else {
-            filtri.remove("dopoCristo");
-        }
+        //--filtraggio del database in funzione del valore della property
+        super.filtroCheckBox(checkDopoCristo, FIELD_DOPO_CRISTO);
     }
+
 
 }// end of CrudList class
 

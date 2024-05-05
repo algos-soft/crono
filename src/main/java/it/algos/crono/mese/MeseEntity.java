@@ -14,7 +14,7 @@ import org.springframework.stereotype.*;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = true)
-@AEntity(collectionName = "mese",usaResetStartup = true)
+@AEntity(collectionName = "mese", usaResetStartup = true)
 public class MeseEntity extends AbstractEntity {
 
     @Indexed(unique = true)
@@ -22,10 +22,12 @@ public class MeseEntity extends AbstractEntity {
     private int ordine;
 
     @Indexed(unique = true)
+    @ASearch(type = TypeSearch.textStartsWith)
     @AField(type = TypeField.text)
     private String code;
 
     @Indexed(unique = true)
+    @ASearch(type = TypeSearch.textContains)
     @AField(type = TypeField.text)
     private String nome;
 

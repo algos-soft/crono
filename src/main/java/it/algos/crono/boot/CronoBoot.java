@@ -71,7 +71,7 @@ public class CronoBoot extends BaseBoot {
 
     protected boolean checkResetStartup() {
         if (super.checkResetStartup()) {
-            for (CrudService modulo : crudServiceListProject) {
+            for (ModuloService modulo : moduloServiceListProject) {
                 modulo.checkResetStartup();
             }
         }

@@ -20,7 +20,7 @@ import java.util.*;
  * Time: 19:59
  */
 @Service
-public class SecoloService extends CrudService {
+public class SecoloService extends ModuloService {
 
     @Value("${algos.project.crea.directory.crono}")
     private String creaDirectoryCronoTxt;
@@ -203,7 +203,7 @@ public class SecoloService extends CrudService {
             return RisultatoReset.nonCostruito;
         }
 
-        mappaBeans.values().stream().forEach(bean -> insertSave(bean));
+        mappaBeans.values().stream().forEach(bean -> creaIfNotExists(bean));
         return RisultatoReset.vuotoMaCostruito;
     }
 

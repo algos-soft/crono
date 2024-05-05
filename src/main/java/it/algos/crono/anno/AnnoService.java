@@ -21,7 +21,7 @@ import javax.inject.*;
  * Time: 18:52
  */
 @Service
-public class AnnoService extends CrudService {
+public class AnnoService extends ModuloService {
 
     @Value("${algos.project.crea.directory.crono}")
     private String creaDirectoryCronoTxt;

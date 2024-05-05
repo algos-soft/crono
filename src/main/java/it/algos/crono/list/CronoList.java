@@ -25,6 +25,7 @@ public abstract class CronoList extends CrudList {
         super.fixPreferenze();
 
         super.usaVariantCompact = false;
+        super.usaBottoneResetDelete = true;
         super.usaBottoneNew = false;
         super.usaBottoneEdit = false;
         super.usaBottoneShow = true;

@@ -13,7 +13,7 @@ import org.springframework.stereotype.*;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = true)
-@AEntity(collectionName = "secolo",usaResetStartup = true)
+@AEntity(collectionName = "secolo", usaResetStartup = true)
 public class SecoloEntity extends AbstractEntity {
 
 
@@ -22,6 +22,7 @@ public class SecoloEntity extends AbstractEntity {
     private int ordine;
 
     @Indexed(unique = true)
+    @ASearch(type = TypeSearch.textStartsWith)
     @AField(type = TypeField.text, caption = "Nome corrente")
     private String code;
 
