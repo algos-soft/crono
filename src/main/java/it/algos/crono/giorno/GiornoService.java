@@ -2,7 +2,6 @@ package it.algos.crono.giorno;
 
 import it.algos.crono.mese.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
-import it.algos.vbase.backend.boot.*;
 import it.algos.vbase.backend.enumeration.*;
 import it.algos.vbase.backend.exception.*;
 import it.algos.vbase.backend.logic.*;
@@ -68,7 +67,7 @@ public class GiornoService extends ModuloService {
                 .mancanti(mancanti)
                 .build();
 
-        return (GiornoEntity) fixKey(newEntityBean);
+        return newEntityBean;
     }
 
 
@@ -82,6 +81,7 @@ public class GiornoService extends ModuloService {
     public GiornoEntity findByCode(final String keyCodeValue) {
         return (GiornoEntity) super.findByCode(keyCodeValue);
     }
+
 
     @Override
     public RisultatoReset reset() {

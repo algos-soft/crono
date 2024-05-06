@@ -1,5 +1,6 @@
 package it.algos.crono.anno;
 
+import it.algos.crono.giorno.*;
 import it.algos.crono.secolo.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.enumeration.*;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
 import javax.inject.*;
+import java.util.*;
 
 /**
  * Project base24
@@ -66,6 +68,18 @@ public class AnnoService extends ModuloService {
                 .build();
 
         return newEntityBean;
+    }
+
+
+    @Override
+    public List<AnnoEntity> findAll() {
+        return super.findAll();
+    }
+
+
+    @Override
+    public AnnoEntity findByCode(final String keyCodeValue) {
+        return (AnnoEntity) super.findByCode(keyCodeValue);
     }
 
 
