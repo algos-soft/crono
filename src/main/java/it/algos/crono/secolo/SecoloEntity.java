@@ -32,6 +32,7 @@ public class SecoloEntity extends AbstractEntity {
     @AField(type = TypeField.integer, widthList = 6, caption = "Ultimo anno del secolo")
     private int fine;
 
+    @ASearch(type = TypeSearch.checkBox)
     @AField(type = TypeField.booleano, headerText = "d.C.")
     private boolean dopoCristo;
 

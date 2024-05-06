@@ -18,11 +18,6 @@ import org.springframework.data.domain.*;
 @Scope(value = SCOPE_PROTOTYPE)
 public class SecoloList extends CronoList {
 
-    static final String FIELD_DOPO_CRISTO = "dopoCristo";
-
-    //--checkBox locale per selezionare la property booleana
-    IndeterminateCheckbox checkDopoCristo;
-
 
     /**
      * @param parentCrudView che crea questa istanza
@@ -53,25 +48,6 @@ public class SecoloList extends CronoList {
         headerPlaceHolder.add(ASpan.text("L'anno [zero] non esiste").blue().bold());
     }
 
-
-    /**
-     * Aggiunge componenti al Top della Lista <br>
-     */
-    @PostConstruct
-    private void regolazioniDellaClasseSpecificaDopoAverRegolatoLaSuperclasse() {
-
-        //--creazione 'ad hoc' di un checkBox (semistandard) per selezionare la property booleana
-        checkDopoCristo = this.creaFiltroCheckBox(FIELD_DOPO_CRISTO);
-        checkDopoCristo.setIndeterminate(false);
-        checkDopoCristo.setValue(true);
-    }
-
-
-    @Override
-    protected void syncFiltri() {
-        //--filtraggio del database in funzione del valore della property
-        super.filtroCheckBox(checkDopoCristo, FIELD_DOPO_CRISTO);
-    }
 
 
 }// end of CrudList class
