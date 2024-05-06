@@ -2,7 +2,6 @@ package it.algos.crono.anno;
 
 import it.algos.crono.secolo.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
-import it.algos.vbase.backend.boot.*;
 import it.algos.vbase.backend.enumeration.*;
 import it.algos.vbase.backend.exception.*;
 import it.algos.vbase.backend.logic.*;
@@ -27,7 +26,7 @@ public class AnnoService extends ModuloService {
     private String creaDirectoryCronoTxt;
 
     @Inject
-    public SecoloService secoloModulo;
+    public SecoloService secoloService;
 
     @Inject
     public DateService dateService;
@@ -66,7 +65,7 @@ public class AnnoService extends ModuloService {
                 .bisestile(bisestile)
                 .build();
 
-        return (AnnoEntity) fixKey(newEntityBean);
+        return newEntityBean;
     }
 
 
@@ -76,7 +75,7 @@ public class AnnoService extends ModuloService {
             return RisultatoReset.nonCostruito;
         }
 
-        if (secoloModulo.count() < 1) {
+        if (secoloService.count() < 1) {
             logger.error(new WrapLog().exception(new AlgosException("Manca la collezione [secolo]")).usaDb().type(TypeLog.startup));
             return RisultatoReset.nonCostruito;
         }
@@ -91,7 +90,7 @@ public class AnnoService extends ModuloService {
             creaDopo(k);
         }
 
-        mappaBeans.values().stream().forEach(bean -> insertSave(bean));
+        mappaBeans.values().stream().forEach(bean -> creaIfNotExists(bean));
         return RisultatoReset.vuotoMaCostruito;
     }
 
@@ -101,7 +100,7 @@ public class AnnoService extends ModuloService {
         int ordine = numeroProgressivo;
         String tagPrima = " a.C.";
         String nome = numeroAnno + tagPrima;
-        SecoloEntity secolo = secoloModulo.getSecolo(nome);
+        SecoloEntity secolo = secoloService.getSecolo(nome);
         AnnoEntity newBean;
 
         newBean = newEntity(ordine, nome, secolo, false, false);
@@ -115,7 +114,7 @@ public class AnnoService extends ModuloService {
         int numeroAnno = numeroProgressivo;
         int ordine = numeroProgressivo + delta;
         String nome = numeroProgressivo + VUOTA;
-        SecoloEntity secolo = secoloModulo.getSecolo(nome);
+        SecoloEntity secolo = secoloService.getSecolo(nome);
         boolean bisestile = dateService.isBisestile(numeroAnno);
         AnnoEntity newBean;
 

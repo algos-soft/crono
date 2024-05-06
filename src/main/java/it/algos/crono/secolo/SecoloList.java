@@ -44,6 +44,5 @@ public class SecoloList extends CronoList {
     }
 
 
-
 }// end of CrudList class
 

@@ -137,7 +137,6 @@ public class SecoloService extends ModuloService {
     }
 
 
-
     @Override
     public RisultatoReset reset() {
         String nomeFileCSV = "secoli.csv";

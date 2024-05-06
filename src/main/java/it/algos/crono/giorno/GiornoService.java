@@ -71,6 +71,7 @@ public class GiornoService extends ModuloService {
         return (GiornoEntity) fixKey(newEntityBean);
     }
 
+
     @Override
     public List<GiornoEntity> findAll() {
         return super.findAll();

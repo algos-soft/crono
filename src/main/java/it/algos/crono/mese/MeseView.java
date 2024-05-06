@@ -25,7 +25,6 @@ public class MeseView extends CrudView {
      * Costruttore alternativo invocato dalla sottoclasse concreta se si usa anche una formClazz specifico <br>
      * Mantiene il riferimento al CrudService Service (singleton) di questo Modulo <br>
      * Mantiene il riferimento ad una listClazz (CrudList) per creare l'istanza prototype <br>
-     * Mantiene il riferimento ad una formClazz (CrudForm) per creare l'istanza prototype <br>
      */
     public MeseView(@Autowired MeseService moduloCrudService) {
         super(moduloCrudService, MeseList.class);

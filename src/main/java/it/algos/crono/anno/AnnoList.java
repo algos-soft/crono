@@ -1,15 +1,9 @@
 package it.algos.crono.anno;
 
-import ch.carnet.kasparscherrer.*;
-import com.vaadin.flow.component.combobox.*;
-import com.vaadin.flow.component.orderedlayout.*;
 import com.vaadin.flow.spring.annotation.*;
 import it.algos.crono.list.*;
-import it.algos.crono.secolo.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
-import it.algos.vbase.backend.list.*;
 import it.algos.vbase.ui.wrapper.*;
-import org.springframework.beans.factory.annotation.*;
 import static org.springframework.beans.factory.config.BeanDefinition.*;
 import org.springframework.context.annotation.*;
 import org.springframework.data.domain.*;
@@ -28,9 +22,9 @@ public class AnnoList extends CronoList {
 
     protected void fixPreferenze() {
         super.fixPreferenze();
-
         super.basicSort = Sort.by(Sort.Direction.DESC, FIELD_NAME_ORDINE);
     }
+
 
     @Override
     public void syncHeader() {
