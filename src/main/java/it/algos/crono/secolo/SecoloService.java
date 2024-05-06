@@ -5,6 +5,7 @@ import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.enumeration.*;
 import it.algos.vbase.backend.exception.*;
 import it.algos.vbase.backend.logic.*;
+import it.algos.vbase.backend.modules.anagrafica.via.*;
 import it.algos.vbase.backend.wrapper.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.data.mongodb.core.query.*;
@@ -73,9 +74,8 @@ public class SecoloService extends ModuloService {
 
 
     @Override
-    //casting only dalla superclasse
-    public SecoloEntity findByKey(final Object keyPropertyValue) {
-        return (SecoloEntity) super.findByKey(keyPropertyValue);
+    public SecoloEntity findByCode(final String keyCodeValue) {
+        return (SecoloEntity) super.findByCode(keyCodeValue);
     }
 
     /**

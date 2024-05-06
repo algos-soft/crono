@@ -65,8 +65,8 @@ public class MeseService extends ModuloService {
 
 
     @Override
-    public MeseEntity findByKey(final Object keyPropertyValue) {
-        return (MeseEntity) super.findByKey(keyPropertyValue);
+    public MeseEntity findByCode(final String keyCodeValue) {
+        return (MeseEntity) super.findByCode(keyCodeValue);
     }
 
 
