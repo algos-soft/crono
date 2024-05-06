@@ -24,7 +24,7 @@ import java.util.*;
 @Service
 public class AnnoService extends ModuloService {
 
-    @Value("${algos.project.crea.directory.crono}")
+    @Value("${algos.project.crea.directory.crono:false}")
     private String creaDirectoryCronoTxt;
 
     @Inject

@@ -23,7 +23,7 @@ import java.util.*;
 @Service
 public class GiornoService extends ModuloService {
 
-    @Value("${algos.project.crea.directory.crono}")
+    @Value("${algos.project.crea.directory.crono:false}")
     private String creaDirectoryCronoTxt;
 
     @Inject

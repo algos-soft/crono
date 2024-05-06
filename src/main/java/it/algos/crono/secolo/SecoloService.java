@@ -23,7 +23,7 @@ import java.util.*;
 @Service
 public class SecoloService extends ModuloService {
 
-    @Value("${algos.project.crea.directory.crono}")
+    @Value("${algos.project.crea.directory.crono:false}")
     private String creaDirectoryCronoTxt;
 
     public static final String INIZIO = "inizio";
