@@ -23,13 +23,12 @@ public class MeseEntity extends AbstractEntity {
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)
-    @AField(type = TypeField.text)
-    private String code;
+    private String sigla;
 
     @Indexed(unique = true)
-    @ASearch(type = TypeSearch.textContains)
-    @AField(type = TypeField.text)
-    private String nome;
+    @ASearch(type = TypeSearch.textStartsWith)
+    @AField(type = TypeField.text, headerText = "Nome",caption = "Nome corrente")
+    private String code;
 
     @AField(type = TypeField.integer, widthList = 6)
     private int giorni;

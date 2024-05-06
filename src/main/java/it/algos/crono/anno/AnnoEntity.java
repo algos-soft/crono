@@ -14,7 +14,7 @@ import org.springframework.stereotype.*;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = true)
-@AEntity(collectionName = "anno")
+@AEntity(collectionName = "anno", usaResetStartup = true)
 public class AnnoEntity extends AbstractEntity {
 
     @Indexed(unique = true)
@@ -22,17 +22,21 @@ public class AnnoEntity extends AbstractEntity {
     private int ordine;
 
     @Indexed(unique = true)
-    @AField(type = TypeField.text, widthList = 7, caption = "Nome corrente")
+    @ASearch(type = TypeSearch.textStartsWith)
+    @AField(type = TypeField.text, headerText = "Nome", caption = "Nome corrente")
     private String code;
 
     //    @DBRef
+    @ASearch(type = TypeSearch.comboClazz)
     @AField(type = TypeField.linkDBRef, widthList = 10, linkClazz = SecoloEntity.class)
     private SecoloEntity secolo;
 
-    @AField(type = TypeField.booleano, headerText = "d.C.")
+    @ASearch(type = TypeSearch.checkBox, typeCheckIniziale = TypeCheckBox.vero)
+    @AField(type = TypeField.booleano, headerText = "D.C.")
     private boolean dopoCristo;
 
-    @AField(type = TypeField.booleano, headerText = "BS")
+    @ASearch(type = TypeSearch.checkBox)
+    @AField(type = TypeField.booleano)
     private boolean bisestile;
 
 

@@ -1,7 +1,9 @@
 package it.algos.crono.list;
 
+import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.list.*;
 import it.algos.vbase.ui.view.*;
+import org.springframework.data.domain.*;
 
 /**
  * Project wiki24
@@ -23,6 +25,8 @@ public abstract class CronoList extends CrudList {
 
     protected void fixPreferenze() {
         super.fixPreferenze();
+
+        super.basicSort = Sort.by(Sort.Direction.ASC, FIELD_NAME_ORDINE);
 
         super.usaVariantCompact = false;
         super.usaBottoneResetDelete = true;

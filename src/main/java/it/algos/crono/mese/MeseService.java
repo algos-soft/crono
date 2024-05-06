@@ -40,15 +40,15 @@ public class MeseService extends ModuloService {
     /**
      * Creazione in memoria di una nuova entity che NON viene salvata <br>
      *
-     * @param nome (obbligatorio, unico)
+     * @param code (obbligatorio, unico)
      *
      * @return la nuova entity appena creata (con keyID ma non salvata)
      */
-    public MeseEntity newEntity(int ordine, String code, String nome, int giorni, int primo, int ultimo) {
+    public MeseEntity newEntity(int ordine, String sigla, String code, int giorni, int primo, int ultimo) {
         MeseEntity newEntityBean = MeseEntity.builder()
                 .ordine(ordine == 0 ? nextOrdine() : ordine)
+                .sigla(textService.isValid(sigla) ? sigla : null)
                 .code(textService.isValid(code) ? code : null)
-                .nome(textService.isValid(nome) ? nome : null)
                 .giorni(giorni)
                 .primo(primo)
                 .ultimo(ultimo)

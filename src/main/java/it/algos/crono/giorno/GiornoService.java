@@ -52,17 +52,17 @@ public class GiornoService extends ModuloService {
      * All properties <br>
      *
      * @param ordine    di presentazione nel popup/combobox (obbligatorio, unico)
-     * @param nome      corrente
+     * @param code      corrente
      * @param mese      di appartenenza
      * @param trascorsi di inizio anno
      * @param mancanti  alla fine dell'anno
      *
      * @return la nuova entity appena creata (non salvata e senza keyID)
      */
-    public GiornoEntity newEntity(final int ordine, final String nome, final MeseEntity mese, final int trascorsi, final int mancanti) {
+    public GiornoEntity newEntity(final int ordine, final String code, final MeseEntity mese, final int trascorsi, final int mancanti) {
         GiornoEntity newEntityBean = GiornoEntity.builder()
                 .ordine(ordine == 0 ? nextOrdine() : ordine)
-                .nome(textService.isValid(nome) ? nome : null)
+                .code(textService.isValid(code) ? code : null)
                 .mese(mese)
                 .trascorsi(trascorsi)
                 .mancanti(mancanti)
@@ -71,6 +71,16 @@ public class GiornoService extends ModuloService {
         return (GiornoEntity) fixKey(newEntityBean);
     }
 
+    @Override
+    public List<GiornoEntity> findAll() {
+        return super.findAll();
+    }
+
+
+    @Override
+    public GiornoEntity findByCode(final String keyCodeValue) {
+        return (GiornoEntity) super.findByCode(keyCodeValue);
+    }
 
     @Override
     public RisultatoReset reset() {
@@ -98,7 +108,7 @@ public class GiornoService extends ModuloService {
             for (HashMap<String, Object> mappaGiorno : lista) {
                 nome = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_TITOLO);
                 meseTxt = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_MESE_TESTO);
-                mese = (MeseEntity) meseModulo.findOneByKey(meseTxt);
+                mese = (MeseEntity) meseModulo.findOneByCode(meseTxt);
                 if (mese == null) {
                     message = String.format("Manca il mese di %s", meseTxt);
                     logger.error(new WrapLog().exception(new AlgosException(message)).usaDb().type(TypeLog.startup));
@@ -115,7 +125,7 @@ public class GiornoService extends ModuloService {
             }
         }
 
-        mappaBeans.values().stream().forEach(bean -> insertSave(bean));
+        mappaBeans.values().stream().forEach(bean -> creaIfNotExists(bean));
         return RisultatoReset.vuotoMaCostruito;
     }
 

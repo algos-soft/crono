@@ -23,7 +23,7 @@ public class SecoloEntity extends AbstractEntity {
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)
-    @AField(type = TypeField.text, caption = "Nome corrente")
+    @AField(type = TypeField.text, headerText = "Nome",caption = "Nome corrente")
     private String code;
 
     @AField(type = TypeField.integer, widthList = 6, caption = "Primo anno del secolo")
@@ -32,8 +32,8 @@ public class SecoloEntity extends AbstractEntity {
     @AField(type = TypeField.integer, widthList = 6, caption = "Ultimo anno del secolo")
     private int fine;
 
-    @ASearch(type = TypeSearch.checkBox)
-    @AField(type = TypeField.booleano, headerText = "d.C.")
+    @ASearch(type = TypeSearch.checkBox, typeCheckIniziale = TypeCheckBox.vero)
+    @AField(type = TypeField.booleano, headerText = "D.C.")
     private boolean dopoCristo;
 
 

@@ -26,11 +26,6 @@ public class SecoloList extends CronoList {
         super(parentCrudView);
     }
 
-    protected void fixPreferenze() {
-        super.fixPreferenze();
-
-        super.basicSort = Sort.by(Sort.Direction.ASC, FIELD_NAME_ORDINE);
-    }
 
 
     @Override

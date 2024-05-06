@@ -15,7 +15,7 @@ import org.springframework.stereotype.*;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = true)
-@AEntity(collectionName = "giorno")
+@AEntity(collectionName = "giorno", usaResetStartup = true)
 public class GiornoEntity extends AbstractEntity {
 
     @Indexed(unique = true)
@@ -23,10 +23,12 @@ public class GiornoEntity extends AbstractEntity {
     private int ordine;
 
     @Indexed(unique = true)
-    @AField(type = TypeField.text, caption = "Nome corrente")
-    private String nome;
+    @ASearch(type = TypeSearch.textStartsWith)
+    @AField(type = TypeField.text, headerText = "Nome",caption = "Nome corrente")
+    private String code;
 
     //    @DBRef
+    @ASearch(type = TypeSearch.comboClazz)
     @AField(type = TypeField.linkDBRef, linkClazz = MeseEntity.class)
     private MeseEntity mese;
 
@@ -38,7 +40,7 @@ public class GiornoEntity extends AbstractEntity {
 
     @Override
     public String toString() {
-        return nome;
+        return code;
     }
 
 }// end of Entity class

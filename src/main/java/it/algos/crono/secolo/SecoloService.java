@@ -67,7 +67,6 @@ public class SecoloService extends ModuloService {
     }
 
     @Override
-    //casting only dalla superclasse
     public List<SecoloEntity> findAll() {
         return super.findAll();
     }
