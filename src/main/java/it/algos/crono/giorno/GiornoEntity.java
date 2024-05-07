@@ -1,6 +1,7 @@
 package it.algos.crono.giorno;
 
 import com.vaadin.flow.component.icon.*;
+import it.algos.crono.*;
 import it.algos.crono.mese.*;
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.*;
@@ -16,11 +17,8 @@ import org.springframework.stereotype.*;
 @Builder
 @EqualsAndHashCode(callSuper = true)
 @AEntity(collectionName = "giorno", usaResetStartup = true)
-public class GiornoEntity extends AbstractEntity {
+public class GiornoEntity extends OrdineEntity {
 
-    @Indexed(unique = true)
-    @AField(type = TypeField.integer, headerText = "#", widthList = 3, caption = "Ordinamento da inizio anno")
-    private int ordine;
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)

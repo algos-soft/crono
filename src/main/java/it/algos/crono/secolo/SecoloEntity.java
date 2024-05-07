@@ -1,5 +1,6 @@
 package it.algos.crono.secolo;
 
+import it.algos.crono.*;
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
@@ -14,12 +15,7 @@ import org.springframework.stereotype.*;
 @Builder
 @EqualsAndHashCode(callSuper = true)
 @AEntity(collectionName = "secolo", usaResetStartup = true)
-public class SecoloEntity extends AbstractEntity {
-
-
-    @Indexed(unique = true)
-    @AField(type = TypeField.integer, headerText = "#", widthList = 4, caption = "Ordinamento a partire dal XX secolo a.C.")
-    private int ordine;
+public class SecoloEntity extends OrdineEntity {
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)

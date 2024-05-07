@@ -1,5 +1,6 @@
 package it.algos.crono.anno;
 
+import it.algos.crono.*;
 import it.algos.crono.secolo.*;
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.*;
@@ -15,11 +16,8 @@ import org.springframework.stereotype.*;
 @Builder
 @EqualsAndHashCode(callSuper = true)
 @AEntity(collectionName = "anno", usaResetStartup = true)
-public class AnnoEntity extends AbstractEntity {
+public class AnnoEntity extends OrdineEntity {
 
-    @Indexed(unique = true)
-    @AField(type = TypeField.integer, headerText = "#", widthList = 6, caption = "Ordine a partire dal 1.000 a.C.")
-    private int ordine;
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)

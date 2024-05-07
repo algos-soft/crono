@@ -25,9 +25,10 @@ public class AnnoView extends CrudView {
      * Costruttore alternativo invocato dalla sottoclasse concreta se si usa anche una formClazz specifico <br>
      * Mantiene il riferimento al CrudService Service (singleton) di questo Modulo <br>
      * Mantiene il riferimento ad una listClazz (CrudList) per creare l'istanza prototype <br>
+     * Mantiene il riferimento ad una formClazz (CrudForm) per creare l'istanza prototype <br>
      */
     public AnnoView(@Autowired AnnoService moduloCrudService) {
-        super(moduloCrudService, AnnoList.class);
+        super(moduloCrudService, AnnoList.class, AnnoForm.class);
     }
 
 

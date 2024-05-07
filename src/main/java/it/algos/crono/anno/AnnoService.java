@@ -60,13 +60,13 @@ public class AnnoService extends ModuloService {
      */
     public AnnoEntity newEntity(final int ordine, final String code, final SecoloEntity secolo, final boolean dopoCristo, final boolean bisestile) {
         AnnoEntity newEntityBean = AnnoEntity.builder()
-                .ordine(ordine == 0 ? nextOrdine() : ordine)
                 .code(textService.isValid(code) ? code : null)
                 .secolo(secolo)
                 .dopoCristo(dopoCristo)
                 .bisestile(bisestile)
                 .build();
 
+        newEntityBean.setOrdine(ordine == 0 ? nextOrdine() : ordine);
         return newEntityBean;
     }
 

@@ -4,6 +4,7 @@ import com.vaadin.flow.spring.annotation.*;
 import it.algos.crono.list.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.ui.wrapper.*;
+import jakarta.annotation.*;
 import static org.springframework.beans.factory.config.BeanDefinition.*;
 import org.springframework.context.annotation.*;
 import org.springframework.data.domain.*;
@@ -38,5 +39,9 @@ public class AnnoList extends CronoList {
         headerPlaceHolder.add(ASpan.text("L'anno [zero] non esiste").blue().bold());
     }
 
+    @PostConstruct
+    public void postConstruct() {
+        super.fixWidth(FIELD_NAME_ORDINE,6);
+    }
 
 }// end of CrudList class

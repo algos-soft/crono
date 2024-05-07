@@ -1,9 +1,10 @@
 package it.algos.crono.mese;
 
+import com.vaadin.flow.component.grid.*;
 import com.vaadin.flow.spring.annotation.*;
 import it.algos.crono.list.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
-import it.algos.vbase.backend.list.*;
+import jakarta.annotation.*;
 import static org.springframework.beans.factory.config.BeanDefinition.*;
 import org.springframework.context.annotation.*;
 
@@ -30,6 +31,7 @@ public class MeseList extends CronoList {
 
         super.fixHeaderPost();
     }
+
 
 
 }// end of CrudList class

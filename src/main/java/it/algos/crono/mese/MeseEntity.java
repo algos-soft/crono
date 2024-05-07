@@ -1,6 +1,7 @@
 package it.algos.crono.mese;
 
 import com.vaadin.flow.component.icon.*;
+import it.algos.crono.*;
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
@@ -15,11 +16,7 @@ import org.springframework.stereotype.*;
 @Builder
 @EqualsAndHashCode(callSuper = true)
 @AEntity(collectionName = "mese", usaResetStartup = true)
-public class MeseEntity extends AbstractEntity {
-
-    @Indexed(unique = true)
-    @AField(type = TypeField.integer, widthList = 6)
-    private int ordine;
+public class MeseEntity extends OrdineEntity {
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)

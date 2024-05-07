@@ -25,9 +25,10 @@ public class SecoloView extends CrudView {
      * Costruttore alternativo invocato dalla sottoclasse concreta se si usa anche una formClazz specifico <br>
      * Mantiene il riferimento al CrudService Service (singleton) di questo Modulo <br>
      * Mantiene il riferimento ad una listClazz (CrudList) per creare l'istanza prototype <br>
+     * Mantiene il riferimento ad una formClazz (CrudForm) per creare l'istanza prototype <br>
      */
     public SecoloView(@Autowired SecoloService moduloCrudService) {
-        super(moduloCrudService, SecoloList.class);
+        super(moduloCrudService, SecoloList.class, SecoloForm.class);
     }
 
 

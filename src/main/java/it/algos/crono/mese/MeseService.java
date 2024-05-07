@@ -46,7 +46,6 @@ public class MeseService extends ModuloService {
      */
     public MeseEntity newEntity(int ordine, String sigla, String code, int giorni, int primo, int ultimo) {
         MeseEntity newEntityBean = MeseEntity.builder()
-                .ordine(ordine == 0 ? nextOrdine() : ordine)
                 .sigla(textService.isValid(sigla) ? sigla : null)
                 .code(textService.isValid(code) ? code : null)
                 .giorni(giorni)
@@ -54,6 +53,7 @@ public class MeseService extends ModuloService {
                 .ultimo(ultimo)
                 .build();
 
+        newEntityBean.setOrdine(ordine == 0 ? nextOrdine() : ordine);
         return newEntityBean;
     }
 

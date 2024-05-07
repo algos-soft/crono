@@ -56,13 +56,13 @@ public class SecoloService extends ModuloService {
      */
     public SecoloEntity newEntity(final int ordine, final String code, final int inizio, final int fine, final boolean dopoCristo) {
         SecoloEntity newEntityBean = SecoloEntity.builder()
-                .ordine(ordine == 0 ? nextOrdine() : ordine)
                 .code(textService.isValid(code) ? code : null)
                 .inizio(inizio)
                 .fine(fine)
                 .dopoCristo(dopoCristo)
                 .build();
 
+        newEntityBean.setOrdine(ordine == 0 ? nextOrdine() : ordine);
         return newEntityBean;
     }
 

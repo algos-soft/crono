@@ -60,13 +60,13 @@ public class GiornoService extends ModuloService {
      */
     public GiornoEntity newEntity(final int ordine, final String code, final MeseEntity mese, final int trascorsi, final int mancanti) {
         GiornoEntity newEntityBean = GiornoEntity.builder()
-                .ordine(ordine == 0 ? nextOrdine() : ordine)
                 .code(textService.isValid(code) ? code : null)
                 .mese(mese)
                 .trascorsi(trascorsi)
                 .mancanti(mancanti)
                 .build();
 
+        newEntityBean.setOrdine(ordine == 0 ? nextOrdine() : ordine);
         return newEntityBean;
     }
 
