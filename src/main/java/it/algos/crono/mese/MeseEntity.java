@@ -1,7 +1,6 @@
 package it.algos.crono.mese;
 
 import com.vaadin.flow.component.icon.*;
-import it.algos.crono.*;
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
