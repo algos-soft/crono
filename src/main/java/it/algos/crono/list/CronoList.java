@@ -28,7 +28,7 @@ public abstract class CronoList extends CrudList {
 
         super.basicSort = Sort.by(Sort.Direction.ASC, FIELD_NAME_ORDINE);
 
-        this.usaSelettoreColonne = true;
+        super.usaSelettoreColonne = true;
         super.usaVariantCompact = false;
         super.usaBottoneResetDelete = true;
         super.usaBottoneNew = false;
