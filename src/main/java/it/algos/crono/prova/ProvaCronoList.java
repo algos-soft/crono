@@ -1,0 +1,35 @@
+package it.algos.crono.prova;
+
+import com.vaadin.flow.component.orderedlayout.*;
+import com.vaadin.flow.spring.annotation.*;
+import it.algos.vbase.backend.components.*;
+import it.algos.vbase.backend.list.*;
+import it.algos.vbase.ui.wrapper.*;
+import static org.springframework.beans.factory.config.BeanDefinition.*;
+import org.springframework.context.annotation.*;
+
+@SpringComponent
+@Scope(value = SCOPE_PROTOTYPE)
+public class ProvaCronoList extends CrudList {
+
+
+    //--non utilizzato. Serve SOLO per evitare un bug di IntelliJIDEA che segnala errore.
+    public ProvaCronoList() {
+        super();
+    }
+
+    /**
+     * @param parentCrudView che crea questa istanza
+     */
+    public ProvaCronoList(final ProvaCronoView parentCrudView) {
+        super(parentCrudView);
+    }
+
+
+    @Override
+    protected void fixPreferenze() {
+        super.fixPreferenze();
+    }
+
+
+}// end of CrudList class
