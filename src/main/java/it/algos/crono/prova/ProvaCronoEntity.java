@@ -35,7 +35,7 @@ public class ProvaCronoEntity extends AbstractEntity {
     private MeseEntity meseCon;
 
     @ASearch(type = TypeSearch.comboClazz)
-    @AField(type = TypeField.linkDBRef, linkClazz = MeseEntity.class)
+    @AField(type = TypeField.linkStatico, linkClazz = MeseEntity.class)
     private MeseEntity meseSenza;
 
     @Override
