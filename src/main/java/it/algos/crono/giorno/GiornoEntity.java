@@ -7,15 +7,15 @@ import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.*;
 import org.springframework.stereotype.*;
 
-@Component
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode(callSuper = true)
-@AEntity(collectionName = "giorno", usaResetStartup = true)
+@Document(collection = "giorno")
+@AEntity(usaResetStartup = true)
 public class GiornoEntity extends OrdineEntity {
 
 
@@ -24,7 +24,7 @@ public class GiornoEntity extends OrdineEntity {
     @AField(type = TypeField.text, headerText = "Nome",caption = "Nome corrente")
     private String code;
 
-    //    @DBRef
+    @DBRef
     @ASearch(type = TypeSearch.comboClazz)
     @AField(type = TypeField.linkDBRef, linkClazz = MeseEntity.class)
     private MeseEntity mese;

@@ -4,21 +4,20 @@ import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
 import lombok.*;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.stereotype.*;
+import org.springframework.data.mongodb.core.index.*;
+import org.springframework.data.mongodb.core.mapping.*;
 
-@Component
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode(callSuper = true)
-@AEntity(collectionName = "secolo", usaResetStartup = true)
+@Document(collection = "secolo")
+@AEntity(usaResetStartup = true)
 public class SecoloEntity extends OrdineEntity {
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)
-    @AField(type = TypeField.text, headerText = "Nome",caption = "Nome corrente")
+    @AField(type = TypeField.text, headerText = "Nome", caption = "Nome corrente")
     private String code;
 
     @AField(type = TypeField.integer, widthList = 6, caption = "Primo anno del secolo")

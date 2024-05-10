@@ -9,13 +9,12 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.*;
 import org.springframework.stereotype.*;
 
-@Component
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode(callSuper = true)
-@AEntity(collectionName = "provacrono")
+@Document(collection = "provacrono")
+@AEntity()
 public class ProvaCronoEntity extends AbstractEntity {
 
 

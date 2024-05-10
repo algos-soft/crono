@@ -26,6 +26,7 @@ public class ProvaCronoList extends CrudList {
     @Override
     protected void fixPreferenze() {
         super.fixPreferenze();
+        Object alfa = moduloModuloService.findByCode("alfa");
 
         super.usaBottoneResetDelete = true;
     }
