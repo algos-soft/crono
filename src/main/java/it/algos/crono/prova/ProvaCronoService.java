@@ -57,31 +57,31 @@ public class ProvaCronoService extends ModuloService {
     }
 
 
-    @Override
-    //casting only dalla superclasse
-    public ProvaCronoEntity findByCode(final String keyCodeValue) {
-        return (ProvaCronoEntity) super.findByCode(keyCodeValue);
-    }
-
+//    @Override
+//    //casting only dalla superclasse
+//    public ProvaCronoEntity findByCode(final String keyCodeValue) {
+//        return (ProvaCronoEntity) super.findByCode(keyCodeValue);
+//    }
+//
     @Override
     public RisultatoReset reset() {
         MeseEntity meseBeanCon;
         MeseEntity meseBeanSenza;
         ProvaCronoEntity newEntityBean;
 
-        meseBeanCon = meseService.findByCode("aprile");
-        meseBeanSenza = meseService.findByCode("novembre");
-        newEntityBean = newEntity("alfa", "lunga", meseBeanCon, meseBeanSenza);
-        if (newEntityBean != null) {
-            mappaBeans.put("alfa", newEntityBean);
-        }
+//        meseBeanCon = meseService.findByCode("aprile");
+//        meseBeanSenza = meseService.findByCode("novembre");
+//        newEntityBean = newEntity("alfa", "lunga", meseBeanCon, meseBeanSenza);
+//        if (newEntityBean != null) {
+//            mappaBeans.put("alfa", newEntityBean);
+//        }
 
-        meseBeanCon = meseService.findByCode("marzo");
-        meseBeanSenza = meseService.findByCode("gennaio");
-        newEntityBean = newEntity("beta", "aspprossimata", meseBeanCon, meseBeanSenza);
-        if (newEntityBean != null) {
-            mappaBeans.put("beta", newEntityBean);
-        }
+//        meseBeanCon = meseService.findByCode("marzo");
+//        meseBeanSenza = meseService.findByCode("gennaio");
+//        newEntityBean = newEntity("beta", "aspprossimata", meseBeanCon, meseBeanSenza);
+//        if (newEntityBean != null) {
+//            mappaBeans.put("beta", newEntityBean);
+//        }
 
         mappaBeans.values().stream().forEach(bean -> creaIfNotExists(bean));
         return RisultatoReset.vuotoMaCostruito;

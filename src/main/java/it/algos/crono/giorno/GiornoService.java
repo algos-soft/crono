@@ -77,10 +77,10 @@ public class GiornoService extends ModuloService {
     }
 
 
-    @Override
-    public GiornoEntity findByCode(final String keyCodeValue) {
-        return (GiornoEntity) super.findByCode(keyCodeValue);
-    }
+//    @Override
+//    public GiornoEntity findByCode(final String keyCodeValue) {
+//        return (GiornoEntity) super.findByCode(keyCodeValue);
+//    }
 
 
     @Override

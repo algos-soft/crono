@@ -77,10 +77,10 @@ public class AnnoService extends ModuloService {
     }
 
 
-    @Override
-    public AnnoEntity findByCode(final String keyCodeValue) {
-        return (AnnoEntity) super.findByCode(keyCodeValue);
-    }
+//    @Override
+//    public AnnoEntity findByCode(final String keyCodeValue) {
+//        return (AnnoEntity) super.findByCode(keyCodeValue);
+//    }
 
 
     @Override

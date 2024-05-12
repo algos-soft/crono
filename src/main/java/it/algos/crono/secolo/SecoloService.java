@@ -72,10 +72,10 @@ public class SecoloService extends ModuloService {
     }
 
 
-    @Override
-    public SecoloEntity findByCode(final String keyCodeValue) {
-        return (SecoloEntity) super.findByCode(keyCodeValue);
-    }
+//    @Override
+//    public SecoloEntity findByCode(final String keyCodeValue) {
+//        return (SecoloEntity) super.findByCode(keyCodeValue);
+//    }
 
     /**
      * Seleziona un secolo dal field 'nome' dell'anno (String) <br>
