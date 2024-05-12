@@ -27,7 +27,7 @@ public class SecoloView extends CrudView {
      * Mantiene il riferimento ad una listClazz (CrudList) per creare l'istanza prototype <br>
      * Mantiene il riferimento ad una formClazz (CrudForm) per creare l'istanza prototype <br>
      */
-    public SecoloView(@Autowired SecoloService moduloCrudService) {
+    SecoloView(@Autowired SecoloService moduloCrudService) {
         super(moduloCrudService, SecoloList.class, SecoloForm.class);
     }
 

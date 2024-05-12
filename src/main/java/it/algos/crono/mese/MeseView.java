@@ -26,7 +26,7 @@ public class MeseView extends CrudView {
      * Mantiene il riferimento al CrudService Service (singleton) di questo Modulo <br>
      * Mantiene il riferimento ad una listClazz (CrudList) per creare l'istanza prototype <br>
      */
-    public MeseView(@Autowired MeseService moduloCrudService) {
+    MeseView(@Autowired MeseService moduloCrudService) {
         super(moduloCrudService, MeseList.class);
     }
 
