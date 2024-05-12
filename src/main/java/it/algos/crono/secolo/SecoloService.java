@@ -1,12 +1,15 @@
 package it.algos.crono.secolo;
 
+import it.algos.crono.mese.*;
 import it.algos.vbase.backend.boot.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
+import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
 import it.algos.vbase.backend.exception.*;
 import it.algos.vbase.backend.logic.*;
 import it.algos.vbase.backend.modules.anagrafica.via.*;
 import it.algos.vbase.backend.wrapper.*;
+import org.bson.types.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.data.mongodb.core.query.*;
 import org.springframework.stereotype.*;
@@ -66,16 +69,21 @@ public class SecoloService extends ModuloService {
         return newEntityBean;
     }
 
+
+    @Override
+    public ObjectId getObjectId(AbstractEntity newEntityBean) {
+        return new ObjectId(textService.fixSize(((SecoloEntity) newEntityBean).getCode(), ID_LENGTH).getBytes());
+    }
+
+    @Override
+    public SecoloEntity findById(final String idStringValue) {
+        return (SecoloEntity) super.findById(idStringValue);
+    }
+
     @Override
     public List<SecoloEntity> findAll() {
         return super.findAll();
     }
-
-
-//    @Override
-//    public SecoloEntity findByCode(final String keyCodeValue) {
-//        return (SecoloEntity) super.findByCode(keyCodeValue);
-//    }
 
     /**
      * Seleziona un secolo dal field 'nome' dell'anno (String) <br>

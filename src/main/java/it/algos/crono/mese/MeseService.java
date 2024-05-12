@@ -1,7 +1,11 @@
 package it.algos.crono.mese;
 
+import it.algos.crono.giorno.*;
+import static it.algos.vbase.backend.boot.BaseCost.*;
+import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
 import it.algos.vbase.backend.logic.*;
+import org.bson.types.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
@@ -57,17 +61,20 @@ public class MeseService extends ModuloService {
         return newEntityBean;
     }
 
+    @Override
+    public ObjectId getObjectId(AbstractEntity newEntityBean) {
+        return new ObjectId(textService.fixSize(((MeseEntity) newEntityBean).getCode(), ID_LENGTH).getBytes());
+    }
+
+    @Override
+    public MeseEntity findById(final String idStringValue) {
+        return (MeseEntity) super.findById(idStringValue);
+    }
 
     @Override
     public List<MeseEntity> findAll() {
         return super.findAll();
     }
-
-
-//    @Override
-//    public MeseEntity findByCode(final String keyCodeValue) {
-//        return (MeseEntity) super.findByCode(keyCodeValue);
-//    }
 
 
     @Override

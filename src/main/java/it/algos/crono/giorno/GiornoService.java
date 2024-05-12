@@ -1,12 +1,15 @@
 package it.algos.crono.giorno;
 
+import it.algos.crono.anno.*;
 import it.algos.crono.mese.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
+import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
 import it.algos.vbase.backend.exception.*;
 import it.algos.vbase.backend.logic.*;
 import it.algos.vbase.backend.service.*;
 import it.algos.vbase.backend.wrapper.*;
+import org.bson.types.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
@@ -72,15 +75,20 @@ public class GiornoService extends ModuloService {
 
 
     @Override
-    public List<GiornoEntity> findAll() {
-        return super.findAll();
+    public ObjectId getObjectId(AbstractEntity newEntityBean) {
+        return new ObjectId(textService.fixSize(((GiornoEntity) newEntityBean).getCode(), ID_LENGTH).getBytes());
+    }
+
+    @Override
+    public GiornoEntity findById(final String idStringValue) {
+        return (GiornoEntity) super.findById(idStringValue);
     }
 
 
-//    @Override
-//    public GiornoEntity findByCode(final String keyCodeValue) {
-//        return (GiornoEntity) super.findByCode(keyCodeValue);
-//    }
+    @Override
+    public List<GiornoEntity> findAll() {
+        return super.findAll();
+    }
 
 
     @Override
