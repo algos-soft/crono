@@ -44,14 +44,14 @@ public class MeseService extends ModuloService {
     /**
      * Creazione in memoria di una nuova entity che NON viene salvata <br>
      *
-     * @param code (obbligatorio, unico)
+     * @param nome (obbligatorio, unico)
      *
      * @return la nuova entity appena creata (con keyID ma non salvata)
      */
-    public MeseEntity newEntity(int ordine, String sigla, String code, int giorni, int primo, int ultimo) {
+    public MeseEntity newEntity(int ordine, String sigla, String nome, int giorni, int primo, int ultimo) {
         MeseEntity newEntityBean = MeseEntity.builder()
                 .sigla(textService.isValid(sigla) ? sigla : null)
-                .code(textService.isValid(code) ? code : null)
+                .nome(textService.isValid(nome) ? nome : null)
                 .giorni(giorni)
                 .primo(primo)
                 .ultimo(ultimo)
@@ -63,7 +63,7 @@ public class MeseService extends ModuloService {
 
     @Override
     public ObjectId getObjectId(AbstractEntity newEntityBean) {
-        return new ObjectId(textService.fixSize(((MeseEntity) newEntityBean).getCode(), ID_LENGTH).getBytes());
+        return new ObjectId(textService.fixSize(((MeseEntity) newEntityBean).getNome(), ID_LENGTH).getBytes());
     }
 
     @Override

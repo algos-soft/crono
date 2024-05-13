@@ -17,8 +17,8 @@ public class SecoloEntity extends OrdineEntity {
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)
-    @AField(type = TypeField.text, headerText = "Nome", caption = "Nome corrente")
-    private String code;
+    @AField(type = TypeField.text, caption = "Nome corrente")
+    private String nome;
 
     @AField(type = TypeField.integer, widthList = 6, caption = "Primo anno del secolo")
     private int inizio;
@@ -33,7 +33,7 @@ public class SecoloEntity extends OrdineEntity {
 
     @Override
     public String toString() {
-        return code;
+        return nome;
     }
 
 }// end of Entity class

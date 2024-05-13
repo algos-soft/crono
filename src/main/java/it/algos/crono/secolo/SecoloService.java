@@ -50,16 +50,16 @@ public class SecoloService extends ModuloService {
      * Creazione in memoria di una nuova entity che NON viene salvata <br>
      *
      * @param ordine     di presentazione nel popup/combobox (obbligatorio, unico)
-     * @param code       descrittivo e visualizzabile
+     * @param nome       descrittivo e visualizzabile
      * @param inizio     primo anno del secolo
      * @param fine       ultimo anno del secolo
      * @param dopoCristo secolo prima o dopo Cristo
      *
      * @return la nuova entity appena creata (con keyID ma non salvata)
      */
-    public SecoloEntity newEntity(final int ordine, final String code, final int inizio, final int fine, final boolean dopoCristo) {
+    public SecoloEntity newEntity(final int ordine, final String nome, final int inizio, final int fine, final boolean dopoCristo) {
         SecoloEntity newEntityBean = SecoloEntity.builder()
-                .code(textService.isValid(code) ? code : null)
+                .nome(textService.isValid(nome) ? nome : null)
                 .inizio(inizio)
                 .fine(fine)
                 .dopoCristo(dopoCristo)
@@ -72,7 +72,7 @@ public class SecoloService extends ModuloService {
 
     @Override
     public ObjectId getObjectId(AbstractEntity newEntityBean) {
-        return new ObjectId(textService.fixSize(((SecoloEntity) newEntityBean).getCode(), ID_LENGTH).getBytes());
+        return new ObjectId(textService.fixSize(((SecoloEntity) newEntityBean).getNome(), ID_LENGTH).getBytes());
     }
 
     @Override

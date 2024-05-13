@@ -1,12 +1,11 @@
 package it.algos.crono.giorno;
 
-import it.algos.crono.anno.*;
+import it.algos.crono.logic.*;
 import it.algos.crono.mese.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
 import it.algos.vbase.backend.exception.*;
-import it.algos.vbase.backend.logic.*;
 import it.algos.vbase.backend.service.*;
 import it.algos.vbase.backend.wrapper.*;
 import org.bson.types.*;
@@ -24,7 +23,7 @@ import java.util.*;
  * Time: 15:34
  */
 @Service
-public class GiornoService extends ModuloService {
+public class GiornoService extends CronoModuloService {
 
     @Value("${algos.project.crea.directory.crono:false}")
     private String creaDirectoryCronoTxt;
@@ -46,7 +45,6 @@ public class GiornoService extends ModuloService {
     }
 
 
-
     /**
      * Creazione in memoria di una nuova entity che NON viene salvata <br>
      * Usa il @Builder di Lombok <br>
@@ -54,16 +52,16 @@ public class GiornoService extends ModuloService {
      * All properties <br>
      *
      * @param ordine    di presentazione nel popup/combobox (obbligatorio, unico)
-     * @param code      corrente
+     * @param nome      corrente
      * @param mese      di appartenenza
      * @param trascorsi di inizio anno
      * @param mancanti  alla fine dell'anno
      *
      * @return la nuova entity appena creata (non salvata e senza keyID)
      */
-    public GiornoEntity newEntity(final int ordine, final String code, final MeseEntity mese, final int trascorsi, final int mancanti) {
+    public GiornoEntity newEntity(final int ordine, final String nome, final MeseEntity mese, final int trascorsi, final int mancanti) {
         GiornoEntity newEntityBean = GiornoEntity.builder()
-                .code(textService.isValid(code) ? code : null)
+                .nome(textService.isValid(nome) ? nome : null)
                 .mese(mese)
                 .trascorsi(trascorsi)
                 .mancanti(mancanti)
@@ -76,7 +74,8 @@ public class GiornoService extends ModuloService {
 
     @Override
     public ObjectId getObjectId(AbstractEntity newEntityBean) {
-        return new ObjectId(textService.fixSize(((GiornoEntity) newEntityBean).getCode(), ID_LENGTH).getBytes());
+        //        return new ObjectId(textService.fixSize(((GiornoEntity) newEntityBean).getCode(), ID_LENGTH).getBytes());
+        return super.getObjectId(((GiornoEntity) newEntityBean).getNome());
     }
 
     @Override
@@ -106,10 +105,8 @@ public class GiornoService extends ModuloService {
         if (!Boolean.parseBoolean(creaDirectoryCronoTxt)) {
             return RisultatoReset.nonCostruito;
         }
-
         if (meseModulo.count() < 1) {
-            logger.error(new WrapLog().exception(new AlgosException("Manca la collezione [mese]")).usaDb().type(TypeLog.startup));
-            return RisultatoReset.nonCostruito;
+            meseModulo.reset();
         }
 
         lista = dateService.getAllGiorni();
@@ -117,7 +114,7 @@ public class GiornoService extends ModuloService {
             for (HashMap<String, Object> mappaGiorno : lista) {
                 nome = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_TITOLO);
                 meseTxt = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_MESE_TESTO);
-                mese = (MeseEntity) meseModulo.findOneByCode(meseTxt);
+                mese = (MeseEntity) meseModulo.findById(meseTxt);
                 if (mese == null) {
                     message = String.format("Manca il mese di %s", meseTxt);
                     logger.error(new WrapLog().exception(new AlgosException(message)).usaDb().type(TypeLog.startup));

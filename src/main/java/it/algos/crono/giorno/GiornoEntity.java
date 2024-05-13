@@ -8,7 +8,6 @@ import it.algos.vbase.backend.enumeration.*;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.*;
-import org.springframework.stereotype.*;
 
 @Data
 @NoArgsConstructor
@@ -21,8 +20,8 @@ public class GiornoEntity extends OrdineEntity {
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)
-    @AField(type = TypeField.text, headerText = "Nome",caption = "Nome corrente")
-    private String code;
+    @AField(type = TypeField.text, caption = "Nome corrente")
+    private String nome;
 
     @DBRef
     @ASearch(type = TypeSearch.comboClazz)
@@ -37,7 +36,7 @@ public class GiornoEntity extends OrdineEntity {
 
     @Override
     public String toString() {
-        return code;
+        return nome;
     }
 
 }// end of Entity class

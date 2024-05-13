@@ -53,16 +53,16 @@ public class AnnoService extends ModuloService {
      * All properties <br>
      *
      * @param ordine     di presentazione nel popup/combobox (obbligatorio, unico)
-     * @param code       corrente
+     * @param numero       corrente
      * @param secolo     di appartenenza
      * @param dopoCristo flag per gli anni prima/dopo cristo
      * @param bisestile  flag per gli anni bisestili
      *
      * @return la nuova entity appena creata (non salvata e senza keyID)
      */
-    public AnnoEntity newEntity(final int ordine, final String code, final SecoloEntity secolo, final boolean dopoCristo, final boolean bisestile) {
+    public AnnoEntity newEntity(final int ordine, final String numero, final SecoloEntity secolo, final boolean dopoCristo, final boolean bisestile) {
         AnnoEntity newEntityBean = AnnoEntity.builder()
-                .code(textService.isValid(code) ? code : null)
+                .numero(textService.isValid(numero) ? numero : null)
                 .secolo(secolo)
                 .dopoCristo(dopoCristo)
                 .bisestile(bisestile)
@@ -75,7 +75,7 @@ public class AnnoService extends ModuloService {
 
     @Override
     public ObjectId getObjectId(AbstractEntity newEntityBean) {
-        return new ObjectId(textService.fixSize(((AnnoEntity) newEntityBean).getCode(), ID_LENGTH).getBytes());
+        return new ObjectId(textService.fixSize(((AnnoEntity) newEntityBean).getNumero(), ID_LENGTH).getBytes());
     }
 
     @Override
@@ -95,10 +95,8 @@ public class AnnoService extends ModuloService {
         if (!Boolean.parseBoolean(creaDirectoryCronoTxt)) {
             return RisultatoReset.nonCostruito;
         }
-
         if (secoloService.count() < 1) {
-            logger.error(new WrapLog().exception(new AlgosException("Manca la collezione [secolo]")).usaDb().type(TypeLog.startup));
-            return RisultatoReset.nonCostruito;
+            secoloService.reset();
         }
 
         //--costruisce gli anni prima di cristo partendo da ANTE_CRISTO_MAX che coincide con DELTA_ANNI
