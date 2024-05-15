@@ -14,7 +14,7 @@ import org.springframework.stereotype.*;
 @AllArgsConstructor
 @Builder
 @Document(collection = "provacrono")
-@AEntity()
+@AEntity(usaResetStartup = true)
 public class ProvaCronoEntity extends AbstractEntity {
 
 

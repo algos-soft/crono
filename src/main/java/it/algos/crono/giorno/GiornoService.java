@@ -75,7 +75,9 @@ public class GiornoService extends CronoModuloService {
     @Override
     public ObjectId getObjectId(AbstractEntity newEntityBean) {
         //        return new ObjectId(textService.fixSize(((GiornoEntity) newEntityBean).getCode(), ID_LENGTH).getBytes());
-        return super.getObjectId(((GiornoEntity) newEntityBean).getNome());
+        String nome = ((GiornoEntity) newEntityBean).getNome();
+        nome = nome.replace("º", "o");
+        return super.getObjectId(nome);
     }
 
     @Override

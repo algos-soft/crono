@@ -25,7 +25,7 @@ import com.vaadin.flow.component.textfield.TextField;
  */
 @PageTitle("Prova")
 @Route(value = "provacrono", layout = MainLayout.class)
-@AView(menuGroup = MenuGroup.nessuno)
+@AView(menuGroup = MenuGroup.test)
 public class ProvaCronoView extends CrudView {
 
 

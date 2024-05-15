@@ -1,6 +1,6 @@
 package it.algos.crono.mese;
 
-import it.algos.crono.giorno.*;
+import it.algos.crono.enumeration.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;

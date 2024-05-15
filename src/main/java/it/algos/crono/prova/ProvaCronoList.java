@@ -5,6 +5,8 @@ import it.algos.vbase.backend.list.*;
 import static org.springframework.beans.factory.config.BeanDefinition.*;
 import org.springframework.context.annotation.*;
 
+import java.util.*;
+
 @SpringComponent
 @Scope(value = SCOPE_PROTOTYPE)
 public class ProvaCronoList extends CrudList {
@@ -26,7 +28,13 @@ public class ProvaCronoList extends CrudList {
     @Override
     protected void fixPreferenze() {
         super.fixPreferenze();
-//        Object alfa = moduloModuloService.findByCode("alfa");
+        //        Object alfa = moduloModuloService.findByCode("alfa");
+        List lista = new ArrayList();
+        lista.add(23);
+        lista.add("mario");
+        lista.add(78);
+        Object alfa = lista.getFirst();
+        Object beta = lista.getLast();
 
         super.usaBottoneResetDelete = true;
     }

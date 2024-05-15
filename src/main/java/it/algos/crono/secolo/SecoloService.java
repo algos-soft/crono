@@ -161,7 +161,8 @@ public class SecoloService extends ModuloService {
             return RisultatoReset.nonCostruito;
         }
 
-        Map<String, List<String>> mappaSource = resourceService.leggeMappa(nomeFileCSV);
+//        Map<String, List<String>> mappaSource = resourceService.leggeMappa(nomeFileCSV);
+        Map<String, List<String>> mappaSource=null;
         if (mappaSource != null) {
             for (List<String> riga : mappaSource.values()) {
                 if (riga.size() == 5) {
