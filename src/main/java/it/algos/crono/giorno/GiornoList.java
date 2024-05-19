@@ -15,10 +15,10 @@ public class GiornoList extends CronoList {
 
 
     /**
-     * @param parentCrudView che crea questa istanza
+     * @param parentView che crea questa istanza
      */
-    public GiornoList(final GiornoView parentCrudView) {
-        super(parentCrudView);
+    public GiornoList(final GiornoView parentView) {
+        super(parentView);
     }
 
 

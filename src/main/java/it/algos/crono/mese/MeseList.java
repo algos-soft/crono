@@ -14,10 +14,10 @@ public class MeseList extends CronoList {
 
 
     /**
-     * @param parentCrudView che crea questa istanza
+     * @param parentView che crea questa istanza
      */
-    public MeseList(final MeseView parentCrudView) {
-        super(parentCrudView);
+    public MeseList(final MeseView parentView) {
+        super(parentView);
     }
 
 

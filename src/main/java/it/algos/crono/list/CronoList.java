@@ -16,10 +16,10 @@ public abstract class CronoList extends CrudList {
 
 
     /**
-     * @param parentCrudView che crea questa istanza
+     * @param parentView che crea questa istanza
      */
-    public CronoList(final CrudView parentCrudView) {
-        super(parentCrudView);
+    public CronoList(final CrudView parentView) {
+        super(parentView);
     }
 
 

@@ -1,10 +1,12 @@
 package it.algos.crono.secolo;
 
+import it.algos.vbase.backend.boot.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
 import it.algos.vbase.backend.exception.*;
 import it.algos.vbase.backend.logic.*;
+import it.algos.vbase.backend.modules.anagrafica.via.*;
 import it.algos.vbase.backend.service.*;
 import it.algos.vbase.backend.wrapper.*;
 import org.bson.types.*;
@@ -25,10 +27,12 @@ import java.util.*;
 @Service
 public class SecoloService extends ModuloService {
 
+    private static final String KEY_NAME = FIELD_NAME_NOME;
+
     @Value("${algos.project.crea.directory.crono:false}")
     private String creaDirectoryCronoTxt;
 
-    @Inject
+    @Autowired
     ResourceService resourceService;
 
     public static final String INIZIO = "inizio";
@@ -71,15 +75,18 @@ public class SecoloService extends ModuloService {
         return newEntityBean;
     }
 
-
     @Override
     public ObjectId getObjectId(AbstractEntity newEntityBean) {
-        return new ObjectId(textService.fixSize(((SecoloEntity) newEntityBean).getNome(), ID_LENGTH).getBytes());
+        return null;
     }
 
     @Override
     public SecoloEntity findById(final String idStringValue) {
         return (SecoloEntity) super.findById(idStringValue);
+    }
+
+    public SecoloEntity findByKey(final String keyValue) {
+        return (SecoloEntity) super.findOneByProperty(KEY_NAME, keyValue);
     }
 
     @Override
@@ -130,7 +137,6 @@ public class SecoloService extends ModuloService {
      */
     public SecoloEntity getSecolo(final int annoInt, boolean dopoCristo) {
         Query query = new Query();
-        String collectionName = annotationService.getCollectionName(SecoloEntity.class);
 
         if (dopoCristo) {
             query.addCriteria(Criteria.where(INIZIO).lte(annoInt));
@@ -143,7 +149,7 @@ public class SecoloService extends ModuloService {
             query.addCriteria(Criteria.where(CRISTO).is(dopoCristo));
         }
 
-        return mongoService.mongoTemplate.findOne(query, SecoloEntity.class, collectionName);
+        return mongoService.findOne(query, SecoloEntity.class);
     }
 
 
@@ -163,8 +169,7 @@ public class SecoloService extends ModuloService {
             return RisultatoReset.nonCostruito;
         }
 
-//        Map<String, List<String>> mappaSource = resourceService.leggeMappa(nomeFileCSV);
-        Map<String, List<String>> mappaSource=null;
+        Map<String, List<String>> mappaSource = resourceService.leggeMappa(nomeFileCSV);
         if (mappaSource != null) {
             for (List<String> riga : mappaSource.values()) {
                 if (riga.size() == 5) {

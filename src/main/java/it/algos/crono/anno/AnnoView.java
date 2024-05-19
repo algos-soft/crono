@@ -27,8 +27,8 @@ public class AnnoView extends CrudView {
      * Mantiene il riferimento ad una listClazz (CrudList) per creare l'istanza prototype <br>
      * Mantiene il riferimento ad una formClazz (CrudForm) per creare l'istanza prototype <br>
      */
-    AnnoView(@Autowired AnnoService moduloCrudService) {
-        super(moduloCrudService, AnnoList.class, AnnoForm.class);
+    AnnoView(@Autowired AnnoService moduloService) {
+        super(moduloService, AnnoList.class, AnnoForm.class);
     }
 
 

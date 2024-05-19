@@ -25,13 +25,15 @@ import java.util.*;
 @Service
 public class GiornoService extends CronoModuloService {
 
+    private static final String KEY_NAME = FIELD_NAME_NOME;
+
     @Value("${algos.project.crea.directory.crono:false}")
     private String creaDirectoryCronoTxt;
 
-    @Inject
-    public MeseService meseModulo;
+    @Autowired
+    public MeseService meseService;
 
-    @Inject
+    @Autowired
     public DateService dateService;
 
 
@@ -74,10 +76,7 @@ public class GiornoService extends CronoModuloService {
 
     @Override
     public ObjectId getObjectId(AbstractEntity newEntityBean) {
-        //        return new ObjectId(textService.fixSize(((GiornoEntity) newEntityBean).getCode(), ID_LENGTH).getBytes());
-        String nome = ((GiornoEntity) newEntityBean).getNome();
-        nome = nome.replace("º", "o");
-        return super.getObjectId(nome);
+        return null;
     }
 
     @Override
@@ -85,12 +84,14 @@ public class GiornoService extends CronoModuloService {
         return (GiornoEntity) super.findById(idStringValue);
     }
 
+    public GiornoEntity findByKey(final String keyValue) {
+        return (GiornoEntity) super.findOneByProperty(KEY_NAME, keyValue);
+    }
 
     @Override
     public List<GiornoEntity> findAll() {
         return super.findAll();
     }
-
 
     @Override
     public RisultatoReset reset() {
@@ -107,8 +108,8 @@ public class GiornoService extends CronoModuloService {
         if (!Boolean.parseBoolean(creaDirectoryCronoTxt)) {
             return RisultatoReset.nonCostruito;
         }
-        if (meseModulo.count() < 1) {
-            meseModulo.reset();
+        if (meseService.count() < 1) {
+            meseService.reset();
         }
 
         lista = dateService.getAllGiorni();
@@ -116,7 +117,7 @@ public class GiornoService extends CronoModuloService {
             for (HashMap<String, Object> mappaGiorno : lista) {
                 nome = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_TITOLO);
                 meseTxt = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_MESE_TESTO);
-                mese = (MeseEntity) meseModulo.findById(meseTxt);
+                mese = meseService.findById(meseTxt);
                 if (mese == null) {
                     message = String.format("Manca il mese di %s", meseTxt);
                     logger.error(new WrapLog().exception(new AlgosException(message)).usaDb().type(TypeLog.startup));
@@ -137,4 +138,4 @@ public class GiornoService extends CronoModuloService {
         return RisultatoReset.vuotoMaCostruito;
     }
 
-}// end of CrudService class
+}// end of ModuloService class

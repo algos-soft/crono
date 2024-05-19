@@ -1,8 +1,13 @@
 package it.algos.crono.prova;
 
+import it.algos.crono.anno.*;
+import it.algos.crono.giorno.*;
 import it.algos.crono.mese.*;
+import it.algos.crono.secolo.*;
 import it.algos.vbase.backend.enumeration.*;
 import it.algos.vbase.backend.logic.*;
+import jakarta.annotation.*;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
 import javax.inject.*;
@@ -18,8 +23,17 @@ import java.util.*;
 @Service
 public class ProvaCronoService extends ModuloService {
 
-    @Inject
+    @Autowired
+    AnnoService annoService;
+
+    @Autowired
+    GiornoService giornoService;
+
+    @Autowired
     MeseService meseService;
+
+    @Autowired
+    SecoloService secoloService;
 
     /**
      * Regola la entityClazz associata a questo Modulo e la passa alla superclasse <br>
@@ -30,6 +44,24 @@ public class ProvaCronoService extends ModuloService {
         super(ProvaCronoEntity.class, ProvaCronoView.class);
     }
 
+    /**
+     * Performing the initialization in a constructor is not suggested as the state of the UI is not properly set up when the constructor is invoked. <br>
+     * La injection viene fatta da SpringBoot SOLO DOPO il metodo init() del costruttore <br>
+     * Si usa quindi un metodo @PostConstruct per avere disponibili tutte le istanze @Autowired <br>
+     * <p>
+     * Ci possono essere diversi metodi con @PostConstruct e firme diverse e funzionano tutti, ma l'ordine con cui vengono chiamati (nella stessa classe) NON è garantito <br>
+     * Se viene implementata una sottoclasse, passa di qui per ogni sottoclasse oltre che per questa istanza <br>
+     * Se esistono delle sottoclassi, passa di qui per ognuna di esse (oltre a questa classe madre) <br>
+     */
+    @PostConstruct
+    public void postConstruct() {
+        AnnoEntity annoId = annoService.findByKey("aprile");
+        AnnoEntity annoKey = annoService.findByKey("aprile");
+
+        MeseEntity meseId = meseService.findByKey("aprile");
+        MeseEntity meseKey = meseService.findByKey("aprile");
+
+    }
 
     /**
      * Creazione in memoria di una nuova entity che NON viene salvata <br>
@@ -51,33 +83,30 @@ public class ProvaCronoService extends ModuloService {
     }
 
     @Override
-    //casting only dalla superclasse
     public List<ProvaCronoEntity> findAll() {
         return super.findAll();
     }
 
 
-//    @Override
-//    //casting only dalla superclasse
-//    public ProvaCronoEntity findByCode(final String keyCodeValue) {
-//        return (ProvaCronoEntity) super.findByCode(keyCodeValue);
-//    }
-//
     @Override
     public RisultatoReset reset() {
         MeseEntity meseBeanCon;
         MeseEntity meseBeanSenza;
         ProvaCronoEntity newEntityBean;
 
-        meseBeanCon = meseService.findById("aprile");
-        meseBeanSenza = meseService.findById("novembre");
+        if (meseService.count() < 1) {
+            return null;
+        }
+
+        meseBeanCon = meseService.findByKey("aprile");
+        meseBeanSenza = meseService.findByKey("novembre");
         newEntityBean = newEntity("alfa", "lunga", meseBeanCon, meseBeanSenza);
         if (newEntityBean != null) {
             mappaBeans.put("alfa", newEntityBean);
         }
 
-        meseBeanCon = meseService.findById("marzo");
-        meseBeanSenza = meseService.findById("gennaio");
+        meseBeanCon = meseService.findByKey("marzo");
+        meseBeanSenza = meseService.findByKey("gennaio");
         newEntityBean = newEntity("beta", "aspprossimata", meseBeanCon, meseBeanSenza);
         if (newEntityBean != null) {
             mappaBeans.put("beta", newEntityBean);

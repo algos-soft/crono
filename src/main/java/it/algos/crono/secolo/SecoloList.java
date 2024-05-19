@@ -20,10 +20,10 @@ public class SecoloList extends CronoList {
 
 
     /**
-     * @param parentCrudView che crea questa istanza
+     * @param parentView che crea questa istanza
      */
-    public SecoloList(final SecoloView parentCrudView) {
-        super(parentCrudView);
+    public SecoloList(final SecoloView parentView) {
+        super(parentView);
     }
 
 

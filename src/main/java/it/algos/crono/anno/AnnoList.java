@@ -15,10 +15,10 @@ public class AnnoList extends CronoList {
 
 
     /**
-     * @param parentCrudView che crea questa istanza
+     * @param parentView che crea questa istanza
      */
-    public AnnoList(final AnnoView parentCrudView) {
-        super(parentCrudView);
+    public AnnoList(final AnnoView parentView) {
+        super(parentView);
     }
 
     protected void fixPreferenze() {

@@ -1,9 +1,11 @@
 package it.algos.crono.mese;
 
+import it.algos.vbase.backend.boot.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
 import it.algos.vbase.backend.logic.*;
+import it.algos.vbase.backend.modules.anagrafica.via.*;
 import org.bson.types.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
@@ -25,6 +27,8 @@ import java.util.*;
  */
 @Service
 public class MeseService extends ModuloService {
+
+    private static final String KEY_NAME = FIELD_NAME_NOME;
 
     @Value("${algos.project.crea.directory.crono:false}")
     private String creaDirectoryCronoTxt;
@@ -62,12 +66,16 @@ public class MeseService extends ModuloService {
 
     @Override
     public ObjectId getObjectId(AbstractEntity newEntityBean) {
-        return new ObjectId(textService.fixSize(((MeseEntity) newEntityBean).getNome(), ID_LENGTH).getBytes());
+        return super.getObjectId(((MeseEntity) newEntityBean).getNome());
     }
 
     @Override
     public MeseEntity findById(final String idStringValue) {
         return (MeseEntity) super.findById(idStringValue);
+    }
+
+    public MeseEntity findByKey(final String keyValue) {
+        return (MeseEntity) super.findOneByProperty(KEY_NAME, keyValue);
     }
 
     @Override

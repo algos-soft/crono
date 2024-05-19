@@ -20,7 +20,7 @@ public class AnnoEntity extends OrdineEntity {
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)
     @AField(type = TypeField.text, caption = "Nome corrente")
-    private String numero;
+    private String nome;
 
     @DBRef
     @ASearch(type = TypeSearch.comboClazz)
@@ -38,7 +38,7 @@ public class AnnoEntity extends OrdineEntity {
 
     @Override
     public String toString() {
-        return numero;
+        return nome;
     }
 
 }// end of Entity class

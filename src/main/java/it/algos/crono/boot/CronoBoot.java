@@ -79,15 +79,6 @@ public class CronoBoot extends BaseBoot {
         return false;
     }
 
-    protected void printInfoModuli() {
-        // @todo  rimettere
-        //        super.printInfoModuli();
-        //
-        //        for (CrudModulo modulo : crudModuloListProject) {
-        //            modulo.checkReset();
-        //        }
-    }
-
 
 }
 

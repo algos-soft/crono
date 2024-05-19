@@ -2,11 +2,13 @@ package it.algos.crono.anno;
 
 import it.algos.crono.giorno.*;
 import it.algos.crono.secolo.*;
+import it.algos.vbase.backend.boot.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
 import it.algos.vbase.backend.exception.*;
 import it.algos.vbase.backend.logic.*;
+import it.algos.vbase.backend.modules.anagrafica.via.*;
 import it.algos.vbase.backend.service.*;
 import it.algos.vbase.backend.wrapper.*;
 import org.bson.types.*;
@@ -26,13 +28,15 @@ import java.util.*;
 @Service
 public class AnnoService extends ModuloService {
 
+    private static final String KEY_NAME = FIELD_NAME_NOME;
+
     @Value("${algos.project.crea.directory.crono:false}")
     private String creaDirectoryCronoTxt;
 
-    @Inject
+    @Autowired
     public SecoloService secoloService;
 
-    @Inject
+    @Autowired
     public DateService dateService;
 
     /**
@@ -53,16 +57,16 @@ public class AnnoService extends ModuloService {
      * All properties <br>
      *
      * @param ordine     di presentazione nel popup/combobox (obbligatorio, unico)
-     * @param numero       corrente
+     * @param nome       corrente
      * @param secolo     di appartenenza
      * @param dopoCristo flag per gli anni prima/dopo cristo
      * @param bisestile  flag per gli anni bisestili
      *
      * @return la nuova entity appena creata (non salvata e senza keyID)
      */
-    public AnnoEntity newEntity(final int ordine, final String numero, final SecoloEntity secolo, final boolean dopoCristo, final boolean bisestile) {
+    public AnnoEntity newEntity(final int ordine, final String nome, final SecoloEntity secolo, final boolean dopoCristo, final boolean bisestile) {
         AnnoEntity newEntityBean = AnnoEntity.builder()
-                .numero(textService.isValid(numero) ? numero : null)
+                .nome(textService.isValid(nome) ? nome : null)
                 .secolo(secolo)
                 .dopoCristo(dopoCristo)
                 .bisestile(bisestile)
@@ -72,10 +76,9 @@ public class AnnoService extends ModuloService {
         return newEntityBean;
     }
 
-
     @Override
     public ObjectId getObjectId(AbstractEntity newEntityBean) {
-        return new ObjectId(textService.fixSize(((AnnoEntity) newEntityBean).getNumero(), ID_LENGTH).getBytes());
+        return null;
     }
 
     @Override
@@ -83,6 +86,9 @@ public class AnnoService extends ModuloService {
         return (AnnoEntity) super.findById(idStringValue);
     }
 
+    public AnnoEntity findByKey(final String keyValue) {
+        return (AnnoEntity) super.findOneByProperty(KEY_NAME, keyValue);
+    }
 
     @Override
     public List<AnnoEntity> findAll() {
