@@ -1,12 +1,10 @@
 package it.algos.crono.secolo;
 
-import it.algos.vbase.backend.boot.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
 import it.algos.vbase.backend.exception.*;
 import it.algos.vbase.backend.logic.*;
-import it.algos.vbase.backend.modules.anagrafica.via.*;
 import it.algos.vbase.backend.service.*;
 import it.algos.vbase.backend.wrapper.*;
 import org.bson.types.*;
@@ -14,7 +12,6 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.data.mongodb.core.query.*;
 import org.springframework.stereotype.*;
 
-import javax.inject.*;
 import java.util.*;
 
 /**
