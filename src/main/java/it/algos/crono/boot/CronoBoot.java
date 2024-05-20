@@ -54,7 +54,7 @@ public class CronoBoot extends BaseBoot {
                         viewClazzListProject.add(clazz);
                         viewName = clazz.getSimpleName();
                         viewName = textService.levaCoda(viewName, SUFFIX_VIEW);
-                        nameViewListProject.add(viewName);
+//                        nameViewListProject.add(viewName);
                     }
                 }
             }
