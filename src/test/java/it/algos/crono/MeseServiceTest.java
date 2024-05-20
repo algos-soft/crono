@@ -1,6 +1,5 @@
 package it.algos.crono;
 
-import it.algos.crono.anno.*;
 import it.algos.crono.mese.*;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.*;
@@ -13,7 +12,7 @@ import org.springframework.boot.test.context.*;
  * Date: sab, 18-mag-2024
  * Time: 22:37
  */
-@SpringBootTest(classes = {Application.class})
+@SpringBootTest(classes = {CronoApplication.class})
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @Tag("service")
 @DisplayName("Mese Service")

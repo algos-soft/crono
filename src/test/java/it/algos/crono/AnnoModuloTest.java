@@ -16,7 +16,7 @@ import java.util.*;
  * Date: Mon, 06-Nov-2023
  * Time: 21:03
  */
-@SpringBootTest(classes = {Application.class})
+@SpringBootTest(classes = {CronoApplication.class})
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @Tag("modulo")
 @DisplayName("Anno Modulo")
