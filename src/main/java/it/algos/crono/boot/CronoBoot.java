@@ -69,15 +69,15 @@ public class CronoBoot extends BaseBoot {
     }
 
 
-    protected boolean checkResetStartup() {
-        if (super.checkResetStartup()) {
-            for (ModuloService modulo : moduloServiceListProject) {
-                modulo.checkResetStartup();
-            }
-        }
-
-        return false;
-    }
+//    protected boolean checkResetStartup() {
+//        if (super.checkResetStartup()) {
+//            for (ModuloService modulo : moduloServiceListProject) {
+//                modulo.checkResetStartup();
+//            }
+//        }
+//
+//        return false;
+//    }
 
 
 }
