@@ -1,8 +1,6 @@
 package it.algos.crono.anno;
 
-import it.algos.crono.giorno.*;
 import it.algos.crono.secolo.*;
-import it.algos.vbase.backend.boot.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
@@ -14,7 +12,6 @@ import org.bson.types.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
-import javax.inject.*;
 import java.util.*;
 
 /**
@@ -46,7 +43,6 @@ public class AnnoService extends ModuloService {
     public AnnoService() {
         super(AnnoEntity.class, AnnoView.class);
     }
-
 
 
     /**
@@ -97,11 +93,19 @@ public class AnnoService extends ModuloService {
 
     @Override
     public RisultatoReset reset() {
+        String collectionName = annotationService.getCollectionName(AnnoEntity.class);
+        String collectionNameParent = annotationService.getCollectionName(SecoloEntity.class);
+
         if (!Boolean.parseBoolean(creaDirectoryCronoTxt)) {
             return RisultatoReset.nonCostruito;
         }
-        if (secoloService.count() < 1) {
+        if (secoloService.count() < 1 && annotationService.usaResetStartup(SecoloEntity.class)) {
             secoloService.reset();
+        }
+        if (secoloService.count() < 1) {
+            String message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
+            logger.warn(new WrapLog().exception(new AlgosException(message)).type(TypeLog.startup));
+            return RisultatoReset.nonCostruito;
         }
 
         //--costruisce gli anni prima di cristo partendo da ANTE_CRISTO_MAX che coincide con DELTA_ANNI

@@ -12,7 +12,6 @@ import org.bson.types.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
-import javax.inject.*;
 import java.util.*;
 
 /**
@@ -95,6 +94,8 @@ public class GiornoService extends CronoModuloService {
 
     @Override
     public RisultatoReset reset() {
+        String collectionName = annotationService.getCollectionName(GiornoEntity.class);
+        String collectionNameParent = annotationService.getCollectionName(MeseEntity.class);
         int ordine;
         String nome;
         String meseTxt;
@@ -108,7 +109,7 @@ public class GiornoService extends CronoModuloService {
         if (!Boolean.parseBoolean(creaDirectoryCronoTxt)) {
             return RisultatoReset.nonCostruito;
         }
-        if (meseService.count() < 1) {
+        if (meseService.count() < 1 && annotationService.usaResetStartup(MeseEntity.class)) {
             meseService.reset();
         }
 
@@ -119,23 +120,28 @@ public class GiornoService extends CronoModuloService {
                 meseTxt = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_MESE_TESTO);
                 mese = meseService.findById(meseTxt);
                 if (mese == null) {
-                    message = String.format("Manca il mese di %s", meseTxt);
-                    logger.error(new WrapLog().exception(new AlgosException(message)).usaDb().type(TypeLog.startup));
+                    break;
                 }
-
                 ordine = (int) mappaGiorno.get(KEY_MAPPA_GIORNI_BISESTILE);
                 trascorsi = (int) mappaGiorno.get(KEY_MAPPA_GIORNI_NORMALE);
                 mancanti = NUM_GIORNI_ANNO - trascorsi;
 
                 newBean = newEntity(ordine, nome, mese, trascorsi, mancanti);
-                if (newBean != null) {
-                    mappaBeans.put(nome, newBean);
-                }
+                mappaBeans.put(nome, newBean);
             }
         }
 
-        mappaBeans.values().stream().forEach(bean -> creaIfNotExists(bean));
-        return RisultatoReset.vuotoMaCostruito;
+        if (mappaBeans.size() > 0) {
+            mappaBeans.values().stream().forEach(bean -> creaIfNotExists(bean));
+            return RisultatoReset.vuotoMaCostruito;
+        }
+        else {
+            message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
+            logger.warn(new WrapLog().exception(new AlgosException(message)).type(TypeLog.startup));
+            return RisultatoReset.nonCostruito;
+        }
+
+
     }
 
 }// end of ModuloService class

@@ -51,7 +51,7 @@ public class CronoBoot extends BaseBoot {
             if (listaViewsProject != null) {
                 for (Class clazz : listaViewsProject) {
                     if (annotationService.usaMenuAutomatico(clazz)) {
-                        viewClazzListProject.add(clazz);
+//                        viewClazzListProject.add(clazz);
                         viewName = clazz.getSimpleName();
                         viewName = textService.levaCoda(viewName, SUFFIX_VIEW);
 //                        nameViewListProject.add(viewName);
@@ -64,7 +64,7 @@ public class CronoBoot extends BaseBoot {
             }
         }
         else {
-            viewClazzListProject.add(MeseView.class);
+//            viewClazzListProject.add(MeseView.class);
         }
     }
 
