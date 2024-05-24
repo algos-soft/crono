@@ -34,6 +34,7 @@ public class GiornoEntity extends OrdineEntity {
     @AField(type = TypeField.integer, widthList = 6, headerIcon = VaadinIcon.STEP_FORWARD, caption = "Mancanti alla fine dell'anno")
     private int mancanti;
 
+
     @Override
     public String toString() {
         return nome;
