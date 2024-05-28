@@ -19,6 +19,7 @@ public class MeseEntity extends OrdineEntity {
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)
+    @AField(type = TypeField.text)
     private String sigla;
 
     @Indexed(unique = true)

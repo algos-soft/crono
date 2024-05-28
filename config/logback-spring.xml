@@ -83,6 +83,8 @@
     <!--    un logger di questo tipo (senza appender) blocca tutti i log qui e non li propaga oltre-->
     <!--    <logger name="org.atmosphere" level="INFO" additivity="false"/>-->
 
+    <!-- Imposta il livello di log per la libreria Reflections a WARN per sopprimere i messaggi meno gravi -->
+    <logger name="org.reflections" level="WARN"/>
 
     <!--qui arrivano tutti i logger che hanno additivity = true-->
     <!-- vengono stampati in console solo se la property LOG_TO_CONSOLE è a true-->
