@@ -13,7 +13,8 @@ import org.springframework.data.mongodb.core.mapping.*;
 @AllArgsConstructor
 @Builder
 @Document(collection = "secolo")
-@AEntity(usaResetStartup = true)
+@AReset
+@AEntity()
 public class SecoloEntity extends OrdineEntity {
 
     @Indexed(unique = true)

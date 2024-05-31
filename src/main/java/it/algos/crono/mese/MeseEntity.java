@@ -14,7 +14,8 @@ import org.springframework.data.mongodb.core.mapping.*;
 @AllArgsConstructor
 @Builder
 @Document(collection = "mese")
-@AEntity(usaResetStartup = true)
+@AReset
+@AEntity()
 public class MeseEntity extends OrdineEntity {
 
     @Indexed(unique = true)

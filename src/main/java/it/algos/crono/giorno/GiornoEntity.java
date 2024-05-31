@@ -15,7 +15,8 @@ import org.springframework.data.mongodb.core.mapping.*;
 @AllArgsConstructor
 @Builder
 @Document(collection = "giorno")
-@AEntity(usaResetStartup = true)
+@AReset()
+@AEntity()
 public class GiornoEntity extends OrdineEntity {
 
 
