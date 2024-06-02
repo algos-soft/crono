@@ -6,7 +6,7 @@ import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.*;
 import it.algos.vbase.backend.enumeration.*;
 import lombok.*;
-import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.*;
 import org.springframework.data.mongodb.core.mapping.*;
 
 @Data
@@ -30,12 +30,12 @@ public class GiornoEntity extends OrdineEntity {
     @AField(type = TypeField.linkDBRef, linkClazz = MeseEntity.class)
     private MeseEntity mese;
 
-    @AFieldList(width = 6)
-    @AField(type = TypeField.integer, headerIcon = VaadinIcon.STEP_BACKWARD, caption = "Progressivo da inizio anno")
+    @AFieldList(width = 6, headerIcon = VaadinIcon.STEP_BACKWARD)
+    @AField(type = TypeField.integer, caption = "Progressivo da inizio anno")
     private int trascorsi;
 
-    @AFieldList(width = 6)
-    @AField(type = TypeField.integer,  headerIcon = VaadinIcon.STEP_FORWARD, caption = "Mancanti alla fine dell'anno")
+    @AFieldList(width = 6, headerIcon = VaadinIcon.STEP_FORWARD)
+    @AField(type = TypeField.integer, caption = "Mancanti alla fine dell'anno")
     private int mancanti;
 
 

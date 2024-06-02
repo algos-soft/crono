@@ -32,12 +32,12 @@ public class MeseEntity extends OrdineEntity {
     @AField(type = TypeField.integer)
     private int giorni;
 
-    @AFieldList(width = 6)
-    @AField(type = TypeField.integer, headerIcon = VaadinIcon.STEP_BACKWARD, caption = "Primo giorno (annuo) del mese")
+    @AFieldList(width = 6, headerIcon = VaadinIcon.STEP_BACKWARD)
+    @AField(type = TypeField.integer, caption = "Primo giorno (annuo) del mese")
     private int primo;
 
-    @AFieldList(width = 6)
-    @AField(type = TypeField.integer, headerIcon = VaadinIcon.STEP_FORWARD, caption = "Ultimo giorno (annuo) del mese")
+    @AFieldList(width = 6, headerIcon = VaadinIcon.STEP_FORWARD)
+    @AField(type = TypeField.integer, caption = "Ultimo giorno (annuo) del mese")
     private int ultimo;
 
 
