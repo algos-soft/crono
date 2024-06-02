@@ -30,10 +30,12 @@ public class GiornoEntity extends OrdineEntity {
     @AField(type = TypeField.linkDBRef, linkClazz = MeseEntity.class)
     private MeseEntity mese;
 
-    @AField(type = TypeField.integer, widthList = 6, headerIcon = VaadinIcon.STEP_BACKWARD, caption = "Progressivo da inizio anno")
+    @AFieldList(width = 6)
+    @AField(type = TypeField.integer, headerIcon = VaadinIcon.STEP_BACKWARD, caption = "Progressivo da inizio anno")
     private int trascorsi;
 
-    @AField(type = TypeField.integer, widthList = 6, headerIcon = VaadinIcon.STEP_FORWARD, caption = "Mancanti alla fine dell'anno")
+    @AFieldList(width = 6)
+    @AField(type = TypeField.integer,  headerIcon = VaadinIcon.STEP_FORWARD, caption = "Mancanti alla fine dell'anno")
     private int mancanti;
 
 

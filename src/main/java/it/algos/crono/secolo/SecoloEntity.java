@@ -22,10 +22,12 @@ public class SecoloEntity extends OrdineEntity {
     @AField(type = TypeField.text, caption = "Nome corrente")
     private String nome;
 
-    @AField(type = TypeField.integer, widthList = 6, caption = "Primo anno del secolo")
+    @AFieldList(width = 6)
+    @AField(type = TypeField.integer, caption = "Primo anno del secolo")
     private int inizio;
 
-    @AField(type = TypeField.integer, widthList = 6, caption = "Ultimo anno del secolo")
+    @AFieldList(width = 6)
+    @AField(type = TypeField.integer, caption = "Ultimo anno del secolo")
     private int fine;
 
     @ASearch(type = TypeSearch.checkBox, typeCheckIniziale = TypeCheckBox.vero)

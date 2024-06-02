@@ -26,7 +26,8 @@ public class AnnoEntity extends OrdineEntity {
 
     @DBRef
     @ASearch(type = TypeSearch.comboClazz)
-    @AField(type = TypeField.linkDBRef, widthList = 10, linkClazz = SecoloEntity.class)
+    @AFieldList(width = 6)
+    @AField(type = TypeField.linkDBRef, linkClazz = SecoloEntity.class)
     private SecoloEntity secolo;
 
     @ASearch(type = TypeSearch.checkBox, typeCheckIniziale = TypeCheckBox.vero)
