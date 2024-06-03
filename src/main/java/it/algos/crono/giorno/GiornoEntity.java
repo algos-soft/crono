@@ -22,7 +22,8 @@ public class GiornoEntity extends OrdineEntity {
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)
-    @AField(type = TypeField.text, caption = "Nome corrente")
+    @AFieldForm(label = "Nome corrente")
+    @AField(type = TypeField.text)
     private String nome;
 
     @DBRef
@@ -31,11 +32,13 @@ public class GiornoEntity extends OrdineEntity {
     private MeseEntity mese;
 
     @AFieldList(width = 6, headerIcon = VaadinIcon.STEP_BACKWARD)
-    @AField(type = TypeField.integer, caption = "Progressivo da inizio anno")
+    @AFieldForm(label = "Progressivo da inizio anno")
+    @AField(type = TypeField.integer)
     private int trascorsi;
 
     @AFieldList(width = 6, headerIcon = VaadinIcon.STEP_FORWARD)
-    @AField(type = TypeField.integer, caption = "Mancanti alla fine dell'anno")
+    @AFieldForm(label = "Mancanti alla fine dell'anno")
+    @AField(type = TypeField.integer)
     private int mancanti;
 
 

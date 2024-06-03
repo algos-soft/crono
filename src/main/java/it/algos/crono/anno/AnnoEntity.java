@@ -21,7 +21,8 @@ public class AnnoEntity extends OrdineEntity {
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)
-    @AField(type = TypeField.text, caption = "Nome corrente")
+    @AFieldForm(label = "Nome corrente")
+    @AField(type = TypeField.text)
     private String nome;
 
     @DBRef

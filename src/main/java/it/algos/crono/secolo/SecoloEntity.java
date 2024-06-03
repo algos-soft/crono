@@ -19,15 +19,18 @@ public class SecoloEntity extends OrdineEntity {
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)
-    @AField(type = TypeField.text, caption = "Nome corrente")
+    @AFieldForm(label = "Nome corrente")
+    @AField(type = TypeField.text)
     private String nome;
 
     @AFieldList(width = 6)
-    @AField(type = TypeField.integer, caption = "Primo anno del secolo")
+    @AFieldForm(label = "Primo anno del secolo")
+    @AField(type = TypeField.integer)
     private int inizio;
 
     @AFieldList(width = 6)
-    @AField(type = TypeField.integer, caption = "Ultimo anno del secolo")
+    @AFieldForm(label = "Ultimo anno del secolo")
+    @AField(type = TypeField.integer)
     private int fine;
 
     @ASearch(type = TypeSearch.checkBox, typeCheckIniziale = TypeCheckBox.vero)
