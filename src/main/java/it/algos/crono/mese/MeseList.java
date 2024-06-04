@@ -1,15 +1,16 @@
 package it.algos.crono.mese;
 
-import com.vaadin.flow.component.grid.*;
-import com.vaadin.flow.spring.annotation.*;
-import it.algos.crono.list.*;
+import com.vaadin.flow.spring.annotation.SpringComponent;
+import it.algos.crono.list.CronoList;
+import it.algos.vbase.backend.annotation.AList;
+import org.springframework.context.annotation.Scope;
+
 import static it.algos.vbase.backend.boot.BaseCost.*;
-import jakarta.annotation.*;
-import static org.springframework.beans.factory.config.BeanDefinition.*;
-import org.springframework.context.annotation.*;
+import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
 
 @SpringComponent
 @Scope(value = SCOPE_PROTOTYPE)
+@AList()
 public class MeseList extends CronoList {
 
 
