@@ -1,18 +1,23 @@
 package it.algos.crono.giorno;
 
-import it.algos.crono.logic.*;
-import it.algos.crono.mese.*;
-import static it.algos.vbase.backend.boot.BaseCost.*;
-import it.algos.vbase.backend.entity.*;
-import it.algos.vbase.backend.enumeration.*;
-import it.algos.vbase.backend.exception.*;
-import it.algos.vbase.backend.service.*;
-import it.algos.vbase.backend.wrapper.*;
-import org.bson.types.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
+import it.algos.crono.logic.CronoModuloService;
+import it.algos.crono.mese.MeseEntity;
+import it.algos.crono.mese.MeseService;
+import it.algos.vbase.backend.entity.AbstractEntity;
+import it.algos.vbase.backend.enumeration.RisultatoReset;
+import it.algos.vbase.backend.enumeration.TypeLog;
+import it.algos.vbase.backend.exception.AlgosException;
+import it.algos.vbase.backend.service.DateService;
+import it.algos.vbase.backend.wrapper.WrapLog;
+import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+
+import static it.algos.vbase.backend.boot.BaseCost.*;
 
 /**
  * Project base24
@@ -94,8 +99,8 @@ public class GiornoService extends CronoModuloService {
 
     @Override
     public RisultatoReset reset() {
-        String collectionName = annotationService.getCollectionName(GiornoEntity.class);
-        String collectionNameParent = annotationService.getCollectionName(MeseEntity.class);
+        String collectionName = annotationService.getCollectionName(GiornoEntity.class).get();
+        String collectionNameParent = annotationService.getCollectionName(MeseEntity.class).get();
         int ordine;
         String nome;
         String meseTxt;

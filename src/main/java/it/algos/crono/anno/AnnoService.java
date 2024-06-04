@@ -1,18 +1,22 @@
 package it.algos.crono.anno;
 
-import it.algos.crono.secolo.*;
-import static it.algos.vbase.backend.boot.BaseCost.*;
-import it.algos.vbase.backend.entity.*;
-import it.algos.vbase.backend.enumeration.*;
-import it.algos.vbase.backend.exception.*;
-import it.algos.vbase.backend.logic.*;
-import it.algos.vbase.backend.service.*;
-import it.algos.vbase.backend.wrapper.*;
-import org.bson.types.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
+import it.algos.crono.secolo.SecoloEntity;
+import it.algos.crono.secolo.SecoloService;
+import it.algos.vbase.backend.entity.AbstractEntity;
+import it.algos.vbase.backend.enumeration.RisultatoReset;
+import it.algos.vbase.backend.enumeration.TypeLog;
+import it.algos.vbase.backend.exception.AlgosException;
+import it.algos.vbase.backend.logic.ModuloService;
+import it.algos.vbase.backend.service.DateService;
+import it.algos.vbase.backend.wrapper.WrapLog;
+import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+
+import static it.algos.vbase.backend.boot.BaseCost.*;
 
 /**
  * Project base24
@@ -93,8 +97,8 @@ public class AnnoService extends ModuloService {
 
     @Override
     public RisultatoReset reset() {
-        String collectionName = annotationService.getCollectionName(AnnoEntity.class);
-        String collectionNameParent = annotationService.getCollectionName(SecoloEntity.class);
+        String collectionName = annotationService.getCollectionName(AnnoEntity.class).get();
+        String collectionNameParent = annotationService.getCollectionName(SecoloEntity.class).get();
 
         if (!Boolean.parseBoolean(creaDirectoryCronoTxt)) {
             return RisultatoReset.nonCostruito;
