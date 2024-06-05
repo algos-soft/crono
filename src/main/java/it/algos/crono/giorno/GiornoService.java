@@ -99,8 +99,8 @@ public class GiornoService extends CronoModuloService {
 
     @Override
     public RisultatoReset reset() {
-        String collectionName = annotationService.getCollectionName(GiornoEntity.class);
-        String collectionNameParent = annotationService.getCollectionName(MeseEntity.class);
+        String collectionName = mongoTemplate.getCollectionName(GiornoEntity.class);
+        String collectionNameParent = mongoTemplate.getCollectionName(MeseEntity.class);
         int ordine;
         String nome;
         String meseTxt;

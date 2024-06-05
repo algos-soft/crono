@@ -106,7 +106,7 @@ public abstract class ModuloServiceTest {
 
         this.moduloServiceClazz = currentModuloService.getClass();
         assertNotNull(moduloServiceClazz);
-        dbName = annotationService.getCollectionName(entityClazz);
+        dbName = mongoTemplate.getCollectionName(entityClazz);
         assertTrue(textService.isValid(dbName));
         propertyListNames = currentModuloService.getPropertyNames();
         assertNotNull(propertyListNames);
@@ -365,7 +365,7 @@ public abstract class ModuloServiceTest {
         System.out.println(message);
         System.out.println(VUOTA);
 
-        ottenuto = annotationService.getCollectionName(entityClazz);
+        ottenuto = mongoTemplate.getCollectionName(entityClazz);
         message = String.format("%s%s%s", "getCollectionName", FORWARD, ottenuto);
         System.out.println(message);
 
@@ -400,7 +400,7 @@ public abstract class ModuloServiceTest {
         System.out.println("50 - resetStartup");
         System.out.println(VUOTA);
         RisultatoReset typeResetPrevisto;
-        String collectionName = annotationService.getCollectionName(entityClazz);
+        String collectionName = mongoTemplate.getCollectionName(entityClazz);
         long inizio;
 
         if (annotationService.usaResetStartup(entityClazz)) {
@@ -477,7 +477,7 @@ public abstract class ModuloServiceTest {
         System.out.println("60 - resetDelete");
         System.out.println(VUOTA);
         RisultatoReset typeResetPrevisto;
-        String collectionName = annotationService.getCollectionName(entityClazz);
+        String collectionName = mongoTemplate.getCollectionName(entityClazz);
         String viewName = moduloList.getClass().getSimpleName();
 
         if (moduloList.usaBottoneResetDelete) {
@@ -553,7 +553,7 @@ public abstract class ModuloServiceTest {
     //        System.out.println("70 - resetAdd");
     //        System.out.println(VUOTA);
     //        RisultatoReset typeResetPrevisto = RisultatoReset.nessuno;
-    //        String collectionName = annotationService.getCollectionName(entityClazz);
+    //        String collectionName = mongoTemplate.getCollectionName(entityClazz);
     //        String viewName = listaView.getClass().getSimpleName();
     //
     //        if (listaView.usaBottoneResetAdd) {
