@@ -1,11 +1,12 @@
 package it.algos.crono.secolo;
 
 import it.algos.vbase.backend.annotation.*;
-import it.algos.vbase.backend.entity.*;
-import it.algos.vbase.backend.enumeration.*;
+import it.algos.vbase.backend.entity.OrdineEntity;
+import it.algos.vbase.backend.enumeration.TypeCheckBox;
+import it.algos.vbase.backend.enumeration.TypeSearch;
 import lombok.*;
-import org.springframework.data.mongodb.core.index.*;
-import org.springframework.data.mongodb.core.mapping.*;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -19,23 +20,20 @@ public class SecoloEntity extends OrdineEntity {
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)
+    @AFieldList(width = 12)
     @AFieldForm(label = "Nome corrente")
-    @AField(type = TypeField.text)
     private String nome;
 
     @AFieldList(width = 6)
     @AFieldForm(label = "Primo anno del secolo")
-    @AField(type = TypeField.integer)
     private int inizio;
 
     @AFieldList(width = 6)
     @AFieldForm(label = "Ultimo anno del secolo")
-    @AField(type = TypeField.integer)
     private int fine;
 
-    @ASearch(type = TypeSearch.checkBox, typeCheckIniziale = TypeCheckBox.vero)
+    @ASearch(type = TypeSearch.checkBox, typeCheckIniziale = TypeCheckBox.vero, boxLabel = "DopoCristo")
     @AFieldList(headerText = "D.C.")
-    @AField(type = TypeField.booleano)
     private boolean dopoCristo;
 
 
