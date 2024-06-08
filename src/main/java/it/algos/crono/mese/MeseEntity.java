@@ -20,27 +20,24 @@ public class MeseEntity extends OrdineEntity {
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)
-    @AField(type = TypeField.text)
+    @AFieldList()
     private String sigla;
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)
+    @AFieldList(width = 12)
     @AFieldForm(label = "Nome corrente")
-    @AField(type = TypeField.text)
     private String nome;
 
     @AFieldList(width = 6)
-    @AField(type = TypeField.integer)
     private int giorni;
 
     @AFieldList(width = 6, headerIcon = VaadinIcon.STEP_BACKWARD)
     @AFieldForm(label = "Primo giorno (annuo) del mese")
-    @AField(type = TypeField.integer)
     private int primo;
 
     @AFieldList(width = 6, headerIcon = VaadinIcon.STEP_FORWARD)
     @AFieldForm(label = "Ultimo giorno (annuo) del mese")
-    @AField(type = TypeField.integer)
     private int ultimo;
 
 
