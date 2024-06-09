@@ -15,9 +15,8 @@ import org.springframework.beans.factory.annotation.*;
  *
  * @Route chiamata dal menu generale o dalla barra del browser <br>
  */
-@PageTitle("Secoli")
 @Route(value = "secolo", layout = MainLayout.class)
-@AView(menuGroup = MenuGroup.crono)
+@AView(menuName = "Secoli", menuGroup = MenuGroup.crono)
 public class SecoloView extends CrudView {
 
 

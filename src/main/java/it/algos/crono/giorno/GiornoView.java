@@ -15,9 +15,8 @@ import org.springframework.beans.factory.annotation.*;
  *
  * @Route chiamata dal menu generale o dalla barra del browser <br>
  */
-@PageTitle("Giorni")
 @Route(value = "giorno", layout = MainLayout.class)
-@AView(menuGroup = MenuGroup.crono)
+@AView(menuName = "Giorni", menuGroup = MenuGroup.crono)
 public class GiornoView extends CrudView {
 
     /**

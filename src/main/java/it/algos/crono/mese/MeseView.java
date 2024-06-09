@@ -15,9 +15,8 @@ import org.springframework.beans.factory.annotation.*;
  *
  * @Route chiamata dal menu generale o dalla barra del browser <br>
  */
-@PageTitle("Mesi")
 @Route(value = "mese", layout = MainLayout.class)
-@AView(menuGroup = MenuGroup.crono)
+@AView(menuName = "Mesi", menuGroup = MenuGroup.crono)
 public class MeseView extends CrudView {
 
 
