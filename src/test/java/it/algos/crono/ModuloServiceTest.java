@@ -106,7 +106,7 @@ public abstract class ModuloServiceTest {
 
         this.moduloServiceClazz = currentModuloService.getClass();
         assertNotNull(moduloServiceClazz);
-        dbName = mongoTemplate.getCollectionName(entityClazz);
+//        dbName = mongoTemplate.getCollectionName(entityClazz);
         assertTrue(textService.isValid(dbName));
         propertyListNames = currentModuloService.getPropertyNames();
         assertNotNull(propertyListNames);

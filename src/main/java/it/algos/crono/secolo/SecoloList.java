@@ -6,6 +6,8 @@ import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.spring.annotation.*;
 import it.algos.crono.list.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
+
+import it.algos.vbase.backend.annotation.AList;
 import it.algos.vbase.backend.components.*;
 import it.algos.vbase.ui.dialog.*;
 import it.algos.vbase.ui.wrapper.*;
@@ -16,6 +18,7 @@ import org.springframework.data.domain.*;
 
 @SpringComponent
 @Scope(value = SCOPE_PROTOTYPE)
+@AList()
 public class SecoloList extends CronoList {
 
 

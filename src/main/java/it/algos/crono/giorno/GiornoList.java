@@ -5,12 +5,15 @@ import com.vaadin.flow.spring.annotation.*;
 import it.algos.crono.list.*;
 import it.algos.crono.mese.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
+
+import it.algos.vbase.backend.annotation.AList;
 import org.springframework.beans.factory.annotation.*;
 import static org.springframework.beans.factory.config.BeanDefinition.*;
 import org.springframework.context.annotation.*;
 
 @SpringComponent
 @Scope(value = SCOPE_PROTOTYPE)
+@AList()
 public class GiornoList extends CronoList {
 
 

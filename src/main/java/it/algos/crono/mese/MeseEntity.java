@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.*;
 @AllArgsConstructor
 @Builder
 @Document(collection = "mese")
-@AReset
+@AReset()
 @AEntity()
 public class MeseEntity extends OrdineEntity {
 

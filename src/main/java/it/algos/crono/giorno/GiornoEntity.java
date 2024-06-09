@@ -22,23 +22,21 @@ public class GiornoEntity extends OrdineEntity {
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)
+    @AFieldList(width = 10)
     @AFieldForm(label = "Nome corrente")
-    @AField(type = TypeField.text)
     private String nome;
 
     @DBRef
     @ASearch(type = TypeSearch.comboClazz)
-    @AField(type = TypeField.linkDBRef, linkClazz = MeseEntity.class)
+    @AFieldList(width = 10)
     private MeseEntity mese;
 
     @AFieldList(width = 6, headerIcon = VaadinIcon.STEP_BACKWARD)
     @AFieldForm(label = "Progressivo da inizio anno")
-    @AField(type = TypeField.integer)
     private int trascorsi;
 
     @AFieldList(width = 6, headerIcon = VaadinIcon.STEP_FORWARD)
     @AFieldForm(label = "Mancanti alla fine dell'anno")
-    @AField(type = TypeField.integer)
     private int mancanti;
 
 
