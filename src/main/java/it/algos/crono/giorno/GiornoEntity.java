@@ -1,13 +1,14 @@
 package it.algos.crono.giorno;
 
-import com.vaadin.flow.component.icon.*;
-import it.algos.crono.mese.*;
+import com.vaadin.flow.component.icon.VaadinIcon;
+import it.algos.crono.mese.MeseEntity;
 import it.algos.vbase.backend.annotation.*;
-import it.algos.vbase.backend.entity.*;
-import it.algos.vbase.backend.enumeration.*;
+import it.algos.vbase.backend.entity.OrdineEntity;
+import it.algos.vbase.backend.enumeration.TypeSearch;
 import lombok.*;
-import org.springframework.data.mongodb.core.index.*;
-import org.springframework.data.mongodb.core.mapping.*;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -27,7 +28,7 @@ public class GiornoEntity extends OrdineEntity {
     private String nome;
 
     @DBRef
-    @ASearch(type = TypeSearch.comboClazz)
+    @ASearch(type = TypeSearch.comboClazz, linkClazz = MeseEntity.class, comboPlaceHolder = "Mesi")
     @AFieldList(width = 10)
     private MeseEntity mese;
 
