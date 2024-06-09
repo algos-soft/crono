@@ -1,5 +1,6 @@
 package it.algos.crono.anno;
 
+import it.algos.crono.mese.MeseEntity;
 import it.algos.crono.secolo.*;
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.*;
@@ -21,23 +22,20 @@ public class AnnoEntity extends OrdineEntity {
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)
+    @AFieldList(width = 10)
     @AFieldForm(label = "Nome corrente")
-    @AField(type = TypeField.text)
     private String nome;
 
     @DBRef
-    @ASearch(type = TypeSearch.comboClazz)
-    @AFieldList(width = 6)
-    @AField(type = TypeField.linkDBRef, linkClazz = SecoloEntity.class)
+    @ASearch(type = TypeSearch.comboClazz, linkClazz = SecoloEntity.class, comboPlaceHolder = "Secoli")
+    @AFieldList(width = 10)
     private SecoloEntity secolo;
 
-    @ASearch(type = TypeSearch.checkBox, typeCheckIniziale = TypeCheckBox.vero)
+    @ASearch(type = TypeSearch.checkBox, typeCheckIniziale = TypeCheckBox.vero, boxLabel = "DopoCristo")
     @AFieldList(headerText = "D.C.")
-    @AField(type = TypeField.booleano)
     private boolean dopoCristo;
 
-    @ASearch(type = TypeSearch.checkBox)
-    @AField(type = TypeField.booleano)
+    @ASearch(type = TypeSearch.checkBox, typeCheckIniziale = TypeCheckBox.vero, boxLabel = "Bisestile")
     private boolean bisestile;
 
 
