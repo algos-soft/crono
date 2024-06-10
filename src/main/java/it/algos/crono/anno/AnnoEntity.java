@@ -32,10 +32,12 @@ public class AnnoEntity extends OrdineEntity {
     private SecoloEntity secolo;
 
     @ASearch(type = TypeSearch.checkBox, typeCheckIniziale = TypeCheckBox.vero, boxLabel = "DopoCristo")
+    @ABoolean(type = TypeBool.checkIcon)
     @AFieldList(headerText = "D.C.")
     private boolean dopoCristo;
 
     @ASearch(type = TypeSearch.checkBox, boxLabel = "Bisestile")
+    @ABoolean(type = TypeBool.checkIcon)
     private boolean bisestile;
 
 

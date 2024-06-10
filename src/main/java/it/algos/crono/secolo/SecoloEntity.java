@@ -2,6 +2,7 @@ package it.algos.crono.secolo;
 
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.OrdineEntity;
+import it.algos.vbase.backend.enumeration.TypeBool;
 import it.algos.vbase.backend.enumeration.TypeCheckBox;
 import it.algos.vbase.backend.enumeration.TypeSearch;
 import lombok.*;
@@ -33,6 +34,7 @@ public class SecoloEntity extends OrdineEntity {
     private int fine;
 
     @ASearch(type = TypeSearch.checkBox, typeCheckIniziale = TypeCheckBox.vero, boxLabel = "DopoCristo")
+    @ABoolean(type = TypeBool.checkIcon)
     @AFieldList(headerText = "D.C.")
     private boolean dopoCristo;
 
