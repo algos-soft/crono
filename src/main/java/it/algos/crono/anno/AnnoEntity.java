@@ -35,7 +35,7 @@ public class AnnoEntity extends OrdineEntity {
     @AFieldList(headerText = "D.C.")
     private boolean dopoCristo;
 
-    @ASearch(type = TypeSearch.checkBox, typeCheckIniziale = TypeCheckBox.vero, boxLabel = "Bisestile")
+    @ASearch(type = TypeSearch.checkBox, boxLabel = "Bisestile")
     private boolean bisestile;
 
 

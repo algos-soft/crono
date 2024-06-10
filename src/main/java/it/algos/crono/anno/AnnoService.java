@@ -97,8 +97,8 @@ public class AnnoService extends ModuloService {
 
     @Override
     public RisultatoReset reset() {
-        String collectionName = mongoTemplate.getCollectionName(AnnoEntity.class);
-        String collectionNameParent = mongoTemplate.getCollectionName(SecoloEntity.class);
+        String collectionName = annotationService.getCollectionName(AnnoEntity.class);
+        String collectionNameParent = annotationService.getCollectionName(SecoloEntity.class);
 
         if (!Boolean.parseBoolean(creaDirectoryCronoTxt)) {
             return RisultatoReset.nonCostruito;
