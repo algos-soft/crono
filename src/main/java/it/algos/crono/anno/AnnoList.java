@@ -1,16 +1,19 @@
 package it.algos.crono.anno;
 
-import com.vaadin.flow.spring.annotation.*;
-import it.algos.crono.list.*;
+import com.vaadin.flow.spring.annotation.SpringComponent;
+import it.algos.crono.list.CronoList;
+import it.algos.vbase.backend.annotation.AList;
+import it.algos.vbase.ui.wrapper.ASpan;
+import jakarta.annotation.PostConstruct;
+import org.springframework.context.annotation.Scope;
+import org.springframework.data.domain.Sort;
+
 import static it.algos.vbase.backend.boot.BaseCost.*;
-import it.algos.vbase.ui.wrapper.*;
-import jakarta.annotation.*;
-import static org.springframework.beans.factory.config.BeanDefinition.*;
-import org.springframework.context.annotation.*;
-import org.springframework.data.domain.*;
+import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
 
 @SpringComponent
 @Scope(value = SCOPE_PROTOTYPE)
+@AList(espandiUltimaColonnaVisibile = false)
 public class AnnoList extends CronoList {
 
 
