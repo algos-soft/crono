@@ -1,15 +1,16 @@
 package it.algos.crono.mese;
 
-import it.algos.vbase.backend.boot.*;
-import static it.algos.vbase.backend.boot.BaseCost.*;
-import it.algos.vbase.backend.entity.*;
-import it.algos.vbase.backend.enumeration.*;
-import it.algos.vbase.backend.logic.*;
-import org.bson.types.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
+import it.algos.vbase.backend.entity.AbstractEntity;
+import it.algos.vbase.backend.enumeration.MeseEnum;
+import it.algos.vbase.backend.enumeration.RisultatoReset;
+import it.algos.vbase.backend.logic.ModuloService;
+import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+
+import static it.algos.vbase.backend.boot.BaseCost.FIELD_NAME_NOME;
 
 /**
  * Project base24
@@ -29,8 +30,8 @@ public class MeseService extends ModuloService {
 
     private static final String KEY_NAME = FIELD_NAME_NOME;
 
-    @Value("${algos.project.crea.directory.crono:false}")
-    private String creaDirectoryCronoTxt;
+    @Value("${algos.project.usa.dir.crono:true}")
+    private boolean usaDirCronoTxt;
 
 
     /**
@@ -47,7 +48,6 @@ public class MeseService extends ModuloService {
      * Creazione in memoria di una nuova entity che NON viene salvata <br>
      *
      * @param nome (obbligatorio, unico)
-     *
      * @return la nuova entity appena creata (con keyID ma non salvata)
      */
     public MeseEntity newEntity(int ordine, String sigla, String nome, int giorni, int primo, int ultimo) {
@@ -93,7 +93,7 @@ public class MeseService extends ModuloService {
         int primo;
         int ultimo = 0;
 
-        if (!Boolean.parseBoolean(creaDirectoryCronoTxt)) {
+        if (!usaDirCronoTxt) {
             return RisultatoReset.nonCostruito;
         }
 

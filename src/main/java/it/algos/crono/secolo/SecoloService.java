@@ -26,8 +26,8 @@ public class SecoloService extends ModuloService {
 
     private static final String KEY_NAME = FIELD_NAME_NOME;
 
-    @Value("${algos.project.crea.directory.crono:false}")
-    private String creaDirectoryCronoTxt;
+    @Value("${algos.project.usa.dir.crono:true}")
+    private boolean usaDirCronoTxt;
 
     @Autowired
     ResourceService resourceService;
@@ -162,7 +162,7 @@ public class SecoloService extends ModuloService {
         String message;
         SecoloEntity newBean;
 
-        if (!Boolean.parseBoolean(creaDirectoryCronoTxt)) {
+        if (!usaDirCronoTxt) {
             return RisultatoReset.nonCostruito;
         }
 

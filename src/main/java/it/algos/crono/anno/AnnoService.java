@@ -30,8 +30,8 @@ public class AnnoService extends ModuloService {
 
     private static final String KEY_NAME = FIELD_NAME_NOME;
 
-    @Value("${algos.project.crea.directory.crono:false}")
-    private String creaDirectoryCronoTxt;
+    @Value("${algos.project.usa.dir.crono:true}")
+    private boolean usaDirCronoTxt;
 
     @Autowired
     public SecoloService secoloService;
@@ -100,7 +100,7 @@ public class AnnoService extends ModuloService {
         String collectionName = annotationService.getCollectionName(AnnoEntity.class);
         String collectionNameParent = annotationService.getCollectionName(SecoloEntity.class);
 
-        if (!Boolean.parseBoolean(creaDirectoryCronoTxt)) {
+        if (!usaDirCronoTxt) {
             return RisultatoReset.nonCostruito;
         }
         if (secoloService.count() < 1 && annotationService.usaResetStartup(SecoloEntity.class)) {
