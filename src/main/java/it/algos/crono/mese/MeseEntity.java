@@ -29,14 +29,14 @@ public class MeseEntity extends OrdineEntity {
     @AFieldForm(label = "Nome corrente")
     private String nome;
 
-    @AFieldList(width = 6)
+    @AFieldList()
     private int giorni;
 
-    @AFieldList(width = 6, headerIcon = VaadinIcon.STEP_BACKWARD)
+    @AFieldList(headerIcon = VaadinIcon.STEP_BACKWARD)
     @AFieldForm(label = "Primo giorno (annuo) del mese")
     private int primo;
 
-    @AFieldList(width = 6, headerIcon = VaadinIcon.STEP_FORWARD)
+    @AFieldList(headerIcon = VaadinIcon.STEP_FORWARD)
     @AFieldForm(label = "Ultimo giorno (annuo) del mese")
     private int ultimo;
 
