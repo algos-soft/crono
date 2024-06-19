@@ -31,7 +31,7 @@ public class MeseService extends ModuloService {
     private static final String KEY_NAME = FIELD_NAME_NOME;
 
     @Value("${algos.project.usa.dir.crono:true}")
-    private boolean usaDirCronoTxt;
+    private boolean usaDirCrono;
 
 
     /**
@@ -93,7 +93,7 @@ public class MeseService extends ModuloService {
         int primo;
         int ultimo = 0;
 
-        if (!usaDirCronoTxt) {
+        if (!usaDirCrono) {
             return RisultatoReset.nonCostruito;
         }
 

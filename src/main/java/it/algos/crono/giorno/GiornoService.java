@@ -32,7 +32,7 @@ public class GiornoService extends CronoModuloService {
     private static final String KEY_NAME = FIELD_NAME_NOME;
 
     @Value("${algos.project.usa.dir.crono:true}")
-    private boolean usaDirCronoTxt;
+    private boolean usaDirCrono;
 
     @Autowired
     public MeseService meseService;
@@ -111,7 +111,7 @@ public class GiornoService extends CronoModuloService {
         GiornoEntity newBean;
         List<HashMap<String, Object>> lista;
 
-        if (!usaDirCronoTxt) {
+        if (!usaDirCrono) {
             return RisultatoReset.nonCostruito;
         }
         if (meseService.count() < 1 && annotationService.usaResetStartup(MeseEntity.class)) {
