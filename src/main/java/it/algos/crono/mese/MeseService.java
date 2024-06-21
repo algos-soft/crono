@@ -26,7 +26,7 @@ import static it.algos.vbase.backend.boot.BaseCost.FIELD_NAME_NOME;
  * NOT annotated with @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON) (inutile, esiste già @Service) <br>
  */
 @Service
-public class MeseService extends ModuloService {
+public class MeseService extends ModuloService<MeseEntity> {
 
     private static final String KEY_NAME = FIELD_NAME_NOME;
 
@@ -64,7 +64,7 @@ public class MeseService extends ModuloService {
     }
 
     @Override
-    public ObjectId getObjectId(AbstractEntity newEntityBean) {
+    public ObjectId getObjectId(MeseEntity newEntityBean) {
         return super.getObjectId(((MeseEntity) newEntityBean).getNome());
     }
 

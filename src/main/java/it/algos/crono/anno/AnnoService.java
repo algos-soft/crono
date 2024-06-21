@@ -26,7 +26,7 @@ import static it.algos.vbase.backend.boot.BaseCost.*;
  * Time: 18:52
  */
 @Service
-public class AnnoService extends ModuloService {
+public class AnnoService extends ModuloService<AnnoEntity> {
 
     private static final String KEY_NAME = FIELD_NAME_NOME;
 
@@ -76,7 +76,7 @@ public class AnnoService extends ModuloService {
     }
 
     @Override
-    public ObjectId getObjectId(AbstractEntity newEntityBean) {
+    public ObjectId getObjectId(AnnoEntity newEntityBean) {
         return null;
     }
 

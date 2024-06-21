@@ -13,7 +13,7 @@ import org.bson.types.*;
  * Date: lun, 13-mag-2024
  * Time: 11:40
  */
-public abstract class CronoModuloService extends ModuloService {
+public abstract class CronoModuloService <T extends AbstractEntity> extends ModuloService<T> {
 
 
     public CronoModuloService(final Class entityClazz, final Class viewClazz) {
@@ -36,7 +36,7 @@ public abstract class CronoModuloService extends ModuloService {
     }
 
     //--eventuale - da discutere
-    public AbstractEntity findById(final String idStringValue) {
+    public T findById(final String idStringValue) {
         return findById(getObjectId(idStringValue));
     }
 
