@@ -27,7 +27,7 @@ import static it.algos.vbase.backend.boot.BaseCost.*;
  * Time: 15:34
  */
 @Service
-public class GiornoService extends CronoModuloService {
+public class GiornoService extends CronoModuloService<GiornoEntity> {
 
     private static final String KEY_NAME = FIELD_NAME_NOME;
 
@@ -79,7 +79,7 @@ public class GiornoService extends CronoModuloService {
 
 
     @Override
-    public ObjectId getObjectId(AbstractEntity newEntityBean) {
+    public ObjectId getObjectId(GiornoEntity newEntityBean) {
         return null;
     }
 

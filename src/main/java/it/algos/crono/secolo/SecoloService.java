@@ -22,7 +22,7 @@ import java.util.*;
  * Time: 19:59
  */
 @Service
-public class SecoloService extends ModuloService {
+public class SecoloService extends ModuloService<SecoloEntity> {
 
     private static final String KEY_NAME = FIELD_NAME_NOME;
 
@@ -73,7 +73,7 @@ public class SecoloService extends ModuloService {
     }
 
     @Override
-    public ObjectId getObjectId(AbstractEntity newEntityBean) {
+    public ObjectId getObjectId(SecoloEntity newEntityBean) {
         return null;
     }
 
