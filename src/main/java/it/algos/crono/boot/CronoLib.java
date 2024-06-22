@@ -1,8 +1,10 @@
 package it.algos.crono.boot;
 
-import com.vaadin.flow.component.treegrid.TreeGrid;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import it.algos.vbase.backend.annotation.ALib;
+import it.algos.vbase.backend.boot.BaseLib;
 
 /**
  * Project crono
@@ -13,9 +15,12 @@ import it.algos.vbase.backend.annotation.ALib;
  */
 @SpringComponent
 @ALib()
-public class CronoLib {
+public class CronoLib extends BaseLib {
 
-    public TreeGrid getMenu() {
-        return null;
+    public CronoLib() {
+        super.usaMenuLibreria = true;
+        super.menuGroup = "Crono";
+        super.icon = new Icon(VaadinIcon.DOWNLOAD);
     }
+
 }
