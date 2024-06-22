@@ -26,7 +26,6 @@ public class AnnoList extends CronoList {
 
     protected void fixPreferenze() {
         super.fixPreferenze();
-        super.basicSort = Sort.by(Sort.Direction.DESC, FIELD_NAME_ORDINE);
     }
 
 
