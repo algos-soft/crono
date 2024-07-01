@@ -6,6 +6,8 @@ import it.algos.vbase.ui.view.CrudView;
 import it.algos.vbase.ui.view.MainLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static it.algos.crono.boot.CronoCost.GROUP_CRONO;
+
 /**
  * Project base24
  * Created by Algos
@@ -16,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Route chiamata dal menu generale o dalla barra del browser <br>
  */
 @Route(value = "mese", layout = MainLayout.class)
-@AView(menuName = "Mesi")
+@AView(menuGroup = GROUP_CRONO, menuName = "Mesi")
 public class MeseView extends CrudView {
 
 
