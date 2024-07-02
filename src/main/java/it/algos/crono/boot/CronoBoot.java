@@ -1,7 +1,8 @@
 package it.algos.crono.boot;
 
-import it.algos.vbase.backend.boot.*;
-import org.springframework.stereotype.*;
+import it.algos.vbase.backend.boot.BaseBoot;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * Project wiki24
