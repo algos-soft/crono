@@ -7,10 +7,6 @@
     <artifactId>crono</artifactId>
     <name>crono</name>
     <version>1.0</version>
-    <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-    </properties>
     <packaging>jar</packaging>
 
     <parent>
@@ -36,6 +32,7 @@
                         <configuration>
                             <sources>
                                 <source>vbase/src/main/java</source>
+                                <source>utility/src/main/java</source>
                             </sources>
                         </configuration>
                     </execution>
