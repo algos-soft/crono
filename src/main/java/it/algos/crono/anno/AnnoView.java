@@ -1,5 +1,6 @@
 package it.algos.crono.anno;
 
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.router.Route;
 import it.algos.vbase.backend.annotation.AView;
 import it.algos.vbase.backend.constant.Gruppo;
@@ -17,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Route chiamata dal menu generale o dalla barra del browser <br>
  */
 @Route(value = "anno", layout = MainLayout.class)
-@AView(menuGroup = Gruppo.CRONO, menuName = "Anni")
+@AView(menuGroup = Gruppo.CRONO, menuName = "Anni", vaadin = VaadinIcon.CALENDAR)
 public class AnnoView extends CrudView {
 
 

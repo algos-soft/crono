@@ -1,5 +1,6 @@
 package it.algos.crono.mese;
 
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.router.Route;
 import it.algos.vbase.backend.annotation.AView;
 import it.algos.vbase.backend.constant.Gruppo;
@@ -18,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Route chiamata dal menu generale o dalla barra del browser <br>
  */
 @Route(value = "mese", layout = MainLayout.class)
-@AView(menuGroup = Gruppo.CRONO, menuName = "Mesi")
+@AView(menuGroup = Gruppo.CRONO, menuName = "Mesi", vaadin = VaadinIcon.CALENDAR)
 public class MeseView extends CrudView {
 
 
