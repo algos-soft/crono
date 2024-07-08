@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static it.algos.vbase.backend.boot.BaseCost.VUOTA;
 
-@Route(value = VUOTA, layout = MainLayout.class)
+@Route(value = VUOTA+"x", layout = MainLayout.class)
 @AView(menuAutomatico = false)
 public class HomeView extends SimpleVerticalLayout {
 
