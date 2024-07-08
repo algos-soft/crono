@@ -15,7 +15,7 @@ import static it.algos.vbase.backend.boot.BaseCost.VUOTA;
 
 @Route(value = VUOTA+"x", layout = MainLayout.class)
 @AView(menuAutomatico = false)
-public class HomeView extends SimpleVerticalLayout {
+public class CronoHomeView extends SimpleVerticalLayout {
 
     @Autowired
     private AnnotationService annotationService;
@@ -23,7 +23,7 @@ public class HomeView extends SimpleVerticalLayout {
     @Autowired
     private MainLayoutService mainLayoutService;
 
-    public HomeView() {
+    public CronoHomeView() {
         getStyle().set("align-items", "center");
         getStyle().set("justify-content", "center");
 
@@ -39,7 +39,7 @@ public class HomeView extends SimpleVerticalLayout {
     protected void onAttach(AttachEvent attachEvent) {
         super.onAttach(attachEvent);
         String title = "Home";
-        Image img = annotationService.getModuleImage(HomeView.class).orElse(null);
+        Image img = annotationService.getModuleImage(CronoHomeView.class).orElse(null);
         mainLayoutService.setTopBarTitle(title, img);
     }
 
