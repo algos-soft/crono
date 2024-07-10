@@ -1,12 +1,11 @@
 package it.algos.crono.mese;
 
-import com.vaadin.flow.component.icon.*;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import it.algos.vbase.backend.annotation.*;
-import it.algos.vbase.backend.entity.*;
-import it.algos.vbase.backend.enumeration.*;
+import it.algos.vbase.backend.entity.OrdineEntity;
 import lombok.*;
-import org.springframework.data.mongodb.core.index.*;
-import org.springframework.data.mongodb.core.mapping.*;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -19,13 +18,13 @@ import org.springframework.data.mongodb.core.mapping.*;
 public class MeseEntity extends OrdineEntity {
 
     @Indexed(unique = true)
-    @ASearch(type = TypeSearch.textStartsWith)
+    @ASearch()
     @AFieldList()
     private String sigla;
 
     @Indexed(unique = true)
-    @ASearch(type = TypeSearch.textStartsWith)
-    @AFieldList(width = 12)
+    @ASearch()
+    @AFieldList()
     @AFieldForm(label = "Nome corrente")
     private String nome;
 
