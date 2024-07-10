@@ -11,8 +11,6 @@ import org.springframework.data.domain.Sort;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
 
-@SpringComponent
-@Scope(value = SCOPE_PROTOTYPE)
 @AList(espandiUltimaColonnaVisibile = false)
 public class AnnoList extends CronoList {
 

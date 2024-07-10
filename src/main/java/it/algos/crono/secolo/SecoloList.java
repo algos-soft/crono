@@ -16,8 +16,6 @@ import static org.springframework.beans.factory.config.BeanDefinition.*;
 import org.springframework.context.annotation.*;
 import org.springframework.data.domain.*;
 
-@SpringComponent
-@Scope(value = SCOPE_PROTOTYPE)
 @AList()
 public class SecoloList extends CronoList {
 

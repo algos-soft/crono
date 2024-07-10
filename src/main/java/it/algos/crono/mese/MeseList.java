@@ -3,13 +3,12 @@ package it.algos.crono.mese;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import it.algos.crono.list.CronoList;
 import it.algos.vbase.backend.annotation.AList;
+import it.algos.vbase.backend.list.ListButtons;
 import org.springframework.context.annotation.Scope;
 
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
 
-@SpringComponent
-@Scope(value = SCOPE_PROTOTYPE)
 @AList()
 public class MeseList extends CronoList {
 
