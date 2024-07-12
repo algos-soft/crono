@@ -1,8 +1,8 @@
 package it.algos.crono.list;
 
 import it.algos.vbase.backend.annotation.AList;
+import it.algos.vbase.backend.constant.Bottone;
 import it.algos.vbase.backend.list.CrudList;
-import it.algos.vbase.backend.list.ListButtons;
 import it.algos.vbase.ui.view.CrudView;
 
 /**
@@ -12,7 +12,7 @@ import it.algos.vbase.ui.view.CrudView;
  * Date: Tue, 28-Nov-2023
  * Time: 18:32
  */
-@AList(buttons = {ListButtons.createItem, ListButtons.editItem, ListButtons.deleteItem,})
+@AList(bottoni = {Bottone.CREATE_ITEM, Bottone.EDIT_ITEM, Bottone.DELETE_ITEM})
 public abstract class CronoList extends CrudList {
 
 
