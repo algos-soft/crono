@@ -31,8 +31,8 @@ public abstract class CronoList extends CrudList {
         super.usaVariantCompact = false;
 //        super.usaBottoneResetDelete = true;
 //        super.usaBottoneNew = false;
-        super.usaBottoneEdit = false;
-        super.usaBottoneShow = true;
+//        super.usaBottoneEdit = false;
+//        super.usaBottoneShow = true;
 //        super.usaBottoneDeleteEntity = false;
     }
 
