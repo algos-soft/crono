@@ -1,13 +1,15 @@
 package it.algos.crono.anno;
 
-import it.algos.crono.mese.MeseEntity;
-import it.algos.crono.secolo.*;
+import it.algos.crono.secolo.SecoloEntity;
 import it.algos.vbase.backend.annotation.*;
-import it.algos.vbase.backend.entity.*;
-import it.algos.vbase.backend.enumeration.*;
+import it.algos.vbase.backend.entity.OrdineEntity;
+import it.algos.vbase.backend.enumeration.TypeBool;
+import it.algos.vbase.backend.enumeration.TypeCheckBox;
+import it.algos.vbase.backend.enumeration.TypeSearch;
 import lombok.*;
-import org.springframework.data.mongodb.core.index.*;
-import org.springframework.data.mongodb.core.mapping.*;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -38,6 +40,7 @@ public class AnnoEntity extends OrdineEntity {
 
     @ASearch(type = TypeSearch.checkBox, boxLabel = "Bisestile")
     @ABoolean(type = TypeBool.checkIcon)
+    @AFieldList(headerText = "B")
     private boolean bisestile;
 
 
