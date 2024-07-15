@@ -24,7 +24,7 @@ public class GiornoList extends CronoList {
 
 
     @Override
-    public void syncHeader() {
+    public void fixHeader() {
         String service = "Giorno";
 
         super.infoScopo = String.format(TEXT_TAVOLA + SPAZIO + TEXT_CODE, service); ;

@@ -18,7 +18,7 @@ public class MeseList extends CronoList {
 
 
     @Override
-    public void syncHeader() {
+    public void fixHeader() {
         String enumeration = "Mese";
 
         super.infoScopo = String.format(TEXT_TAVOLA + SPAZIO + TEXT_ENUM, enumeration, enumeration);

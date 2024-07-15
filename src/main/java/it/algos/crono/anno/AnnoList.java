@@ -28,7 +28,7 @@ public class AnnoList extends CronoList {
 
 
     @Override
-    public void syncHeader() {
+    public void fixHeader() {
         String service = "Anno";
 
         super.infoScopo = String.format(TEXT_TAVOLA + SPAZIO + TEXT_CODE, service); ;

@@ -30,7 +30,7 @@ public class SecoloList extends CronoList {
 
 
     @Override
-    public void syncHeader() {
+    public void fixHeader() {
         String link = "secoli";
         BAnchor anchor = BAnchor.build(LINK_SERVER_ALGOS + link, textService.setQuadre("algos -> " + link));
         BSpan testo = BSpan.text(TEXT_TAVOLA + SPAZIO + TEXT_CSV).bold().verde();
