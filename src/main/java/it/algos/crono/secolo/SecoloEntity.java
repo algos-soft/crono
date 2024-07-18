@@ -33,7 +33,7 @@ public class SecoloEntity extends OrdineEntity {
     @AFieldForm(label = "Ultimo anno del secolo")
     private int fine;
 
-    @ASearch(type = TypeSearch.checkBox, typeCheckIniziale = TypeCheckBox.vero, boxLabel = "DopoCristo")
+    @ASearch(type = TypeSearch.checkBox, checkBoxInitialStatus = TypeCheckBox.vero, checkBoxLabel = "DopoCristo")
     @ABoolean(type = TypeBool.checkIcon)
     @AFieldList(headerText = "D.C.")
     private boolean dopoCristo;
