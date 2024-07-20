@@ -39,9 +39,9 @@ public class AnnoList extends CronoList {
         headerPlaceHolder.add(ASpan.text("L'anno [zero] non esiste").blue().bold());
     }
 
-    @PostConstruct
-    public void postConstruct() {
-        super.fixWidth(FIELD_NAME_ORDINE,6);
-    }
+//    @PostConstruct
+//    public void postConstruct() {
+//        super.fixWidth(FIELD_NAME_ORDINE,6);
+//    }
 
 }// end of CrudList class
