@@ -41,7 +41,7 @@ public class SecoloList extends CronoList {
         headerPlaceHolder.add(new Span(testo, new Text(SPAZIO), anchor));
 
         super.infoScopo = VUOTA;
-        super.infoCreazione = TEXT_NEWS;
+        super.infoCreazione = TEXT_HARD;
         super.infoReset = TEXT_RESET_DELETE;
 
         headerPlaceHolder.add(ASpan.text("Previsti 10 secoli anteCristo e 21 dopoCristo").blue().bold());

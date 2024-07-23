@@ -16,9 +16,13 @@ import java.text.DecimalFormat;
  * Date: Tue, 28-Nov-2023
  * Time: 18:32
  */
-@AList(bottoni = {Bottone.SHOW})
+@AList(bottoni = {Bottone.RESET_DELETE, Bottone.SHOW})
 public abstract class CronoList extends CrudList {
 
+
+    public CronoList() {
+        this(null);
+    }
 
     /**
      * @param parentView che crea questa istanza

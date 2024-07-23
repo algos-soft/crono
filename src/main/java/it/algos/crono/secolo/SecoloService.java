@@ -31,9 +31,6 @@ public class SecoloService extends ModuloService<SecoloEntity> {
 
     private static final String KEY_NAME = FIELD_NAME_NOME;
 
-    @Value("${algos.project.usa.dir.crono:true}")
-    private boolean usaDirCrono;
-
     @Autowired
     ResourceService resourceService;
 
@@ -43,12 +40,11 @@ public class SecoloService extends ModuloService<SecoloEntity> {
 
     public static final String CRISTO = "dopoCristo";
 
-    public static final String ORDINE = "Ordinamento a partire dal XX secolo a.C.";
+    public static final String ORDINE = "Ordinamento a partire dal X secolo a.C.";
 
     /**
      * Regola la entityClazz associata a questo Modulo e la passa alla superclasse <br>
      * Regola la viewClazz @Route associata a questo Modulo e la passa alla superclasse <br>
-     * Regola la listClazz associata a questo Modulo e la passa alla superclasse <br>
      */
     public SecoloService() {
         super(SecoloEntity.class, SecoloView.class);
@@ -67,13 +63,13 @@ public class SecoloService extends ModuloService<SecoloEntity> {
      */
     public SecoloEntity newEntity(final int ordine, final String nome, final int inizio, final int fine, final boolean dopoCristo) {
         SecoloEntity newEntityBean = SecoloEntity.builder()
+                .ordine(ordine == 0 ? nextOrdine() : ordine)
                 .nome(textService.isValid(nome) ? nome : null)
                 .inizio(inizio)
                 .fine(fine)
                 .dopoCristo(dopoCristo)
                 .build();
 
-        newEntityBean.setOrdine(ordine == 0 ? nextOrdine() : ordine);
         return newEntityBean;
     }
 
@@ -84,11 +80,11 @@ public class SecoloService extends ModuloService<SecoloEntity> {
 
     @Override
     public SecoloEntity findById(final String idStringValue) {
-        return (SecoloEntity) super.findById(idStringValue);
+        return super.findById(idStringValue);
     }
 
     public SecoloEntity findByKey(final String keyValue) {
-        return (SecoloEntity) super.findOneByProperty(KEY_NAME, keyValue);
+        return super.findOneByProperty(KEY_NAME, keyValue);
     }
 
     @Override
@@ -163,10 +159,6 @@ public class SecoloService extends ModuloService<SecoloEntity> {
         String message;
         SecoloEntity newBean;
 
-        if (!usaDirCrono) {
-            return RisultatoReset.nonCostruito;
-        }
-
         Map<String, List<String>> mappaSource = resourceService.leggeMappa(nomeFileCSV);
         if (mappaSource != null) {
             for (List<String> riga : mappaSource.values()) {
@@ -212,7 +204,7 @@ public class SecoloService extends ModuloService<SecoloEntity> {
             return RisultatoReset.nonCostruito;
         }
 
-        mappaBeans.values().stream().forEach(bean -> creaIfNotExists(bean));
+//        mappaBeans.values().stream().forEach(bean -> creaIfNotExists(bean));
         return RisultatoReset.vuotoMaCostruito;
     }
 

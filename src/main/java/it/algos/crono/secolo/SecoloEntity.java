@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document()
+@Document(value = "secolo")
 @AReset()
 @AEntity()
 public class SecoloEntity extends  AbstractEntity {
