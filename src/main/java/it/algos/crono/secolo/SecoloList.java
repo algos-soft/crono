@@ -44,7 +44,6 @@ public class SecoloList extends CronoList {
         super.infoCreazione = TEXT_NEWS;
         super.infoReset = TEXT_RESET_DELETE;
 
-        super.fixHeaderPost();
         headerPlaceHolder.add(ASpan.text("Previsti 10 secoli anteCristo e 21 dopoCristo").blue().bold());
         headerPlaceHolder.add(ASpan.text(SecoloService.ORDINE).blue().bold());
         headerPlaceHolder.add(ASpan.text("L'anno [zero] non esiste").blue().bold());
