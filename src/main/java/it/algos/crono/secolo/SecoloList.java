@@ -11,7 +11,7 @@ import jakarta.annotation.PostConstruct;
 
 import static it.algos.vbase.backend.boot.BaseCost.*;
 
-@AList(espandiUltimaColonnaVisibile = true)
+@AList(espandiUltimaColonnaVisibile = false)
 public class SecoloList extends CronoList {
 
     public SecoloList() {
