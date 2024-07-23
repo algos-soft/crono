@@ -1,6 +1,7 @@
 package it.algos.crono.secolo;
 
 import it.algos.vbase.backend.annotation.*;
+import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.entity.OrdineEntity;
 import it.algos.vbase.backend.enumeration.TypeBool;
 import it.algos.vbase.backend.enumeration.TypeCheckBox;
@@ -14,10 +15,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(collection = "secolo")
+@Document()
 @AReset()
 @AEntity()
-public class SecoloEntity extends OrdineEntity {
+public class SecoloEntity extends  AbstractEntity {
+
+    @Indexed(unique = true)
+    @AFieldList(width = 4, headerText = "#")
+    @AFieldForm(label = SecoloService.ORDINE)
+    private int ordine;
 
     @Indexed(unique = true)
     @ASearch(type = TypeSearch.textStartsWith)

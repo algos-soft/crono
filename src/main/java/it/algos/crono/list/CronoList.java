@@ -16,7 +16,7 @@ import java.text.DecimalFormat;
  * Date: Tue, 28-Nov-2023
  * Time: 18:32
  */
-@AList(bottoni = {Bottone.CREATE_ITEM, Bottone.EDIT_ITEM, Bottone.DELETE_ITEM})
+@AList(bottoni = {Bottone.SHOW})
 public abstract class CronoList extends CrudList {
 
 

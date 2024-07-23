@@ -1,18 +1,23 @@
 package it.algos.crono.secolo;
 
-import static it.algos.vbase.backend.boot.BaseCost.*;
-import it.algos.vbase.backend.entity.*;
-import it.algos.vbase.backend.enumeration.*;
-import it.algos.vbase.backend.exception.*;
-import it.algos.vbase.backend.logic.*;
-import it.algos.vbase.backend.service.*;
-import it.algos.vbase.backend.wrapper.*;
-import org.bson.types.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.data.mongodb.core.query.*;
-import org.springframework.stereotype.*;
+import it.algos.vbase.backend.enumeration.RisultatoReset;
+import it.algos.vbase.backend.enumeration.TypeLog;
+import it.algos.vbase.backend.exception.AlgosException;
+import it.algos.vbase.backend.logic.ModuloService;
+import it.algos.vbase.backend.service.ResourceService;
+import it.algos.vbase.backend.wrapper.WrapLog;
+import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+
+import static it.algos.vbase.backend.boot.BaseCost.ANNI_AC;
+import static it.algos.vbase.backend.boot.BaseCost.FIELD_NAME_NOME;
 
 /**
  * Project base24
@@ -38,6 +43,7 @@ public class SecoloService extends ModuloService<SecoloEntity> {
 
     public static final String CRISTO = "dopoCristo";
 
+    public static final String ORDINE = "Ordinamento a partire dal XX secolo a.C.";
 
     /**
      * Regola la entityClazz associata a questo Modulo e la passa alla superclasse <br>
@@ -57,7 +63,6 @@ public class SecoloService extends ModuloService<SecoloEntity> {
      * @param inizio     primo anno del secolo
      * @param fine       ultimo anno del secolo
      * @param dopoCristo secolo prima o dopo Cristo
-     *
      * @return la nuova entity appena creata (con keyID ma non salvata)
      */
     public SecoloEntity newEntity(final int ordine, final String nome, final int inizio, final int fine, final boolean dopoCristo) {
@@ -95,7 +100,6 @@ public class SecoloService extends ModuloService<SecoloEntity> {
      * Seleziona un secolo dal field 'nome' dell'anno (String) <br>
      *
      * @param nomeAnno indicato per la selezione del secolo
-     *
      * @return secolo selezionato
      */
     public SecoloEntity getSecolo(String nomeAnno) {
@@ -108,8 +112,7 @@ public class SecoloService extends ModuloService<SecoloEntity> {
             nomeAnno = textService.levaCoda(nomeAnno, ANNI_AC);
             annoInt = Integer.parseInt(nomeAnno);
             return getSecoloAC(annoInt);
-        }
-        else {
+        } else {
             annoInt = Integer.parseInt(nomeAnno);
             return getSecoloDC(annoInt);
         }
@@ -129,7 +132,6 @@ public class SecoloService extends ModuloService<SecoloEntity> {
      * Gli anni totali sono -convenzionalmente- 3030 <br>
      *
      * @param annoInt indicato per la selezione del secolo
-     *
      * @return secolo selezionato
      */
     public SecoloEntity getSecolo(final int annoInt, boolean dopoCristo) {
@@ -139,8 +141,7 @@ public class SecoloService extends ModuloService<SecoloEntity> {
             query.addCriteria(Criteria.where(INIZIO).lte(annoInt));
             query.addCriteria(Criteria.where(FINE).gte(annoInt));
             query.addCriteria(Criteria.where(CRISTO).is(dopoCristo));
-        }
-        else {
+        } else {
             query.addCriteria(Criteria.where(INIZIO).gte(annoInt));
             query.addCriteria(Criteria.where(FINE).lte(annoInt));
             query.addCriteria(Criteria.where(CRISTO).is(dopoCristo));
@@ -191,8 +192,7 @@ public class SecoloService extends ModuloService<SecoloEntity> {
                     }
                     anteCristoText = riga.get(4);
                     anteCristo = anteCristoText.equals("true") || anteCristoText.equals("vero") || anteCristoText.equals("si");
-                }
-                else {
+                } else {
                     logger.error(new WrapLog().exception(new AlgosException("I dati non sono congruenti")).usaDb().type(TypeLog.startup));
                     return RisultatoReset.nonCostruito;
                 }
@@ -201,14 +201,12 @@ public class SecoloService extends ModuloService<SecoloEntity> {
                 newBean = newEntity(ordine, nome, inizio, fine, !anteCristo);
                 if (newBean != null) {
                     mappaBeans.put(nome, newBean);
-                }
-                else {
+                } else {
                     message = String.format("La entity %s non è stata salvata", nome);
                     logger.error(new WrapLog().exception(new AlgosException(message)).usaDb().type(TypeLog.startup));
                 }
             }
-        }
-        else {
+        } else {
             message = String.format("Manca il file [%s] nella directory /config o sul server", nomeFileCSV);
             logger.error(new WrapLog().exception(new AlgosException(message)).usaDb().type(TypeLog.startup));
             return RisultatoReset.nonCostruito;

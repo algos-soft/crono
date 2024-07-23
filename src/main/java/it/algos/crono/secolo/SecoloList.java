@@ -7,11 +7,18 @@ import it.algos.vbase.backend.annotation.AList;
 import it.algos.vbase.backend.components.BAnchor;
 import it.algos.vbase.ui.dialog.BSpan;
 import it.algos.vbase.ui.wrapper.ASpan;
-import jakarta.annotation.PostConstruct;
 
 import static it.algos.vbase.backend.boot.BaseCost.*;
 
-@AList(espandiUltimaColonnaVisibile = false)
+@AList(espandiUltimaColonnaVisibile = false,
+        columns = {
+                "ordine",
+                "nome",
+                "inizio",
+                "fine",
+                "dopoCristo"
+        }
+)
 public class SecoloList extends CronoList {
 
     public SecoloList() {
@@ -39,6 +46,7 @@ public class SecoloList extends CronoList {
 
         super.fixHeaderPost();
         headerPlaceHolder.add(ASpan.text("Previsti 10 secoli anteCristo e 21 dopoCristo").blue().bold());
+        headerPlaceHolder.add(ASpan.text(SecoloService.ORDINE).blue().bold());
         headerPlaceHolder.add(ASpan.text("L'anno [zero] non esiste").blue().bold());
     }
 
