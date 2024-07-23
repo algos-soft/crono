@@ -2,10 +2,11 @@ package it.algos.crono.mese;
 
 import it.algos.crono.list.CronoList;
 import it.algos.vbase.backend.annotation.AList;
+import it.algos.vbase.backend.constant.Bottone;
 
 import static it.algos.vbase.backend.boot.BaseCost.*;
 
-@AList()
+@AList(bottoni = { Bottone.SHOW, Bottone.COLUMN_SELECTOR})
 public class MeseList extends CronoList {
 
 

@@ -35,7 +35,7 @@ public class SecoloEntity extends OrdineEntity {
 
     @ASearch(type = TypeSearch.checkBox, checkBoxInitialStatus = TypeCheckBox.vero, checkBoxLabel = "DopoCristo")
     @ABoolean(type = TypeBool.checkIcon)
-    @AFieldList(headerText = "D.C.")
+    @AFieldList(headerText = "D.C.",width = 8)
     private boolean dopoCristo;
 
 

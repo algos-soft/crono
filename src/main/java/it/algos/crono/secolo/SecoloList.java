@@ -1,24 +1,22 @@
 package it.algos.crono.secolo;
 
-import ch.carnet.kasparscherrer.*;
-import com.vaadin.flow.component.*;
-import com.vaadin.flow.component.html.*;
-import com.vaadin.flow.spring.annotation.*;
-import it.algos.crono.list.*;
+import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.html.Span;
+import it.algos.crono.list.CronoList;
+import it.algos.vbase.backend.annotation.AList;
+import it.algos.vbase.backend.components.BAnchor;
+import it.algos.vbase.ui.dialog.BSpan;
+import it.algos.vbase.ui.wrapper.ASpan;
+import jakarta.annotation.PostConstruct;
+
 import static it.algos.vbase.backend.boot.BaseCost.*;
 
-import it.algos.vbase.backend.annotation.AList;
-import it.algos.vbase.backend.components.*;
-import it.algos.vbase.ui.dialog.*;
-import it.algos.vbase.ui.wrapper.*;
-import jakarta.annotation.*;
-import static org.springframework.beans.factory.config.BeanDefinition.*;
-import org.springframework.context.annotation.*;
-import org.springframework.data.domain.*;
-
-@AList()
+@AList(espandiUltimaColonnaVisibile = true)
 public class SecoloList extends CronoList {
 
+    public SecoloList() {
+        this(null);
+    }
 
     /**
      * @param parentView che crea questa istanza
@@ -26,7 +24,6 @@ public class SecoloList extends CronoList {
     public SecoloList(final SecoloView parentView) {
         super(parentView);
     }
-
 
 
     @Override
@@ -41,6 +38,7 @@ public class SecoloList extends CronoList {
         super.infoReset = TEXT_RESET_DELETE;
 
         super.fixHeaderPost();
+        headerPlaceHolder.add(ASpan.text("Previsti 10 secoli anteCristo e 21 dopoCristo").blue().bold());
         headerPlaceHolder.add(ASpan.text("L'anno [zero] non esiste").blue().bold());
     }
 
