@@ -4,11 +4,7 @@ import it.algos.vbase.backend.enumeration.RisultatoReset;
 import it.algos.vbase.backend.enumeration.TypeLog;
 import it.algos.vbase.backend.exception.AlgosException;
 import it.algos.vbase.backend.logic.ModuloService;
-import it.algos.vbase.backend.service.ResourceService;
 import it.algos.vbase.backend.wrapper.WrapLog;
-import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
@@ -17,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import static it.algos.vbase.backend.boot.BaseCost.ANNI_AC;
-import static it.algos.vbase.backend.boot.BaseCost.FIELD_NAME_NOME;
 
 /**
  * Project base24
@@ -29,10 +24,6 @@ import static it.algos.vbase.backend.boot.BaseCost.FIELD_NAME_NOME;
 @Service
 public class SecoloService extends ModuloService<SecoloEntity> {
 
-    private static final String KEY_NAME = FIELD_NAME_NOME;
-
-    @Autowired
-    ResourceService resourceService;
 
     public static final String INIZIO = "inizio";
 
@@ -41,6 +32,7 @@ public class SecoloService extends ModuloService<SecoloEntity> {
     public static final String CRISTO = "dopoCristo";
 
     public static final String ORDINE = "Ordinamento a partire dal X secolo a.C.";
+
 
     /**
      * Regola la entityClazz associata a questo Modulo e la passa alla superclasse <br>
@@ -73,24 +65,6 @@ public class SecoloService extends ModuloService<SecoloEntity> {
         return newEntityBean;
     }
 
-    @Override
-    public ObjectId getObjectId(SecoloEntity newEntityBean) {
-        return null;
-    }
-
-    @Override
-    public SecoloEntity findById(final String idStringValue) {
-        return super.findById(idStringValue);
-    }
-
-    public SecoloEntity findByKey(final String keyValue) {
-        return super.findOneByProperty(KEY_NAME, keyValue);
-    }
-
-    @Override
-    public List<SecoloEntity> findAll() {
-        return super.findAll();
-    }
 
     /**
      * Seleziona un secolo dal field 'nome' dell'anno (String) <br>
