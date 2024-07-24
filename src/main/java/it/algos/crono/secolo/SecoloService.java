@@ -204,7 +204,7 @@ public class SecoloService extends ModuloService<SecoloEntity> {
             return RisultatoReset.nonCostruito;
         }
 
-//        mappaBeans.values().stream().forEach(bean -> creaIfNotExists(bean));
+        mappaBeans.values().stream().forEach(bean -> creaIfNotExists(bean));
         return RisultatoReset.vuotoMaCostruito;
     }
 
