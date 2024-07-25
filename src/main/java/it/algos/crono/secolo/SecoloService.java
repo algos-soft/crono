@@ -25,9 +25,9 @@ import static it.algos.vbase.backend.boot.BaseCost.ANNI_AC;
 public class SecoloService extends ModuloService<SecoloEntity> {
 
 
-    public static final String INIZIO = "inizio";
+    public static final String PRIMO = "primo";
 
-    public static final String FINE = "fine";
+    public static final String ULTIMO = "ultimo";
 
     public static final String CRISTO = "dopoCristo";
 
@@ -48,17 +48,17 @@ public class SecoloService extends ModuloService<SecoloEntity> {
      *
      * @param ordine     di presentazione nel popup/combobox (obbligatorio, unico)
      * @param nome       descrittivo e visualizzabile
-     * @param inizio     primo anno del secolo
-     * @param fine       ultimo anno del secolo
+     * @param primo     primo anno del secolo
+     * @param ultimo       ultimo anno del secolo
      * @param dopoCristo secolo prima o dopo Cristo
      * @return la nuova entity appena creata (con keyID ma non salvata)
      */
-    public SecoloEntity newEntity(final int ordine, final String nome, final int inizio, final int fine, final boolean dopoCristo) {
+    public SecoloEntity newEntity(final int ordine, final String nome, final int primo, final int ultimo, final boolean dopoCristo) {
         SecoloEntity newEntityBean = SecoloEntity.builder()
                 .ordine(ordine == 0 ? nextOrdine() : ordine)
                 .nome(textService.isValid(nome) ? nome : null)
-                .inizio(inizio)
-                .fine(fine)
+                .primo(primo)
+                .ultimo(ultimo)
                 .dopoCristo(dopoCristo)
                 .build();
 
@@ -108,12 +108,12 @@ public class SecoloService extends ModuloService<SecoloEntity> {
         Query query = new Query();
 
         if (dopoCristo) {
-            query.addCriteria(Criteria.where(INIZIO).lte(annoInt));
-            query.addCriteria(Criteria.where(FINE).gte(annoInt));
+            query.addCriteria(Criteria.where(PRIMO).lte(annoInt));
+            query.addCriteria(Criteria.where(ULTIMO).gte(annoInt));
             query.addCriteria(Criteria.where(CRISTO).is(dopoCristo));
         } else {
-            query.addCriteria(Criteria.where(INIZIO).gte(annoInt));
-            query.addCriteria(Criteria.where(FINE).lte(annoInt));
+            query.addCriteria(Criteria.where(PRIMO).gte(annoInt));
+            query.addCriteria(Criteria.where(ULTIMO).lte(annoInt));
             query.addCriteria(Criteria.where(CRISTO).is(dopoCristo));
         }
 

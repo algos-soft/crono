@@ -35,10 +35,10 @@ public class MeseEntity extends AbstractEntity {
 
     private int giorni;
 
-    @AFieldForm(label = "Primo giorno (annuo) del mese")
+    @AFieldForm(label = "Primo giorno (da inizio anno) del mese")
     private int primo;
 
-    @AFieldForm(label = "Ultimo giorno (annuo) del mese")
+    @AFieldForm(label = "Ultimo giorno (da inizio anno) del mese")
     private int ultimo;
 
 

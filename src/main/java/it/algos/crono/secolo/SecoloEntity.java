@@ -31,12 +31,12 @@ public class SecoloEntity extends AbstractEntity {
     private String nome;
 
     @AFieldForm(label = "Primo anno del secolo")
-    private int inizio;
+    private int primo;
 
     @AFieldForm(label = "Ultimo anno del secolo")
-    private int fine;
+    private int ultimo;
 
-    @ABoolean(type = TypeBool.checkIcon)
+    @ABoolean()
     @ASearch(type = TypeSearch.checkBox, checkBoxInitialStatus = TypeCheckBox.vero, checkBoxLabel = "DopoCristo")
     @AFieldList(headerText = "D.C.", width = 8)
     private boolean dopoCristo;

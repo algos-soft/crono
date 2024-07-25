@@ -1,9 +1,11 @@
 package it.algos.crono.mese;
 
 import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.grid.HeaderRow;
 import com.vaadin.flow.component.html.Span;
 import it.algos.crono.list.CronoList;
 import it.algos.vbase.backend.annotation.AList;
+import it.algos.vbase.backend.grid.AGrid;
 import it.algos.vbase.ui.dialog.BSpan;
 import it.algos.vbase.ui.wrapper.ASpan;
 
@@ -41,9 +43,12 @@ public class MeseList extends CronoList {
 
         super.infoCreazione = TEXT_HARD;
         super.infoReset = TEXT_RESET_DELETE;
-
-
     }
 
+    @Override
+    protected void fixGrid(AGrid grid) {
+        HeaderRow headerRow = grid.prependHeaderRow();
+        headerRow.join(grid.getColumnByKey("primo"), grid.getColumnByKey("ultimo")).setText("Giorni da inizio anno");
+    }
 
 }// end of CrudList class

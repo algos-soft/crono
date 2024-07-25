@@ -28,6 +28,7 @@ import static it.algos.vbase.backend.boot.BaseCost.FIELD_NAME_NOME;
 @Service
 public class MeseService extends ModuloService<MeseEntity> {
 
+    private static final String KEY_NAME = FIELD_NAME_NOME;
 
     /**
      * Costruttore invocato dalla sottoclasse concreta obbligatoriamente con due parametri <br>
@@ -58,6 +59,9 @@ public class MeseService extends ModuloService<MeseEntity> {
         return newEntityBean;
     }
 
+    public MeseEntity findByKey(final String keyValue) {
+        return super.findOneByProperty(KEY_NAME, keyValue);
+    }
 
 
     @Override

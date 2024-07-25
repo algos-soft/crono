@@ -2,7 +2,6 @@ package it.algos.crono.anno;
 
 import it.algos.crono.secolo.SecoloEntity;
 import it.algos.crono.secolo.SecoloService;
-import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.enumeration.RisultatoReset;
 import it.algos.vbase.backend.enumeration.TypeLog;
 import it.algos.vbase.backend.exception.AlgosException;
@@ -30,8 +29,11 @@ public class AnnoService extends ModuloService<AnnoEntity> {
 
     private static final String KEY_NAME = FIELD_NAME_NOME;
 
-    @Value("${algos.project.usa.dir.crono:true}")
-    private boolean usaDirCrono;
+    public static final String ORDINE = "Ordinamento a partire dal 1.000 a.C.";
+
+
+//    @Value("${algos.project.usa.dir.crono:true}")
+//    private boolean usaDirCrono;
 
     @Autowired
     public SecoloService secoloService;
@@ -60,39 +62,38 @@ public class AnnoService extends ModuloService<AnnoEntity> {
      * @param secolo     di appartenenza
      * @param dopoCristo flag per gli anni prima/dopo cristo
      * @param bisestile  flag per gli anni bisestili
-     *
      * @return la nuova entity appena creata (non salvata e senza keyID)
      */
     public AnnoEntity newEntity(final int ordine, final String nome, final SecoloEntity secolo, final boolean dopoCristo, final boolean bisestile) {
         AnnoEntity newEntityBean = AnnoEntity.builder()
+                .ordine(ordine == 0 ? nextOrdine() : ordine)
                 .nome(textService.isValid(nome) ? nome : null)
                 .secolo(secolo)
                 .dopoCristo(dopoCristo)
                 .bisestile(bisestile)
                 .build();
 
-        newEntityBean.setOrdine(ordine == 0 ? nextOrdine() : ordine);
         return newEntityBean;
     }
 
-    @Override
-    public ObjectId getObjectId(AnnoEntity newEntityBean) {
-        return null;
-    }
+//    @Override
+//    public ObjectId getObjectId(AnnoEntity newEntityBean) {
+//        return null;
+//    }
+//
+//    @Override
+//    public AnnoEntity findById(final String idStringValue) {
+//        return (AnnoEntity) super.findById(idStringValue);
+//    }
+//
+//    public AnnoEntity findByKey(final String keyValue) {
+//        return (AnnoEntity) super.findOneByProperty(KEY_NAME, keyValue);
+//    }
 
-    @Override
-    public AnnoEntity findById(final String idStringValue) {
-        return (AnnoEntity) super.findById(idStringValue);
-    }
-
-    public AnnoEntity findByKey(final String keyValue) {
-        return (AnnoEntity) super.findOneByProperty(KEY_NAME, keyValue);
-    }
-
-    @Override
-    public List<AnnoEntity> findAll() {
-        return super.findAll();
-    }
+//    @Override
+//    public List<AnnoEntity> findAll() {
+//        return super.findAll();
+//    }
 
 
     @Override
@@ -100,9 +101,6 @@ public class AnnoService extends ModuloService<AnnoEntity> {
         String collectionName = annotationService.getCollectionName(AnnoEntity.class);
         String collectionNameParent = annotationService.getCollectionName(SecoloEntity.class);
 
-        if (!usaDirCrono) {
-            return RisultatoReset.nonCostruito;
-        }
         if (secoloService.count() < 1 && annotationService.usaResetStartup(SecoloEntity.class)) {
             secoloService.reset();
         }

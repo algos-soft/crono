@@ -11,9 +11,20 @@ import org.springframework.data.domain.Sort;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
 
-@AList(espandiUltimaColonnaVisibile = false)
+@AList(espandiUltimaColonnaVisibile = false,
+        columns = {
+                "ordine",
+                "nome",
+                "secolo.nome",
+                "dopoCristo",
+                "bisestile"
+        }
+)
 public class AnnoList extends CronoList {
 
+    public AnnoList() {
+        this(null);
+    }
 
     /**
      * @param parentView che crea questa istanza

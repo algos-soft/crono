@@ -1,10 +1,13 @@
 package it.algos.crono.secolo;
 
 import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.grid.GridVariant;
+import com.vaadin.flow.component.grid.HeaderRow;
 import com.vaadin.flow.component.html.Span;
 import it.algos.crono.list.CronoList;
 import it.algos.vbase.backend.annotation.AList;
 import it.algos.vbase.backend.components.BAnchor;
+import it.algos.vbase.backend.grid.AGrid;
 import it.algos.vbase.ui.dialog.BSpan;
 import it.algos.vbase.ui.wrapper.ASpan;
 
@@ -14,12 +17,12 @@ import static it.algos.vbase.backend.boot.BaseCost.*;
         columns = {
                 "ordine",
                 "nome",
-                "inizio",
-                "fine",
+                "primo",
+                "ultimo",
                 "dopoCristo"
         }
 )
-public class SecoloList extends CronoList {
+public class SecoloList extends CronoList<SecoloEntity> {
 
     public SecoloList() {
         this(null);
@@ -47,6 +50,11 @@ public class SecoloList extends CronoList {
         headerPlaceHolder.add(ASpan.text("L'anno [zero] non esiste").blue().bold());
     }
 
+    @Override
+    protected void fixGrid(AGrid grid) {
+        HeaderRow headerRow = grid.prependHeaderRow();
+        headerRow.join(grid.getColumnByKey("primo"), grid.getColumnByKey("ultimo")).setText("Anni del secolo");
+    }
 
 }// end of CrudList class
 

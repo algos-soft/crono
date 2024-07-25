@@ -119,7 +119,7 @@ public static final String ORDINE = "Ordinamento da inizio anno";
             for (HashMap<String, Object> mappaGiorno : lista) {
                 nome = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_TITOLO);
                 meseTxt = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_MESE_TESTO);
-                mese = meseService.findById(meseTxt);
+                mese = meseService.findByKey(meseTxt);
                 if (mese == null) {
                     break;
                 }
