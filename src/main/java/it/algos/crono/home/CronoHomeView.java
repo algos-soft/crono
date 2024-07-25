@@ -1,4 +1,4 @@
-package it.algos.crono;
+package it.algos.crono.home;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.html.Image;
