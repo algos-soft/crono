@@ -35,12 +35,10 @@ public class SecoloList extends CronoList {
 
     @Override
     public void fixHeader() {
-        String link = "secoli";
-        BAnchor anchor = BAnchor.build(LINK_SERVER_ALGOS + link, textService.setQuadre("algos -> " + link));
+        BAnchor anchor = BAnchor.build(LINK_SERVER_ALGOS + "secoli", textService.setQuadre("algos -> " + "secoli"));
         BSpan testo = BSpan.text(TEXT_TAVOLA + SPAZIO + TEXT_CSV).bold().verde();
         headerPlaceHolder.add(new Span(testo, new Text(SPAZIO), anchor));
 
-        super.infoScopo = VUOTA;
         super.infoCreazione = TEXT_HARD;
         super.infoReset = TEXT_RESET_DELETE;
 

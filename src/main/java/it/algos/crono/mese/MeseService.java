@@ -28,11 +28,6 @@ import static it.algos.vbase.backend.boot.BaseCost.FIELD_NAME_NOME;
 @Service
 public class MeseService extends ModuloService<MeseEntity> {
 
-    private static final String KEY_NAME = FIELD_NAME_NOME;
-
-    @Value("${algos.project.usa.dir.crono:true}")
-    private boolean usaDirCrono;
-
 
     /**
      * Costruttore invocato dalla sottoclasse concreta obbligatoriamente con due parametri <br>
@@ -52,6 +47,7 @@ public class MeseService extends ModuloService<MeseEntity> {
      */
     public MeseEntity newEntity(int ordine, String sigla, String nome, int giorni, int primo, int ultimo) {
         MeseEntity newEntityBean = MeseEntity.builder()
+                .ordine(ordine == 0 ? nextOrdine() : ordine)
                 .sigla(textService.isValid(sigla) ? sigla : null)
                 .nome(textService.isValid(nome) ? nome : null)
                 .giorni(giorni)
@@ -59,28 +55,9 @@ public class MeseService extends ModuloService<MeseEntity> {
                 .ultimo(ultimo)
                 .build();
 
-        newEntityBean.setOrdine(ordine == 0 ? nextOrdine() : ordine);
         return newEntityBean;
     }
 
-    @Override
-    public ObjectId getObjectId(MeseEntity newEntityBean) {
-        return super.getObjectId(((MeseEntity) newEntityBean).getNome());
-    }
-
-    @Override
-    public MeseEntity findById(final String idStringValue) {
-        return (MeseEntity) super.findById(idStringValue);
-    }
-
-    public MeseEntity findByKey(final String keyValue) {
-        return (MeseEntity) super.findOneByProperty(KEY_NAME, keyValue);
-    }
-
-    @Override
-    public List<MeseEntity> findAll() {
-        return super.findAll();
-    }
 
 
     @Override
@@ -92,10 +69,6 @@ public class MeseService extends ModuloService<MeseEntity> {
         int giorni;
         int primo;
         int ultimo = 0;
-
-        if (!usaDirCrono) {
-            return RisultatoReset.nonCostruito;
-        }
 
         for (MeseEnum meseEnum : MeseEnum.values()) {
             ordine = meseEnum.ordinal() + 1;

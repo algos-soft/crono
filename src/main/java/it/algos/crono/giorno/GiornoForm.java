@@ -26,10 +26,10 @@ public class GiornoForm extends CrudForm {
     }
 
 
-    @PostConstruct
-    public void postConstruct() {
-        super.fixLabel(FIELD_NAME_ORDINE, "Ordinamento da inizio anno");
-    }
+//    @PostConstruct
+//    public void postConstruct() {
+//        super.fixLabel(FIELD_NAME_ORDINE, "Ordinamento da inizio anno");
+//    }
 
 
 

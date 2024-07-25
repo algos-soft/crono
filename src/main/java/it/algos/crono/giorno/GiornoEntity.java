@@ -2,7 +2,9 @@ package it.algos.crono.giorno;
 
 import com.vaadin.flow.component.icon.VaadinIcon;
 import it.algos.crono.mese.MeseEntity;
+import it.algos.crono.secolo.SecoloService;
 import it.algos.vbase.backend.annotation.*;
+import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.entity.OrdineEntity;
 import it.algos.vbase.backend.enumeration.TypeSearch;
 import lombok.*;
@@ -18,12 +20,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "giorno")
 @AReset()
 @AEntity()
-public class GiornoEntity extends OrdineEntity {
-
+public class GiornoEntity extends AbstractEntity {
 
     @Indexed(unique = true)
-    @ASearch(type = TypeSearch.textStartsWith)
-    @AFieldList(width = 10)
+    @AFieldList(width = 4, headerText = "#")
+    @AFieldForm(label = GiornoService.ORDINE)
+    private int ordine;
+
+    @Indexed(unique = true)
+    @ASearch()
+    @AFieldList(width = 12)
     @AFieldForm(label = "Nome corrente")
     private String nome;
 

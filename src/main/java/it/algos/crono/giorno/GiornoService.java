@@ -7,6 +7,7 @@ import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.enumeration.RisultatoReset;
 import it.algos.vbase.backend.enumeration.TypeLog;
 import it.algos.vbase.backend.exception.AlgosException;
+import it.algos.vbase.backend.logic.ModuloService;
 import it.algos.vbase.backend.service.DateService;
 import it.algos.vbase.backend.wrapper.WrapLog;
 import org.bson.types.ObjectId;
@@ -27,12 +28,10 @@ import static it.algos.vbase.backend.boot.BaseCost.*;
  * Time: 15:34
  */
 @Service
-public class GiornoService extends CronoModuloService<GiornoEntity> {
+public class GiornoService extends ModuloService<GiornoEntity> {
 
-    private static final String KEY_NAME = FIELD_NAME_NOME;
+public static final String ORDINE = "Ordinamento da inizio anno";
 
-    @Value("${algos.project.usa.dir.crono:true}")
-    private boolean usaDirCrono;
 
     @Autowired
     public MeseService meseService;
@@ -67,35 +66,35 @@ public class GiornoService extends CronoModuloService<GiornoEntity> {
      */
     public GiornoEntity newEntity(final int ordine, final String nome, final MeseEntity mese, final int trascorsi, final int mancanti) {
         GiornoEntity newEntityBean = GiornoEntity.builder()
+                .ordine(ordine == 0 ? nextOrdine() : ordine)
                 .nome(textService.isValid(nome) ? nome : null)
                 .mese(mese)
                 .trascorsi(trascorsi)
                 .mancanti(mancanti)
                 .build();
 
-        newEntityBean.setOrdine(ordine == 0 ? nextOrdine() : ordine);
         return newEntityBean;
     }
 
 
-    @Override
-    public ObjectId getObjectId(GiornoEntity newEntityBean) {
-        return null;
-    }
+//    @Override
+//    public ObjectId getObjectId(GiornoEntity newEntityBean) {
+//        return null;
+//    }
+//
+//    @Override
+//    public GiornoEntity findById(final String idStringValue) {
+//        return (GiornoEntity) super.findById(idStringValue);
+//    }
+//
+//    public GiornoEntity findByKey(final String keyValue) {
+//        return (GiornoEntity) super.findOneByProperty(KEY_NAME, keyValue);
+//    }
 
-    @Override
-    public GiornoEntity findById(final String idStringValue) {
-        return (GiornoEntity) super.findById(idStringValue);
-    }
-
-    public GiornoEntity findByKey(final String keyValue) {
-        return (GiornoEntity) super.findOneByProperty(KEY_NAME, keyValue);
-    }
-
-    @Override
-    public List<GiornoEntity> findAll() {
-        return super.findAll();
-    }
+//    @Override
+//    public List<GiornoEntity> findAll() {
+//        return super.findAll();
+//    }
 
     @Override
     public RisultatoReset reset() {
@@ -111,9 +110,6 @@ public class GiornoService extends CronoModuloService<GiornoEntity> {
         GiornoEntity newBean;
         List<HashMap<String, Object>> lista;
 
-        if (!usaDirCrono) {
-            return RisultatoReset.nonCostruito;
-        }
         if (meseService.count() < 1 && annotationService.usaResetStartup(MeseEntity.class)) {
             meseService.reset();
         }
@@ -149,4 +145,4 @@ public class GiornoService extends CronoModuloService<GiornoEntity> {
 
     }
 
-}// end of ModuloService class
+}// end of CrudService class

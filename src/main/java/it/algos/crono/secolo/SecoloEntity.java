@@ -2,7 +2,6 @@ package it.algos.crono.secolo;
 
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.AbstractEntity;
-import it.algos.vbase.backend.entity.OrdineEntity;
 import it.algos.vbase.backend.enumeration.TypeBool;
 import it.algos.vbase.backend.enumeration.TypeCheckBox;
 import it.algos.vbase.backend.enumeration.TypeSearch;
@@ -18,7 +17,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(value = "secolo")
 @AReset()
 @AEntity()
-public class SecoloEntity extends  AbstractEntity {
+public class SecoloEntity extends AbstractEntity {
 
     @Indexed(unique = true)
     @AFieldList(width = 4, headerText = "#")
@@ -26,22 +25,20 @@ public class SecoloEntity extends  AbstractEntity {
     private int ordine;
 
     @Indexed(unique = true)
-    @ASearch(type = TypeSearch.textStartsWith)
+    @ASearch()
     @AFieldList(width = 12)
     @AFieldForm(label = "Nome corrente")
     private String nome;
 
-    @AFieldList(width = 6)
     @AFieldForm(label = "Primo anno del secolo")
     private int inizio;
 
-    @AFieldList(width = 6)
     @AFieldForm(label = "Ultimo anno del secolo")
     private int fine;
 
-    @ASearch(type = TypeSearch.checkBox, checkBoxInitialStatus = TypeCheckBox.vero, checkBoxLabel = "DopoCristo")
     @ABoolean(type = TypeBool.checkIcon)
-    @AFieldList(headerText = "D.C.",width = 8)
+    @ASearch(type = TypeSearch.checkBox, checkBoxInitialStatus = TypeCheckBox.vero, checkBoxLabel = "DopoCristo")
+    @AFieldList(headerText = "D.C.", width = 8)
     private boolean dopoCristo;
 
 
