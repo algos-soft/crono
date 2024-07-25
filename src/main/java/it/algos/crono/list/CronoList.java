@@ -4,6 +4,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Span;
 import it.algos.vbase.backend.annotation.AList;
 import it.algos.vbase.backend.constant.Bottone;
+import it.algos.vbase.backend.grid.AGrid;
 import it.algos.vbase.backend.list.CrudList;
 import it.algos.vbase.ui.view.CrudView;
 
@@ -29,6 +30,11 @@ public abstract class CronoList extends CrudList {
      */
     public CronoList(final CrudView parentView) {
         super(parentView);
+    }
+
+    @Override
+    protected Class<? extends AGrid> getGridClass() {
+        return CronoGrid.class;
     }
 
     @Override
