@@ -1,15 +1,10 @@
 package it.algos.crono.anno;
 
-import com.vaadin.flow.spring.annotation.SpringComponent;
 import it.algos.crono.list.CronoList;
 import it.algos.vbase.backend.annotation.AList;
 import it.algos.vbase.ui.wrapper.ASpan;
-import jakarta.annotation.PostConstruct;
-import org.springframework.context.annotation.Scope;
-import org.springframework.data.domain.Sort;
 
 import static it.algos.vbase.backend.boot.BaseCost.*;
-import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
 
 @AList(espandiUltimaColonnaVisibile = false,
         columns = {
@@ -20,7 +15,7 @@ import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROT
                 "bisestile"
         }
 )
-public class AnnoList extends CronoList {
+public class AnnoList extends CronoList<AnnoEntity> {
 
     public AnnoList() {
         this(null);
@@ -50,9 +45,5 @@ public class AnnoList extends CronoList {
         headerPlaceHolder.add(ASpan.text("L'anno [zero] non esiste").blue().bold());
     }
 
-//    @PostConstruct
-//    public void postConstruct() {
-//        super.fixWidth(FIELD_NAME_ORDINE,6);
-//    }
 
 }// end of CrudList class
