@@ -1,18 +1,14 @@
 package it.algos.crono.giorno;
 
-import it.algos.crono.logic.CronoModuloService;
 import it.algos.crono.mese.MeseEntity;
 import it.algos.crono.mese.MeseService;
-import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.enumeration.RisultatoReset;
 import it.algos.vbase.backend.enumeration.TypeLog;
 import it.algos.vbase.backend.exception.AlgosException;
 import it.algos.vbase.backend.logic.ModuloService;
 import it.algos.vbase.backend.service.DateService;
 import it.algos.vbase.backend.wrapper.WrapLog;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -30,8 +26,9 @@ import static it.algos.vbase.backend.boot.BaseCost.*;
 @Service
 public class GiornoService extends ModuloService<GiornoEntity> {
 
-public static final String ORDINE = "Ordinamento da inizio anno";
+    public static final String ORDINE = "Ordinamento da inizio anno";
 
+    private static final String KEY_NAME = FIELD_NAME_NOME;
 
     @Autowired
     public MeseService meseService;
@@ -61,7 +58,6 @@ public static final String ORDINE = "Ordinamento da inizio anno";
      * @param mese      di appartenenza
      * @param trascorsi di inizio anno
      * @param mancanti  alla fine dell'anno
-     *
      * @return la nuova entity appena creata (non salvata e senza keyID)
      */
     public GiornoEntity newEntity(final int ordine, final String nome, final MeseEntity mese, final int trascorsi, final int mancanti) {
@@ -77,19 +73,19 @@ public static final String ORDINE = "Ordinamento da inizio anno";
     }
 
 
-//    @Override
+    //    @Override
 //    public ObjectId getObjectId(GiornoEntity newEntityBean) {
 //        return null;
 //    }
 //
-//    @Override
-//    public GiornoEntity findById(final String idStringValue) {
-//        return (GiornoEntity) super.findById(idStringValue);
-//    }
-//
-//    public GiornoEntity findByKey(final String keyValue) {
-//        return (GiornoEntity) super.findOneByProperty(KEY_NAME, keyValue);
-//    }
+    @Override
+    public GiornoEntity findById(final String idStringValue) {
+        return findByKey(idStringValue);
+    }
+
+    public GiornoEntity findByKey(final String keyValue) {
+        return super.findOneByProperty(KEY_NAME, keyValue);
+    }
 
 //    @Override
 //    public List<GiornoEntity> findAll() {
@@ -135,8 +131,7 @@ public static final String ORDINE = "Ordinamento da inizio anno";
         if (mappaBeans.size() > 0) {
             mappaBeans.values().stream().forEach(bean -> creaIfNotExists(bean));
             return RisultatoReset.vuotoMaCostruito;
-        }
-        else {
+        } else {
             message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
             logger.warn(new WrapLog().exception(new AlgosException(message)).type(TypeLog.startup));
             return RisultatoReset.nonCostruito;
