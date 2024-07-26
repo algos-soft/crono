@@ -31,7 +31,7 @@ public class SecoloService extends ModuloService<SecoloEntity> {
 
     public static final String CRISTO = "dopoCristo";
 
-    public static final String ORDINE = "Ordinamento a partire dal X secolo a.C.";
+    public static final String ORDINE = "Ordinamento a partire dal secolo X a.C.";
 
 
     /**

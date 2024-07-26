@@ -1,10 +1,8 @@
 package it.algos.crono.anno;
 
-import it.algos.crono.giorno.GiornoService;
 import it.algos.crono.secolo.SecoloEntity;
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.AbstractEntity;
-import it.algos.vbase.backend.entity.OrdineEntity;
 import it.algos.vbase.backend.enumeration.RefSearchType;
 import it.algos.vbase.backend.enumeration.TypeBool;
 import it.algos.vbase.backend.enumeration.TypeCheckBox;
@@ -26,7 +24,7 @@ public class AnnoEntity extends AbstractEntity {
 
 
     @Indexed(unique = true)
-    @AFieldList(width = 4, headerText = "#")
+    @AFieldList(width = 5, headerText = "#")
     @AFieldForm(label = AnnoService.ORDINE)
     private int ordine;
 
@@ -36,8 +34,8 @@ public class AnnoEntity extends AbstractEntity {
     private String nome;
 
     @DBRef
-//    @ARef(linkedProperty = "nome")
-//    @ASearch(refSearchType = RefSearchType.combo)
+    @ARef(linkedProperty = "nome")
+    @ASearch(refSearchType = RefSearchType.combo)
     @AFieldList(width = 10)
     private SecoloEntity secolo;
 

@@ -1,6 +1,7 @@
 package it.algos.crono.anno;
 
 import it.algos.crono.list.CronoList;
+import it.algos.crono.secolo.SecoloService;
 import it.algos.vbase.backend.annotation.AList;
 import it.algos.vbase.ui.wrapper.ASpan;
 
@@ -32,13 +33,13 @@ public class AnnoList extends CronoList<AnnoEntity> {
 
     @Override
     public void fixHeader() {
-        String service = "Anno";
+        headerPlaceHolder.add(ASpan.text(String.format(TEXT_TAVOLA + SPAZIO + TEXT_CODE, "Anno")).verde().bold());
 
-        super.infoScopo = String.format(TEXT_TAVOLA + SPAZIO + TEXT_CODE, service); ;
         super.infoCreazione = TEXT_HARD;
         super.infoReset = TEXT_RESET_DELETE;
 
-        super.fixHeaderPost();
+        headerPlaceHolder.add(ASpan.text("Previsti 1000 anni anteCristo e 2030 dopoCristo").blue().bold());
+        headerPlaceHolder.add(ASpan.text(AnnoService.ORDINE).blue().bold());
         headerPlaceHolder.add(ASpan.text("L'anno [zero] non esiste").blue().bold());
     }
 
