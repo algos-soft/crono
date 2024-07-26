@@ -36,8 +36,8 @@ public class AnnoEntity extends AbstractEntity {
     private String nome;
 
     @DBRef
-    @ARef(linkedProperty = "nome")
-    @ASearch(refSearchType = RefSearchType.combo)
+//    @ARef(linkedProperty = "nome")
+//    @ASearch(refSearchType = RefSearchType.combo)
     @AFieldList(width = 10)
     private SecoloEntity secolo;
 

@@ -28,9 +28,6 @@ public class AnnoList extends CronoList<AnnoEntity> {
         super(parentView);
     }
 
-    protected void fixPreferenze() {
-        super.fixPreferenze();
-    }
 
 
     @Override

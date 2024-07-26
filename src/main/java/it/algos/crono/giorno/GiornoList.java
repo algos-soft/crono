@@ -3,6 +3,7 @@ package it.algos.crono.giorno;
 import com.vaadin.flow.component.combobox.*;
 import com.vaadin.flow.component.grid.HeaderRow;
 import com.vaadin.flow.spring.annotation.*;
+import it.algos.crono.anno.AnnoEntity;
 import it.algos.crono.list.*;
 import it.algos.crono.mese.*;
 import static it.algos.vbase.backend.boot.BaseCost.*;
@@ -23,7 +24,7 @@ import org.springframework.context.annotation.*;
                 "mancanti"
         }
 )
-public class GiornoList extends CronoList {
+public class GiornoList extends CronoList<GiornoEntity> {
 
 
     public GiornoList() {

@@ -3,6 +3,7 @@ package it.algos.crono.mese;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.grid.HeaderRow;
 import com.vaadin.flow.component.html.Span;
+import it.algos.crono.giorno.GiornoEntity;
 import it.algos.crono.list.CronoList;
 import it.algos.vbase.backend.annotation.AList;
 import it.algos.vbase.backend.grid.AGrid;
@@ -21,7 +22,7 @@ import static it.algos.vbase.backend.boot.BaseCost.*;
                 "ultimo"
         }
 )
-public class MeseList extends CronoList {
+public class MeseList extends CronoList<MeseEntity> {
 
     public MeseList() {
         this(null);
