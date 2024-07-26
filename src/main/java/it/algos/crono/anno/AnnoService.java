@@ -1,5 +1,6 @@
 package it.algos.crono.anno;
 
+import it.algos.crono.giorno.GiornoEntity;
 import it.algos.crono.secolo.SecoloEntity;
 import it.algos.crono.secolo.SecoloService;
 import it.algos.vbase.backend.enumeration.RisultatoReset;
@@ -27,13 +28,10 @@ import static it.algos.vbase.backend.boot.BaseCost.*;
 @Service
 public class AnnoService extends ModuloService<AnnoEntity> {
 
-    private static final String KEY_NAME = FIELD_NAME_NOME;
-
     public static final String ORDINE = "Ordinamento a partire dal 1.000 a.C.";
 
+    private static final String KEY_NAME = FIELD_NAME_NOME;
 
-//    @Value("${algos.project.usa.dir.crono:true}")
-//    private boolean usaDirCrono;
 
     @Autowired
     public SecoloService secoloService;
@@ -74,6 +72,16 @@ public class AnnoService extends ModuloService<AnnoEntity> {
                 .build();
 
         return newEntityBean;
+    }
+
+
+    @Override
+    public AnnoEntity findById(final String idStringValue) {
+        return findByKey(idStringValue);
+    }
+
+    public AnnoEntity findByKey(final String keyValue) {
+        return super.findOneByProperty(KEY_NAME, keyValue);
     }
 
 //    @Override
