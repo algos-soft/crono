@@ -1,7 +1,6 @@
 package it.algos.crono.anno;
 
 import it.algos.crono.list.CronoList;
-import it.algos.crono.secolo.SecoloService;
 import it.algos.vbase.backend.annotation.AList;
 import it.algos.vbase.ui.wrapper.ASpan;
 
