@@ -1,6 +1,6 @@
 package it.algos.crono.anno;
 
-import it.algos.crono.giorno.GiornoEntity;
+import it.algos.crono.logic.CronoService;
 import it.algos.crono.secolo.SecoloEntity;
 import it.algos.crono.secolo.SecoloService;
 import it.algos.vbase.backend.enumeration.RisultatoReset;
@@ -9,12 +9,8 @@ import it.algos.vbase.backend.exception.AlgosException;
 import it.algos.vbase.backend.logic.ModuloService;
 import it.algos.vbase.backend.service.DateService;
 import it.algos.vbase.backend.wrapper.WrapLog;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 import static it.algos.vbase.backend.boot.BaseCost.*;
 
@@ -26,7 +22,7 @@ import static it.algos.vbase.backend.boot.BaseCost.*;
  * Time: 18:52
  */
 @Service
-public class AnnoService extends ModuloService<AnnoEntity> {
+public class AnnoService extends CronoService<AnnoEntity> {
 
     private static final String KEY_NAME = FIELD_NAME_NOME;
 
@@ -48,6 +44,9 @@ public class AnnoService extends ModuloService<AnnoEntity> {
         super(AnnoEntity.class, AnnoView.class);
     }
 
+    protected void fixPreferenze() {
+        super.keyPropertyName = KEY_NAME;
+    }
 
     /**
      * Creazione in memoria di una nuova entity che NON viene salvata <br>
@@ -74,34 +73,6 @@ public class AnnoService extends ModuloService<AnnoEntity> {
         return newEntityBean;
     }
 
-
-    @Override
-    public AnnoEntity findById(final String idStringValue) {
-        return findByKey(idStringValue);
-    }
-
-    public AnnoEntity findByKey(final String keyValue) {
-        return super.findOneByProperty(KEY_NAME, keyValue);
-    }
-
-//    @Override
-//    public ObjectId getObjectId(AnnoEntity newEntityBean) {
-//        return null;
-//    }
-//
-//    @Override
-//    public AnnoEntity findById(final String idStringValue) {
-//        return (AnnoEntity) super.findById(idStringValue);
-//    }
-//
-//    public AnnoEntity findByKey(final String keyValue) {
-//        return (AnnoEntity) super.findOneByProperty(KEY_NAME, keyValue);
-//    }
-
-//    @Override
-//    public List<AnnoEntity> findAll() {
-//        return super.findAll();
-//    }
 
 
     @Override
