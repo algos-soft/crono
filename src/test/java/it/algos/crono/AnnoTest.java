@@ -7,10 +7,12 @@ import it.algos.crono.anno.AnnoView;
 import it.algos.vbase.ModuloTest;
 import it.algos.vbase.backend.entity.AbstractEntity;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.provider.Arguments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -35,6 +37,16 @@ public class AnnoTest extends ModuloTest {
 
     private AnnoEntity annoBean;
 
+
+    //--anno sorgente (string)
+    private static Stream<Arguments> anni() {
+        return Stream.of(
+                Arguments.of("45 a.C."),
+                Arguments.of("1801 a.C."),
+                Arguments.of("2985 a.C."),
+                Arguments.of("2064 a.C.")
+        );
+    }
 
     /**
      * Qui passa una volta sola <br>
@@ -63,9 +75,9 @@ public class AnnoTest extends ModuloTest {
 
     @Test
     @Order(150)
-    @DisplayName("150 - anno dal nome")
+    @DisplayName("150 - anno dal nome (all validi)")
     void findByKey() {
-        System.out.println(("150 - anno dal nome"));
+        System.out.println(("150 - anno dal nome (all validi)"));
         System.out.println(VUOTA);
 
         String tagPrima = " a.C.";
@@ -90,6 +102,27 @@ public class AnnoTest extends ModuloTest {
 
     }
 
+
+    @Test
+    @Order(160)
+    @DisplayName("160 - anno dal nome")
+    void getSecoloAC() {
+        System.out.println(("160 - anno dal nome"));
+        System.out.println(VUOTA);
+
+        //--anno sorgente (string)
+        anni().forEach(this::fixAnni);
+    }
+
+    //--anno sorgente (string)
+    void fixAnni(Arguments arg) {
+        Object[] mat = arg.get();
+        sorgente = (String) mat[0];
+
+        annoBean = modulo.findByKey(sorgente);
+        message = String.format("%s%s%s", sorgente, FORWARD, annoBean != null ? annoBean.getNome() : NULLO);
+        System.out.println(message);
+    }
 
     protected void printBeans(List<AbstractEntity> listaBeans) {
         int k = 0;
