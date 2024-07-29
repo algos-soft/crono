@@ -1,5 +1,9 @@
 package it.algos.crono;
 
+import it.algos.crono.giorno.GiornoEntity;
+import it.algos.crono.giorno.GiornoList;
+import it.algos.crono.giorno.GiornoService;
+import it.algos.crono.giorno.GiornoView;
 import it.algos.crono.mese.MeseEntity;
 import it.algos.crono.mese.MeseList;
 import it.algos.crono.mese.MeseService;
@@ -11,6 +15,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -28,41 +33,25 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @Tag("crono")
 @Tag("modulo")
-@DisplayName("Modulo Mese")
+@DisplayName("Modulo Giorno")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class MeseTest extends ModuloTest {
+public class GiornoTest extends ModuloTest {
 
     @Autowired
-    private MeseService modulo;
+    private GiornoService modulo;
 
-    private MeseEntity meseBean;
+    private GiornoEntity giornoBean;
 
 
-    //--nome mese (string)
-    private static Stream<Arguments> nome() {
-        return Stream.of(
-                Arguments.of("gennaio"),
-                Arguments.of("febbraio"),
-                Arguments.of("marzo"),
-                Arguments.of("aprile"),
-                Arguments.of("maggio"),
-                Arguments.of("giugno"),
-                Arguments.of("agosto"),
-                Arguments.of("settembre"),
-                Arguments.of("ottobre"),
-                Arguments.of("novembre"),
-                Arguments.of("dicembre")
-        );
-    }
 
     /**
      * Qui passa una volta sola <br>
      */
     @BeforeAll
     protected void setUpAll() {
-        super.entityClazz = MeseEntity.class;
-        super.listClazz = MeseList.class;
-        super.viewClazz = MeseView.class;
+        super.entityClazz = GiornoEntity.class;
+        super.listClazz = GiornoList.class;
+        super.viewClazz = GiornoView.class;
 
         //--reindirizzo l'istanza della superclasse
         super.currentModulo = modulo;
@@ -70,8 +59,8 @@ public class MeseTest extends ModuloTest {
         super.setUpAll();
 
         //--reindirizzo l'istanza della superclasse
-        super.moduloClazz = MeseService.class;
-        super.moduloClazzName = MeseService.class.getSimpleName();
+        super.moduloClazz = GiornoService.class;
+        super.moduloClazzName = GiornoService.class.getSimpleName();
     }
 
     @BeforeEach
@@ -79,29 +68,34 @@ public class MeseTest extends ModuloTest {
         super.setUpEach();
     }
 
+
+
+
+
     @Test
     @Order(150)
-    @DisplayName("150 - mese dal nome")
+    @DisplayName("150 - giorno dal nome")
     void findByKey() {
-        System.out.println(("150 - mese dal nome"));
+        System.out.println(("150 - giorno dal nome"));
         System.out.println(VUOTA);
 
-        //--nome secolo (string)
-        nome().forEach(this::fixNome);
+        List<HashMap<String, Object>> lista= dateService.getAllGiorni();
+        for (HashMap<String, Object> mappaGiorno : lista) {
+
+            sorgente = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_TITOLO);
+            giornoBean = modulo.findByKey(sorgente);
+                    assertNotNull(giornoBean);
+            message = String.format("%s%s%s", sorgente, FORWARD, giornoBean.getNome());
+            System.out.println(message);
+        }
+
     }
 
 
-    //--nome secolo (string)
-    void fixNome(Arguments arg) {
-        Object[] mat = arg.get();
-        sorgente = (String) mat[0];
 
-        meseBean = modulo.findByKey(sorgente);
-        assertNotNull(meseBean);
 
-        message = String.format("%s%s%s", sorgente, FORWARD, meseBean.getNome());
-        System.out.println(message);
-    }
+
+
 
     protected void printBeans(List<AbstractEntity> listaBeans) {
         int k = 0;
@@ -109,7 +103,7 @@ public class MeseTest extends ModuloTest {
         System.out.println(VUOTA);
 
         for (AbstractEntity genericBean : listaBeans) {
-            if (genericBean instanceof MeseEntity bean) {
+            if (genericBean instanceof GiornoEntity bean) {
                 System.out.print(++k);
                 System.out.print(PARENTESI_TONDA_END);
                 System.out.print(SPAZIO);

@@ -16,7 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Document(collection = "giorno")
 @AReset()
-@AEntity()
+@AEntity(sortProperty = "ordine")
 public class GiornoEntity extends AbstractEntity {
 
     @Indexed(unique = true)
@@ -32,7 +32,7 @@ public class GiornoEntity extends AbstractEntity {
     @DBRef
     @ARef(linkedProperty = "nome")
     @ASearch(refSearchType = RefSearchType.combo)
-    @AFieldList(width = 10)
+    @AFieldList()
     private MeseEntity mese;
 
     @AFieldForm(label = "Progressivo da inizio anno")

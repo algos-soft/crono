@@ -341,9 +341,9 @@ public abstract class ModuloServiceTest {
         message = String.format("%s%s%s", "getMenuName", FORWARD, ottenuto);
         System.out.println(message);
 
-        MenuGroup group = annotationService.getMenuGroup(viewClazz);
-        message = String.format("%s%s%s", "getMenuGroup", FORWARD, group.tag);
-        System.out.println(message);
+//        MenuGroup group = annotationService.getMenuGroup(viewClazz);
+//        message = String.format("%s%s%s", "getMenuGroup", FORWARD, group.tag);
+//        System.out.println(message);
 
         ottenutoBooleano = annotationService.usaMenuAutomatico(viewClazz);
         message = String.format("%s%s%s", "usaMenuAutomatico", FORWARD, ottenutoBooleano);
@@ -365,9 +365,9 @@ public abstract class ModuloServiceTest {
         System.out.println(message);
         System.out.println(VUOTA);
 
-        ottenuto = mongoTemplate.getCollectionName(entityClazz);
-        message = String.format("%s%s%s", "getCollectionName", FORWARD, ottenuto);
-        System.out.println(message);
+//        ottenuto = mongoTemplate.getCollectionName(entityClazz);
+//        message = String.format("%s%s%s", "getCollectionName", FORWARD, ottenuto);
+//        System.out.println(message);
 
         //        ottenuto = annotationService.getKeyPropertyName(entityClazz);
         //        message = String.format("%s%s%s", "getKeyPropertyName", FORWARD, ottenuto);
@@ -377,9 +377,9 @@ public abstract class ModuloServiceTest {
         //        message = String.format("%s%s%s", "getSearchPropertyName", FORWARD, ottenuto);
         //        System.out.println(message);
 
-        ottenuto = annotationService.getSortPropertyName(entityClazz);
-        message = String.format("%s%s%s", "getSortPropertyName", FORWARD, ottenuto);
-        System.out.println(message);
+//        ottenuto = annotationService.getSortPropertyName(entityClazz);
+//        message = String.format("%s%s%s", "getSortPropertyName", FORWARD, ottenuto);
+//        System.out.println(message);
 
         //        typeList = annotationService.getTypeList(entityClazz);
         //        message = String.format("%s%s%s", "getTypeReset", FORWARD, typeList);
@@ -400,7 +400,7 @@ public abstract class ModuloServiceTest {
         System.out.println("50 - resetStartup");
         System.out.println(VUOTA);
         RisultatoReset typeResetPrevisto;
-        String collectionName = mongoTemplate.getCollectionName(entityClazz);
+        String collectionName = annotationService.getCollectionName(entityClazz);
         long inizio;
 
         if (annotationService.usaResetStartup(entityClazz)) {
@@ -477,10 +477,11 @@ public abstract class ModuloServiceTest {
         System.out.println("60 - resetDelete");
         System.out.println(VUOTA);
         RisultatoReset typeResetPrevisto;
-        String collectionName = mongoTemplate.getCollectionName(entityClazz);
+        String collectionName = annotationService.getCollectionName(entityClazz);
         String viewName = moduloList.getClass().getSimpleName();
 
-        if (moduloList.usaBottoneResetDelete) {
+//        if (moduloList.usaBottoneResetDelete) {
+            if (true) {
             message = String.format("La view [%s] di questo modulo prevede il bottone '%s'", viewName, METHOD_RESET_DELETE);
             logger.info(new WrapLog().message(message).type(TypeLog.test));
             if (reflectionService.isEsisteMetodo(moduloServiceClazz, METHOD_RESET_DELETE)) {
@@ -665,12 +666,12 @@ public abstract class ModuloServiceTest {
 
 
     protected void printField(List<Field> listaField) {
-        AField annotation;
+        AFieldList annotation;
         System.out.println(VUOTA);
         int k = 0;
 
         for (Field field : listaField) {
-            annotation = field.getAnnotation(AField.class);
+            annotation = field.getAnnotation(AFieldList.class);
             System.out.print(++k);
             System.out.print(PARENTESI_TONDA_END);
             System.out.print(SPAZIO);
@@ -682,24 +683,24 @@ public abstract class ModuloServiceTest {
             System.out.println(VUOTA);
 
             if (annotation != null) {
-                message = String.format("%s%s%s%s", TAB_SPAZIO, "type", FORWARD, annotation.type());
-                System.out.println(message);
-                message = String.format("%s%s%s%d", TAB_SPAZIO, "widthRem", FORWARD, annotation.widthList());
-                System.out.println(message);
-                message = String.format("%s%s%s%s", TAB_SPAZIO, "headerText", FORWARD, annotation.headerText());
-                System.out.println(message);
-                message = String.format("%s%s%s%s", TAB_SPAZIO, "headerIcon", FORWARD, annotation.headerIcon());
-                System.out.println(message);
-                message = String.format("%s%s%s%s", TAB_SPAZIO, "caption", FORWARD, annotation.caption());
-                System.out.println(message);
-                message = String.format("%s%s%s%s", TAB_SPAZIO, "linkClazz", FORWARD, annotation.linkClazz());
-                System.out.println(message);
-                message = String.format("%s%s%s%s", TAB_SPAZIO, "enumClazz", FORWARD, annotation.enumClazz());
-                System.out.println(message);
-                message = String.format("%s%s%s%s", TAB_SPAZIO, "typeBool", FORWARD, annotation.typeBool());
-                System.out.println(message);
-                message = String.format("%s%s%s%s", TAB_SPAZIO, "typeDate", FORWARD, annotation.typeDate());
-                System.out.println(message);
+//                message = String.format("%s%s%s%s", TAB_SPAZIO, "type", FORWARD, annotation.type());
+//                System.out.println(message);
+//                message = String.format("%s%s%s%d", TAB_SPAZIO, "widthRem", FORWARD, annotation.widthList());
+//                System.out.println(message);
+//                message = String.format("%s%s%s%s", TAB_SPAZIO, "headerText", FORWARD, annotation.headerText());
+//                System.out.println(message);
+//                message = String.format("%s%s%s%s", TAB_SPAZIO, "headerIcon", FORWARD, annotation.headerIcon());
+//                System.out.println(message);
+//                message = String.format("%s%s%s%s", TAB_SPAZIO, "caption", FORWARD, annotation.caption());
+//                System.out.println(message);
+//                message = String.format("%s%s%s%s", TAB_SPAZIO, "linkClazz", FORWARD, annotation.linkClazz());
+//                System.out.println(message);
+//                message = String.format("%s%s%s%s", TAB_SPAZIO, "enumClazz", FORWARD, annotation.enumClazz());
+//                System.out.println(message);
+//                message = String.format("%s%s%s%s", TAB_SPAZIO, "typeBool", FORWARD, annotation.typeBool());
+//                System.out.println(message);
+//                message = String.format("%s%s%s%s", TAB_SPAZIO, "typeDate", FORWARD, annotation.typeDate());
+//                System.out.println(message);
             }
         }
     }
@@ -724,45 +725,45 @@ public abstract class ModuloServiceTest {
         //        message = String.format("%s%s%s", "propertyListNames", FORWARD, list.propertyListNames);
         System.out.println(message);
 
-        message = String.format("%s%s%s", "usaDataProvider", FORWARD, list.usaDataProvider);
-        System.out.println(message);
-
-        message = String.format("%s%s%s", "basicSortOrder", FORWARD, list.basicSort);
-        System.out.println(message);
+//        message = String.format("%s%s%s", "usaDataProvider", FORWARD, list.usaDataProvider);
+//        System.out.println(message);
+//
+//        message = String.format("%s%s%s", "basicSortOrder", FORWARD, list.basicSort);
+//        System.out.println(message);
 
         //        message = String.format("%s%s%s", "searchFieldName", FORWARD, list.searchFieldName);
         //        System.out.println(message);
     }
 
-    protected void printBottoni(CrudList list) {
-        System.out.println(VUOTA);
-
-        message = String.format("%s%s%s", "usaBottoneDeleteAll", FORWARD, list.usaBottoneDeleteAll);
-        System.out.println(message);
-
-        message = String.format("%s%s%s", "usaBottoneResetDelete", FORWARD, list.usaBottoneResetDelete);
-        System.out.println(message);
-
-        message = String.format("%s%s%s", "usaBottoneResetAdd", FORWARD, list.usaBottoneResetAdd);
-        System.out.println(message);
-
-        message = String.format("%s%s%s", "usaBottoneNew", FORWARD, list.usaBottoneNew);
-        System.out.println(message);
-
-        message = String.format("%s%s%s", "usaBottoneEdit", FORWARD, list.usaBottoneEdit);
-        System.out.println(message);
-
-        message = String.format("%s%s%s", "usaBottoneShows", FORWARD, list.usaBottoneShow);
-        System.out.println(message);
-
-        message = String.format("%s%s%s", "usaBottoneDeleteEntity", FORWARD, list.usaBottoneDeleteEntity);
-        System.out.println(message);
-
-        //        message = String.format("%s%s%s", "usaBottoneSearch", FORWARD, list.usaBottoneSearchField);
-        //        System.out.println(message);
-
-        message = String.format("%s%s%s", "usaBottoneExport", FORWARD, list.usaBottoneExport);
-        System.out.println(message);
-    }
+//    protected void printBottoni(CrudList list) {
+//        System.out.println(VUOTA);
+//
+//        message = String.format("%s%s%s", "usaBottoneDeleteAll", FORWARD, list.usaBottoneDeleteAll);
+//        System.out.println(message);
+//
+//        message = String.format("%s%s%s", "usaBottoneResetDelete", FORWARD, list.usaBottoneResetDelete);
+//        System.out.println(message);
+//
+//        message = String.format("%s%s%s", "usaBottoneResetAdd", FORWARD, list.usaBottoneResetAdd);
+//        System.out.println(message);
+//
+//        message = String.format("%s%s%s", "usaBottoneNew", FORWARD, list.usaBottoneNew);
+//        System.out.println(message);
+//
+//        message = String.format("%s%s%s", "usaBottoneEdit", FORWARD, list.usaBottoneEdit);
+//        System.out.println(message);
+//
+//        message = String.format("%s%s%s", "usaBottoneShows", FORWARD, list.usaBottoneShow);
+//        System.out.println(message);
+//
+//        message = String.format("%s%s%s", "usaBottoneDeleteEntity", FORWARD, list.usaBottoneDeleteEntity);
+//        System.out.println(message);
+//
+//        //        message = String.format("%s%s%s", "usaBottoneSearch", FORWARD, list.usaBottoneSearchField);
+//        //        System.out.println(message);
+//
+//        message = String.format("%s%s%s", "usaBottoneExport", FORWARD, list.usaBottoneExport);
+//        System.out.println(message);
+//    }
 
 }

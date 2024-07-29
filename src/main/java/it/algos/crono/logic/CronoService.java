@@ -1,10 +1,12 @@
 package it.algos.crono.logic;
 
-import static it.algos.vbase.backend.boot.BaseCost.*;
-import it.algos.vbase.backend.entity.*;
-import it.algos.vbase.backend.logic.*;
-import org.apache.commons.lang3.*;
-import org.bson.types.*;
+import it.algos.vbase.backend.entity.AbstractEntity;
+import it.algos.vbase.backend.logic.ModuloService;
+import it.algos.vbase.backend.wrapper.WrapLog;
+import org.apache.commons.lang3.StringUtils;
+import org.bson.types.ObjectId;
+
+import static it.algos.vbase.backend.boot.BaseCost.ID_LENGTH;
 
 /**
  * Project crono
@@ -13,10 +15,11 @@ import org.bson.types.*;
  * Date: lun, 13-mag-2024
  * Time: 11:40
  */
-public abstract class CronoModuloService <T extends AbstractEntity> extends ModuloService<T> {
+public abstract class CronoService<T extends AbstractEntity> extends ModuloService<T> {
 
+    protected String keyPropertyName;
 
-    public CronoModuloService(final Class entityClazz, final Class viewClazz) {
+    public CronoService(final Class entityClazz, final Class viewClazz) {
         super(entityClazz, viewClazz);
     }
 
@@ -38,6 +41,15 @@ public abstract class CronoModuloService <T extends AbstractEntity> extends Modu
     //--eventuale - da discutere
     public T findById(final String idStringValue) {
         return findById(getObjectId(idStringValue));
+    }
+
+    public T findByKey(final String keyValue) {
+        if (textService.isValid(keyPropertyName)) {
+            return super.findOneByProperty(keyPropertyName, keyValue);
+        } else {
+            logger.warn(new WrapLog().message("Manca la keyPropertyName del modulo"));
+            return null;
+        }
     }
 
 }

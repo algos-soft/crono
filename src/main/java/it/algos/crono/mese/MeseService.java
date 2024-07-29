@@ -1,5 +1,6 @@
 package it.algos.crono.mese;
 
+import it.algos.crono.logic.CronoService;
 import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.enumeration.MeseEnum;
 import it.algos.vbase.backend.enumeration.RisultatoReset;
@@ -26,7 +27,7 @@ import static it.algos.vbase.backend.boot.BaseCost.FIELD_NAME_NOME;
  * NOT annotated with @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON) (inutile, esiste già @Service) <br>
  */
 @Service
-public class MeseService extends ModuloService<MeseEntity> {
+public class MeseService extends CronoService<MeseEntity> {
 
     private static final String KEY_NAME = FIELD_NAME_NOME;
 
@@ -39,6 +40,9 @@ public class MeseService extends ModuloService<MeseEntity> {
         super(MeseEntity.class, MeseView.class);
     }
 
+    protected void fixPreferenze() {
+        super.keyPropertyName = KEY_NAME;
+    }
 
     /**
      * Creazione in memoria di una nuova entity che NON viene salvata <br>
@@ -57,10 +61,6 @@ public class MeseService extends ModuloService<MeseEntity> {
                 .build();
 
         return newEntityBean;
-    }
-
-    public MeseEntity findByKey(final String keyValue) {
-        return super.findOneByProperty(KEY_NAME, keyValue);
     }
 
 

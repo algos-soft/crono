@@ -28,9 +28,9 @@ import static it.algos.vbase.backend.boot.BaseCost.*;
 @Service
 public class AnnoService extends ModuloService<AnnoEntity> {
 
-    public static final String ORDINE = "Ordinamento a partire dall'anno 1.000 a.C.";
-
     private static final String KEY_NAME = FIELD_NAME_NOME;
+
+    public static final String ORDINE = "Ordinamento a partire dall'anno 1.000 a.C.";
 
 
     @Autowired

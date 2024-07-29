@@ -1,5 +1,6 @@
 package it.algos.crono.giorno;
 
+import it.algos.crono.logic.CronoService;
 import it.algos.crono.mese.MeseEntity;
 import it.algos.crono.mese.MeseService;
 import it.algos.vbase.backend.enumeration.RisultatoReset;
@@ -24,11 +25,11 @@ import static it.algos.vbase.backend.boot.BaseCost.*;
  * Time: 15:34
  */
 @Service
-public class GiornoService extends ModuloService<GiornoEntity> {
-
-    public static final String ORDINE = "Ordinamento da inizio anno";
+public class GiornoService extends CronoService<GiornoEntity> {
 
     private static final String KEY_NAME = FIELD_NAME_NOME;
+
+    public static final String ORDINE = "Ordinamento da inizio anno";
 
     @Autowired
     public MeseService meseService;
@@ -46,6 +47,9 @@ public class GiornoService extends ModuloService<GiornoEntity> {
         super(GiornoEntity.class, GiornoView.class);
     }
 
+    protected void fixPreferenze() {
+        super.keyPropertyName = KEY_NAME;
+    }
 
     /**
      * Creazione in memoria di una nuova entity che NON viene salvata <br>
@@ -73,25 +77,6 @@ public class GiornoService extends ModuloService<GiornoEntity> {
     }
 
 
-    //    @Override
-//    public ObjectId getObjectId(GiornoEntity newEntityBean) {
-//        return null;
-//    }
-//
-    @Override
-    public GiornoEntity findById(final String idStringValue) {
-        return findByKey(idStringValue);
-    }
-
-    public GiornoEntity findByKey(final String keyValue) {
-        return super.findOneByProperty(KEY_NAME, keyValue);
-    }
-
-//    @Override
-//    public List<GiornoEntity> findAll() {
-//        return super.findAll();
-//    }
-
     @Override
     public RisultatoReset reset() {
         String collectionName = mongoTemplate.getCollectionName(GiornoEntity.class);
@@ -112,6 +97,7 @@ public class GiornoService extends ModuloService<GiornoEntity> {
 
         lista = dateService.getAllGiorni();
         if (lista != null && lista.size() == NUM_GIORNI_ANNO) {
+            mappaBeans = new HashMap<>();
             for (HashMap<String, Object> mappaGiorno : lista) {
                 nome = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_TITOLO);
                 meseTxt = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_MESE_TESTO);

@@ -1,19 +1,12 @@
 package it.algos.crono.giorno;
 
-import com.vaadin.flow.component.combobox.*;
 import com.vaadin.flow.component.grid.HeaderRow;
-import com.vaadin.flow.spring.annotation.*;
-import it.algos.crono.anno.AnnoEntity;
-import it.algos.crono.list.*;
-import it.algos.crono.mese.*;
-import static it.algos.vbase.backend.boot.BaseCost.*;
-
+import it.algos.crono.list.CronoList;
 import it.algos.vbase.backend.annotation.AList;
 import it.algos.vbase.backend.grid.AGrid;
 import it.algos.vbase.ui.wrapper.ASpan;
-import org.springframework.beans.factory.annotation.*;
-import static org.springframework.beans.factory.config.BeanDefinition.*;
-import org.springframework.context.annotation.*;
+
+import static it.algos.vbase.backend.boot.BaseCost.*;
 
 @AList(espandiUltimaColonnaVisibile = false,
         columns = {

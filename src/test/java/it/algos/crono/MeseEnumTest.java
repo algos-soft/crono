@@ -1,6 +1,5 @@
 package it.algos.crono;
 
-import it.algos.base.*;
 import it.algos.vbase.backend.enumeration.*;
 
 import org.junit.jupiter.api.*;
@@ -18,7 +17,7 @@ import org.junit.jupiter.api.*;
 @Tag("enums")
 @DisplayName("Enumeration MeseEnum")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class MeseEnumTest extends EnumTest {
+public class MeseEnumTest  {
 
 
     /**
@@ -28,9 +27,9 @@ public class MeseEnumTest extends EnumTest {
      */
     @BeforeAll
     protected void setUpAll() {
-        super.setUpAll();
-        super.typeZero = MeseEnum.getAllEnums().get(0);
-        super.matrice = MeseEnum.values();
+//        super.setUpAll();
+//        super.typeZero = MeseEnum.getAllEnums().get(0);
+//        super.matrice = MeseEnum.values();
     }
 
 

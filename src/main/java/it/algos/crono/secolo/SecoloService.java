@@ -1,10 +1,11 @@
 package it.algos.crono.secolo;
 
+import it.algos.crono.logic.CronoService;
 import it.algos.vbase.backend.enumeration.RisultatoReset;
 import it.algos.vbase.backend.enumeration.TypeLog;
 import it.algos.vbase.backend.exception.AlgosException;
-import it.algos.vbase.backend.logic.ModuloService;
 import it.algos.vbase.backend.wrapper.WrapLog;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import static it.algos.vbase.backend.boot.BaseCost.ANNI_AC;
+import static it.algos.vbase.backend.boot.BaseCost.FIELD_NAME_NOME;
 
 /**
  * Project base24
@@ -22,8 +24,9 @@ import static it.algos.vbase.backend.boot.BaseCost.ANNI_AC;
  * Time: 19:59
  */
 @Service
-public class SecoloService extends ModuloService<SecoloEntity> {
+public class SecoloService extends CronoService<SecoloEntity> {
 
+    private static final String KEY_NAME = FIELD_NAME_NOME;
 
     public static final String PRIMO = "primo";
 
@@ -42,14 +45,17 @@ public class SecoloService extends ModuloService<SecoloEntity> {
         super(SecoloEntity.class, SecoloView.class);
     }
 
+    protected void fixPreferenze() {
+        super.keyPropertyName = KEY_NAME;
+    }
 
     /**
      * Creazione in memoria di una nuova entity che NON viene salvata <br>
      *
      * @param ordine     di presentazione nel popup/combobox (obbligatorio, unico)
      * @param nome       descrittivo e visualizzabile
-     * @param primo     primo anno del secolo
-     * @param ultimo       ultimo anno del secolo
+     * @param primo      primo anno del secolo
+     * @param ultimo     ultimo anno del secolo
      * @param dopoCristo secolo prima o dopo Cristo
      * @return la nuova entity appena creata (con keyID ma non salvata)
      */
