@@ -5,7 +5,7 @@ import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.enumeration.RefSearchType;
 import it.algos.vbase.backend.enumeration.TypeBool;
-import it.algos.vbase.backend.enumeration.TypeCheckBox;
+import it.algos.vbase.backend.enumeration.CheckBoxStatus;
 import it.algos.vbase.backend.enumeration.TypeSearch;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -40,7 +40,7 @@ public class AnnoEntity extends AbstractEntity {
     private SecoloEntity secolo;
 
     @ABoolean(type = TypeBool.checkIcon)
-    @ASearch(type = TypeSearch.checkBox, checkBoxInitialStatus = TypeCheckBox.vero, checkBoxLabel = "DopoCristo")
+    @ASearch(type = TypeSearch.checkBox, checkBoxInitialStatus = CheckBoxStatus.vero, checkBoxLabel = "DopoCristo")
     @AFieldList(headerText = "D.C.", width = 8)
     private boolean dopoCristo;
 
