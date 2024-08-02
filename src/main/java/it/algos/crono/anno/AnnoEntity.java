@@ -40,12 +40,12 @@ public class AnnoEntity extends AbstractEntity {
     private SecoloEntity secolo;
 
     @ABoolean(type = TypeBool.checkIcon)
-    @ASearch(type = TypeSearch.checkBox, checkBoxInitialStatus = CheckBoxStatus.vero, checkBoxLabel = "DopoCristo")
+    @ASearch(checkBoxInitialStatus = CheckBoxStatus.vero, checkBoxLabel = "DopoCristo")
     @AFieldList(headerText = "D.C.", width = 8)
     private boolean dopoCristo;
 
     @ABoolean(type = TypeBool.checkIcon)
-    @ASearch(type = TypeSearch.checkBox, checkBoxLabel = "Bisestile")
+    @ASearch(checkBoxLabel = "Bisestile")
     @AFieldList(headerText = "B")
     private boolean bisestile;
 
