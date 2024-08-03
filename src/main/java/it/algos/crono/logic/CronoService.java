@@ -19,6 +19,7 @@ public abstract class CronoService<T extends AbstractEntity> extends ModuloServi
 
     protected String keyPropertyName;
 
+
     public CronoService(final Class entityClazz, final Class viewClazz) {
         super(entityClazz, viewClazz);
     }
