@@ -47,6 +47,7 @@ public class GiornoService extends CronoService<GiornoEntity> {
         super(GiornoEntity.class, GiornoView.class);
     }
 
+
     protected void fixPreferenze() {
         super.keyPropertyName = KEY_NAME;
     }
