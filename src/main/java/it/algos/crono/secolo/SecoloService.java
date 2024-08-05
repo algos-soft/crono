@@ -5,7 +5,7 @@ import it.algos.vbase.backend.enumeration.RisultatoReset;
 import it.algos.vbase.backend.enumeration.TypeLog;
 import it.algos.vbase.backend.exception.AlgosException;
 import it.algos.vbase.backend.wrapper.WrapLog;
-import org.bson.types.ObjectId;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
@@ -71,6 +71,24 @@ public class SecoloService extends CronoService<SecoloEntity> {
         return newEntityBean;
     }
 
+
+    public List<SecoloEntity> findAll() {
+        return mongoService.findAll(SecoloEntity.class, Sort.by(Sort.Direction.ASC, FIELD_NAME_NOME));
+    }
+
+    public List<SecoloEntity> findAllReverse() {
+        return mongoService.findAll(SecoloEntity.class, Sort.by(Sort.Direction.DESC, FIELD_NAME_NOME));
+    }
+
+
+    public List<String> findAllForNome() {
+        return findAll().stream().map(secolo -> secolo.getNome()).toList();
+    }
+
+
+    public List<String> findAllForNomeReverse() {
+        return findAllReverse().stream().map(secolo -> secolo.getNome()).toList();
+    }
 
     /**
      * Seleziona un secolo dal field 'nome' dell'anno (String) <br>
