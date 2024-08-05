@@ -17,20 +17,20 @@ import org.springframework.context.annotation.Configuration;
  * Authentication Service (IAuthenticationService)
  */
 @Configuration
-public class WikiSecurityConfig extends SecurityConfig {
+public class CronoSecurityConfig extends SecurityConfig {
 
     // Define a Login View class
     // A Login View is mandatory for Spring Security
     @Override
     public Class<? extends Component> getLoginViewClass() {
-        return WikiLoginView.class;
+        return CronoLoginView.class;
     }
 
     // Provide a custom authentication service
     // Optional, if not provided a standard AuthenticationService will be used
     @Bean
     public IAuthenticationService authService() {
-        return new WikiAuthenticationService();
+        return new CronoAuthenticationService();
     }
 
 }

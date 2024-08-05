@@ -17,7 +17,7 @@ import java.util.List;
  * Custom authentication service used to authenticate the users against
  * a user database specific to the application.
  */
-public class WikiAuthenticationService implements IAuthenticationService {
+public class CronoAuthenticationService implements IAuthenticationService {
 
     private MongoTemplate mongoTemplate;
 
