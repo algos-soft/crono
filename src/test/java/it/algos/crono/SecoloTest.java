@@ -38,6 +38,8 @@ public class SecoloTest extends ModuloTest {
 
     private SecoloEntity secoloBean;
 
+    private List<SecoloEntity> listaSecoli;
+
     //--anno sorgente (intero)
     //--secolo previsto
     private static Stream<Arguments> anniPrima() {
@@ -175,10 +177,59 @@ public class SecoloTest extends ModuloTest {
 
 
     @Test
+    @Order(101)
+    @DisplayName("101 - findAll (ascendente)")
+    void findAllAscendente() {
+        System.out.println("101 - findAll (ascendente)");
+        System.out.println(VUOTA);
+
+        listaSecoli = modulo.findAll();
+        assertNotNull(listaSecoli);
+        printSecoli(listaSecoli);
+    }
+
+    @Test
+    @Order(102)
+    @DisplayName("102 - findAll (discendente)")
+    void findAllReverse() {
+        System.out.println("102 - findAll (discendente)");
+        System.out.println(VUOTA);
+
+        listaSecoli = modulo.findAllReverse();
+        assertNotNull(listaSecoli);
+        printSecoli(listaSecoli);
+    }
+
+    @Test
+    @Order(103)
+    @DisplayName("103 - findAllForNome (ascendente)")
+    void findAllForNome() {
+        System.out.println("103 - findAllForNome (ascendente)");
+        System.out.println(VUOTA);
+
+        listaStr = modulo.findAllForNome();
+        assertNotNull(listaStr);
+        print(listaStr);
+    }
+
+
+    @Test
+    @Order(104)
+    @DisplayName("104 - findAllForNome (discendente)")
+    void findAllForNomeReverse() {
+        System.out.println("104 - findAllForNome (discendente)");
+        System.out.println(VUOTA);
+
+        listaStr = modulo.findAllForNomeReverse();
+        assertNotNull(listaStr);
+        print(listaStr);
+    }
+
+    @Test
     @Order(110)
     @DisplayName("110 - secolo dell'anno prima di cristo")
     void getSecoloAC() {
-        System.out.println(("110 - secolo dell'anno prima di cristo"));
+        System.out.println("110 - secolo dell'anno prima di cristo");
         System.out.println(VUOTA);
 
         //--anno sorgente (intero)
@@ -207,7 +258,7 @@ public class SecoloTest extends ModuloTest {
     @Order(120)
     @DisplayName("120 - secolo dell'anno dopo cristo")
     void getSecoloDC() {
-        System.out.println(("120 - secolo dell'anno dopo cristo"));
+        System.out.println("120 - secolo dell'anno dopo cristo");
         System.out.println(VUOTA);
 
         //--anno sorgente (intero)
@@ -234,7 +285,7 @@ public class SecoloTest extends ModuloTest {
     @Order(130)
     @DisplayName("130 - secolo dal numero e dal flag")
     void getSecolo2() {
-        System.out.println(("130 - secolo dal numero e dal flag"));
+        System.out.println("130 - secolo dal numero e dal flag");
         System.out.println(VUOTA);
 
         //--anno sorgente (intero)
@@ -264,7 +315,7 @@ public class SecoloTest extends ModuloTest {
     @Order(140)
     @DisplayName("140 - secolo dal nome dell'anno")
     void getSecolo() {
-        System.out.println(("140 - secolo dal nome dell'anno"));
+        System.out.println("140 - secolo dal nome dell'anno");
         System.out.println(VUOTA);
 
         //--anno sorgente (stringa)
@@ -289,12 +340,11 @@ public class SecoloTest extends ModuloTest {
     }
 
 
-
     @Test
     @Order(150)
     @DisplayName("150 - secolo dal nome")
     void findByKey() {
-        System.out.println(("150 - secolo dal nome"));
+        System.out.println("150 - secolo dal nome");
         System.out.println(VUOTA);
 
         //--nome secolo (string)
@@ -314,7 +364,7 @@ public class SecoloTest extends ModuloTest {
         System.out.println(message);
     }
 
-    protected void printBeans(List<AbstractEntity> listaBeans) {
+    protected void printSecoli(List<SecoloEntity> listaBeans) {
         int k = 0;
 
         System.out.println(VUOTA);

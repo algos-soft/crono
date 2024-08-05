@@ -645,6 +645,17 @@ public abstract class ModuloTest extends AlgosTest {
     }
 
 
+    protected void print(List<String> lista) {
+        int k = 0;
+
+        for (String nome : lista) {
+            System.out.print(++k);
+            System.out.print(PARENTESI_TONDA_END);
+            System.out.print(SPAZIO);
+            System.out.println(nome);
+        }
+    }
+
     protected void printBeans(List<AbstractEntity> listaBeans) {
         int k = 0;
 

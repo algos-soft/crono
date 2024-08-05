@@ -18,7 +18,7 @@
     </appender>
 
 
-    <variable name="BASE24_LOG_FILE" value="log/base24.log"/>
+    <variable name="BASE24_LOG_FILE" value="log/vbase.log"/>
     <appender name="rollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${BASE24_LOG_FILE}</file>
         <encoder>
@@ -33,7 +33,7 @@
         </triggeringPolicy>
     </appender>
 
-    <variable name="SPRING_LOG_FILE" value="log/base24-spring.log"/>
+    <variable name="SPRING_LOG_FILE" value="log/vbase-spring.log"/>
     <appender name="springContextAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${SPRING_LOG_FILE}</file>
         <encoder>
@@ -48,7 +48,7 @@
         </triggeringPolicy>
     </appender>
 
-    <variable name="ADMIN_LOG_FILE" value="log/base24-admin.log"/>
+    <variable name="ADMIN_LOG_FILE" value="log/vbase-admin.log"/>
     <appender name="adminAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${ADMIN_LOG_FILE}</file>
         <encoder>
@@ -75,7 +75,7 @@
         <appender-ref ref="springContextAppender"/>
     </logger>
 
-    <logger name="base24.admin" level="INFO" additivity="true">
+    <logger name="it.algos" level="INFO" additivity="true">
         <appender-ref ref="adminAppender"/>
     </logger>
 
@@ -89,7 +89,7 @@
     <!--qui arrivano tutti i logger che hanno additivity = true-->
     <!-- vengono stampati in console solo se la property LOG_TO_CONSOLE è a true-->
     <root level="INFO">
-        <!--                    <root level="DEBUG">-->
+        <!--                            <root level="DEBUG">-->
         <if condition='property("LOG_TO_CONSOLE").contains("true")'>
             <then>
                 <appender-ref ref="STDOUT"/>

@@ -2,6 +2,7 @@ package it.algos.crono.home;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import it.algos.vbase.backend.annotation.AView;
 import it.algos.vbase.backend.components.SimpleVerticalLayout;
@@ -9,11 +10,14 @@ import it.algos.vbase.backend.service.AnnotationService;
 import it.algos.vbase.backend.service.MainLayoutService;
 import it.algos.vbase.ui.view.MainLayout;
 import it.algos.vbase.ui.wrapper.ASpan;
+import jakarta.annotation.security.PermitAll;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static it.algos.vbase.backend.boot.BaseCost.VUOTA;
 
-@Route(value = VUOTA+"x", layout = MainLayout.class)
+@PermitAll
+@PageTitle("Crono")
+@Route(value = "", layout = MainLayout.class)
 @AView(menuAutomatico = false)
 public class CronoHomeView extends SimpleVerticalLayout {
 

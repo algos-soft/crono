@@ -13,8 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-import static it.algos.vbase.backend.boot.BaseCost.ANNI_AC;
-import static it.algos.vbase.backend.boot.BaseCost.FIELD_NAME_NOME;
+import static it.algos.vbase.backend.boot.BaseCost.*;
 
 /**
  * Project base24
@@ -73,11 +72,11 @@ public class SecoloService extends CronoService<SecoloEntity> {
 
 
     public List<SecoloEntity> findAll() {
-        return mongoService.findAll(SecoloEntity.class, Sort.by(Sort.Direction.ASC, FIELD_NAME_NOME));
+        return mongoService.findAll(SecoloEntity.class, Sort.by(Sort.Direction.ASC, FIELD_NAME_ORDINE));
     }
 
     public List<SecoloEntity> findAllReverse() {
-        return mongoService.findAll(SecoloEntity.class, Sort.by(Sort.Direction.DESC, FIELD_NAME_NOME));
+        return mongoService.findAll(SecoloEntity.class, Sort.by(Sort.Direction.DESC, FIELD_NAME_ORDINE));
     }
 
 
