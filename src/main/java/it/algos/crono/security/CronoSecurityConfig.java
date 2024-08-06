@@ -2,6 +2,7 @@ package it.algos.crono.security;
 
 import com.vaadin.flow.component.Component;
 import it.algos.vbase.backend.security.IAuthenticationService;
+import it.algos.vbase.backend.security.LoginViewHeader;
 import it.algos.vbase.backend.security.SecurityConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,18 +20,17 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CronoSecurityConfig extends SecurityConfig {
 
-    // Define a Login View class
-    // A Login View is mandatory for Spring Security
-    @Override
-    public Class<? extends Component> getLoginViewClass() {
-        return CronoLoginView.class;
-    }
-
     // Provide a custom authentication service
     // Optional, if not provided a standard AuthenticationService will be used
     @Bean
     public IAuthenticationService authService() {
         return new CronoAuthenticationService();
+    }
+
+    // Provide an optional header for the Login  view
+    @Bean
+    public LoginViewHeader loginViewHeader() {
+        return new CronoLoginViewHeader();
     }
 
 }
