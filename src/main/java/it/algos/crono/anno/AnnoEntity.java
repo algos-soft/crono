@@ -3,10 +3,9 @@ package it.algos.crono.anno;
 import it.algos.crono.secolo.SecoloEntity;
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.AbstractEntity;
+import it.algos.vbase.backend.enumeration.CheckBoxStatus;
 import it.algos.vbase.backend.enumeration.RefSearchType;
 import it.algos.vbase.backend.enumeration.TypeBool;
-import it.algos.vbase.backend.enumeration.CheckBoxStatus;
-import it.algos.vbase.backend.enumeration.TypeSearch;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -30,13 +29,14 @@ public class AnnoEntity extends AbstractEntity {
 
     @Indexed(unique = true)
     @ASearch()
+    @AFieldList(headerText = "Numero")
     @AFieldForm(label = "Nome corrente")
     private String nome;
 
     @DBRef
     @ARef(linkedProperty = "nome")
     @ASearch(refSearchType = RefSearchType.combo)
-    @AFieldList(width = 10)
+    @AFieldList(headerText = "Secolo", width = 10)
     private SecoloEntity secolo;
 
     @ABoolean(type = TypeBool.checkIcon)

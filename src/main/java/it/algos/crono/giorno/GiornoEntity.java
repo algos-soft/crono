@@ -26,13 +26,14 @@ public class GiornoEntity extends AbstractEntity {
 
     @Indexed(unique = true)
     @ASearch()
+    @AFieldList(headerText = "Giorno")
     @AFieldForm(label = "Nome corrente")
     private String nome;
 
     @DBRef
     @ARef(linkedProperty = "nome")
     @ASearch(refSearchType = RefSearchType.combo)
-    @AFieldList()
+    @AFieldList(headerText = "Mese", width = 10)
     private MeseEntity mese;
 
     @AFieldForm(label = "Progressivo da inizio anno")
