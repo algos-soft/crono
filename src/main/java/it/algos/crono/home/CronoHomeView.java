@@ -17,7 +17,7 @@ import static it.algos.vbase.backend.boot.BaseCost.VUOTA;
 
 @PermitAll
 @PageTitle("Crono")
-@Route(value = "", layout = MainLayout.class)
+@Route(value = "x", layout = MainLayout.class)
 @AView(menuAutomatico = false)
 public class CronoHomeView extends SimpleVerticalLayout {
 
