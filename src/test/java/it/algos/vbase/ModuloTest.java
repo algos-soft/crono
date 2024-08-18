@@ -296,7 +296,7 @@ public abstract class ModuloTest extends AlgosTest {
         System.out.println(message);
 
         ottenuto = (String) annotationService.getSortProperty(entityClazz).orElse(VUOTA);
-        message = String.format("%s%s%s", "getSortProperty", FORWARD, ottenuto);
+        message = String.format("%s%s%s", "getSortPropertyDeprecated", FORWARD, ottenuto);
         System.out.println(message);
 
         ottenuto = (String) annotationService.getFocusField(entityClazz).orElse(VUOTA);
