@@ -1,6 +1,7 @@
 package it.algos.crono.giorno;
 
 import it.algos.crono.mese.MeseEntity;
+import it.algos.crono.mese.MeseService;
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.enumeration.RefSearchType;
@@ -31,9 +32,10 @@ public class GiornoEntity extends AbstractEntity {
     private String nome;
 
     @DBRef
-    @ARef(linkedProperty = "nome")
+    @ARef(linkClazz = MeseService.class, linkedProperty = "nome")
     @ASearch(refSearchType = RefSearchType.combo)
     @AFieldList(headerText = "Mese", width = 10)
+    @AFieldForm(clearButtonCombo = false)
     private MeseEntity mese;
 
     @AFieldForm(label = "Progressivo da inizio anno")

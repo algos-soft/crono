@@ -1,6 +1,7 @@
 package it.algos.crono.anno;
 
 import it.algos.crono.secolo.SecoloEntity;
+import it.algos.crono.secolo.SecoloService;
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.enumeration.CheckBoxStatus;
@@ -34,9 +35,10 @@ public class AnnoEntity extends AbstractEntity {
     private String nome;
 
     @DBRef
-    @ARef(linkedProperty = "nome")
+    @ARef(linkClazz = SecoloService.class, linkedProperty = "nome")
     @ASearch(refSearchType = RefSearchType.combo)
     @AFieldList(headerText = "Secolo", width = 10)
+    @AFieldForm(clearButtonCombo = false)
     private SecoloEntity secolo;
 
     @ABoolean(type = TypeBool.checkIcon)
