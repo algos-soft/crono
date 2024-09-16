@@ -13,8 +13,8 @@ import static it.algos.vbase.backend.boot.BaseCost.*;
                 "mese.nome",
                 "trascorsi",
                 "mancanti"
-        }
-)
+        },
+        sortProperty ="ordine")
 public class GiornoList extends CronoList<GiornoEntity> {
 
 

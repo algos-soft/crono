@@ -13,8 +13,8 @@ import static it.algos.vbase.backend.boot.BaseCost.*;
                 "secolo.nome",
                 "dopoCristo",
                 "bisestile"
-        }
-)
+        },
+        sortProperty = "ordine")
 public class AnnoList extends CronoList<AnnoEntity> {
 
     public AnnoList() {
