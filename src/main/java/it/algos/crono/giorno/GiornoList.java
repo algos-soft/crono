@@ -1,14 +1,12 @@
 package it.algos.crono.giorno;
 
-import com.vaadin.flow.component.grid.HeaderRow;
 import it.algos.crono.list.CronoList;
-import it.algos.vbase.backend.annotation.AList;
-import it.algos.vbase.backend.grid.AGrid;
+import it.algos.vbase.backend.annotation.AViewList;
 import it.algos.vbase.ui.wrapper.ASpan;
 
 import static it.algos.vbase.backend.boot.BaseCost.*;
 
-@AList(espandiUltimaColonnaVisibile = false,
+@AViewList(espandiUltimaColonnaVisibile = false,
         columns = {
                 "ordine",
                 "nome",
