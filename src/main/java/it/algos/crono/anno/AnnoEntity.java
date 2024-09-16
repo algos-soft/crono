@@ -25,29 +25,29 @@ public class AnnoEntity extends AbstractEntity {
 
     @Indexed(unique = true)
     @AFieldList(width = 5, headerText = "#")
-    @AFieldForm(label = AnnoService.ORDINE)
+    @AFieldForm(label = AnnoService.ORDINE, width = 20)
     private int ordine;
 
     @Indexed(unique = true)
     @ASearch()
-    @AFieldList(headerText = "Numero")
-    @AFieldForm(label = "Nome corrente")
+    @AFieldList(headerText = "Anno")
+    @AFieldForm(label = "Anno corrente")
     private String nome;
 
     @DBRef
     @ARef(linkClazz = SecoloService.class, linkedProperty = "nome")
-    @ASearch(refSearchType = RefSearchType.combo)
-    @AFieldList(headerText = "Secolo", width = 10)
+    @ASearch(refSearchType = RefSearchType.combo, placeholder = "Secoli")
+    @AFieldList(headerText = "Secolo", width = 12)
     @AFieldForm(clearButtonCombo = false)
     private SecoloEntity secolo;
 
     @ABoolean(type = TypeBool.checkIcon)
-    @ASearch(checkBoxInitialStatus = CheckBoxStatus.vero, label = "DopoCristo")
-    @AFieldList(headerText = "D.C.", width = 8)
+    @ASearch(checkBoxInitialStatus = CheckBoxStatus.vero, tooltip = "DopoCristo")
+    @AFieldList(headerText = "D.C.")
     private boolean dopoCristo;
 
     @ABoolean(type = TypeBool.checkIcon)
-    @ASearch(label = "Bisestile")
+    @ASearch(tooltip = "Bisestile")
     @AFieldList(headerText = "B")
     private boolean bisestile;
 
