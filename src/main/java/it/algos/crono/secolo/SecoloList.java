@@ -55,5 +55,5 @@ public class SecoloList extends CronoList<SecoloEntity> {
         headerRow.join(grid.getColumnByKey("primo"), grid.getColumnByKey("ultimo")).setText("Anni del secolo");
     }
 
-}// end of CrudList class
+}// end of AList class
 

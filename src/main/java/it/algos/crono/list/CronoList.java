@@ -6,7 +6,7 @@ import it.algos.vbase.backend.annotation.AViewList;
 import it.algos.vbase.backend.constant.Bottone;
 import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.grid.AGrid;
-import it.algos.vbase.backend.list.CrudList;
+import it.algos.vbase.backend.list.AList;
 import it.algos.vbase.ui.view.CrudView;
 
 import java.text.DecimalFormat;
@@ -19,7 +19,7 @@ import java.text.DecimalFormat;
  * Time: 18:32
  */
 @AViewList(bottoni = {Bottone.RESET_DELETE, Bottone.SHOW})
-public class CronoList<T extends AbstractEntity> extends CrudList<T> {
+public class CronoList<T extends AbstractEntity> extends AList<T> {
 
 
     public CronoList() {

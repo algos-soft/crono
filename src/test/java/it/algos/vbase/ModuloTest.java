@@ -109,7 +109,7 @@ public abstract class ModuloTest extends AlgosTest {
         moduloClazzName = currentModulo.getClass().getSimpleName();
         assertTrue(textService.isValid(moduloClazzName));
 
-        //        listaView = (CrudList) appContext.getBean(listClazz);
+        //        listaView = (AList) appContext.getBean(listClazz);
         //        assertNotNull(listaView);
     }
 

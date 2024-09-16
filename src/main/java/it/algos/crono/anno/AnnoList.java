@@ -46,4 +46,4 @@ public class AnnoList extends CronoList<AnnoEntity> {
     }
 
 
-}// end of CrudList class
+}// end of AList class

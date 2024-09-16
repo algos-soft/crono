@@ -47,4 +47,4 @@ public class GiornoList extends CronoList<GiornoEntity> {
 //    }
 
 
-}// end of CrudList class
+}// end of AList class

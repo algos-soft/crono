@@ -48,4 +48,4 @@ public class MeseList extends CronoList<MeseEntity> {
         headerRow.join(grid.getColumnByKey("primo"), grid.getColumnByKey("ultimo")).setText("Giorni da inizio anno");
     }
 
-}// end of CrudList class
+}// end of AList class
