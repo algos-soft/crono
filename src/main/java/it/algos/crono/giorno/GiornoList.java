@@ -29,6 +29,10 @@ public class GiornoList extends CronoList<GiornoEntity> {
     }
 
 
+    protected void fixPreferenze() {
+        super.readOnly = true;
+    }
+
     @Override
     public void fixHeader() {
         headerPlaceHolder.add(ASpan.text(String.format(TEXT_TAVOLA + SPAZIO + TEXT_CODE, "Giorno")).verde().bold());
@@ -38,11 +42,11 @@ public class GiornoList extends CronoList<GiornoEntity> {
         super.infoReset = TEXT_RESET_DELETE;
     }
 
-    @Override
-    protected void fixGrid(AGrid grid) {
-        HeaderRow headerRow = grid.prependHeaderRow();
-        headerRow.join(grid.getColumnByKey("trascorsi"), grid.getColumnByKey("mancanti")).setText("Giorni da inizio anno");
-    }
+//    @Override
+//    protected void fixGrid(AGrid grid) {
+//        HeaderRow headerRow = grid.prependHeaderRow();
+//        headerRow.join(grid.getColumnByKey("trascorsi"), grid.getColumnByKey("mancanti")).setText("Giorni da inizio anno");
+//    }
 
 
 }// end of CrudList class

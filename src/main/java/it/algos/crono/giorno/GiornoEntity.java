@@ -1,5 +1,6 @@
 package it.algos.crono.giorno;
 
+import it.algos.crono.anno.AnnoService;
 import it.algos.crono.mese.MeseEntity;
 import it.algos.crono.mese.MeseService;
 import it.algos.vbase.backend.annotation.*;
@@ -21,19 +22,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class GiornoEntity extends AbstractEntity {
 
     @Indexed(unique = true)
+    @ASearch()
     @AFieldList(width = 4, headerText = "#")
-    @AFieldForm(label = GiornoService.ORDINE)
+    @AFieldForm(label = GiornoService.ORDINE, width = 20)
     private int ordine;
 
     @Indexed(unique = true)
     @ASearch()
     @AFieldList(headerText = "Giorno")
-    @AFieldForm(label = "Nome corrente")
+    @AFieldForm(label = "Giorno corrente")
     private String nome;
 
     @DBRef
     @ARef(linkClazz = MeseService.class, linkedProperty = "nome")
-    @ASearch(refSearchType = RefSearchType.combo)
+    @ASearch(refSearchType = RefSearchType.combo, placeholder = "Mesi")
     @AFieldList(headerText = "Mese", width = 10)
     @AFieldForm(clearButtonCombo = false)
     private MeseEntity mese;
@@ -41,7 +43,7 @@ public class GiornoEntity extends AbstractEntity {
     @AFieldForm(label = "Progressivo da inizio anno")
     private int trascorsi;
 
-    @AFieldForm(label = "Mancanti alla fine dell'anno")
+    @AFieldForm(label = "Mancanti a fine anno")
     private int mancanti;
 
 
