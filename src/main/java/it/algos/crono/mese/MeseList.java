@@ -16,8 +16,8 @@ import static it.algos.vbase.backend.boot.BaseCost.*;
                 "giorni",
                 "primo",
                 "ultimo"
-        }
-)
+        },
+        sortProperty = "ordine")
 public class MeseList extends CronoList<MeseEntity> {
 
     public MeseList() {
@@ -31,6 +31,9 @@ public class MeseList extends CronoList<MeseEntity> {
         super(parentView);
     }
 
+    protected void fixPreferenze() {
+        super.readOnly = true;
+    }
 
     @Override
     public void fixHeader() {
@@ -42,10 +45,10 @@ public class MeseList extends CronoList<MeseEntity> {
         super.infoReset = TEXT_RESET_DELETE;
     }
 
-    @Override
-    protected void fixGrid(AGrid grid) {
-        HeaderRow headerRow = grid.prependHeaderRow();
-        headerRow.join(grid.getColumnByKey("primo"), grid.getColumnByKey("ultimo")).setText("Giorni da inizio anno");
-    }
+//    @Override
+//    protected void fixGrid(AGrid grid) {
+//        HeaderRow headerRow = grid.prependHeaderRow();
+//        headerRow.join(grid.getColumnByKey("primo"), grid.getColumnByKey("ultimo")).setText("Giorni da inizio anno");
+//    }
 
 }// end of AList class

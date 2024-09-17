@@ -19,8 +19,8 @@ import static it.algos.vbase.backend.boot.BaseCost.*;
                 "primo",
                 "ultimo",
                 "dopoCristo"
-        }
-)
+        },
+        sortProperty = "ordine")
 public class SecoloList extends CronoList<SecoloEntity> {
 
     public SecoloList() {
@@ -34,6 +34,9 @@ public class SecoloList extends CronoList<SecoloEntity> {
         super(parentView);
     }
 
+    protected void fixPreferenze() {
+        super.readOnly = true;
+    }
 
     @Override
     public void fixHeader() {
@@ -49,11 +52,11 @@ public class SecoloList extends CronoList<SecoloEntity> {
         headerPlaceHolder.add(ASpan.text("L'anno [zero] non esiste").blue().bold());
     }
 
-    @Override
-    protected void fixGrid(AGrid grid) {
-        HeaderRow headerRow = grid.prependHeaderRow();
-        headerRow.join(grid.getColumnByKey("primo"), grid.getColumnByKey("ultimo")).setText("Anni del secolo");
-    }
+//    @Override
+//    protected void fixGrid(AGrid grid) {
+//        HeaderRow headerRow = grid.prependHeaderRow();
+//        headerRow.join(grid.getColumnByKey("primo"), grid.getColumnByKey("ultimo")).setText("Anni del secolo");
+//    }
 
 }// end of AList class
 

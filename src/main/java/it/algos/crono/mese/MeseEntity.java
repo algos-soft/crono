@@ -25,20 +25,20 @@ public class MeseEntity extends AbstractEntity {
     private int ordine;
 
     @Indexed(unique = true)
-    @ASearch()
     private String sigla;
 
     @Indexed(unique = true)
     @ASearch()
-    @AFieldForm(label = "Nome corrente")
+    @AFieldList(headerText = "Mese")
+    @AFieldForm(label = "Mese corrente")
     private String nome;
 
     private int giorni;
 
-    @AFieldForm(label = "Primo giorno (da inizio anno) del mese")
+    @AFieldForm(label = "Primo giorno del mese da inizio anno")
     private int primo;
 
-    @AFieldForm(label = "Ultimo giorno (da inizio anno) del mese")
+    @AFieldForm(label = "Ultimo giorno del mese da inizio anno")
     private int ultimo;
 
 

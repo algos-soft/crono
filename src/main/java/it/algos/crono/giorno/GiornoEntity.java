@@ -22,7 +22,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class GiornoEntity extends AbstractEntity {
 
     @Indexed(unique = true)
-    @ASearch()
     @AFieldList(width = 4, headerText = "#")
     @AFieldForm(label = GiornoService.ORDINE, width = 20)
     private int ordine;

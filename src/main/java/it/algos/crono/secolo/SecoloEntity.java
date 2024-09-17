@@ -1,5 +1,6 @@
 package it.algos.crono.secolo;
 
+import it.algos.crono.anno.AnnoService;
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.enumeration.TypeBool;
@@ -21,13 +22,13 @@ public class SecoloEntity extends AbstractEntity {
 
     @Indexed(unique = true)
     @AFieldList(width = 4, headerText = "#")
-    @AFieldForm(label = SecoloService.ORDINE)
+    @AFieldForm(label = SecoloService.ORDINE, width = 20)
     private int ordine;
 
     @Indexed(unique = true)
     @ASearch()
-    @AFieldList(width = 12)
-    @AFieldForm(label = "Nome corrente")
+    @AFieldList(width = 12,headerText = "Secolo")
+    @AFieldForm(label = "Secolo corrente")
     private String nome;
 
     @AFieldForm(label = "Primo anno del secolo")
@@ -37,8 +38,8 @@ public class SecoloEntity extends AbstractEntity {
     private int ultimo;
 
     @ABoolean()
-    @ASearch(checkBoxInitialStatus = CheckBoxStatus.vero, label = "DopoCristo")
-    @AFieldList(headerText = "D.C.", width = 8)
+    @ASearch(checkBoxInitialStatus = CheckBoxStatus.vero, tooltip = "Secoli dopoCristo/anteCristo")
+    @AFieldList(headerText = "D.C.")
     private boolean dopoCristo;
 
 
