@@ -6,7 +6,6 @@ import it.algos.crono.mese.MeseService;
 import it.algos.vbase.backend.enumeration.RisultatoReset;
 import it.algos.vbase.backend.enumeration.TypeLog;
 import it.algos.vbase.backend.exception.AlgosException;
-import it.algos.vbase.backend.logic.ModuloService;
 import it.algos.vbase.backend.service.DateService;
 import it.algos.vbase.backend.wrapper.WrapLog;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +44,7 @@ public class GiornoService extends CronoService<GiornoEntity> {
      */
     public GiornoService() {
         super(GiornoEntity.class, GiornoView.class);
+        super.collectionNameParent = "mese";
     }
 
 
@@ -81,7 +81,6 @@ public class GiornoService extends CronoService<GiornoEntity> {
     @Override
     public RisultatoReset reset() {
         String collectionName = mongoTemplate.getCollectionName(GiornoEntity.class);
-        String collectionNameParent = mongoTemplate.getCollectionName(MeseEntity.class);
         int ordine;
         String nome;
         String meseTxt;
@@ -94,6 +93,12 @@ public class GiornoService extends CronoService<GiornoEntity> {
 
         if (meseService.count() < 1 && annotationService.usaResetStartup(MeseEntity.class)) {
             meseService.reset();
+        }
+        if (meseService.count() < 1) {
+            message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
+            logger.warn(new WrapLog().exception(new AlgosException(message)).type(TypeLog.startup));
+            return RisultatoReset.nonCostruito;
+            //@todo valutare se 'rompere' il programma
         }
 
         lista = dateService.getAllGiorni();

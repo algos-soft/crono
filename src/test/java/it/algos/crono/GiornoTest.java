@@ -4,20 +4,14 @@ import it.algos.crono.giorno.GiornoEntity;
 import it.algos.crono.giorno.GiornoList;
 import it.algos.crono.giorno.GiornoService;
 import it.algos.crono.giorno.GiornoView;
-import it.algos.crono.mese.MeseEntity;
-import it.algos.crono.mese.MeseList;
-import it.algos.crono.mese.MeseService;
-import it.algos.crono.mese.MeseView;
 import it.algos.vbase.ModuloTest;
 import it.algos.vbase.backend.entity.AbstractEntity;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.provider.Arguments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static it.algos.vbase.backend.boot.BaseCost.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -38,10 +32,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class GiornoTest extends ModuloTest {
 
     @Autowired
-    private GiornoService modulo;
+    private GiornoService service;
 
     private GiornoEntity giornoBean;
-
 
 
     /**
@@ -54,7 +47,7 @@ public class GiornoTest extends ModuloTest {
         super.viewClazz = GiornoView.class;
 
         //--reindirizzo l'istanza della superclasse
-        super.currentModulo = modulo;
+        super.currentService = service;
 
         super.setUpAll();
 
@@ -69,9 +62,6 @@ public class GiornoTest extends ModuloTest {
     }
 
 
-
-
-
     @Test
     @Order(150)
     @DisplayName("150 - giorno dal nome")
@@ -79,12 +69,12 @@ public class GiornoTest extends ModuloTest {
         System.out.println(("150 - giorno dal nome"));
         System.out.println(VUOTA);
 
-        List<HashMap<String, Object>> lista= dateService.getAllGiorni();
+        List<HashMap<String, Object>> lista = dateService.getAllGiorni();
         for (HashMap<String, Object> mappaGiorno : lista) {
 
             sorgente = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_TITOLO);
-            giornoBean = modulo.findByKey(sorgente);
-                    assertNotNull(giornoBean);
+            giornoBean = service.findByKey(sorgente);
+            assertNotNull(giornoBean);
             message = String.format("%s%s%s", sorgente, FORWARD, giornoBean.getNome());
             System.out.println(message);
         }
@@ -92,9 +82,26 @@ public class GiornoTest extends ModuloTest {
     }
 
 
+    @Test
+    @Order(211)
+    @DisplayName("211 - reset Check")
+    void resetCheck() {
+        System.out.println(VUOTA);
+        System.out.println("211 - reset Check");
+        System.out.println(VUOTA);
 
+        sorgente = service.getCollectionNameParent();
+        message = String.format("Il reset dell classe [%s] necessita del preliminare reset di [%s]", collectionName, sorgente);
+        System.out.println(message);
+        message = String.format("Controllo che esista il valore di [%s.%s] nel primo record", collectionName, sorgente);
+        System.out.println(message);
 
-
+        giornoBean = service.findAll().get(0);
+        entityBean = giornoBean.getMese();
+        assertNotNull(entityBean);
+        message = String.format("Nel primo record di anno [%s.%s] esiste il link a [%s]", collectionName, giornoBean, entityBean);
+        System.out.println(message);
+    }
 
 
     protected void printBeans(List<AbstractEntity> listaBeans) {

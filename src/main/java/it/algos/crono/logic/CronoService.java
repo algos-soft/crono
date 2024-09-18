@@ -3,6 +3,7 @@ package it.algos.crono.logic;
 import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.logic.ModuloService;
 import it.algos.vbase.backend.wrapper.WrapLog;
+import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.types.ObjectId;
 
@@ -19,6 +20,8 @@ public abstract class CronoService<T extends AbstractEntity> extends ModuloServi
 
     protected String keyPropertyName;
 
+    @Getter
+    protected String collectionNameParent;
 
     public CronoService(final Class entityClazz, final Class viewClazz) {
         super(entityClazz, viewClazz);

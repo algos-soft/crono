@@ -1,11 +1,8 @@
 package it.algos.crono.secolo;
 
-import it.algos.crono.anno.AnnoService;
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.AbstractEntity;
-import it.algos.vbase.backend.enumeration.TypeBool;
 import it.algos.vbase.backend.enumeration.CheckBoxStatus;
-import it.algos.vbase.backend.enumeration.TypeSearch;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -27,7 +24,7 @@ public class SecoloEntity extends AbstractEntity {
 
     @Indexed(unique = true)
     @ASearch()
-    @AFieldList(width = 12,headerText = "Secolo")
+    @AFieldList(width = 12, headerText = "Secolo")
     @AFieldForm(label = "Secolo corrente")
     private String nome;
 

@@ -5,13 +5,14 @@ import it.algos.vbase.backend.enumeration.RisultatoDelete;
 import it.algos.vbase.backend.enumeration.RisultatoReset;
 import it.algos.vbase.backend.enumeration.TypeList;
 import it.algos.vbase.backend.enumeration.TypeLog;
-import it.algos.vbase.backend.list.CrudList;
+import it.algos.vbase.backend.list.AList;
 import it.algos.vbase.backend.logic.ModuloService;
 import it.algos.vbase.backend.service.LoggerService;
 import it.algos.vbase.backend.service.MongoService;
 import it.algos.vbase.backend.service.ReflectionService;
 import it.algos.vbase.backend.service.TextService;
 import it.algos.vbase.backend.wrapper.WrapLog;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -37,7 +38,6 @@ public abstract class ModuloTest extends AlgosTest {
     @Autowired
     protected TextService textService;
 
-
     @Autowired
     protected ReflectionService reflectionService;
 
@@ -54,7 +54,7 @@ public abstract class ModuloTest extends AlgosTest {
 
     public static final String TAG_RESET_FORCING = "resetForcing";
 
-    protected ModuloService currentModulo;
+    protected ModuloService currentService;
 
     protected String dbName;
 
@@ -86,7 +86,7 @@ public abstract class ModuloTest extends AlgosTest {
 
     protected TypeList typeList;
 
-    protected CrudList listaView;
+    protected AList listaView;
 
     /**
      * Qui passa una volta sola, chiamato dalle sottoclassi <br>
@@ -94,23 +94,26 @@ public abstract class ModuloTest extends AlgosTest {
      * Si possono aggiungere regolazioni specifiche PRIMA o DOPO <br>
      */
     protected void setUpAll() {
-        assertNotNull(currentModulo);
+        assertNotNull(currentService);
         assertNotNull(entityClazz);
         assertNotNull(listClazz);
         assertNotNull(viewClazz);
         assertNotNull(mongoService);
 
-        this.moduloClazz = currentModulo.getClass();
+        this.moduloClazz = currentService.getClass();
         assertNotNull(moduloClazz);
         dbName = mongoTemplate.getCollectionName(entityClazz);
         assertTrue(textService.isValid(dbName));
 //        propertyListNames = currentModulo.getPropertyNamesList();
 //        assertNotNull(propertyListNames);
-        moduloClazzName = currentModulo.getClass().getSimpleName();
+        moduloClazzName = currentService.getClass().getSimpleName();
         assertTrue(textService.isValid(moduloClazzName));
 
-        //        listaView = (AList) appContext.getBean(listClazz);
-        //        assertNotNull(listaView);
+        collectionName = annotationService.getCollectionName(entityClazz);
+        assertTrue(textService.isValid(collectionName));
+
+        listaView = (AList) appContext.getBean(listClazz);
+        assertNotNull(listaView);
     }
 
 
@@ -143,7 +146,7 @@ public abstract class ModuloTest extends AlgosTest {
         String message;
 
         try {
-            ottenutoIntero = currentModulo.count();
+            ottenutoIntero = currentService.count();
         } catch (Exception unErrore) {
             logger.error(new WrapLog().message(unErrore.getMessage()));
         }
@@ -151,7 +154,7 @@ public abstract class ModuloTest extends AlgosTest {
         if (ottenutoIntero > 0) {
             message = String.format("Ci sono in totale %s entities di [%s] nel database mongoDB", textService.format(ottenutoIntero), dbName);
         } else {
-            if (reflectionService.isEsisteMetodo(currentModulo.getClass(), TAG_RESET_ONLY)) {
+            if (reflectionService.isEsisteMetodo(currentService.getClass(), TAG_RESET_ONLY)) {
                 message = String.format("La collection '%s' è ancora vuota. Usa il metodo %s.%s()", dbName, backendName, TAG_RESET_ONLY);
             } else {
                 message = String.format("Nel database mongoDB la collection '%s' è ancora vuota", dbName);
@@ -170,7 +173,7 @@ public abstract class ModuloTest extends AlgosTest {
         System.out.println("2 - findAll");
         String message;
 
-        listaBeans = currentModulo.findAll();
+        listaBeans = currentService.findAll();
         assertNotNull(listaBeans);
         message = String.format("Ci sono in totale %s entities di [%s]", textService.format(listaBeans.size()), dbName);
         System.out.println(message);
@@ -184,7 +187,7 @@ public abstract class ModuloTest extends AlgosTest {
         System.out.println("3 - newEntity");
         System.out.println(VUOTA);
 
-        entityBean = currentModulo.newEntity();
+        entityBean = currentService.newEntity();
         assertNotNull(entityBean);
         assertTrue(entityBean.getId() == null || entityBean.getId().equals("0"));
         message = String.format("Creata (in memoria) una nuova entity (vuota) di classe [%s] ", entityBean.getClass().getSimpleName());
@@ -278,8 +281,6 @@ public abstract class ModuloTest extends AlgosTest {
     }
 
 
-
-
     @Test
     @Order(9)
     @DisplayName("9 - annotationEntity")
@@ -344,7 +345,7 @@ public abstract class ModuloTest extends AlgosTest {
         System.out.println(message);
         System.out.println(VUOTA);
 
-        ottenuto = (String)annotationService.getMenuGroup(viewClazz).orElse(VUOTA);
+        ottenuto = (String) annotationService.getMenuGroup(viewClazz).orElse(VUOTA);
         message = String.format("%s%s%s", "getMenuGroup", FORWARD, ottenuto);
         System.out.println(message);
 
@@ -383,7 +384,7 @@ public abstract class ModuloTest extends AlgosTest {
     }
 
 
-//    @Test
+    //    @Test
     @Order(50)
     @DisplayName("50 - resetStartup")
     void resetStartup() {
@@ -401,8 +402,8 @@ public abstract class ModuloTest extends AlgosTest {
             return;
         }
 
-        currentModulo.deleteAll();
-        if (currentModulo.count() == 0) {
+        currentService.deleteAll();
+        if (currentService.count() == 0) {
             typeResetPrevisto = RisultatoReset.vuotoMaCostruito;
             message = String.format("La collection [%s] è stata svuotata per effettuare il test di %s che prevede %s%s", collectionName, METHOD_RESET_STARTUP, FORWARD, typeResetPrevisto);
             logger.info(new WrapLog().message(message).type(TypeLog.test));
@@ -413,7 +414,7 @@ public abstract class ModuloTest extends AlgosTest {
             return;
         }
         inizio = System.currentTimeMillis();
-        risultatoReset = currentModulo.resetStartup();
+        risultatoReset = currentService.resetStartup();
         assertNotNull(risultatoReset);
         logger.info(new WrapLog().message(VUOTA).type(TypeLog.test));
         message = String.format("Risultato di '%s' per la classe [%s] (vuota) è%s%s", "resetStartup", entityClazz.getSimpleName(), FORWARD, risultatoReset.name());
@@ -426,7 +427,7 @@ public abstract class ModuloTest extends AlgosTest {
         //
         //
 
-        if (currentModulo.count() != 0) {
+        if (currentService.count() != 0) {
             //            typeResetPrevisto = RisultatoReset.esistenteNonModificato;
             typeResetPrevisto = RisultatoReset.nessuno;
 //            if (listaView.usaBottoneResetDelete) {
@@ -444,7 +445,7 @@ public abstract class ModuloTest extends AlgosTest {
             return;
         }
         inizio = System.currentTimeMillis();
-        risultatoReset = currentModulo.resetStartup();
+        risultatoReset = currentService.resetStartup();
         assertNotNull(risultatoReset);
         message = String.format("Risultato di '%s' per la classe [%s] (piena) è%s%s", "resetStartup", entityClazz.getSimpleName(), FORWARD, risultatoReset.name());
         logger.info(new WrapLog().message(message).type(TypeLog.test));
@@ -456,7 +457,7 @@ public abstract class ModuloTest extends AlgosTest {
     }
 
 
-    //    @Test
+//    @Test
     @Order(60)
     @DisplayName("60 - resetDelete")
     void resetDelete() {
@@ -483,7 +484,7 @@ public abstract class ModuloTest extends AlgosTest {
             return;
         }
 
-        if (currentModulo.count() != 0) {
+        if (currentService.count() != 0) {
             typeResetPrevisto = RisultatoReset.vuotoIntegrato;
             message = String.format("La collection [%s] è piena come previsto per effettuare il test di %s che prevede %s%s", collectionName, METHOD_RESET_DELETE, FORWARD, typeResetPrevisto);
             logger.info(new WrapLog().message(message).type(TypeLog.test));
@@ -494,8 +495,9 @@ public abstract class ModuloTest extends AlgosTest {
             return;
         }
         inizio = System.currentTimeMillis();
-        risultatoReset = currentModulo.resetDelete();
+        risultatoReset = currentService.resetDelete();
         assertNotNull(risultatoReset);
+        typeResetPrevisto = RisultatoReset.vuotoMaCostruito;
         message = String.format("Risultato di '%s' per la classe [%s] (piena) è%s%s", METHOD_RESET_DELETE, entityClazz.getSimpleName(), FORWARD, risultatoReset.name());
         logger.info(new WrapLog().message(message).type(TypeLog.test));
         message = String.format("Tempo trascorso %s", dateService.deltaTextEsatto(inizio));
@@ -506,8 +508,8 @@ public abstract class ModuloTest extends AlgosTest {
         //
         //
 
-        currentModulo.deleteAll();
-        if (currentModulo.count() == 0) {
+        currentService.deleteAll();
+        if (currentService.count() == 0) {
             typeResetPrevisto = RisultatoReset.vuotoMaCostruito;
             message = String.format("La collection [%s] è stata svuotata per effettuare il test di %s che prevede %s%s", collectionName, METHOD_RESET_DELETE, FORWARD, typeResetPrevisto);
             logger.info(new WrapLog().message(message).type(TypeLog.test));
@@ -518,7 +520,7 @@ public abstract class ModuloTest extends AlgosTest {
             return;
         }
         inizio = System.currentTimeMillis();
-        risultatoReset = currentModulo.resetDelete();
+        risultatoReset = currentService.resetDelete();
         assertNotNull(risultatoReset);
         message = String.format("Risultato di '%s' per la classe [%s] (vuota) è%s%s", METHOD_RESET_DELETE, entityClazz.getSimpleName(), FORWARD, risultatoReset.name());
         logger.info(new WrapLog().message(message).type(TypeLog.test));
@@ -564,7 +566,7 @@ public abstract class ModuloTest extends AlgosTest {
             return;
         }
 
-        if (currentModulo.count() != 0) {
+        if (currentService.count() != 0) {
             typeResetPrevisto = RisultatoReset.esistenteIntegrato;
             message = String.format("La collection [%s] è piena come previsto per effettuare il test di %s che prevede %s%s", collectionName, METHOD_RESET_ADD, FORWARD, typeResetPrevisto);
             logger.info(new WrapLog().message(message).type(TypeLog.test));
@@ -575,7 +577,7 @@ public abstract class ModuloTest extends AlgosTest {
             return;
         }
         inizio = System.currentTimeMillis();
-        risultatoReset = currentModulo.resetAdd();
+        risultatoReset = currentService.resetAdd();
         assertNotNull(risultatoReset);
         message = String.format("Risultato di '%s' per la classe [%s] (piena) è%s%s", METHOD_RESET_ADD, entityClazz.getSimpleName(), FORWARD, risultatoReset.name());
         logger.info(new WrapLog().message(message).type(TypeLog.test));
@@ -587,8 +589,8 @@ public abstract class ModuloTest extends AlgosTest {
         //
         //
 
-        currentModulo.deleteAll();
-        if (currentModulo.count() == 0) {
+        currentService.deleteAll();
+        if (currentService.count() == 0) {
             typeResetPrevisto = RisultatoReset.vuotoIntegrato;
             message = String.format("La collection [%s] è stata svuotata per effettuare il test di %s che prevede %s%s", collectionName, METHOD_RESET_ADD, FORWARD, typeResetPrevisto);
             logger.info(new WrapLog().message(message).type(TypeLog.test));
@@ -599,7 +601,7 @@ public abstract class ModuloTest extends AlgosTest {
             return;
         }
         inizio = System.currentTimeMillis();
-        risultatoReset = currentModulo.resetAdd();
+        risultatoReset = currentService.resetAdd();
         assertNotNull(risultatoReset);
         logger.info(new WrapLog().message(VUOTA).type(TypeLog.test));
         message = String.format("Risultato di '%s' per la classe [%s] (vuota) è%s%s", METHOD_RESET_ADD, entityClazz.getSimpleName(), FORWARD, risultatoReset.name());
@@ -611,6 +613,29 @@ public abstract class ModuloTest extends AlgosTest {
         System.out.println(VUOTA);
     }
 
+    @Test
+    @Order(210)
+//    @Disabled("Disabilitato temporaneamente per risparmiare tempo")
+    @DisplayName("210 - reset")
+    void reset() {
+        System.out.println(VUOTA);
+        System.out.println("210 - reset");
+        System.out.println(VUOTA);
+
+        if (reflectionService.isEsisteMetodo(currentService.getClass(), "reset")) {
+            currentService.reset();
+            message = String.format("Reset eseguito in %s per la classe [%s]", dateService.deltaText(inizio), clazzName);
+            System.out.println(message);
+
+            ottenutoIntero = currentService.count();
+            message = String.format("Sono state create [%s] entities con il reset", textService.format(ottenutoIntero));
+            System.out.println(message);
+        } else {
+            message = String.format("Nella classe [%s] non esiste il metodo reset", clazzName);
+            System.out.println(message);
+        }
+
+    }
 
     protected void fixEquals(Object obj1, Object obj2, Object obj3) {
         ottenutoBooleano = obj1.equals(obj2);
@@ -667,7 +692,7 @@ public abstract class ModuloTest extends AlgosTest {
         }
     }
 
-    protected void printPreferenze(CrudList list) {
+    protected void printPreferenze(AList list) {
         System.out.println(VUOTA);
 //        message = String.format("%s%s%s", "propertyListNames", FORWARD, list.getPropertyNames());
 //        System.out.println(message);
@@ -682,7 +707,7 @@ public abstract class ModuloTest extends AlgosTest {
         //        System.out.println(message);
     }
 
-    protected void printBottoni(CrudList list) {
+    protected void printBottoni(AList list) {
         System.out.println(VUOTA);
 
 //        message = String.format("%s%s%s", "usaBottoneDeleteAll", FORWARD, list.usaBottoneDeleteAll);

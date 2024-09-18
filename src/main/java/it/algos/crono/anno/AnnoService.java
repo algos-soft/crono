@@ -6,7 +6,6 @@ import it.algos.crono.secolo.SecoloService;
 import it.algos.vbase.backend.enumeration.RisultatoReset;
 import it.algos.vbase.backend.enumeration.TypeLog;
 import it.algos.vbase.backend.exception.AlgosException;
-import it.algos.vbase.backend.logic.ModuloService;
 import it.algos.vbase.backend.service.DateService;
 import it.algos.vbase.backend.wrapper.WrapLog;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +45,7 @@ public class AnnoService extends CronoService<AnnoEntity> {
 
     protected void fixPreferenze() {
         super.keyPropertyName = KEY_NAME;
+        super.collectionNameParent = "secolo";
     }
 
     /**
@@ -74,19 +74,19 @@ public class AnnoService extends CronoService<AnnoEntity> {
     }
 
 
-
     @Override
     public RisultatoReset reset() {
         String collectionName = annotationService.getCollectionName(AnnoEntity.class);
-        String collectionNameParent = annotationService.getCollectionName(SecoloEntity.class);
+        String message;
 
         if (secoloService.count() < 1 && annotationService.usaResetStartup(SecoloEntity.class)) {
             secoloService.reset();
         }
         if (secoloService.count() < 1) {
-            String message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
+             message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
             logger.warn(new WrapLog().exception(new AlgosException(message)).type(TypeLog.startup));
             return RisultatoReset.nonCostruito;
+            //@todo valutare se 'rompere' il programma
         }
 
         //--costruisce gli anni prima di cristo partendo da ANTE_CRISTO_MAX che coincide con DELTA_ANNI

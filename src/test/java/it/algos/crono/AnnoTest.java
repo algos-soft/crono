@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class AnnoTest extends ModuloTest {
 
     @Autowired
-    private AnnoService modulo;
+    private AnnoService service;
 
     private AnnoEntity annoBean;
 
@@ -58,7 +58,7 @@ public class AnnoTest extends ModuloTest {
         super.viewClazz = AnnoView.class;
 
         //--reindirizzo l'istanza della superclasse
-        super.currentModulo = modulo;
+        super.currentService = service;
 
         super.setUpAll();
 
@@ -84,7 +84,7 @@ public class AnnoTest extends ModuloTest {
 
         for (int k = 1; k <= ANTE_CRISTO_MAX; k++) {
             sorgente = DELTA_ANNI - k + 1 + tagPrima;
-            annoBean = modulo.findByKey(sorgente);
+            annoBean = service.findByKey(sorgente);
             assertNotNull(annoBean);
             message = String.format("%s%s%s", sorgente, FORWARD, annoBean.getNome());
             System.out.println(message);
@@ -94,7 +94,7 @@ public class AnnoTest extends ModuloTest {
 
         for (int k = 1; k <= DOPO_CRISTO_MAX; k++) {
             sorgente = k + VUOTA;
-            annoBean = modulo.findByKey(sorgente);
+            annoBean = service.findByKey(sorgente);
             assertNotNull(annoBean);
             message = String.format("%s%s%s", sorgente, FORWARD, annoBean.getNome());
             System.out.println(message);
@@ -119,8 +119,30 @@ public class AnnoTest extends ModuloTest {
         Object[] mat = arg.get();
         sorgente = (String) mat[0];
 
-        annoBean = modulo.findByKey(sorgente);
+        annoBean = service.findByKey(sorgente);
         message = String.format("%s%s%s", sorgente, FORWARD, annoBean != null ? annoBean.getNome() : NULLO);
+        System.out.println(message);
+    }
+
+
+    @Test
+    @Order(211)
+    @DisplayName("211 - reset Check")
+    void resetCheck() {
+        System.out.println(VUOTA);
+        System.out.println("211 - reset Check");
+        System.out.println(VUOTA);
+
+        sorgente = service.getCollectionNameParent();
+        message = String.format("Il reset dell classe [%s] necessita del preliminare reset di [%s]", collectionName, sorgente);
+        System.out.println(message);
+        message = String.format("Controllo che esista il valore di [%s.%s] nel primo record", collectionName, sorgente);
+        System.out.println(message);
+
+        annoBean = service.findAll().get(0);
+        entityBean = annoBean.getSecolo();
+        assertNotNull(entityBean);
+        message = String.format("Nel primo record di anno [%s.%s] esiste il link a [%s]", collectionName, annoBean,entityBean);
         System.out.println(message);
     }
 

@@ -161,7 +161,7 @@ public class SecoloTest extends ModuloTest {
         super.viewClazz = SecoloView.class;
 
         //--reindirizzo l'istanza della superclasse
-        super.currentModulo = modulo;
+        super.currentService = modulo;
 
         super.setUpAll();
 

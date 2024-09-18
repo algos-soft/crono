@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class MeseTest extends ModuloTest {
 
     @Autowired
-    private MeseService modulo;
+    private MeseService service;
 
     private MeseEntity meseBean;
 
@@ -65,7 +65,7 @@ public class MeseTest extends ModuloTest {
         super.viewClazz = MeseView.class;
 
         //--reindirizzo l'istanza della superclasse
-        super.currentModulo = modulo;
+        super.currentService = service;
 
         super.setUpAll();
 
@@ -96,12 +96,14 @@ public class MeseTest extends ModuloTest {
         Object[] mat = arg.get();
         sorgente = (String) mat[0];
 
-        meseBean = modulo.findByKey(sorgente);
+        meseBean = service.findByKey(sorgente);
         assertNotNull(meseBean);
 
         message = String.format("%s%s%s", sorgente, FORWARD, meseBean.getNome());
         System.out.println(message);
     }
+
+
 
     protected void printBeans(List<AbstractEntity> listaBeans) {
         int k = 0;
