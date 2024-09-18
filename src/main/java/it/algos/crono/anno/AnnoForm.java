@@ -3,7 +3,7 @@ package it.algos.crono.anno;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.enumeration.CrudOperation;
-import it.algos.vbase.backend.form.AForm;
+import it.algos.vbase.backend.form.DefaultForm;
 import it.algos.vbase.backend.logic.ModuloService;
 import lombok.NonNull;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Scope;
  */
 @SpringComponent
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class AnnoForm<T extends AbstractEntity> extends AForm<T> {
+public class AnnoForm<T extends AbstractEntity> extends DefaultForm<T> {
 
 
     public AnnoForm() {
