@@ -29,9 +29,6 @@ public class SecoloForm<T extends AbstractEntity> extends DefaultForm<T> {
         super(moduloService, bean);
     }
 
-    public SecoloForm(@NonNull ModuloService<T> moduloService, T bean, CrudOperation operation) {
-        super(moduloService, bean, operation);
-    }
 
 
 }

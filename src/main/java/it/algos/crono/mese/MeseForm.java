@@ -31,9 +31,6 @@ public class MeseForm<T extends AbstractEntity> extends DefaultForm<T> {
         super(moduloService, bean);
     }
 
-    public MeseForm(@NonNull ModuloService<T> moduloService, T bean, CrudOperation operation) {
-        super(moduloService, bean, operation);
-    }
 
     protected Component buildBody() {
         FormLayout formLayout = new FormLayout();

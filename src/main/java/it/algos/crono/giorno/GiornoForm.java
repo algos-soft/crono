@@ -29,10 +29,6 @@ public class GiornoForm<T extends AbstractEntity> extends DefaultForm<T> {
         super(moduloService, bean);
     }
 
-    public GiornoForm(@NonNull ModuloService<T> moduloService, T bean, CrudOperation operation) {
-        super(moduloService, bean, operation);
-    }
-
 
 
 }
