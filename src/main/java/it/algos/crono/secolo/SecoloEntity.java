@@ -19,7 +19,7 @@ public class SecoloEntity extends AbstractEntity {
 
     @Indexed(unique = true)
     @AFieldList(width = 4, headerText = "#")
-    @AFieldForm(label = SecoloService.ORDINE, width = 20)
+    @AFieldForm(label = SecoloService.ORDINE, width = 18)
     private int ordine;
 
     @Indexed(unique = true)

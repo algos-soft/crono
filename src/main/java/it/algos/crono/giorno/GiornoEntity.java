@@ -23,7 +23,7 @@ public class GiornoEntity extends AbstractEntity {
 
     @Indexed(unique = true)
     @AFieldList(width = 4, headerText = "#")
-    @AFieldForm(label = GiornoService.ORDINE, width = 20)
+    @AFieldForm(label = GiornoService.ORDINE, width = 14)
     private int ordine;
 
     @Indexed(unique = true)

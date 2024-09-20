@@ -29,9 +29,4 @@ public class MeseForm<T extends AbstractEntity> extends DefaultForm<T> {
     }
 
 
-    protected Component buildBody() {
-        FormLayout formLayout = new FormLayout();
-        return formLayout;
-    }
-
 }

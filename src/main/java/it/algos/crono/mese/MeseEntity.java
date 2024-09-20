@@ -1,10 +1,7 @@
 package it.algos.crono.mese;
 
-import com.vaadin.flow.component.icon.VaadinIcon;
-import it.algos.crono.secolo.SecoloService;
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.AbstractEntity;
-import it.algos.vbase.backend.entity.OrdineEntity;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -35,10 +32,10 @@ public class MeseEntity extends AbstractEntity {
 
     private int giorni;
 
-    @AFieldForm(label = "Primo giorno del mese da inizio anno")
+    @AFieldForm(label = "Primo giorno del mese da inizio anno", width = 18)
     private int primo;
 
-    @AFieldForm(label = "Ultimo giorno del mese da inizio anno")
+    @AFieldForm(label = "Ultimo giorno del mese da inizio anno", width = 18)
     private int ultimo;
 
 
