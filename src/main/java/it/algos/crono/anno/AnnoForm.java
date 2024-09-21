@@ -31,14 +31,14 @@ public class AnnoForm<T extends AbstractEntity> extends DefaultForm<T> {
     }
 
 
-    @Override
-    public Map<String, AbstractField<?, ?>> registerFields() {
-        return super.registerFields();
-    }
-
-    @Override
-    protected void addFieldsToLayout() {
-        fieldMap.keySet().stream().map(fieldMap::get).forEach(this::add);
-    }
+//    @Override
+//    public Map<String, AbstractField<?, ?>> registerFields() {
+//        return super.registerFields();
+//    }
+//
+//    @Override
+//    protected void addFieldsToLayout() {
+//        fieldMap.keySet().stream().map(fieldMap::get).forEach(this::add);
+//    }
 
 }
