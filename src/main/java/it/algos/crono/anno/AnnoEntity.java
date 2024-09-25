@@ -38,7 +38,7 @@ public class AnnoEntity extends AbstractEntity {
     @ARef(linkClazz = SecoloService.class, linkedProperty = "nome")
     @ASearch(refSearchType = RefSearchType.combo, placeholder = "Secoli")
     @AFieldList(headerText = "Secolo", width = 12)
-    @AFieldForm(clearButtonCombo = false)
+    @AFieldForm(clearButtonVisible = false)
     private SecoloEntity secolo;
 
     @ABoolean(type = TypeBool.checkIcon)

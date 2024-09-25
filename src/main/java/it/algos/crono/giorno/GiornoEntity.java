@@ -1,6 +1,5 @@
 package it.algos.crono.giorno;
 
-import it.algos.crono.anno.AnnoService;
 import it.algos.crono.mese.MeseEntity;
 import it.algos.crono.mese.MeseService;
 import it.algos.vbase.backend.annotation.*;
@@ -36,7 +35,7 @@ public class GiornoEntity extends AbstractEntity {
     @ARef(linkClazz = MeseService.class, linkedProperty = "nome")
     @ASearch(refSearchType = RefSearchType.combo, placeholder = "Mesi")
     @AFieldList(headerText = "Mese", width = 10)
-    @AFieldForm(clearButtonCombo = false)
+    @AFieldForm(clearButtonVisible = false)
     private MeseEntity mese;
 
     @AFieldForm(label = "Progressivo da inizio anno")
