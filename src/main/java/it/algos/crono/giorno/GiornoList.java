@@ -28,7 +28,7 @@ public class GiornoList extends CronoList<GiornoEntity> {
 
 
     protected void fixPreferenze() {
-        super.readOnly = true;
+//        super.readOnly = true;
     }
 
     @Override
