@@ -39,7 +39,7 @@ public class GiornoEntity extends AbstractEntity {
     @AFieldForm(clearButtonVisible = TBool.falso)
     private MeseEntity mese;
 
-    @AFieldForm(label = "Progressivo da inizio anno")
+    @AFieldForm(label = "Progressivo da inizio anno", width = 12)
     private int trascorsi;
 
     @AFieldForm(label = "Mancanti a fine anno")
