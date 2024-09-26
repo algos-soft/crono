@@ -6,15 +6,14 @@ import it.algos.vbase.ui.wrapper.ASpan;
 
 import static it.algos.vbase.backend.boot.BaseCost.*;
 
-@AViewList(espandiUltimaColonnaVisibile = false,
-        columns = {
-                "ordine",
-                "nome",
-                "mese.nome",
-                "trascorsi",
-                "mancanti"
-        },
-        sortProperty ="ordine")
+@AViewList(columns = {
+        "ordine",
+        "nome",
+        "mese.nome",
+        "trascorsi",
+        "mancanti"},
+        espandiUltimaColonnaVisibile = false,
+        sortProperty = "ordine")
 public class GiornoList extends CronoList<GiornoEntity> {
 
 
