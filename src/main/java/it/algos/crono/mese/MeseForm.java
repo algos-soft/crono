@@ -23,5 +23,4 @@ public class MeseForm<T extends AbstractEntity> extends DefaultForm<T> {
         super(bean);
     }
 
-
 }

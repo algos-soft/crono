@@ -23,5 +23,4 @@ public class SecoloForm<T extends AbstractEntity> extends DefaultForm<T> {
         super(bean);
     }
 
-
 }

@@ -19,12 +19,8 @@ import org.springframework.context.annotation.Scope;
 public class GiornoForm<T extends AbstractEntity> extends DefaultForm<T> {
 
 
-//    public GiornoForm() {
-//    }
-
     public GiornoForm(T bean) {
         super(bean);
     }
-
 
 }

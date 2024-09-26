@@ -20,22 +20,9 @@ import org.springframework.context.annotation.Scope;
 public class AnnoForm<T extends AbstractEntity> extends DefaultForm<T> {
 
 
-//    public AnnoForm() {
-//    }
-
     public AnnoForm(T bean) {
         super(bean);
     }
 
-
-//    @Override
-//    public Map<String, AbstractField<?, ?>> registerFields() {
-//        return super.registerFields();
-//    }
-//
-//    @Override
-//    protected void addFieldsToLayout() {
-//        fieldMap.keySet().stream().map(fieldMap::get).forEach(this::add);
-//    }
 
 }
