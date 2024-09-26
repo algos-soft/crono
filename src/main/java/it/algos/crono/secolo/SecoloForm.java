@@ -19,9 +19,6 @@ import org.springframework.context.annotation.Scope;
 public class SecoloForm<T extends AbstractEntity> extends DefaultForm<T> {
 
 
-    public SecoloForm() {
-    }
-
     public SecoloForm(T bean) {
         super(bean);
     }

@@ -1,13 +1,10 @@
 package it.algos.crono.anno;
 
-import com.vaadin.flow.component.AbstractField;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.form.DefaultForm;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
-
-import java.util.Map;
 
 
 /**
@@ -23,8 +20,8 @@ import java.util.Map;
 public class AnnoForm<T extends AbstractEntity> extends DefaultForm<T> {
 
 
-    public AnnoForm() {
-    }
+//    public AnnoForm() {
+//    }
 
     public AnnoForm(T bean) {
         super(bean);

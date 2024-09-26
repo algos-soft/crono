@@ -6,6 +6,7 @@ import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.enumeration.CheckBoxStatus;
 import it.algos.vbase.backend.enumeration.RefSearchType;
+import it.algos.vbase.backend.enumeration.TBool;
 import it.algos.vbase.backend.enumeration.TypeBool;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -38,7 +39,7 @@ public class AnnoEntity extends AbstractEntity {
     @ARef(linkClazz = SecoloService.class, linkedProperty = "nome")
     @ASearch(refSearchType = RefSearchType.combo, placeholder = "Secoli")
     @AFieldList(headerText = "Secolo", width = 12)
-    @AFieldForm(clearButtonVisible = false)
+    @AFieldForm(clearButtonVisible = TBool.falso)
     private SecoloEntity secolo;
 
     @ABoolean(type = TypeBool.checkIcon)

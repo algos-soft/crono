@@ -5,6 +5,7 @@ import it.algos.crono.mese.MeseService;
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.enumeration.RefSearchType;
+import it.algos.vbase.backend.enumeration.TBool;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -35,7 +36,7 @@ public class GiornoEntity extends AbstractEntity {
     @ARef(linkClazz = MeseService.class, linkedProperty = "nome")
     @ASearch(refSearchType = RefSearchType.combo, placeholder = "Mesi")
     @AFieldList(headerText = "Mese", width = 10)
-    @AFieldForm(clearButtonVisible = false)
+    @AFieldForm(clearButtonVisible = TBool.falso)
     private MeseEntity mese;
 
     @AFieldForm(label = "Progressivo da inizio anno")
