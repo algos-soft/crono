@@ -33,8 +33,8 @@ public class GiornoEntity extends AbstractEntity {
     private String nome;
 
     @DBRef
-    @ARef(linkClazz = MeseService.class, linkedProperty = "nome")
-    @ASearch(refSearchType = RefSearchType.combo, placeholder = "Mesi")
+//    @ARef(linkClazz = MeseService.class, linkedProperty = "nome")
+//    @ASearch(refSearchType = RefSearchType.combo, placeholder = "Mesi")
     @AFieldList(headerText = "Mese", width = 10)
     @AFieldForm(clearButtonVisible = TBool.falso)
     private MeseEntity mese;
