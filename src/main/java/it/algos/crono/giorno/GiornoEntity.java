@@ -3,6 +3,7 @@ package it.algos.crono.giorno;
 import it.algos.crono.mese.MeseEntity;
 import it.algos.vbase.backend.annotation.*;
 import it.algos.vbase.backend.entity.AbstractEntity;
+import it.algos.vbase.backend.enumeration.RefSearchType;
 import it.algos.vbase.backend.enumeration.TBool;
 import lombok.*;
 import org.springframework.data.annotation.Transient;
@@ -36,10 +37,9 @@ public class GiornoEntity extends AbstractEntity {
     private String nome;
 
     @DBRef
-//    @ARef(linkClazz = MeseService.class, linkedProperty = "nome")
-//    @ASearch(refSearchType = RefSearchType.combo, placeholder = "Mesi")
+    @ASearch(refSearchType = RefSearchType.combo, placeholder = "Mesi")
     @AFieldList(headerText = "Mese", width = LAR)
-    @AFieldForm(linkedProperty = "nome", clearButtonVisible = TBool.falso)
+    @AFieldForm(linkedProperty = "nome", placeholder = "Mesi", clearButtonVisible = TBool.falso)
     private MeseEntity mese;
 
     @AFieldForm(label = "Progressivo da inizio anno", width = LAR)
