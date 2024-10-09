@@ -39,7 +39,7 @@ public class GiornoEntity extends AbstractEntity {
     @DBRef
     @ASearch(refSearchType = RefSearchType.combo, placeholder = "Mesi")
     @AFieldList(headerText = "Mese", width = LAR)
-    @AFieldForm(linkedProperty = "nome", placeholder = "Mesi", clearButtonVisible = TBool.falso)
+    @AFieldForm(linkedProperty = "nome", placeholder = "Mesi", clearButtonVisible = TBool.vero)
     private MeseEntity mese;
 
     @AFieldForm(label = "Progressivo da inizio anno", width = LAR)
