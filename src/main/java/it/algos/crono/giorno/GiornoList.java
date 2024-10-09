@@ -39,11 +39,6 @@ public class GiornoList extends CronoList<GiornoEntity> {
         super.infoReset = TEXT_RESET_DELETE;
     }
 
-//    @Override
-//    protected void fixGrid(AGrid grid) {
-//        HeaderRow headerRow = grid.prependHeaderRow();
-//        headerRow.join(grid.getColumnByKey("trascorsi"), grid.getColumnByKey("mancanti")).setText("Giorni da inizio anno");
-//    }
 
 
 }// end of AList class
