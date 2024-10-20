@@ -38,7 +38,7 @@ public class CronoList<T extends AbstractEntity> extends AList<T> {
         return CronoGrid.class;
     }
 
-    @Override
+//    @Override
     protected Component buildCounter(int current, int total) {
         String counterString;
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
