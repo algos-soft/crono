@@ -27,25 +27,25 @@ public class GiornoEntity extends AbstractEntity {
 
     @Indexed(unique = true)
     @AFieldList(width = 4, headerText = "#")
-    @AFieldForm(label = GiornoService.ORDINE, width = 14)
+    @AFieldForm(label = GiornoService.ORDINE, width = 14, readOnly = true)
     private int ordine;
 
     @Indexed(unique = true)
     @ASearch()
     @AFieldList(headerText = "Giorno")
-    @AFieldForm(label = "Giorno corrente", width = LAR)
+    @AFieldForm(label = "Giorno corrente", width = LAR, readOnly = true)
     private String nome;
 
     @DBRef
     @ASearch(refSearchType = RefSearchType.combo, placeholder = "Mesi")
     @AFieldList(headerText = "Mese", width = LAR)
-    @AFieldForm(linkedProperty = "nome", placeholder = "Mesi", clearButtonVisible = TBool.vero)
+    @AFieldForm(linkedProperty = "nome", placeholder = "Mesi", clearButtonVisible = TBool.vero, readOnly = true)
     private MeseEntity mese;
 
-    @AFieldForm(label = "Progressivo da inizio anno", width = LAR)
+    @AFieldForm(label = "Progressivo da inizio anno", width = LAR, readOnly = true)
     private int trascorsi;
 
-    @AFieldForm(label = "Mancanti a fine anno", width = LAR)
+    @AFieldForm(label = "Mancanti a fine anno", width = LAR, readOnly = true)
     private int mancanti;
 
 
