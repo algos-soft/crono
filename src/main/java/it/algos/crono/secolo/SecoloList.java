@@ -13,13 +13,11 @@ import it.algos.vbase.ui.wrapper.ASpan;
 import static it.algos.vbase.backend.boot.BaseCost.*;
 
 @AViewList(espandiUltimaColonnaVisibile = false,
-        columns = {
-                "ordine",
+        columns = {"ordine",
                 "nome",
                 "primo",
                 "ultimo",
-                "dopoCristo"
-        },
+                "dopoCristo"},
         sortProperty = "ordine")
 public class SecoloList extends CronoList<SecoloEntity> {
 

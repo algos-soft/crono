@@ -2,10 +2,9 @@ package it.algos.crono.giorno;
 
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.theme.lumo.LumoIcon;
-import it.algos.vbase.backend.annotation.AView;
+import it.algos.vbase.backend.annotation.IView;
 import it.algos.vbase.backend.constant.Gruppo;
-import it.algos.vbase.ui.view.CrudView;
+import it.algos.vbase.ui.view.AView;
 import it.algos.vbase.ui.view.MainLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,8 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Route chiamata dal menu generale o dalla barra del browser <br>
  */
 @Route(value = "giorno", layout = MainLayout.class)
-@AView(menuGroup = Gruppo.CRONO, menuName = "Giorni", vaadin = VaadinIcon.CALENDAR)
-public class GiornoView extends CrudView {
+@IView(menuGroup = Gruppo.CRONO, menuName = "Giorni", vaadin = VaadinIcon.CALENDAR)
+public class GiornoView extends AView {
 
     GiornoView(@Autowired GiornoService moduloService) {
         super(moduloService, GiornoList.class,GiornoForm.class);

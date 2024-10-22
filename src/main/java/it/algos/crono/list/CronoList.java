@@ -7,7 +7,7 @@ import it.algos.vbase.backend.constant.Bottone;
 import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.grid.AGrid;
 import it.algos.vbase.backend.list.AList;
-import it.algos.vbase.ui.view.CrudView;
+import it.algos.vbase.ui.view.AView;
 
 import java.text.DecimalFormat;
 
@@ -21,6 +21,10 @@ import java.text.DecimalFormat;
 @AViewList(bottoni = {Bottone.RESET_DELETE, Bottone.SHOW})
 public class CronoList<T extends AbstractEntity> extends AList<T> {
 
+    protected String infoCreazione;
+
+    protected String infoReset;
+
 
     public CronoList() {
         this(null);
@@ -29,7 +33,7 @@ public class CronoList<T extends AbstractEntity> extends AList<T> {
     /**
      * @param parentView che crea questa istanza
      */
-    public CronoList(final CrudView parentView) {
+    public CronoList(final AView parentView) {
         super(parentView);
     }
 
