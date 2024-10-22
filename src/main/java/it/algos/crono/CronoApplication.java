@@ -25,7 +25,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import javax.inject.Inject;
 
 /**
- * The entry point of the Spring Boot application.
+ * The entry point of the Spring Boot application..
  */
 @Push
 @EnableScheduling
