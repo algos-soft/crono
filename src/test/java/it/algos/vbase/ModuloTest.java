@@ -1,17 +1,17 @@
 package it.algos.vbase;
 
-import it.algos.vbase.backend.entity.AbstractEntity;
-import it.algos.vbase.backend.enumeration.RisultatoDelete;
-import it.algos.vbase.backend.enumeration.RisultatoReset;
-import it.algos.vbase.backend.enumeration.TypeList;
-import it.algos.vbase.backend.enumeration.TypeLog;
-import it.algos.vbase.backend.list.AList;
-import it.algos.vbase.backend.logic.ModuloService;
-import it.algos.vbase.backend.service.LoggerService;
-import it.algos.vbase.backend.service.MongoService;
-import it.algos.vbase.backend.service.ReflectionService;
-import it.algos.vbase.backend.service.TextService;
-import it.algos.vbase.backend.wrapper.WrapLog;
+import it.algos.vbase.entity.AbstractEntity;
+import it.algos.vbase.enumeration.RisultatoDelete;
+import it.algos.vbase.enumeration.RisultatoReset;
+import it.algos.vbase.enumeration.TypeList;
+import it.algos.vbase.enumeration.TypeLog;
+import it.algos.vbase.list.AList;
+import it.algos.vbase.logic.ModuloService;
+import it.algos.vbase.service.LoggerService;
+import it.algos.vbase.service.MongoService;
+import it.algos.vbase.service.ReflectionService;
+import it.algos.vbase.service.TextService;
+import it.algos.vbase.wrapper.WrapLog;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
@@ -23,6 +23,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.List;
 
+import static it.algos.vbase.boot.BaseCost.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -295,7 +296,7 @@ public abstract class ModuloTest extends AlgosTest {
         message = String.format("%s%s%s", "getCollectionName", FORWARD, ottenuto);
         System.out.println(message);
 
-        ottenuto = (String) annotationService.getSortProperty(entityClazz).orElse(VUOTA);
+        ottenuto = (String) annotationService.getListSortProperty(entityClazz).orElse(VUOTA);
         message = String.format("%s%s%s", "getSortPropertyDeprecated", FORWARD, ottenuto);
         System.out.println(message);
 

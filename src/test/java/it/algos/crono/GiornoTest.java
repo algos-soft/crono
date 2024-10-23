@@ -5,7 +5,7 @@ import it.algos.crono.giorno.GiornoList;
 import it.algos.crono.giorno.GiornoService;
 import it.algos.crono.giorno.GiornoView;
 import it.algos.vbase.ModuloTest;
-import it.algos.vbase.backend.entity.AbstractEntity;
+import it.algos.vbase.entity.AbstractEntity;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.HashMap;
 import java.util.List;
 
+import static it.algos.vbase.boot.BaseCost.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**

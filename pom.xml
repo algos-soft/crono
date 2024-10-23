@@ -16,7 +16,6 @@
         <relativePath>vbase/pom.xml</relativePath>
     </parent>
 
-
     <build>
         <plugins>
             <plugin>

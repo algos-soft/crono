@@ -5,7 +5,7 @@ import it.algos.crono.mese.MeseList;
 import it.algos.crono.mese.MeseService;
 import it.algos.crono.mese.MeseView;
 import it.algos.vbase.ModuloTest;
-import it.algos.vbase.backend.entity.AbstractEntity;
+import it.algos.vbase.entity.AbstractEntity;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.provider.Arguments;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static it.algos.vbase.boot.BaseCost.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
