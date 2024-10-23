@@ -1,11 +1,12 @@
 package it.algos.crono.enumeration;
 
-import static it.algos.vbase.backend.boot.BaseCost.*;
-import it.algos.vbase.backend.interfaces.*;
+import it.algos.vbase.interfaces.Type;
 
 import java.time.*;
 import java.util.*;
 import java.util.stream.*;
+
+import static it.algos.vbase.boot.BaseCost.VUOTA;
 
 /**
  * Project base2023

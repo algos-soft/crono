@@ -1,8 +1,8 @@
 package it.algos.crono.secolo;
 
-import it.algos.vbase.backend.annotation.*;
-import it.algos.vbase.backend.entity.AbstractEntity;
-import it.algos.vbase.backend.enumeration.CheckBoxStatus;
+import it.algos.vbase.annotation.*;
+import it.algos.vbase.entity.AbstractEntity;
+import it.algos.vbase.enumeration.CheckBoxStatus;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;

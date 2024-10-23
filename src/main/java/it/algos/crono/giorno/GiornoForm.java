@@ -3,15 +3,15 @@ package it.algos.crono.giorno;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.spring.annotation.SpringComponent;
-import it.algos.vbase.backend.components.SimpleHorizontalLayout;
-import it.algos.vbase.backend.components.SimpleVerticalLayout;
-import it.algos.vbase.backend.entity.AbstractEntity;
-import it.algos.vbase.backend.form.DefaultForm;
+import it.algos.vbase.components.SimpleHorizontalLayout;
+import it.algos.vbase.components.SimpleVerticalLayout;
+import it.algos.vbase.entity.AbstractEntity;
+import it.algos.vbase.form.DefaultForm;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 
-import static it.algos.vbase.backend.boot.BaseCost.FIELD_NAME_NOME;
-import static it.algos.vbase.backend.boot.BaseCost.FIELD_NAME_ORDINE;
+import static it.algos.vbase.boot.BaseCost.FIELD_NAME_NOME;
+import static it.algos.vbase.boot.BaseCost.FIELD_NAME_ORDINE;
 
 /**
  * Project crono

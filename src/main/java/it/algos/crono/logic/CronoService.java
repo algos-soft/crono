@@ -1,13 +1,13 @@
 package it.algos.crono.logic;
 
-import it.algos.vbase.backend.entity.AbstractEntity;
-import it.algos.vbase.backend.logic.ModuloService;
-import it.algos.vbase.backend.wrapper.WrapLog;
+import it.algos.vbase.entity.AbstractEntity;
+import it.algos.vbase.logic.ModuloService;
+import it.algos.vbase.wrapper.WrapLog;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.types.ObjectId;
 
-import static it.algos.vbase.backend.boot.BaseCost.ID_LENGTH;
+import static it.algos.vbase.boot.BaseCost.ID_LENGTH;
 
 /**
  * Project crono

@@ -2,11 +2,11 @@ package it.algos.crono.list;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Span;
-import it.algos.vbase.backend.annotation.AViewList;
-import it.algos.vbase.backend.constant.Bottone;
-import it.algos.vbase.backend.entity.AbstractEntity;
-import it.algos.vbase.backend.grid.AGrid;
-import it.algos.vbase.backend.list.AList;
+import it.algos.vbase.annotation.AViewList;
+import it.algos.vbase.constant.Bottone;
+import it.algos.vbase.entity.AbstractEntity;
+import it.algos.vbase.grid.AGrid;
+import it.algos.vbase.list.AList;
 import it.algos.vbase.ui.view.AView;
 
 import java.text.DecimalFormat;

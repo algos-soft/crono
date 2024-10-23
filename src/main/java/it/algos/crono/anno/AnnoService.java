@@ -3,15 +3,15 @@ package it.algos.crono.anno;
 import it.algos.crono.logic.CronoService;
 import it.algos.crono.secolo.SecoloEntity;
 import it.algos.crono.secolo.SecoloService;
-import it.algos.vbase.backend.enumeration.RisultatoReset;
-import it.algos.vbase.backend.enumeration.TypeLog;
-import it.algos.vbase.backend.exception.AlgosException;
-import it.algos.vbase.backend.service.DateService;
-import it.algos.vbase.backend.wrapper.WrapLog;
+import it.algos.vbase.enumeration.RisultatoReset;
+import it.algos.vbase.enumeration.TypeLog;
+import it.algos.vbase.exception.AlgosException;
+import it.algos.vbase.service.DateService;
+import it.algos.vbase.wrapper.WrapLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static it.algos.vbase.backend.boot.BaseCost.*;
+import static it.algos.vbase.boot.BaseCost.*;
 
 /**
  * Project base24

@@ -1,17 +1,11 @@
 package it.algos.crono.mese;
 
 import it.algos.crono.logic.CronoService;
-import it.algos.vbase.backend.entity.AbstractEntity;
-import it.algos.vbase.backend.enumeration.MeseEnum;
-import it.algos.vbase.backend.enumeration.RisultatoReset;
-import it.algos.vbase.backend.logic.ModuloService;
-import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Value;
+import it.algos.vbase.enumeration.MeseEnum;
+import it.algos.vbase.enumeration.RisultatoReset;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-import static it.algos.vbase.backend.boot.BaseCost.FIELD_NAME_NOME;
+import static it.algos.vbase.boot.BaseCost.FIELD_NAME_NOME;
 
 /**
  * Project base24

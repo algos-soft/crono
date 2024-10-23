@@ -2,7 +2,7 @@ package it.algos.crono.security;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Image;
-import it.algos.vbase.backend.security.LoginViewHeader;
+import it.algos.vbase.security.LoginViewHeader;
 
 public class CronoLoginViewHeader implements LoginViewHeader {
 

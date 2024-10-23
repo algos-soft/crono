@@ -1,10 +1,10 @@
 package it.algos.crono.secolo;
 
 import it.algos.crono.logic.CronoService;
-import it.algos.vbase.backend.enumeration.RisultatoReset;
-import it.algos.vbase.backend.enumeration.TypeLog;
-import it.algos.vbase.backend.exception.AlgosException;
-import it.algos.vbase.backend.wrapper.WrapLog;
+import it.algos.vbase.enumeration.RisultatoReset;
+import it.algos.vbase.enumeration.TypeLog;
+import it.algos.vbase.exception.AlgosException;
+import it.algos.vbase.wrapper.WrapLog;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-import static it.algos.vbase.backend.boot.BaseCost.*;
+import static it.algos.vbase.boot.BaseCost.*;
 
 /**
  * Project base24

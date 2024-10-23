@@ -1,7 +1,7 @@
 package it.algos.crono.mese;
 
-import it.algos.vbase.backend.annotation.*;
-import it.algos.vbase.backend.entity.AbstractEntity;
+import it.algos.vbase.annotation.*;
+import it.algos.vbase.entity.AbstractEntity;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;

@@ -1,9 +1,8 @@
 package it.algos.crono.security;
 
-import com.vaadin.flow.component.Component;
-import it.algos.vbase.backend.security.IAuthenticationService;
-import it.algos.vbase.backend.security.LoginViewHeader;
-import it.algos.vbase.backend.security.SecurityConfig;
+import it.algos.vbase.security.IAuthenticationService;
+import it.algos.vbase.security.LoginViewHeader;
+import it.algos.vbase.security.SecurityConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -1,10 +1,10 @@
 package it.algos.crono.giorno;
 
 import it.algos.crono.mese.MeseEntity;
-import it.algos.vbase.backend.annotation.*;
-import it.algos.vbase.backend.entity.AbstractEntity;
-import it.algos.vbase.backend.enumeration.RefSearchType;
-import it.algos.vbase.backend.enumeration.TBool;
+import it.algos.vbase.annotation.*;
+import it.algos.vbase.entity.AbstractEntity;
+import it.algos.vbase.enumeration.RefSearchType;
+import it.algos.vbase.enumeration.TBool;
 import lombok.*;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;

@@ -1,13 +1,11 @@
 package it.algos.crono.anno;
 
 import it.algos.crono.secolo.SecoloEntity;
-import it.algos.crono.secolo.SecoloService;
-import it.algos.vbase.backend.annotation.*;
-import it.algos.vbase.backend.entity.AbstractEntity;
-import it.algos.vbase.backend.enumeration.CheckBoxStatus;
-import it.algos.vbase.backend.enumeration.RefSearchType;
-import it.algos.vbase.backend.enumeration.TBool;
-import it.algos.vbase.backend.enumeration.TypeBool;
+import it.algos.vbase.annotation.*;
+import it.algos.vbase.entity.AbstractEntity;
+import it.algos.vbase.enumeration.CheckBoxStatus;
+import it.algos.vbase.enumeration.TBool;
+import it.algos.vbase.enumeration.TypeBool;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;

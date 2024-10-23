@@ -1,8 +1,8 @@
 package it.algos.crono.mese;
 
 import com.vaadin.flow.spring.annotation.SpringComponent;
-import it.algos.vbase.backend.entity.AbstractEntity;
-import it.algos.vbase.backend.form.DefaultForm;
+import it.algos.vbase.entity.AbstractEntity;
+import it.algos.vbase.form.DefaultForm;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 

@@ -1,8 +1,8 @@
 package it.algos.crono.list;
 
-import it.algos.vbase.backend.entity.AbstractEntity;
-import it.algos.vbase.backend.grid.AGrid;
-import it.algos.vbase.backend.grid.ColumnDefinition;
+import it.algos.vbase.entity.AbstractEntity;
+import it.algos.vbase.grid.AGrid;
+import it.algos.vbase.grid.ColumnDefinition;
 import jakarta.annotation.PostConstruct;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

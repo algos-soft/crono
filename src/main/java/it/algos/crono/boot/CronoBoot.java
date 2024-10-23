@@ -1,6 +1,6 @@
 package it.algos.crono.boot;
 
-import it.algos.vbase.backend.boot.BaseBoot;
+import it.algos.vbase.boot.BaseBoot;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 

@@ -1,10 +1,10 @@
 package it.algos.crono.mese;
 
 import it.algos.crono.list.CronoList;
-import it.algos.vbase.backend.annotation.AViewList;
+import it.algos.vbase.annotation.AViewList;
 import it.algos.vbase.ui.wrapper.ASpan;
 
-import static it.algos.vbase.backend.boot.BaseCost.*;
+import static it.algos.vbase.boot.BaseCost.*;
 
 @AViewList(espandiUltimaColonnaVisibile = false,
         columns = {

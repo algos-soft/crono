@@ -2,8 +2,8 @@ package it.algos.crono.mese;
 
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.router.Route;
-import it.algos.vbase.backend.annotation.IView;
-import it.algos.vbase.backend.constant.Gruppo;
+import it.algos.vbase.annotation.IView;
+import it.algos.vbase.constant.Gruppo;
 import it.algos.vbase.ui.view.AView;
 import it.algos.vbase.ui.view.MainLayout;
 import org.springframework.beans.factory.annotation.Autowired;
