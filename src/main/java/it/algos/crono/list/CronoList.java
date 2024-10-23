@@ -7,6 +7,8 @@ import it.algos.vbase.constant.Bottone;
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.grid.AGrid;
 import it.algos.vbase.list.AList;
+import it.algos.vbase.list.RecordCounter;
+import it.algos.vbase.list.SelectedRecordCounter;
 import it.algos.vbase.ui.view.AView;
 
 import java.text.DecimalFormat;
@@ -42,23 +44,9 @@ public class CronoList<T extends AbstractEntity> extends AList<T> {
         return CronoGrid.class;
     }
 
-//    @Override
-    protected Component buildCounter(int current, int total) {
-        String counterString;
-        DecimalFormat decimalFormat = new DecimalFormat("#,###");
-
-        if (current == total) {
-            counterString = String.format("In totale ci sono %s elementi non filtrati", decimalFormat.format(current));
-        } else {
-            counterString = String.format("Filtrati %s elementi sul totale di %s", decimalFormat.format(current), decimalFormat.format(total));
-        }
-
-        Span textSpan = new Span(counterString);
-        textSpan.getElement().setProperty("innerHTML", counterString);
-        textSpan.getElement().getStyle().set("color", "green");
-        textSpan.getElement().getStyle().set("font-weight", "bold");
-        textSpan.getElement().getStyle().set("font-size", "0.7em");
-        return textSpan;
+    @Override
+    protected RecordCounter creaRecordCounter() {
+        return new SelectedRecordCounter(grid);
     }
 
 }
