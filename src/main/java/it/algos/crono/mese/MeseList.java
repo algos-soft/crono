@@ -7,14 +7,12 @@ import it.algos.vbase.ui.wrapper.ASpan;
 import static it.algos.vbase.boot.BaseCost.*;
 
 @IViewList(espandiUltimaColonnaVisibile = false,
-        columns = {
-                "ordine",
+        columns = {"ordine",
                 "sigla",
                 "nome",
                 "giorni",
                 "primo",
-                "ultimo"
-        },
+                "ultimo"},
         sortProperty = "ordine")
 public class MeseList extends CronoList<MeseEntity> {
 
