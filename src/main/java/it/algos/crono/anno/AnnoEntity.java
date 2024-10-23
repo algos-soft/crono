@@ -17,37 +17,37 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Builder
 @Document(collection = "anno")
-@AReset()
-@AEntity(sortProperty = "ordine")
+@IReset()
+@IEntity(sortProperty = "ordine")
 public class AnnoEntity extends AbstractEntity {
 
 
     @Indexed(unique = true)
-    @AFieldList(width = 5, headerText = "#")
-    @AFieldForm(label = AnnoService.ORDINE, width = 20)
+    @IFieldList(width = 5, headerText = "#")
+    @IFieldForm(label = AnnoService.ORDINE, width = 20)
     private int ordine;
 
     @Indexed(unique = true)
-    @ASearch()
-    @AFieldList(headerText = "Anno")
-    @AFieldForm(label = "Anno corrente")
+    @ISearch()
+    @IFieldList(headerText = "Anno")
+    @IFieldForm(label = "Anno corrente")
     private String nome;
 
     @DBRef
 //    @ARef(linkClazz = SecoloService.class, linkedProperty = "nome")
 //    @ASearch(refSearchType = RefSearchType.combo, placeholder = "Secoli")
-    @AFieldList(headerText = "Secolo", width = 12)
-    @AFieldForm(clearButtonVisible = TBool.falso)
+    @IFieldList(headerText = "Secolo", width = 12)
+    @IFieldForm(clearButtonVisible = TBool.falso)
     private SecoloEntity secolo;
 
-    @ABoolean(type = TypeBool.checkIcon)
-    @ASearch(checkBoxInitialStatus = CheckBoxStatus.vero, tooltip = "Anni dopoCristo/anteCristo")
-    @AFieldList(headerText = "D.C.")
+    @IBoolean(type = TypeBool.checkIcon)
+    @ISearch(checkBoxInitialStatus = CheckBoxStatus.vero, tooltip = "Anni dopoCristo/anteCristo")
+    @IFieldList(headerText = "D.C.")
     private boolean dopoCristo;
 
-    @ABoolean(type = TypeBool.checkIcon)
-    @ASearch(tooltip = "Anni bisestili (esistenti solo dopoCristo)")
-    @AFieldList(headerText = "B")
+    @IBoolean(type = TypeBool.checkIcon)
+    @ISearch(tooltip = "Anni bisestili (esistenti solo dopoCristo)")
+    @IFieldList(headerText = "B")
     private boolean bisestile;
 
 

@@ -13,30 +13,30 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Builder
 @Document(collection = "secolo")
-@AReset()
-@AEntity(sortProperty = "ordine")
+@IReset()
+@IEntity(sortProperty = "ordine")
 public class SecoloEntity extends AbstractEntity {
 
     @Indexed(unique = true)
-    @AFieldList(width = 4, headerText = "#")
-    @AFieldForm(label = SecoloService.ORDINE, width = 18)
+    @IFieldList(width = 4, headerText = "#")
+    @IFieldForm(label = SecoloService.ORDINE, width = 18)
     private int ordine;
 
     @Indexed(unique = true)
-    @ASearch()
-    @AFieldList(width = 12, headerText = "Secolo")
-    @AFieldForm(label = "Secolo corrente")
+    @ISearch()
+    @IFieldList(width = 12, headerText = "Secolo")
+    @IFieldForm(label = "Secolo corrente")
     private String nome;
 
-    @AFieldForm(label = "Primo anno del secolo")
+    @IFieldForm(label = "Primo anno del secolo")
     private int primo;
 
-    @AFieldForm(label = "Ultimo anno del secolo")
+    @IFieldForm(label = "Ultimo anno del secolo")
     private int ultimo;
 
-    @ABoolean()
-    @ASearch(checkBoxInitialStatus = CheckBoxStatus.vero, tooltip = "Secoli dopoCristo/anteCristo")
-    @AFieldList(headerText = "D.C.")
+    @IBoolean()
+    @ISearch(checkBoxInitialStatus = CheckBoxStatus.vero, tooltip = "Secoli dopoCristo/anteCristo")
+    @IFieldList(headerText = "D.C.")
     private boolean dopoCristo;
 
 

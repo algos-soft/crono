@@ -12,30 +12,30 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Builder
 @Document(collection = "mese")
-@AReset()
-@AEntity(sortProperty = "ordine")
+@IReset()
+@IEntity(sortProperty = "ordine")
 public class MeseEntity extends AbstractEntity {
 
     @Indexed(unique = true)
-    @AFieldList(width = 4, headerText = "#")
-    @AFieldForm()
+    @IFieldList(width = 4, headerText = "#")
+    @IFieldForm()
     private int ordine;
 
     @Indexed(unique = true)
     private String sigla;
 
     @Indexed(unique = true)
-    @ASearch()
-    @AFieldList(headerText = "Mese")
-    @AFieldForm(label = "Mese corrente")
+    @ISearch()
+    @IFieldList(headerText = "Mese")
+    @IFieldForm(label = "Mese corrente")
     private String nome;
 
     private int giorni;
 
-    @AFieldForm(label = "Primo giorno del mese da inizio anno", width = 18)
+    @IFieldForm(label = "Primo giorno del mese da inizio anno", width = 18)
     private int primo;
 
-    @AFieldForm(label = "Ultimo giorno del mese da inizio anno", width = 18)
+    @IFieldForm(label = "Ultimo giorno del mese da inizio anno", width = 18)
     private int ultimo;
 
 

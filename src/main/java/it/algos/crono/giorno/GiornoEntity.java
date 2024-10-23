@@ -18,34 +18,34 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Builder
 @Document(collection = "giorno")
-@AReset()
-@AEntity(sortProperty = "ordine")
+@IReset()
+@IEntity(sortProperty = "ordine")
 public class GiornoEntity extends AbstractEntity {
 
     @Transient
     private static final int LAR = 12;
 
     @Indexed(unique = true)
-    @AFieldList(width = 4, headerText = "#")
-    @AFieldForm(label = GiornoService.ORDINE, width = 14)
+    @IFieldList(width = 4, headerText = "#")
+    @IFieldForm(label = GiornoService.ORDINE, width = 14)
     private int ordine;
 
     @Indexed(unique = true)
-    @ASearch()
-    @AFieldList(headerText = "Giorno")
-    @AFieldForm(label = "Giorno corrente", width = LAR)
+    @ISearch()
+    @IFieldList(headerText = "Giorno")
+    @IFieldForm(label = "Giorno corrente", width = LAR)
     private String nome;
 
     @DBRef
-    @ASearch(refSearchType = RefSearchType.combo, placeholder = "Mesi")
-    @AFieldList(headerText = "Mese", width = LAR)
-    @AFieldForm(linkedProperty = "nome", placeholder = "Mesi", clearButtonVisible = TBool.vero)
+    @ISearch(refSearchType = RefSearchType.combo, placeholder = "Mesi")
+    @IFieldList(headerText = "Mese", width = LAR)
+    @IFieldForm(linkedProperty = "nome", placeholder = "Mesi", clearButtonVisible = TBool.vero)
     private MeseEntity mese;
 
-    @AFieldForm(label = "Progressivo da inizio anno", width = LAR)
+    @IFieldForm(label = "Progressivo da inizio anno", width = LAR)
     private int trascorsi;
 
-    @AFieldForm(label = "Mancanti a fine anno", width = LAR)
+    @IFieldForm(label = "Mancanti a fine anno", width = LAR)
     private int mancanti;
 
 
