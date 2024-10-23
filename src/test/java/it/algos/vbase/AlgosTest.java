@@ -2,9 +2,11 @@ package it.algos.vbase;
 
 import it.algos.vbase.backend.entity.AbstractEntity;
 import it.algos.vbase.backend.enumeration.TypeField;
+import it.algos.vbase.backend.logic.ModuloService;
 import it.algos.vbase.backend.service.AnnotationService;
 import it.algos.vbase.backend.service.DateService;
 import it.algos.vbase.backend.service.LoggerService;
+import it.algos.vbase.backend.service.ReflectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
@@ -30,6 +32,9 @@ public abstract class AlgosTest {
 
     @Autowired
     protected AnnotationService annotationService;
+
+    @Autowired
+    protected ReflectionService reflectionService;
 
     @Autowired
     protected DateService dateService;
@@ -133,8 +138,29 @@ public abstract class AlgosTest {
         pos = 0;
     }
 
-    protected void printClazz(List<Class> listaClazz) {
-        System.out.println(VUOTA);
+    protected void printClazz(List<Class<?>> listaClazz) {
+        int k = 0;
+
+        for (Class clazz : listaClazz) {
+            System.out.print(++k);
+            System.out.print(PARENTESI_TONDA_END);
+            System.out.print(SPAZIO);
+            System.out.println(clazz.getSimpleName());
+        }
+    }
+
+    protected void printClazzService(List<Class<? extends ModuloService>> listaClazz) {
+        int k = 0;
+
+        for (Class clazz : listaClazz) {
+            System.out.print(++k);
+            System.out.print(PARENTESI_TONDA_END);
+            System.out.print(SPAZIO);
+            System.out.println(clazz.getSimpleName());
+        }
+    }
+
+    protected void printClazzEntity(List<Class<? extends AbstractEntity>> listaClazz) {
         int k = 0;
 
         for (Class clazz : listaClazz) {
@@ -275,5 +301,13 @@ public abstract class AlgosTest {
             }
         }
     }
+
+//    protected void printClazz(List<Class<?>> listaClazz) {
+//        if (listaClazz != null && listaClazz.size() > 0) {
+//            for (Class clazz : listaClazz) {
+//                System.out.println(clazz.getSimpleName());
+//            }
+//        }
+//    }
 
 }

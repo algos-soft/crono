@@ -19,7 +19,16 @@ public class CronoBoot extends BaseBoot {
     public CronoBoot() {
     }
 
-
+    /**
+     * Controllo del resetStartup <br>
+     * Chiamato da BaseBoot ad avvio programma (ContextRefreshedEvent) <br>
+     * Esegue solo se il flag usaCheckResetStartup=true (default false) <br>
+     * Esegue il metodo xxxService.checkResetStartup() di ogni modulo dell'applicazione <br>
+     */
+    @Override
+    protected void checkResetStartup() {
+        super.checkResetStartup();
+    }
 }
 
 
