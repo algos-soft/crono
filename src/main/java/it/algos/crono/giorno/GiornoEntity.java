@@ -40,7 +40,7 @@ public class GiornoEntity extends AbstractEntity {
     @ICombo(sortProperty = "ordine")
     @ISearch(refSearchType = RefSearchType.combo, placeholder = "Mesi")
     @IFieldList(headerText = "Mese", width = LAR)
-    @IFieldForm(linkedProperty = "nome", placeholder = "Mesi", clearButtonVisible = TBool.vero)
+    @IFieldForm(linkedProperty = "nome", placeholder = "Mesi")
     private MeseEntity mese;
 
     @IFieldForm(label = "Progressivo da inizio anno", width = LAR)

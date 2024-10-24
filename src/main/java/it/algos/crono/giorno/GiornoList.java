@@ -40,5 +40,4 @@ public class GiornoList extends CronoList<GiornoEntity> {
     }
 
 
-
 }// end of AList class
