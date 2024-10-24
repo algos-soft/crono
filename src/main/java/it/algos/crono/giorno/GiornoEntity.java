@@ -19,7 +19,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Document(collection = "giorno")
 @IReset()
-@IEntity(sortProperty = "ordine")
+@IEntity(keyProperty = "mese", sortProperty = "ordine")
 public class GiornoEntity extends AbstractEntity {
 
     @Transient
