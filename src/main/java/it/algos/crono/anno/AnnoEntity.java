@@ -4,6 +4,7 @@ import it.algos.crono.secolo.SecoloEntity;
 import it.algos.vbase.annotation.*;
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.enumeration.CheckBoxStatus;
+import it.algos.vbase.enumeration.RefSearchType;
 import it.algos.vbase.enumeration.TBool;
 import it.algos.vbase.enumeration.TypeBool;
 import lombok.*;
@@ -18,7 +19,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Document(collection = "anno")
 @IReset()
-@IEntity(sortProperty = "ordine")
+@IEntity(keyProperty = "nome", sortProperty = "ordine")
 public class AnnoEntity extends AbstractEntity {
 
 
@@ -34,10 +35,10 @@ public class AnnoEntity extends AbstractEntity {
     private String nome;
 
     @DBRef
-//    @ARef(linkClazz = SecoloService.class, linkedProperty = "nome")
-//    @ASearch(refSearchType = RefSearchType.combo, placeholder = "Secoli")
+    @ICombo(sortProperty = "ordine")
+    @ISearch(refSearchType = RefSearchType.combo, placeholder = "Secoli")
     @IFieldList(headerText = "Secolo", width = 12)
-    @IFieldForm(clearButtonVisible = TBool.falso)
+    @IFieldForm(linkedProperty = "nome", placeholder = "Mesi", clearButtonVisible = TBool.falso)
     private SecoloEntity secolo;
 
     @IBoolean(type = TypeBool.checkIcon)

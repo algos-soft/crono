@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Document(collection = "secolo")
 @IReset()
-@IEntity(sortProperty = "ordine")
+@IEntity(keyProperty = "nome", sortProperty = "ordine")
 public class SecoloEntity extends AbstractEntity {
 
     @Indexed(unique = true)
