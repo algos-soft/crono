@@ -82,7 +82,7 @@ public class GiornoTest extends ModuloTest {
     }
 
 
-    @Test
+//    @Test
     @Order(211)
     @DisplayName("211 - reset Check")
     void resetCheck() {

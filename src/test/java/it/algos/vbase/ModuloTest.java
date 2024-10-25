@@ -1,5 +1,6 @@
 package it.algos.vbase;
 
+import com.vaadin.flow.data.provider.SortDirection;
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.enumeration.RisultatoDelete;
 import it.algos.vbase.enumeration.RisultatoReset;
@@ -18,6 +19,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -287,26 +289,56 @@ public abstract class ModuloTest extends AlgosTest {
     void annotationEntity() {
         System.out.println("9 - annotationEntity");
         System.out.println(VUOTA);
+        SortDirection sortDirection;
 
-        message = String.format("Annotation (4) della POJO/Entity [%s]:", entityClazz.getSimpleName());
+        message = String.format("Annotation della POJO/Entity [%s]:", entityClazz.getSimpleName());
         System.out.println(message);
         System.out.println(VUOTA);
 
         ottenuto = annotationService.getCollectionName(entityClazz);
-        message = String.format("%s%s%s", "getCollectionName", FORWARD, ottenuto);
-        System.out.println(message);
-
-        ottenuto = (String) annotationService.getListSortProperty(entityClazz).orElse(VUOTA);
-        message = String.format("%s%s%s", "getSortPropertyDeprecated", FORWARD, ottenuto);
-        System.out.println(message);
-
-        ottenuto = (String) annotationService.getFocusField(entityClazz).orElse(VUOTA);
-        message = String.format("%s%s%s", "getFocusField", FORWARD, ottenuto);
-        System.out.println(message);
+        System.out.print(textService.setQuadre("@Document"));
+        System.out.print(FORWARD);
+        System.out.println(ottenuto);
+        System.out.println(VUOTA);
 
         ottenutoBooleano = annotationService.usaResetStartup(entityClazz);
-        message = String.format("%s%s%s", "usaStartupReset", FORWARD, ottenutoBooleano);
+        System.out.print(textService.setQuadre("@IReset"));
+        System.out.print(FORWARD);
+        System.out.println(ottenutoBooleano);
+        System.out.println(VUOTA);
+
+        System.out.println(textService.setQuadre("@IEntity"));
+
+        ottenuto = (String) annotationService.getEntitySortProperty(entityClazz).orElse(VUOTA);
+        message = String.format("%s%s%s", "sortProperty", FORWARD, ottenuto);
         System.out.println(message);
+        System.out.println(VUOTA);
+
+        sortDirection = annotationService.getEntitySortDirection(entityClazz);
+        message = String.format("%s%s%s", "sortDirection", FORWARD, sortDirection);
+        System.out.println(message);
+        System.out.println(VUOTA);
+
+        ottenuto =  annotationService.getFocusField(entityClazz).orElse(VUOTA);
+        message = String.format("%s%s%s", "focus", FORWARD, ottenuto);
+        System.out.println(message);
+        System.out.println(VUOTA);
+
+        ottenuto =  annotationService.getSingularName(entityClazz);
+        message = String.format("%s%s%s", "singularName", FORWARD, ottenuto);
+        System.out.println(message);
+        System.out.println(VUOTA);
+
+        ottenuto =  annotationService.getPluralName(entityClazz);
+        message = String.format("%s%s%s", "pluralName", FORWARD, ottenuto);
+        System.out.println(message);
+        System.out.println(VUOTA);
+
+        ottenuto = (String) annotationService.getKeyProperty(entityClazz).orElse(VUOTA);
+        message = String.format("%s%s%s", "keyProperty", FORWARD, ottenuto);
+        System.out.println(message);
+        System.out.println(VUOTA);
+
     }
 
     @Test
