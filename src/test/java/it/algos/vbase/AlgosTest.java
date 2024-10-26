@@ -6,6 +6,7 @@ import it.algos.vbase.logic.ModuloService;
 import it.algos.vbase.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.data.annotation.Transient;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -183,7 +184,6 @@ public abstract class AlgosTest {
         System.out.println(VUOTA);
         int k = 0;
         int modifiers;
-        int transientModifier = 26;
 
         for (Field field : listaField) {
             modifiers = field.getModifiers();
@@ -195,7 +195,7 @@ public abstract class AlgosTest {
             System.out.print(textService.setQuadre(field.getType().getSimpleName()));
             System.out.print(SPAZIO);
             System.out.print(textService.setQuadre(Modifier.isPrivate(modifiers) ? "private" : "public"));
-            System.out.print(modifiers == transientModifier ? SPAZIO + textService.setQuadre("transient") : VUOTA);
+            System.out.print(field.isAnnotationPresent(Transient.class) ? SPAZIO + textService.setQuadre("transient") : VUOTA);
             System.out.println(VUOTA);
 
 //            if (annotation != null) {
