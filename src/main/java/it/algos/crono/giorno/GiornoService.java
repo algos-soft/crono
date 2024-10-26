@@ -24,6 +24,7 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static it.algos.vbase.boot.BaseCost.*;
@@ -180,6 +181,8 @@ public class GiornoService extends CronoService<GiornoEntity> {
             // document annidati
             try {
                 if (field.isAnnotationPresent(DBRef.class)) {
+                    Optional<? extends Class<?>> clazzService= annotationService.getServiceClazz(bean.getClass(),field.getName());
+//                    ModuloService modulo=appContext.getBean()
                     AbstractEntity linkBean = (AbstractEntity) field.get(bean);
                     docAnnidato = meseService.getDocument(linkBean);
                     doc.append(field.getName(), docAnnidato);
