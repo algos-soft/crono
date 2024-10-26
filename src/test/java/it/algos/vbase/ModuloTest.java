@@ -1,5 +1,6 @@
 package it.algos.vbase;
 
+import com.mongodb.client.MongoCollection;
 import com.vaadin.flow.data.provider.SortDirection;
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.enumeration.RisultatoDelete;
@@ -13,13 +14,13 @@ import it.algos.vbase.service.MongoService;
 import it.algos.vbase.service.ReflectionService;
 import it.algos.vbase.service.TextService;
 import it.algos.vbase.wrapper.WrapLog;
+import org.bson.Document;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -47,7 +48,7 @@ public abstract class ModuloTest extends AlgosTest {
     protected MongoService mongoService;
 
     @Autowired
-    private MongoTemplate mongoTemplate;
+    protected MongoTemplate mongoTemplate;
 
     @Autowired
     protected LoggerService logger;
@@ -78,6 +79,8 @@ public abstract class ModuloTest extends AlgosTest {
 
     protected String moduloClazzName;
 
+    protected String moduloName;
+
     protected String collectionName;
 
     protected List<Method> methods;
@@ -90,6 +93,7 @@ public abstract class ModuloTest extends AlgosTest {
 
     protected AList listaView;
 
+    protected MongoCollection<Document> collection;
     /**
      * Qui passa una volta sola, chiamato dalle sottoclassi <br>
      * Deve essere sovrascritto, invocando ANCHE il metodo della superclasse <br>
@@ -102,20 +106,26 @@ public abstract class ModuloTest extends AlgosTest {
         assertNotNull(viewClazz);
         assertNotNull(mongoService);
 
-        this.moduloClazz = currentService.getClass();
+//        this.moduloClazz = currentService.getClass();
         assertNotNull(moduloClazz);
         dbName = mongoTemplate.getCollectionName(entityClazz);
         assertTrue(textService.isValid(dbName));
 //        propertyListNames = currentModulo.getPropertyNamesList();
 //        assertNotNull(propertyListNames);
-        moduloClazzName = currentService.getClass().getSimpleName();
+        moduloClazzName = moduloClazz.getSimpleName();
         assertTrue(textService.isValid(moduloClazzName));
+        moduloName = textService.levaCoda(moduloClazzName, SUFFIX_MODULO);
+        assertTrue(textService.isValid(moduloName));
 
         collectionName = annotationService.getCollectionName(entityClazz);
         assertTrue(textService.isValid(collectionName));
 
         listaView = (AList) appContext.getBean(listClazz);
         assertNotNull(listaView);
+
+        collection = mongoTemplate.getCollection(collectionName);
+        assertNotNull(collection);
+//        moduloName = textService.isValid(moduloClazzName) ? textService.levaCoda(moduloClazzName, SUFFIX_MODULO) : NULLO;
     }
 
 
@@ -126,6 +136,7 @@ public abstract class ModuloTest extends AlgosTest {
      */
     protected void setUpEach() {
         super.setUpEach();
+
         this.methods = null;
         this.risultatoDelete = null;
         this.risultatoReset = null;
@@ -134,10 +145,21 @@ public abstract class ModuloTest extends AlgosTest {
 
     @Test
     @Order(0)
-    @DisplayName("0")
+    @DisplayName("0 - check")
     void partenza() {
         System.out.println(VUOTA);
+        System.out.println("0 - check");
+        System.out.println("Parametri di questa classe di test");
         System.out.println(VUOTA);
+
+        System.out.println(String.format("%s%s%s", "moduloName", UGUALE_SPAZIATO, moduloName));
+        System.out.println(String.format("%s%s%s", "entityClazz", UGUALE_SPAZIATO, entityClazz.getSimpleName()));
+        System.out.println(String.format("%s%s%s", "listClazz", UGUALE_SPAZIATO, listClazz.getSimpleName()));
+        System.out.println(String.format("%s%s%s", "viewClazz", UGUALE_SPAZIATO, viewClazz.getSimpleName()));
+        System.out.println(String.format("%s%s%s", "moduloClazz", UGUALE_SPAZIATO, moduloClazz.getSimpleName()));
+        System.out.println(String.format("%s%s%s", "collectionName", UGUALE_SPAZIATO, collectionName));
+
+
     }
 
     @Test
@@ -187,7 +209,6 @@ public abstract class ModuloTest extends AlgosTest {
     @DisplayName("3 - newEntity")
     void newEntity() {
         System.out.println("3 - newEntity");
-        System.out.println(VUOTA);
 
         entityBean = currentService.newEntity();
         assertNotNull(entityBean);
@@ -203,10 +224,9 @@ public abstract class ModuloTest extends AlgosTest {
     @DisplayName("4 - getFields")
     void getFields() {
         System.out.println("4 - getFields");
-        System.out.println(VUOTA);
 
         fieldsArray = reflectionService.getAllFields(entityClazz);
-        message = String.format("Nella classe [%s] di questo modulo ci sono %d fields (property):", entityClazz.getSimpleName(), fieldsArray.size());
+        message = String.format("Nella classe [%s] ci sono %d fields (property):", entityClazz.getSimpleName(), fieldsArray.size());
         System.out.println(message);
         printField(fieldsArray);
         System.out.println(VUOTA);
@@ -219,11 +239,11 @@ public abstract class ModuloTest extends AlgosTest {
     @DisplayName("5 - getMethods (entityClazz)")
     void getMethods() {
         System.out.println("5 - getMethods (entityClazz)");
-        System.out.println(VUOTA);
 
         methods = reflectionService.getMethods(entityClazz);
         message = String.format("Nella classe [%s] ci sono %d metodi:", entityClazz.getSimpleName(), methods.size());
         System.out.println(message);
+        System.out.println(VUOTA);
 
         assertNotNull(methods);
         for (Method metodo : methods) {
@@ -288,57 +308,46 @@ public abstract class ModuloTest extends AlgosTest {
     @DisplayName("9 - annotationEntity")
     void annotationEntity() {
         System.out.println("9 - annotationEntity");
-        System.out.println(VUOTA);
-        SortDirection sortDirection;
-
         message = String.format("Annotation della POJO/Entity [%s]:", entityClazz.getSimpleName());
         System.out.println(message);
-        System.out.println(VUOTA);
 
+        System.out.println(VUOTA);
+        System.out.println(textService.setQuadre("@Document"));
         ottenuto = annotationService.getCollectionName(entityClazz);
-        System.out.print(textService.setQuadre("@Document"));
-        System.out.print(FORWARD);
-        System.out.println(ottenuto);
-        System.out.println(VUOTA);
+        message = String.format("%s%s%s", "collection", FORWARD, ottenuto);
+        System.out.println(message);
 
+        System.out.println(VUOTA);
+        System.out.println(textService.setQuadre("@IReset"));
         ottenutoBooleano = annotationService.usaResetStartup(entityClazz);
-        System.out.print(textService.setQuadre("@IReset"));
-        System.out.print(FORWARD);
-        System.out.println(ottenutoBooleano);
+        message = String.format("%s%s%s", "usaStartup", FORWARD, ottenutoBooleano);
+        System.out.println(message);
+
         System.out.println(VUOTA);
-
         System.out.println(textService.setQuadre("@IEntity"));
-
         ottenuto = (String) annotationService.getEntitySortProperty(entityClazz).orElse(VUOTA);
         message = String.format("%s%s%s", "sortProperty", FORWARD, ottenuto);
         System.out.println(message);
-        System.out.println(VUOTA);
 
-        sortDirection = annotationService.getEntitySortDirection(entityClazz);
+        SortDirection sortDirection = annotationService.getEntitySortDirection(entityClazz);
         message = String.format("%s%s%s", "sortDirection", FORWARD, sortDirection);
         System.out.println(message);
-        System.out.println(VUOTA);
 
-        ottenuto =  annotationService.getFocusField(entityClazz).orElse(VUOTA);
-        message = String.format("%s%s%s", "focus", FORWARD, ottenuto);
+        ottenuto = annotationService.getFocusField(entityClazz).orElse(VUOTA);
+        message = String.format("%s%s%s", "focus", FORWARD, textService.isValid(ottenuto) ? ottenuto : NULLO);
         System.out.println(message);
-        System.out.println(VUOTA);
 
-        ottenuto =  annotationService.getSingularName(entityClazz);
+        ottenuto = annotationService.getSingularName(entityClazz);
         message = String.format("%s%s%s", "singularName", FORWARD, ottenuto);
         System.out.println(message);
-        System.out.println(VUOTA);
 
-        ottenuto =  annotationService.getPluralName(entityClazz);
+        ottenuto = annotationService.getPluralName(entityClazz);
         message = String.format("%s%s%s", "pluralName", FORWARD, ottenuto);
         System.out.println(message);
-        System.out.println(VUOTA);
 
         ottenuto = (String) annotationService.getKeyProperty(entityClazz).orElse(VUOTA);
         message = String.format("%s%s%s", "keyProperty", FORWARD, ottenuto);
         System.out.println(message);
-        System.out.println(VUOTA);
-
     }
 
     @Test
@@ -489,7 +498,7 @@ public abstract class ModuloTest extends AlgosTest {
     }
 
 
-//    @Test
+    //    @Test
     @Order(60)
     @DisplayName("60 - resetDelete")
     void resetDelete() {
@@ -650,13 +659,14 @@ public abstract class ModuloTest extends AlgosTest {
 //    @Disabled("Disabilitato temporaneamente per risparmiare tempo")
     @DisplayName("210 - reset")
     void reset() {
-        System.out.println(VUOTA);
         System.out.println("210 - reset");
         System.out.println(VUOTA);
 
         if (reflectionService.isEsisteMetodo(currentService.getClass(), "reset")) {
             currentService.reset();
-            message = String.format("Reset eseguito in %s per la classe [%s]", dateService.deltaText(inizio), clazzName);
+            ottenuto = dateService.deltaTextEsatto(inizio);
+            ottenuto2 = entityClazz.getSimpleName();
+            message = String.format("Reset eseguito in %s per la classe [%s] del modulo [%s]", ottenuto, ottenuto2, moduloName);
             System.out.println(message);
 
             ottenutoIntero = currentService.count();
@@ -666,7 +676,6 @@ public abstract class ModuloTest extends AlgosTest {
             message = String.format("Nella classe [%s] non esiste il metodo reset", clazzName);
             System.out.println(message);
         }
-
     }
 
     protected void fixEquals(Object obj1, Object obj2, Object obj3) {

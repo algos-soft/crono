@@ -1,20 +1,27 @@
 package it.algos.crono;
 
+import com.mongodb.bulk.BulkWriteResult;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.InsertOneModel;
+import com.mongodb.client.model.WriteModel;
 import it.algos.crono.giorno.GiornoEntity;
 import it.algos.crono.giorno.GiornoList;
 import it.algos.crono.giorno.GiornoService;
 import it.algos.crono.giorno.GiornoView;
 import it.algos.vbase.ModuloTest;
 import it.algos.vbase.entity.AbstractEntity;
+import org.bson.Document;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static it.algos.vbase.boot.BaseCost.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Project base24
@@ -45,15 +52,12 @@ public class GiornoTest extends ModuloTest {
         super.entityClazz = GiornoEntity.class;
         super.listClazz = GiornoList.class;
         super.viewClazz = GiornoView.class;
+        super.moduloClazz = GiornoService.class;
 
         //--reindirizzo l'istanza della superclasse
         super.currentService = service;
 
         super.setUpAll();
-
-        //--reindirizzo l'istanza della superclasse
-        super.moduloClazz = GiornoService.class;
-        super.moduloClazzName = GiornoService.class.getSimpleName();
     }
 
     @BeforeEach
@@ -82,27 +86,59 @@ public class GiornoTest extends ModuloTest {
     }
 
 
-//    @Test
+    @Test
     @Order(211)
-    @DisplayName("211 - reset Check")
-    void resetCheck() {
-        System.out.println(VUOTA);
-        System.out.println("211 - reset Check");
+    @DisplayName("211 - getLista")
+    void getMappa() {
+        System.out.println("211 - getLista");
         System.out.println(VUOTA);
 
-        sorgente = service.getCollectionNameParent();
-        message = String.format("Il reset dell classe [%s] necessita del preliminare reset di [%s]", collectionName, sorgente);
-        System.out.println(message);
-        message = String.format("Controllo che esista il valore di [%s.%s] nel primo record", collectionName, sorgente);
-        System.out.println(message);
-
-        giornoBean = service.findAll().get(0);
-        entityBean = giornoBean.getMese();
-        assertNotNull(entityBean);
-        message = String.format("Nel primo record di anno [%s.%s] esiste il link a [%s]", collectionName, giornoBean, entityBean);
+        List<GiornoEntity> lista = service.getLista();
+        assertNotNull(lista);
+        message = String.format("Lista di tutte le [%s] entities creata in %s", lista.size(), dateService.deltaTextEsatto(inizio));
         System.out.println(message);
     }
 
+
+    @Test
+    @Order(212)
+    @DisplayName("212 - bulkReset")
+    void bulkReset() {
+        System.out.println("212 - bulkReset");
+        System.out.println(VUOTA);
+
+        service.deleteAll();
+        ottenutoIntero = service.count();
+        assertTrue(ottenutoIntero == 0);
+
+        List<GiornoEntity> lista = service.getLista();
+        assertNotNull(lista);
+
+        assertNotNull(collection);
+        inizio = System.currentTimeMillis();
+        BulkWriteResult result = bulkInsertEntities(collection, lista);
+
+        assertNotNull(result);
+        ottenuto = entityClazz.getSimpleName();
+        message = String.format("Bulk reset per la classe [%s] del modulo [%s]", ottenuto, moduloName);
+        System.out.println(message);
+
+        message = String.format("Aggiunte [%s] entities in %s", result.getInsertedCount(), dateService.deltaTextEsatto(inizio));
+        System.out.println(message);
+    }
+
+
+    BulkWriteResult bulkInsertEntities(MongoCollection<Document> collection, List<GiornoEntity> entities) {
+        BulkWriteResult result;
+
+        // Converti ogni Entity in un InsertOneModel
+        List<WriteModel<Document>> operations = entities.stream()
+                .map(entity -> new InsertOneModel<>(entity.toDocument()))
+                .collect(Collectors.toList());
+
+        // Esegui il bulkWrite con la lista di operazioni
+        return collection.bulkWrite(operations);
+    }
 
     protected void printBeans(List<AbstractEntity> listaBeans) {
         int k = 0;

@@ -3,10 +3,7 @@ package it.algos.vbase;
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.enumeration.TypeField;
 import it.algos.vbase.logic.ModuloService;
-import it.algos.vbase.service.AnnotationService;
-import it.algos.vbase.service.DateService;
-import it.algos.vbase.service.LoggerService;
-import it.algos.vbase.service.ReflectionService;
+import it.algos.vbase.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
@@ -31,6 +28,9 @@ public abstract class AlgosTest {
 
     @Autowired
     protected LoggerService logger;
+
+    @Autowired
+    protected TextService textService;
 
     @Autowired
     protected AnnotationService annotationService;
@@ -180,26 +180,22 @@ public abstract class AlgosTest {
     }
 
     protected void printField(List<Field> listaField) {
-//        AField annotation;
         System.out.println(VUOTA);
         int k = 0;
         int modifiers;
+        int transientModifier = 26;
 
         for (Field field : listaField) {
             modifiers = field.getModifiers();
-//            annotation = field.getAnnotation(AField.class);
             System.out.print(++k);
             System.out.print(PARENTESI_TONDA_END);
             System.out.print(SPAZIO);
             System.out.print(field.getName());
             System.out.print(SPAZIO);
-            System.out.print(QUADRA_INI);
-            System.out.print(field.getType().getSimpleName());
-            System.out.print(QUADRA_END);
+            System.out.print(textService.setQuadre(field.getType().getSimpleName()));
             System.out.print(SPAZIO);
-            System.out.print(QUADRA_INI);
-            System.out.print(Modifier.isPrivate(modifiers) ? "private" : "public");
-            System.out.print(QUADRA_END);
+            System.out.print(textService.setQuadre(Modifier.isPrivate(modifiers) ? "private" : "public"));
+            System.out.print(modifiers == transientModifier ? SPAZIO + textService.setQuadre("transient") : VUOTA);
             System.out.println(VUOTA);
 
 //            if (annotation != null) {

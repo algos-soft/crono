@@ -55,4 +55,14 @@ public class GiornoEntity extends AbstractEntity {
         return nome;
     }
 
+    // Metodo che converte l'oggetto Entity in un Document MongoDB
+    public org.bson.Document toDocument() {
+        return new org.bson.Document("id", getId())
+                .append("ordine", getOrdine())
+                .append("nome", getNome())
+                .append("mese", getMese().toDocument())
+                .append("trascorsi", getTrascorsi())
+                .append("mancanti", getMancanti());
+    }
+
 }// end of Entity class

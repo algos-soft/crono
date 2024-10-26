@@ -11,6 +11,7 @@ import it.algos.vbase.wrapper.WrapLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -81,15 +82,7 @@ public class GiornoService extends CronoService<GiornoEntity> {
     @Override
     public RisultatoReset reset() {
         String collectionName = mongoTemplate.getCollectionName(GiornoEntity.class);
-        int ordine;
-        String nome;
-        String meseTxt;
-        MeseEntity mese;
-        int trascorsi;
-        int mancanti;
         String message;
-        GiornoEntity newBean;
-        List<HashMap<String, Object>> lista;
 
         if (meseService.count() < 1 && annotationService.usaResetStartup(MeseEntity.class)) {
             meseService.reset();
@@ -101,9 +94,31 @@ public class GiornoService extends CronoService<GiornoEntity> {
             //@todo valutare se 'rompere' il programma
         }
 
-        lista = dateService.getAllGiorni();
+        listaBeans = getLista();
+        if (listaBeans.size() > 0) {
+            listaBeans.stream().forEach(bean -> creaIfNotExists(bean));
+            return RisultatoReset.vuotoMaCostruito;
+        } else {
+            message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
+            logger.warn(new WrapLog().exception(new AlgosException(message)).type(TypeLog.startup));
+            return RisultatoReset.nonCostruito;
+        }
+    }
+
+
+    public List<GiornoEntity> getLista() {
+        List<GiornoEntity> listaBeans = null;
+        int ordine;
+        String nome;
+        String meseTxt;
+        MeseEntity mese;
+        int trascorsi;
+        int mancanti;
+        GiornoEntity newBean;
+        List<HashMap<String, Object>> lista = dateService.getAllGiorni();
+
         if (lista != null && lista.size() == NUM_GIORNI_ANNO) {
-            mappaBeans = new HashMap<>();
+            listaBeans = new ArrayList<>();
             for (HashMap<String, Object> mappaGiorno : lista) {
                 nome = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_TITOLO);
                 meseTxt = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_MESE_TESTO);
@@ -116,20 +131,11 @@ public class GiornoService extends CronoService<GiornoEntity> {
                 mancanti = NUM_GIORNI_ANNO - trascorsi;
 
                 newBean = newEntity(ordine, nome, mese, trascorsi, mancanti);
-                mappaBeans.put(nome, newBean);
+                listaBeans.add(newBean);
             }
         }
 
-        if (mappaBeans.size() > 0) {
-            mappaBeans.values().stream().forEach(bean -> creaIfNotExists(bean));
-            return RisultatoReset.vuotoMaCostruito;
-        } else {
-            message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
-            logger.warn(new WrapLog().exception(new AlgosException(message)).type(TypeLog.startup));
-            return RisultatoReset.nonCostruito;
-        }
-
-
+        return listaBeans;
     }
 
 }// end of CrudService class
