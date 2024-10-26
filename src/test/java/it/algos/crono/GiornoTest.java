@@ -1,9 +1,6 @@
 package it.algos.crono;
 
 import com.mongodb.bulk.BulkWriteResult;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.model.InsertOneModel;
-import com.mongodb.client.model.WriteModel;
 import it.algos.crono.giorno.GiornoEntity;
 import it.algos.crono.giorno.GiornoList;
 import it.algos.crono.giorno.GiornoService;
@@ -15,9 +12,10 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 import static it.algos.vbase.boot.BaseCost.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -85,12 +83,57 @@ public class GiornoTest extends ModuloTest {
 
     }
 
-
     @Test
     @Order(211)
-    @DisplayName("211 - getLista")
+    @DisplayName("211 - toDocument")
+    void toDocument() {
+        System.out.println("211 - toDocument dalla entity");
+        System.out.println(VUOTA);
+        Document document;
+
+        sorgente = "4 marzo";
+        giornoBean = service.findByKey(sorgente);
+        assertNotNull(giornoBean);
+        document = giornoBean.toDocument();
+
+        assertNotNull(document);
+        ottenutoIntero = document.size();
+        assertTrue(ottenutoIntero == 6);
+        System.out.println(String.format("Ci sono [%d] chiavi nel documento", ottenutoIntero));
+        print(document.keySet().stream().toList());
+        System.out.println(VUOTA);
+        System.out.println(document.toJson());
+        System.out.println(document);
+    }
+
+    @Test
+    @Order(212)
+    @DisplayName("212 - getDocument")
+    void getDocument() {
+        System.out.println("212 - getDocument dal service");
+        System.out.println(VUOTA);
+        Document document;
+
+        sorgente = "4 marzo";
+        giornoBean = service.findByKey(sorgente);
+        assertNotNull(giornoBean);
+        document = service.getDocument(giornoBean);
+
+        assertNotNull(document);
+        ottenutoIntero = document.size();
+        assertTrue(ottenutoIntero == 6);
+        System.out.println(String.format("Ci sono [%d] chiavi nel documento", ottenutoIntero));
+        print(document.keySet().stream().toList());
+        System.out.println(VUOTA);
+        System.out.println(document.toJson());
+        System.out.println(document);
+    }
+
+//    @Test
+    @Order(214)
+    @DisplayName("214 - getLista")
     void getMappa() {
-        System.out.println("211 - getLista");
+        System.out.println("214 - getLista");
         System.out.println(VUOTA);
 
         List<GiornoEntity> lista = service.getLista();
@@ -100,11 +143,11 @@ public class GiornoTest extends ModuloTest {
     }
 
 
-    @Test
-    @Order(212)
-    @DisplayName("212 - bulkReset")
+//    @Test
+    @Order(215)
+    @DisplayName("215 - bulkReset")
     void bulkReset() {
-        System.out.println("212 - bulkReset");
+        System.out.println("215 - bulkReset");
         System.out.println(VUOTA);
 
         service.deleteAll();
@@ -116,29 +159,18 @@ public class GiornoTest extends ModuloTest {
 
         assertNotNull(collection);
         inizio = System.currentTimeMillis();
-        BulkWriteResult result = bulkInsertEntities(collection, lista);
+        BulkWriteResult result = service.bulkInsertEntities(collection, lista);
 
         assertNotNull(result);
-        ottenuto = entityClazz.getSimpleName();
-        message = String.format("Bulk reset per la classe [%s] del modulo [%s]", ottenuto, moduloName);
+        ottenuto = dateService.deltaTextEsatto(inizio);
+        ottenuto2 = entityClazz.getSimpleName();
+        message = String.format("Bulk reset eseguito in %s per la classe [%s] del modulo [%s]", ottenuto, ottenuto2, moduloName);
         System.out.println(message);
 
-        message = String.format("Aggiunte [%s] entities in %s", result.getInsertedCount(), dateService.deltaTextEsatto(inizio));
+        message = String.format("Sono state create [%s] entities con il bulk reset", result.getInsertedCount());
         System.out.println(message);
     }
 
-
-    BulkWriteResult bulkInsertEntities(MongoCollection<Document> collection, List<GiornoEntity> entities) {
-        BulkWriteResult result;
-
-        // Converti ogni Entity in un InsertOneModel
-        List<WriteModel<Document>> operations = entities.stream()
-                .map(entity -> new InsertOneModel<>(entity.toDocument()))
-                .collect(Collectors.toList());
-
-        // Esegui il bulkWrite con la lista di operazioni
-        return collection.bulkWrite(operations);
-    }
 
     protected void printBeans(List<AbstractEntity> listaBeans) {
         int k = 0;
@@ -156,4 +188,63 @@ public class GiornoTest extends ModuloTest {
         }
     }
 
+    protected void printDocument(Document document) {
+        int k = 0;
+        Document doc;
+        System.out.println(VUOTA);
+
+        for (Object key : document.keySet()) {
+            System.out.print(++k);
+            System.out.print(PARENTESI_TONDA_END);
+            System.out.print(SPAZIO);
+            System.out.print(key);
+            System.out.print(FORWARD);
+            Object value = document.get(key);
+            if (isComplexType(value)) {
+                System.out.print(convertToString(value));
+            } else {
+                System.out.print(value);
+            }
+            System.out.println();
+        }
+    }
+
+
+    public Document toDocument(Map<String, Object> fields) {
+        Document doc = new Document();
+        for (Map.Entry<String, Object> entry : fields.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (isComplexType(value)) {
+                // Converti l'oggetto custom in un Document
+                doc.append(key, convertToDocument(value));
+            } else {
+                doc.append(key, value);  // Campi semplici o primitivi
+            }
+        }
+        return doc;
+    }
+
+    private boolean isComplexType(Object obj) {
+        return obj != null && !(obj.getClass().isPrimitive() || obj instanceof String || obj instanceof Number || obj instanceof Boolean);
+    }
+
+    private Document convertToDocument(Object obj) {
+        Document nestedDoc = new Document();
+        for (Field field : obj.getClass().getDeclaredFields()) {
+            field.setAccessible(true);
+            try {
+                nestedDoc.append(field.getName(), field.get(obj));
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        return nestedDoc;
+    }
+
+    private String convertToString(Object obj) {
+        Document nestedDoc = convertToDocument(obj);
+        return nestedDoc.toString();
+    }
 }

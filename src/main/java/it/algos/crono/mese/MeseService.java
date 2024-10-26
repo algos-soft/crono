@@ -1,9 +1,18 @@
 package it.algos.crono.mese;
 
+import it.algos.crono.giorno.GiornoEntity;
 import it.algos.crono.logic.CronoService;
+import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.enumeration.MeseEnum;
 import it.algos.vbase.enumeration.RisultatoReset;
+import org.bson.Document;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.stereotype.Service;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.List;
 
 import static it.algos.vbase.boot.BaseCost.FIELD_NAME_NOME;
 
@@ -83,6 +92,33 @@ public class MeseService extends CronoService<MeseEntity> {
 
         mappaBeans.values().stream().forEach(bean -> creaIfNotExists(bean));
         return RisultatoReset.vuotoMaCostruito;
+    }
+
+
+    public Document getDocument(AbstractEntity bean) {
+        Document doc = new Document();
+        List<Field> fields = reflectionService.getAllFields(bean.getClass());
+        int modifier;
+
+        for (Field field : fields) {
+            field.setAccessible(true);
+            modifier = field.getModifiers();
+
+            // Salta campi `static`, `final`, e `transient`
+            if (Modifier.isStatic(modifier) || Modifier.isFinal(modifier) || field.isAnnotationPresent(Transient.class)) {
+                continue;
+            }
+            if ( field.isAnnotationPresent(DBRef.class)) {
+                continue;
+            }
+            try {
+                doc.append(field.getName(), field.get(bean));
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return doc;
     }
 
 }// end of CrudService class

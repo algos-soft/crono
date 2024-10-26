@@ -94,6 +94,7 @@ public abstract class ModuloTest extends AlgosTest {
     protected AList listaView;
 
     protected MongoCollection<Document> collection;
+
     /**
      * Qui passa una volta sola, chiamato dalle sottoclassi <br>
      * Deve essere sovrascritto, invocando ANCHE il metodo della superclasse <br>
@@ -225,11 +226,16 @@ public abstract class ModuloTest extends AlgosTest {
     void getFields() {
         System.out.println("4 - getFields");
 
+        listaStr = reflectionService.getPropertyNames(entityClazz);
+        message = String.format("Nella classe [%s] ci sono %d fields (String):", entityClazz.getSimpleName(), listaStr.size());
+        System.out.println(message);
+        System.out.println(listaStr);
+        System.out.println(VUOTA);
+
         fieldsArray = reflectionService.getAllFields(entityClazz);
         message = String.format("Nella classe [%s] ci sono %d fields (property):", entityClazz.getSimpleName(), fieldsArray.size());
         System.out.println(message);
         printField(fieldsArray);
-        System.out.println(VUOTA);
         System.out.println(VUOTA);
     }
 
@@ -656,14 +662,14 @@ public abstract class ModuloTest extends AlgosTest {
 
     @Test
     @Order(210)
-//    @Disabled("Disabilitato temporaneamente per risparmiare tempo")
-    @DisplayName("210 - reset")
+    @Disabled("Disabilitato temporaneamente per risparmiare tempo")
+    @DisplayName("210 - resetDelete")
     void reset() {
-        System.out.println("210 - reset");
+        System.out.println("210 - resetDelete");
         System.out.println(VUOTA);
 
-        if (reflectionService.isEsisteMetodo(currentService.getClass(), "reset")) {
-            currentService.reset();
+        if (reflectionService.isEsisteMetodo(currentService.getClass(), "resetDelete")) {
+            currentService.resetDelete();
             ottenuto = dateService.deltaTextEsatto(inizio);
             ottenuto2 = entityClazz.getSimpleName();
             message = String.format("Reset eseguito in %s per la classe [%s] del modulo [%s]", ottenuto, ottenuto2, moduloName);

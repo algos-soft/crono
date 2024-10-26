@@ -1,19 +1,30 @@
 package it.algos.crono.giorno;
 
+import com.mongodb.bulk.BulkWriteResult;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.InsertOneModel;
+import com.mongodb.client.model.WriteModel;
 import it.algos.crono.logic.CronoService;
 import it.algos.crono.mese.MeseEntity;
 import it.algos.crono.mese.MeseService;
+import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.enumeration.RisultatoReset;
 import it.algos.vbase.enumeration.TypeLog;
 import it.algos.vbase.exception.AlgosException;
 import it.algos.vbase.service.DateService;
 import it.algos.vbase.wrapper.WrapLog;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static it.algos.vbase.boot.BaseCost.*;
 
@@ -136,6 +147,51 @@ public class GiornoService extends CronoService<GiornoEntity> {
         }
 
         return listaBeans;
+    }
+
+
+    public BulkWriteResult bulkInsertEntities(MongoCollection<Document> collection, List<GiornoEntity> entities) {
+        BulkWriteResult result;
+
+        // Converti ogni Entity in un InsertOneModel
+        List<WriteModel<Document>> operations = entities.stream()
+                .map(entity -> new InsertOneModel<>(entity.toDocument()))
+                .collect(Collectors.toList());
+
+        // Esegui il bulkWrite con la lista di operazioni
+        return collection.bulkWrite(operations);
+    }
+
+    public Document getDocument(AbstractEntity bean) {
+        Document doc = new Document();
+        Document docAnnidato;
+        List<Field> fields = reflectionService.getAllFields(bean.getClass());
+        int modifier;
+
+        for (Field field : fields) {
+            field.setAccessible(true);
+            modifier = field.getModifiers();
+
+            // Salta campi `static`, `final`, e `transient`
+            if (Modifier.isStatic(modifier) || Modifier.isFinal(modifier) || field.isAnnotationPresent(Transient.class)) {
+                continue;
+            }
+
+            // document annidati
+            try {
+                if (field.isAnnotationPresent(DBRef.class)) {
+                    AbstractEntity linkBean = (AbstractEntity) field.get(bean);
+                    docAnnidato = meseService.getDocument(linkBean);
+                    doc.append(field.getName(), docAnnidato);
+                } else {
+                    doc.append(field.getName(), field.get(bean));
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return doc;
     }
 
 }// end of CrudService class

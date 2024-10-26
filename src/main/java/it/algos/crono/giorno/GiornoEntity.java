@@ -4,7 +4,6 @@ import it.algos.crono.mese.MeseEntity;
 import it.algos.vbase.annotation.*;
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.enumeration.RefSearchType;
-import it.algos.vbase.enumeration.TBool;
 import lombok.*;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -57,6 +56,15 @@ public class GiornoEntity extends AbstractEntity {
 
     // Metodo che converte l'oggetto Entity in un Document MongoDB
     public org.bson.Document toDocument() {
+
+        MeseEntity mese = getMese();
+        org.bson.Document docMese = mese.toDocument();
+        org.bson.Document doc= new org.bson.Document("id", getId())
+                .append("ordine", getOrdine())
+                .append("nome", getNome())
+                .append("mese", getMese().toDocument())
+                .append("trascorsi", getTrascorsi())
+                .append("mancanti", getMancanti());
         return new org.bson.Document("id", getId())
                 .append("ordine", getOrdine())
                 .append("nome", getNome())
