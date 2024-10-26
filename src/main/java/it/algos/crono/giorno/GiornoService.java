@@ -1,9 +1,5 @@
 package it.algos.crono.giorno;
 
-import com.mongodb.bulk.BulkWriteResult;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.model.InsertOneModel;
-import com.mongodb.client.model.WriteModel;
 import it.algos.crono.logic.CronoService;
 import it.algos.crono.mese.MeseEntity;
 import it.algos.crono.mese.MeseService;
@@ -11,22 +7,15 @@ import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.enumeration.RisultatoReset;
 import it.algos.vbase.enumeration.TypeLog;
 import it.algos.vbase.exception.AlgosException;
-import it.algos.vbase.logic.ModuloService;
 import it.algos.vbase.service.DateService;
 import it.algos.vbase.wrapper.WrapLog;
-import org.bson.Document;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static it.algos.vbase.boot.BaseCost.*;
 
@@ -37,6 +26,7 @@ import static it.algos.vbase.boot.BaseCost.*;
  * Date: Mon, 06-Nov-2023
  * Time: 15:34
  */
+@Slf4j
 @Service
 public class GiornoService extends CronoService<GiornoEntity> {
 
@@ -107,9 +97,11 @@ public class GiornoService extends CronoService<GiornoEntity> {
             //@todo valutare se 'rompere' il programma
         }
 
-        listaBeans = getLista();
+        listaBeans = (List<GiornoEntity>) getLista();
         if (listaBeans.size() > 0) {
-            listaBeans.stream().forEach(bean -> creaIfNotExists(bean));
+            long inizio = System.currentTimeMillis();
+            bulkInsertEntities(listaBeans);
+            log.info(String.format("Bulk inserimento di [%s] nuove entities per la collection [%s] in %s", count(), collectionName, dateService.deltaTextEsatto(inizio)));
             return RisultatoReset.vuotoMaCostruito;
         } else {
             message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
@@ -119,7 +111,7 @@ public class GiornoService extends CronoService<GiornoEntity> {
     }
 
 
-    public List<GiornoEntity> getLista() {
+    public List<? extends AbstractEntity> getLista() {
         List<GiornoEntity> listaBeans = null;
         int ordine;
         String nome;
@@ -149,19 +141,6 @@ public class GiornoService extends CronoService<GiornoEntity> {
         }
 
         return listaBeans;
-    }
-
-
-    public BulkWriteResult bulkInsertEntities(MongoCollection<Document> collection, List<GiornoEntity> entities) {
-        BulkWriteResult result;
-
-        // Converti ogni Entity in un InsertOneModel
-        List<WriteModel<Document>> operations = entities.stream()
-                .map(entity -> new InsertOneModel<>(entity.toDocument()))
-                .collect(Collectors.toList());
-
-        // Esegui il bulkWrite con la lista di operazioni
-        return collection.bulkWrite(operations);
     }
 
 

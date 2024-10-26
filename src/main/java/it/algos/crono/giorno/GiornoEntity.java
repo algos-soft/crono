@@ -37,7 +37,6 @@ public class GiornoEntity extends AbstractEntity {
     private String nome;
 
     @DBRef
-    @IRef(serviceClazz = MeseService.class)
     @ICombo(sortProperty = "ordine")
     @ISearch(refSearchType = RefSearchType.combo, placeholder = "Mesi")
     @IFieldList(headerText = "Mese", width = LAR)

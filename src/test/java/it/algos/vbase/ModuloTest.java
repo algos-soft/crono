@@ -15,7 +15,6 @@ import it.algos.vbase.service.ReflectionService;
 import it.algos.vbase.service.TextService;
 import it.algos.vbase.wrapper.WrapLog;
 import org.bson.Document;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -65,7 +64,7 @@ public abstract class ModuloTest extends AlgosTest {
 
     protected AbstractEntity entityBean;
 
-    protected List<AbstractEntity> listaBeans;
+    protected List<? extends AbstractEntity> listaBeans;
 
     protected List<String> propertyListNames;
 
@@ -662,7 +661,7 @@ public abstract class ModuloTest extends AlgosTest {
 
     @Test
     @Order(210)
-    @Disabled("Disabilitato temporaneamente per risparmiare tempo")
+//    @Disabled("Disabilitato temporaneamente per risparmiare tempo")
     @DisplayName("210 - resetDelete")
     void reset() {
         System.out.println("210 - resetDelete");
@@ -670,7 +669,6 @@ public abstract class ModuloTest extends AlgosTest {
 
         if (reflectionService.isEsisteMetodo(currentService.getClass(), "resetDelete")) {
             currentService.resetDelete();
-            ottenuto = dateService.deltaTextEsatto(inizio);
             ottenuto2 = entityClazz.getSimpleName();
             message = String.format("Reset eseguito in %s per la classe [%s] del modulo [%s]", ottenuto, ottenuto2, moduloName);
             System.out.println(message);
@@ -728,7 +726,7 @@ public abstract class ModuloTest extends AlgosTest {
         }
     }
 
-    protected void printBeans(List<AbstractEntity> listaBeans) {
+    protected void printBeans(List<? extends AbstractEntity> listaBeans) {
         int k = 0;
 
         for (AbstractEntity bean : listaBeans) {
