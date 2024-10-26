@@ -95,30 +95,4 @@ public class MeseService extends CronoService<MeseEntity> {
     }
 
 
-    public Document getDocument(AbstractEntity bean) {
-        Document doc = new Document();
-        List<Field> fields = reflectionService.getAllFields(bean.getClass());
-        int modifier;
-
-        for (Field field : fields) {
-            field.setAccessible(true);
-            modifier = field.getModifiers();
-
-            // Salta campi `static`, `final`, e `transient`
-            if (Modifier.isStatic(modifier) || Modifier.isFinal(modifier) || field.isAnnotationPresent(Transient.class)) {
-                continue;
-            }
-            if ( field.isAnnotationPresent(DBRef.class)) {
-                continue;
-            }
-            try {
-                doc.append(field.getName(), field.get(bean));
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return doc;
-    }
-
 }// end of CrudService class

@@ -11,6 +11,7 @@ import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.enumeration.RisultatoReset;
 import it.algos.vbase.enumeration.TypeLog;
 import it.algos.vbase.exception.AlgosException;
+import it.algos.vbase.logic.ModuloService;
 import it.algos.vbase.service.DateService;
 import it.algos.vbase.wrapper.WrapLog;
 import org.bson.Document;
@@ -163,38 +164,5 @@ public class GiornoService extends CronoService<GiornoEntity> {
         return collection.bulkWrite(operations);
     }
 
-    public Document getDocument(AbstractEntity bean) {
-        Document doc = new Document();
-        Document docAnnidato;
-        List<Field> fields = reflectionService.getAllFields(bean.getClass());
-        int modifier;
-
-        for (Field field : fields) {
-            field.setAccessible(true);
-            modifier = field.getModifiers();
-
-            // Salta campi `static`, `final`, e `transient`
-            if (Modifier.isStatic(modifier) || Modifier.isFinal(modifier) || field.isAnnotationPresent(Transient.class)) {
-                continue;
-            }
-
-            // document annidati
-            try {
-                if (field.isAnnotationPresent(DBRef.class)) {
-                    Optional<? extends Class<?>> clazzService= annotationService.getServiceClazz(bean.getClass(),field.getName());
-//                    ModuloService modulo=appContext.getBean()
-                    AbstractEntity linkBean = (AbstractEntity) field.get(bean);
-                    docAnnidato = meseService.getDocument(linkBean);
-                    doc.append(field.getName(), docAnnidato);
-                } else {
-                    doc.append(field.getName(), field.get(bean));
-                }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return doc;
-    }
 
 }// end of CrudService class
