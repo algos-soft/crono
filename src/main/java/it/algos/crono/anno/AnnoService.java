@@ -125,7 +125,6 @@ public class AnnoService extends CronoService<AnnoEntity> {
 
         newBean = newEntity(ordine, nome, secolo, false, false);
         if (newBean != null) {
-            mappaBeans.put(nome, newBean);
             listaBeans.add(newBean);
         }
     }
@@ -141,7 +140,6 @@ public class AnnoService extends CronoService<AnnoEntity> {
 
         newBean = newEntity(ordine, nome, secolo, true, bisestile);
         if (newBean != null) {
-            mappaBeans.put(nome, newBean);
             listaBeans.add(newBean);
         }
     }

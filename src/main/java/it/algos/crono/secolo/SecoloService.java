@@ -194,7 +194,6 @@ public class SecoloService extends CronoService<SecoloEntity> {
 
                 newBean = newEntity(ordine, nome, inizio2, fine, !anteCristo);
                 if (newBean != null) {
-                    mappaBeans.put(nome, newBean);
                     listaBeans.add(newBean);
                 } else {
                     message = String.format("La entity %s non è stata salvata", nome);
