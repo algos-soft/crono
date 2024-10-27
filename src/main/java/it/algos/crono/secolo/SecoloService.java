@@ -5,11 +5,13 @@ import it.algos.vbase.enumeration.RisultatoReset;
 import it.algos.vbase.enumeration.TypeLog;
 import it.algos.vbase.exception.AlgosException;
 import it.algos.vbase.wrapper.WrapLog;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +24,7 @@ import static it.algos.vbase.boot.BaseCost.*;
  * Date: sab, 04-mag-2024
  * Time: 19:59
  */
+@Slf4j
 @Service
 public class SecoloService extends CronoService<SecoloEntity> {
 
@@ -35,6 +38,7 @@ public class SecoloService extends CronoService<SecoloEntity> {
 
     public static final String ORDINE = "Ordinamento a partire dal secolo X a.C.";
 
+    private List<SecoloEntity> listaBeans = new ArrayList<>();
 
     /**
      * Regola la entityClazz associata a questo Modulo e la passa alla superclasse <br>
@@ -147,9 +151,10 @@ public class SecoloService extends CronoService<SecoloEntity> {
     @Override
     public RisultatoReset reset() {
         String nomeFileCSV = "secoli.csv";
+        String collectionName = annotationService.getCollectionName(SecoloEntity.class);
         int ordine;
         String nome;
-        int inizio;
+        int inizio2;
         int fine;
         boolean anteCristo;
         String anteCristoText;
@@ -168,10 +173,10 @@ public class SecoloService extends CronoService<SecoloEntity> {
                     }
                     nome = riga.get(1);
                     try {
-                        inizio = Integer.decode(riga.get(2));
+                        inizio2 = Integer.decode(riga.get(2));
                     } catch (Exception unErrore) {
                         logger.error(new WrapLog().exception(unErrore).usaDb().type(TypeLog.startup));
-                        inizio = 0;
+                        inizio2 = 0;
                     }
                     try {
                         fine = Integer.decode(riga.get(3));
@@ -187,9 +192,10 @@ public class SecoloService extends CronoService<SecoloEntity> {
                 }
                 nome += anteCristo ? " secolo a.C." : " secolo";
 
-                newBean = newEntity(ordine, nome, inizio, fine, !anteCristo);
+                newBean = newEntity(ordine, nome, inizio2, fine, !anteCristo);
                 if (newBean != null) {
                     mappaBeans.put(nome, newBean);
+                    listaBeans.add(newBean);
                 } else {
                     message = String.format("La entity %s non è stata salvata", nome);
                     logger.error(new WrapLog().exception(new AlgosException(message)).usaDb().type(TypeLog.startup));
@@ -201,8 +207,16 @@ public class SecoloService extends CronoService<SecoloEntity> {
             return RisultatoReset.nonCostruito;
         }
 
-        mappaBeans.values().stream().forEach(bean -> creaIfNotExists(bean));
-        return RisultatoReset.vuotoMaCostruito;
+        if (listaBeans.size() > 0) {
+            long inizio = System.currentTimeMillis();
+            bulkInsertEntities(listaBeans);
+            log.info(String.format("Bulk inserimento di [%s] nuove entities per la collection [%s] in %s", count(), collectionName, dateService.deltaTextEsatto(inizio)));
+            return RisultatoReset.vuotoMaCostruito;
+        } else {
+            message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
+            logger.warn(new WrapLog().exception(new AlgosException(message)).type(TypeLog.startup));
+            return RisultatoReset.nonCostruito;
+        }
     }
 
 

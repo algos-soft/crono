@@ -7,7 +7,6 @@ import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.enumeration.RisultatoReset;
 import it.algos.vbase.enumeration.TypeLog;
 import it.algos.vbase.exception.AlgosException;
-import it.algos.vbase.service.DateService;
 import it.algos.vbase.wrapper.WrapLog;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +33,11 @@ public class GiornoService extends CronoService<GiornoEntity> {
 
     public static final String ORDINE = "Ordinamento da inizio anno";
 
+    private List<GiornoEntity> listaBeans = new ArrayList<>();
+
     @Autowired
     public MeseService meseService;
 
-    @Autowired
-    public DateService dateService;
 
 
     /**
@@ -112,7 +111,6 @@ public class GiornoService extends CronoService<GiornoEntity> {
 
 
     public List<? extends AbstractEntity> getLista() {
-        List<GiornoEntity> listaBeans = null;
         int ordine;
         String nome;
         String meseTxt;
@@ -123,7 +121,6 @@ public class GiornoService extends CronoService<GiornoEntity> {
         List<HashMap<String, Object>> lista = dateService.getAllGiorni();
 
         if (lista != null && lista.size() == NUM_GIORNI_ANNO) {
-            listaBeans = new ArrayList<>();
             for (HashMap<String, Object> mappaGiorno : lista) {
                 nome = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_TITOLO);
                 meseTxt = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_MESE_TESTO);

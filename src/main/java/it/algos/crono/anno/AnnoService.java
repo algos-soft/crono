@@ -6,10 +6,13 @@ import it.algos.crono.secolo.SecoloService;
 import it.algos.vbase.enumeration.RisultatoReset;
 import it.algos.vbase.enumeration.TypeLog;
 import it.algos.vbase.exception.AlgosException;
-import it.algos.vbase.service.DateService;
 import it.algos.vbase.wrapper.WrapLog;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static it.algos.vbase.boot.BaseCost.*;
 
@@ -20,6 +23,7 @@ import static it.algos.vbase.boot.BaseCost.*;
  * Date: Mon, 06-Nov-2023
  * Time: 18:52
  */
+@Slf4j
 @Service
 public class AnnoService extends CronoService<AnnoEntity> {
 
@@ -27,12 +31,11 @@ public class AnnoService extends CronoService<AnnoEntity> {
 
     public static final String ORDINE = "Ordinamento a partire dall'anno 1.000 a.C.";
 
+    private List<AnnoEntity> listaBeans = new ArrayList<>();
 
     @Autowired
     public SecoloService secoloService;
 
-    @Autowired
-    public DateService dateService;
 
     /**
      * Costruttore invocato dalla sottoclasse concreta obbligatoriamente con due parametri <br>
@@ -83,7 +86,7 @@ public class AnnoService extends CronoService<AnnoEntity> {
             secoloService.reset();
         }
         if (secoloService.count() < 1) {
-             message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
+            message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
             logger.warn(new WrapLog().exception(new AlgosException(message)).type(TypeLog.startup));
             return RisultatoReset.nonCostruito;
             //@todo valutare se 'rompere' il programma
@@ -99,8 +102,16 @@ public class AnnoService extends CronoService<AnnoEntity> {
             creaDopo(k);
         }
 
-        mappaBeans.values().stream().forEach(bean -> creaIfNotExists(bean));
-        return RisultatoReset.vuotoMaCostruito;
+        if (listaBeans.size() > 0) {
+            long inizio = System.currentTimeMillis();
+            bulkInsertEntities(listaBeans);
+            log.info(String.format("Bulk inserimento di [%s] nuove entities per la collection [%s] in %s", count(), collectionName, dateService.deltaTextEsatto(inizio)));
+            return RisultatoReset.vuotoMaCostruito;
+        } else {
+            message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
+            logger.warn(new WrapLog().exception(new AlgosException(message)).type(TypeLog.startup));
+            return RisultatoReset.nonCostruito;
+        }
     }
 
     public void creaPrima(int numeroProgressivo) {
@@ -115,6 +126,7 @@ public class AnnoService extends CronoService<AnnoEntity> {
         newBean = newEntity(ordine, nome, secolo, false, false);
         if (newBean != null) {
             mappaBeans.put(nome, newBean);
+            listaBeans.add(newBean);
         }
     }
 
@@ -130,6 +142,7 @@ public class AnnoService extends CronoService<AnnoEntity> {
         newBean = newEntity(ordine, nome, secolo, true, bisestile);
         if (newBean != null) {
             mappaBeans.put(nome, newBean);
+            listaBeans.add(newBean);
         }
     }
 

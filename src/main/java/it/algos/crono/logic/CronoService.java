@@ -2,10 +2,12 @@ package it.algos.crono.logic;
 
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.logic.ModuloService;
+import it.algos.vbase.service.DateService;
 import it.algos.vbase.wrapper.WrapLog;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static it.algos.vbase.boot.BaseCost.ID_LENGTH;
 
@@ -19,6 +21,9 @@ import static it.algos.vbase.boot.BaseCost.ID_LENGTH;
 public abstract class CronoService<T extends AbstractEntity> extends ModuloService<T> {
 
     protected String keyPropertyName;
+
+    @Autowired
+    public DateService dateService;
 
     @Getter
     protected String collectionNameParent;

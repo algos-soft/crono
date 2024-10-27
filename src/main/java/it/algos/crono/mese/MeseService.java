@@ -1,17 +1,15 @@
 package it.algos.crono.mese;
 
-import it.algos.crono.giorno.GiornoEntity;
 import it.algos.crono.logic.CronoService;
-import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.enumeration.MeseEnum;
 import it.algos.vbase.enumeration.RisultatoReset;
-import org.bson.Document;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.mapping.DBRef;
+import it.algos.vbase.enumeration.TypeLog;
+import it.algos.vbase.exception.AlgosException;
+import it.algos.vbase.wrapper.WrapLog;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 import java.util.List;
 
 import static it.algos.vbase.boot.BaseCost.FIELD_NAME_NOME;
@@ -29,10 +27,13 @@ import static it.algos.vbase.boot.BaseCost.FIELD_NAME_NOME;
  * NOT annotated with @SpringComponent (inutile, esiste già @Service) <br>
  * NOT annotated with @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON) (inutile, esiste già @Service) <br>
  */
+@Slf4j
 @Service
 public class MeseService extends CronoService<MeseEntity> {
 
     private static final String KEY_NAME = FIELD_NAME_NOME;
+
+    private  List<MeseEntity> listaBeans = new ArrayList<>();
 
     /**
      * Costruttore invocato dalla sottoclasse concreta obbligatoriamente con due parametri <br>
@@ -69,6 +70,7 @@ public class MeseService extends CronoService<MeseEntity> {
 
     @Override
     public RisultatoReset reset() {
+        String collectionName = annotationService.getCollectionName(MeseEntity.class);
         MeseEntity newBean;
         int ordine;
         String sigla;
@@ -86,12 +88,20 @@ public class MeseService extends CronoService<MeseEntity> {
             ultimo = primo + giorni - 1;
             newBean = newEntity(ordine, sigla, nome, giorni, primo, ultimo);
             if (newBean != null) {
-                mappaBeans.put(sigla, newBean);
+                listaBeans.add(newBean);
             }
         }
 
-        mappaBeans.values().stream().forEach(bean -> creaIfNotExists(bean));
-        return RisultatoReset.vuotoMaCostruito;
+        if (listaBeans.size() > 0) {
+            long inizio = System.currentTimeMillis();
+            bulkInsertEntities(listaBeans);
+            log.info(String.format("Bulk inserimento di [%s] nuove entities per la collection [%s] in %s", count(), collectionName, dateService.deltaTextEsatto(inizio)));
+            return RisultatoReset.vuotoMaCostruito;
+        } else {
+            String message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
+            logger.warn(new WrapLog().exception(new AlgosException(message)).type(TypeLog.startup));
+            return RisultatoReset.nonCostruito;
+        }
     }
 
 
