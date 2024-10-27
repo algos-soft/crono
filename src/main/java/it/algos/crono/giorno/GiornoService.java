@@ -35,6 +35,8 @@ public class GiornoService extends CronoService<GiornoEntity> {
 
     private List<GiornoEntity> listaBeans = new ArrayList<>();
 
+    protected  String pippo;
+
     @Autowired
     public MeseService meseService;
 
