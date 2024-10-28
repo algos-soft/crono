@@ -29,13 +29,13 @@ import static it.algos.vbase.boot.BaseCost.*;
 @Service
 public class GiornoService extends CronoService<GiornoEntity> {
 
-    private static final String KEY_NAME = FIELD_NAME_NOME;
+    private static  String KEY_NAME = FIELD_NAME_NOME;
 
     public static final String ORDINE = "Ordinamento da inizio anno";
 
     private List<GiornoEntity> listaBeans = new ArrayList<>();
 
-    protected  String pippo;
+    protected  String nonMiServe;
 
     @Autowired
     public MeseService meseService;
