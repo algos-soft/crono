@@ -82,6 +82,22 @@ public class GiornoService extends CronoService<GiornoEntity> {
         return newEntityBean;
     }
 
+    class ClasseSuper {
+        protected void unNomeQualsiasi() {
+        }
+    }
+    class ClasseA extends  ClasseSuper {
+        public void unMetodo() {
+            //questo metodo usa il metodo unNomeQualsiasi della superclasse
+            super.unNomeQualsiasi();
+        }
+    }
+
+    class ClasseB extends  ClasseSuper {
+        public void unMetodo() {
+            //questo metodo NON usa il metodo unNomeQualsiasi della superclasse
+        }
+    }
 
     @Override
     public RisultatoReset reset() {
