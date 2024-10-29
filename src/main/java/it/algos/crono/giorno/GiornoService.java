@@ -119,8 +119,6 @@ public class GiornoService extends CronoService<GiornoEntity> {
             deleteAll();
             long inizio = System.currentTimeMillis();
             bulkInsertEntities(listaBeans);
-            listaBeans.stream().forEach(bean -> creaIfNotExists(bean));
-
             log.info(String.format("Bulk inserimento di [%s] nuove entities per la collection [%s] in %s", count(), collectionName, dateService.deltaTextEsatto(inizio)));
             return RisultatoReset.vuotoMaCostruito;
         } else {
