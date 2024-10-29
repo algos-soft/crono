@@ -106,7 +106,7 @@ public class GiornoTest extends ModuloTest {
         System.out.println(document);
     }
 
-    //    @Test
+    @Test
     @Order(212)
     @DisplayName("212 - getDocument")
     void getDocument() {
@@ -186,7 +186,7 @@ public class GiornoTest extends ModuloTest {
 
         assertNotNull(collection);
         inizio = System.currentTimeMillis();
-        BulkWriteResult result = service.bulkInsertEntities( (List<? extends GiornoEntity>) listaBeans);
+        BulkWriteResult result = service.bulkInsertEntities((List<? extends GiornoEntity>) listaBeans);
 
         assertNotNull(result);
         ottenuto = dateService.deltaTextEsatto(inizio);

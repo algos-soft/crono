@@ -103,6 +103,7 @@ public class AnnoService extends CronoService<AnnoEntity> {
         }
 
         if (listaBeans.size() > 0) {
+            deleteAll();
             long inizio = System.currentTimeMillis();
             bulkInsertEntities(listaBeans);
             log.info(String.format("Bulk inserimento di [%s] nuove entities per la collection [%s] in %s", count(), collectionName, dateService.deltaTextEsatto(inizio)));
