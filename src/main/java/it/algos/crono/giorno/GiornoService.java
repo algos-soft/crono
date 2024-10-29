@@ -29,17 +29,16 @@ import static it.algos.vbase.boot.BaseCost.*;
 @Service
 public class GiornoService extends CronoService<GiornoEntity> {
 
-    private static  String KEY_NAME = FIELD_NAME_NOME;
+    private static String KEY_NAME = FIELD_NAME_NOME;
 
     public static final String ORDINE = "Ordinamento da inizio anno";
 
     private List<GiornoEntity> listaBeans = new ArrayList<>();
 
-    protected  String nonMiServe;
+    protected String nonMiServe;
 
     @Autowired
     public MeseService meseService;
-
 
 
     /**
@@ -82,22 +81,6 @@ public class GiornoService extends CronoService<GiornoEntity> {
         return newEntityBean;
     }
 
-    class ClasseSuper {
-        protected void unNomeQualsiasi() {
-        }
-    }
-    class ClasseA extends  ClasseSuper {
-        public void unMetodo() {
-            //questo metodo usa il metodo unNomeQualsiasi della superclasse
-            super.unNomeQualsiasi();
-        }
-    }
-
-    class ClasseB extends  ClasseSuper {
-        public void unMetodo() {
-            //questo metodo NON usa il metodo unNomeQualsiasi della superclasse
-        }
-    }
 
     @Override
     public RisultatoReset reset() {
@@ -115,17 +98,7 @@ public class GiornoService extends CronoService<GiornoEntity> {
         }
 
         listaBeans = (List<GiornoEntity>) getLista();
-        if (listaBeans.size() > 0) {
-            deleteAll();
-            long inizio = System.currentTimeMillis();
-            bulkInsertEntities(listaBeans);
-            log.info(String.format("Bulk inserimento di [%s] nuove entities per la collection [%s] in %s", count(), collectionName, dateService.deltaTextEsatto(inizio)));
-            return RisultatoReset.vuotoMaCostruito;
-        } else {
-            message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
-            logger.warn(new WrapLog().exception(new AlgosException(message)).type(TypeLog.startup));
-            return RisultatoReset.nonCostruito;
-        }
+        return super.bulkInsertEntities(listaBeans, collectionName);
     }
 
 

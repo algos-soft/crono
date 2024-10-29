@@ -102,17 +102,7 @@ public class AnnoService extends CronoService<AnnoEntity> {
             creaDopo(k);
         }
 
-        if (listaBeans.size() > 0) {
-            deleteAll();
-            long inizio = System.currentTimeMillis();
-            bulkInsertEntities(listaBeans);
-            log.info(String.format("Bulk inserimento di [%s] nuove entities per la collection [%s] in %s", count(), collectionName, dateService.deltaTextEsatto(inizio)));
-            return RisultatoReset.vuotoMaCostruito;
-        } else {
-            message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
-            logger.warn(new WrapLog().exception(new AlgosException(message)).type(TypeLog.startup));
-            return RisultatoReset.nonCostruito;
-        }
+        return super.bulkInsertEntities(listaBeans, collectionName);
     }
 
     public void creaPrima(int numeroProgressivo) {

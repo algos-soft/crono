@@ -3,9 +3,6 @@ package it.algos.crono.mese;
 import it.algos.crono.logic.CronoService;
 import it.algos.vbase.enumeration.MeseEnum;
 import it.algos.vbase.enumeration.RisultatoReset;
-import it.algos.vbase.enumeration.TypeLog;
-import it.algos.vbase.exception.AlgosException;
-import it.algos.vbase.wrapper.WrapLog;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -92,17 +89,7 @@ public class MeseService extends CronoService<MeseEntity> {
             }
         }
 
-        if (listaBeans.size() > 0) {
-            deleteAll();
-            long inizio = System.currentTimeMillis();
-            bulkInsertEntities(listaBeans);
-            log.info(String.format("Bulk inserimento di [%s] nuove entities per la collection [%s] in %s", count(), collectionName, dateService.deltaTextEsatto(inizio)));
-            return RisultatoReset.vuotoMaCostruito;
-        } else {
-            String message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
-            logger.warn(new WrapLog().exception(new AlgosException(message)).type(TypeLog.startup));
-            return RisultatoReset.nonCostruito;
-        }
+        return super.bulkInsertEntities(listaBeans, collectionName);
     }
 
 
