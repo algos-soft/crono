@@ -3,7 +3,6 @@ package it.algos.crono.giorno;
 import it.algos.crono.logic.CronoService;
 import it.algos.crono.mese.MeseEntity;
 import it.algos.crono.mese.MeseService;
-import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.enumeration.RisultatoReset;
 import it.algos.vbase.enumeration.TypeLog;
 import it.algos.vbase.exception.AlgosException;
@@ -39,7 +38,6 @@ public class GiornoService extends CronoService<GiornoEntity> {
 
     @Autowired
     public MeseService meseService;
-
 
     /**
      * Costruttore invocato dalla sottoclasse concreta obbligatoriamente con due parametri <br>
@@ -97,12 +95,12 @@ public class GiornoService extends CronoService<GiornoEntity> {
             //@todo valutare se 'rompere' il programma
         }
 
-        listaBeans = (List<GiornoEntity>) getLista();
+        listaBeans =  getLista();
         return super.bulkInsertEntities(listaBeans, collectionName);
     }
 
 
-    public List<? extends AbstractEntity> getLista() {
+    public List<GiornoEntity> getLista() {
         int ordine;
         String nome;
         String meseTxt;
