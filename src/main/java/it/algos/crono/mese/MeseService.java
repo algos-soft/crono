@@ -30,7 +30,7 @@ public class MeseService extends CronoService<MeseEntity> {
 
     private static final String KEY_NAME = FIELD_NAME_NOME;
 
-    private  List<MeseEntity> listaBeans = new ArrayList<>();
+    private  List<MeseEntity> listaBeans;
 
     /**
      * Costruttore invocato dalla sottoclasse concreta obbligatoriamente con due parametri <br>
@@ -67,6 +67,7 @@ public class MeseService extends CronoService<MeseEntity> {
     @Override
     public RisultatoReset reset() {
         String collectionName = annotationService.getCollectionName(MeseEntity.class);
+        listaBeans = new ArrayList<>();
         MeseEntity newBean;
         int ordine;
         String sigla;

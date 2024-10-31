@@ -32,7 +32,7 @@ public class GiornoService extends CronoService<GiornoEntity> {
 
     public static final String ORDINE = "Ordinamento da inizio anno";
 
-    private List<GiornoEntity> listaBeans = new ArrayList<>();
+    private List<GiornoEntity> listaBeans;
 
     protected String nonMiServe;
 
@@ -82,6 +82,7 @@ public class GiornoService extends CronoService<GiornoEntity> {
     @Override
     public RisultatoReset reset() {
         String collectionName = mongoTemplate.getCollectionName(GiornoEntity.class);
+        listaBeans = new ArrayList<>();
         String message;
 
         if (meseService.count() < 1 && annotationService.usaResetStartup(MeseEntity.class)) {
@@ -94,7 +95,7 @@ public class GiornoService extends CronoService<GiornoEntity> {
             //@todo valutare se 'rompere' il programma
         }
 
-        listaBeans =  getLista();
+        listaBeans = getLista();
         return super.bulkInsertEntities(listaBeans, collectionName);
     }
 

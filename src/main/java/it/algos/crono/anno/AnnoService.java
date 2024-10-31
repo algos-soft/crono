@@ -31,7 +31,7 @@ public class AnnoService extends CronoService<AnnoEntity> {
 
     public static final String ORDINE = "Ordinamento a partire dall'anno 1.000 a.C.";
 
-    private List<AnnoEntity> listaBeans = new ArrayList<>();
+    private List<AnnoEntity> listaBeans;
 
     @Autowired
     public SecoloService secoloService;
@@ -79,6 +79,7 @@ public class AnnoService extends CronoService<AnnoEntity> {
     @Override
     public RisultatoReset reset() {
         String collectionName = annotationService.getCollectionName(AnnoEntity.class);
+        listaBeans = new ArrayList<>();
         String message;
 
         if (secoloService.count() < 1 && annotationService.usaResetStartup(SecoloEntity.class)) {

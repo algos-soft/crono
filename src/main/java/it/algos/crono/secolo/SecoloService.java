@@ -38,7 +38,7 @@ public class SecoloService extends CronoService<SecoloEntity> {
 
     public static final String ORDINE = "Ordinamento a partire dal secolo X a.C.";
 
-    private List<SecoloEntity> listaBeans = new ArrayList<>();
+    private List<SecoloEntity> listaBeans;
 
     /**
      * Regola la entityClazz associata a questo Modulo e la passa alla superclasse <br>
@@ -151,6 +151,7 @@ public class SecoloService extends CronoService<SecoloEntity> {
     public RisultatoReset reset() {
         String nomeFileCSV = "secoli.csv";
         String collectionName = annotationService.getCollectionName(SecoloEntity.class);
+        listaBeans = new ArrayList<>();
         int ordine;
         String nome;
         int inizio2;
