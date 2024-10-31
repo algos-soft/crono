@@ -51,7 +51,6 @@ public class GiornoService extends CronoService<GiornoEntity> {
 
 
     protected void fixPreferenze() {
-        super.keyPropertyName = KEY_NAME;
     }
 
     /**
@@ -113,7 +112,7 @@ public class GiornoService extends CronoService<GiornoEntity> {
         if (lista != null && lista.size() == NUM_GIORNI_ANNO) {
             for (HashMap<String, Object> mappaGiorno : lista) {
                 nome = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_TITOLO);
-                meseTxt = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_MESE_TESTO);
+                meseTxt = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_MESE_SIGLA);
                 mese = meseService.findByKey(meseTxt);
                 if (mese == null) {
                     break;

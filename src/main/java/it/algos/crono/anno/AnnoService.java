@@ -47,7 +47,6 @@ public class AnnoService extends CronoService<AnnoEntity> {
     }
 
     protected void fixPreferenze() {
-        super.keyPropertyName = KEY_NAME;
         super.collectionNameParent = "secolo";
     }
 

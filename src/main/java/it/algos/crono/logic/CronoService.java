@@ -10,6 +10,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static it.algos.vbase.boot.BaseCost.ID_LENGTH;
+import static it.algos.vbase.boot.BaseCost.VUOTA;
 
 /**
  * Project crono
@@ -20,7 +21,7 @@ import static it.algos.vbase.boot.BaseCost.ID_LENGTH;
  */
 public abstract class CronoService<T extends AbstractEntity> extends ModuloService<T> {
 
-    protected String keyPropertyName;
+//    protected String keyPropertyName;
 
     @Autowired
     public DateService dateService;
@@ -53,6 +54,7 @@ public abstract class CronoService<T extends AbstractEntity> extends ModuloServi
     }
 
     public T findByKey(final String keyValue) {
+        String keyPropertyName= annotationService.getKeyProperty(entityClass).orElse(VUOTA);
         if (textService.isValid(keyPropertyName)) {
             return super.findOneByProperty(keyPropertyName, keyValue);
         } else {

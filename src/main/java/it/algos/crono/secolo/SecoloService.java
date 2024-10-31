@@ -49,7 +49,6 @@ public class SecoloService extends CronoService<SecoloEntity> {
     }
 
     protected void fixPreferenze() {
-        super.keyPropertyName = KEY_NAME;
     }
 
     /**

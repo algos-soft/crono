@@ -42,7 +42,6 @@ public class MeseService extends CronoService<MeseEntity> {
     }
 
     protected void fixPreferenze() {
-        super.keyPropertyName = KEY_NAME;
     }
 
     /**
