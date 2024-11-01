@@ -206,7 +206,7 @@ public class SecoloService extends CronoService<SecoloEntity> {
             return RisultatoReset.nonCostruito;
         }
 
-        return super.bulkInsertEntities(listaBeans, collectionName);
+        return super.bulkInsertEntitiesDelete(listaBeans);
     }
 
 

@@ -89,7 +89,7 @@ public class MeseService extends CronoService<MeseEntity> {
             }
         }
 
-        return super.bulkInsertEntities(listaBeans, collectionName);
+        return super.bulkInsertEntitiesDelete(listaBeans);
     }
 
 

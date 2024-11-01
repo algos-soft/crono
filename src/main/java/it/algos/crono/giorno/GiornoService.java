@@ -96,7 +96,7 @@ public class GiornoService extends CronoService<GiornoEntity> {
         }
 
         listaBeans = getLista();
-        return super.bulkInsertEntities(listaBeans, collectionName);
+        return super.bulkInsertEntitiesDelete(listaBeans);
     }
 
 

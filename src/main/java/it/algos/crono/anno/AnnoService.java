@@ -102,7 +102,7 @@ public class AnnoService extends CronoService<AnnoEntity> {
             creaDopo(k);
         }
 
-        return super.bulkInsertEntities(listaBeans, collectionName);
+        return super.bulkInsertEntitiesDelete(listaBeans);
     }
 
     public void creaPrima(int numeroProgressivo) {
