@@ -5,7 +5,6 @@ import com.vaadin.flow.data.provider.SortDirection;
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.enumeration.RisultatoDelete;
 import it.algos.vbase.enumeration.RisultatoReset;
-import it.algos.vbase.enumeration.TypeList;
 import it.algos.vbase.enumeration.TypeLog;
 import it.algos.vbase.list.AList;
 import it.algos.vbase.logic.ModuloService;
@@ -88,8 +87,6 @@ public abstract class ModuloTest extends AlgosTest {
 
     protected RisultatoReset risultatoReset;
 
-    protected TypeList typeList;
-
     protected AList listaView;
 
     protected MongoCollection<Document> collection;
@@ -140,7 +137,6 @@ public abstract class ModuloTest extends AlgosTest {
         this.methods = null;
         this.risultatoDelete = null;
         this.risultatoReset = null;
-        this.typeList = null;
     }
 
     @Test
