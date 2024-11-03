@@ -1,7 +1,6 @@
 package it.algos.vbase;
 
 import it.algos.vbase.entity.AbstractEntity;
-import it.algos.vbase.enumeration.TypeField;
 import it.algos.vbase.logic.ModuloService;
 import it.algos.vbase.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,8 +84,6 @@ public abstract class AlgosTest {
 
     protected int ottenutoIntero;
 
-    protected TypeField typeField;
-
     protected long inizio;
 
     protected List<String> sorgenteArray;
@@ -136,7 +133,6 @@ public abstract class AlgosTest {
         listaTable = null;
         listaEntity = null;
         object = null;
-        typeField = null;
         listaClazz = null;
         pos = 0;
     }
