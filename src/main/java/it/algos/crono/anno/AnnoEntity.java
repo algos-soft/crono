@@ -3,7 +3,7 @@ package it.algos.crono.anno;
 import it.algos.crono.secolo.SecoloEntity;
 import it.algos.vbase.annotation.*;
 import it.algos.vbase.entity.AbstractEntity;
-import it.algos.vbase.enumeration.CheckBoxStatus;
+import it.algos.vbase.enumeration.TriState;
 import it.algos.vbase.enumeration.RefSearchType;
 import it.algos.vbase.enumeration.TBool;
 import it.algos.vbase.enumeration.TypeBool;
@@ -42,7 +42,7 @@ public class AnnoEntity extends AbstractEntity {
     private SecoloEntity secolo;
 
     @IBoolean(type = TypeBool.checkIcon)
-    @ISearch(checkBoxInitialStatus = CheckBoxStatus.vero, tooltip = "Anni dopoCristo/anteCristo")
+    @ISearch(checkBoxInitialStatus = TriState.vero, tooltip = "Anni dopoCristo/anteCristo")
     @IFieldList(headerText = "D.C.")
     private boolean dopoCristo;
 

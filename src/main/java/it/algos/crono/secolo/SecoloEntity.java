@@ -2,7 +2,7 @@ package it.algos.crono.secolo;
 
 import it.algos.vbase.annotation.*;
 import it.algos.vbase.entity.AbstractEntity;
-import it.algos.vbase.enumeration.CheckBoxStatus;
+import it.algos.vbase.enumeration.TriState;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -35,7 +35,7 @@ public class SecoloEntity extends AbstractEntity {
     private int ultimo;
 
     @IBoolean()
-    @ISearch(checkBoxInitialStatus = CheckBoxStatus.vero, tooltip = "Secoli dopoCristo/anteCristo")
+    @ISearch(checkBoxInitialStatus = TriState.vero, tooltip = "Secoli dopoCristo/anteCristo")
     @IFieldList(headerText = "D.C.")
     private boolean dopoCristo;
 
