@@ -1,7 +1,6 @@
 package it.algos.crono.giorno;
 
 import it.algos.crono.mese.MeseEntity;
-import it.algos.crono.mese.MeseService;
 import it.algos.vbase.annotation.*;
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.enumeration.RefSearchType;
@@ -39,7 +38,7 @@ public class GiornoEntity extends AbstractEntity {
     @DBRef
     @ICombo(sortProperty = "ordine")
     @ISearch(refSearchType = RefSearchType.combo, placeholder = "Mesi")
-    @IFieldList(headerText = "Mese", width = LAR)
+    @IFieldList(linkedProperty = "nome", headerText = "Mese", width = 14)
     @IFieldForm(linkedProperty = "nome", placeholder = "Mesi")
     private MeseEntity mese;
 
@@ -60,7 +59,7 @@ public class GiornoEntity extends AbstractEntity {
 
         MeseEntity mese = getMese();
         org.bson.Document docMese = mese.toDocument();
-        org.bson.Document doc= new org.bson.Document("id", getId())
+        org.bson.Document doc = new org.bson.Document("id", getId())
                 .append("ordine", getOrdine())
                 .append("nome", getNome())
                 .append("mese", getMese().toDocument())
