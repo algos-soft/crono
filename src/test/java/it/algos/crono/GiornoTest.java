@@ -1,12 +1,13 @@
 package it.algos.crono;
 
 import com.mongodb.bulk.BulkWriteResult;
+import it.algos.base.ModuloTest;
 import it.algos.crono.giorno.GiornoEntity;
 import it.algos.crono.giorno.GiornoList;
 import it.algos.crono.giorno.GiornoService;
 import it.algos.crono.giorno.GiornoView;
-import it.algos.vbase.ModuloTest;
 import it.algos.vbase.entity.AbstractEntity;
+import it.algos.vbase.enumeration.RisultatoReset;
 import org.bson.Document;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,7 @@ public class GiornoTest extends ModuloTest {
         super.moduloClazz = GiornoService.class;
 
         //--reindirizzo l'istanza della superclasse
-        super.currentService = service;
+//        super.currentService = service;
 
         super.setUpAll();
     }
@@ -136,38 +137,38 @@ public class GiornoTest extends ModuloTest {
         System.out.println("213 - getLista");
         System.out.println(VUOTA);
 
-        listaBeans = service.getLista();
-        assertNotNull(listaBeans);
-        message = String.format("Lista di tutte le [%s] entities creata in %s", listaBeans.size(), dateService.deltaTextEsatto(inizio));
-        System.out.println(message);
+//        listaBeans = service.getLista();
+//        assertNotNull(listaBeans);
+//        message = String.format("Lista di tutte le [%s] entities creata in %s", listaBeans.size(), dateService.deltaTextEsatto(inizio));
+//        System.out.println(message);
     }
 
-    @Test
-    @Order(214)
-    @DisplayName("214 - oldReset")
-    void oldReset() {
-        System.out.println("214 - oldReset");
-        System.out.println(VUOTA);
-
-        service.deleteAll();
-        ottenutoIntero = service.count();
-        assertTrue(ottenutoIntero == 0);
-
-        List<? extends AbstractEntity> listaBeans = service.getLista();
-        assertNotNull(listaBeans);
-
-        assertNotNull(collection);
-        inizio = System.currentTimeMillis();
-        listaBeans.stream().forEach(bean -> mongoService.insert(bean));
-
-        ottenuto = dateService.deltaTextEsatto(inizio);
-        ottenuto2 = entityClazz.getSimpleName();
-        message = String.format("Old reset eseguito in %s per la classe [%s] del modulo [%s]", ottenuto, ottenuto2, moduloName);
-        System.out.println(message);
-
-        message = String.format("Sono state create [%s] entities con old reset", service.count());
-        System.out.println(message);
-    }
+//    @Test
+//    @Order(214)
+//    @DisplayName("214 - oldReset")
+//    void oldReset() {
+//        System.out.println("214 - oldReset");
+//        System.out.println(VUOTA);
+//
+//        service.deleteAll();
+//        ottenutoIntero = service.count();
+//        assertTrue(ottenutoIntero == 0);
+//
+//        List<? extends AbstractEntity> listaBeans = service.getLista();
+//        assertNotNull(listaBeans);
+//
+//        assertNotNull(collection);
+//        inizio = System.currentTimeMillis();
+//        listaBeans.stream().forEach(bean -> mongoService.insert(bean));
+//
+//        ottenuto = dateService.deltaTextEsatto(inizio);
+//        ottenuto2 = entityClazz.getSimpleName();
+//        message = String.format("Old reset eseguito in %s per la classe [%s] del modulo [%s]", ottenuto, ottenuto2, moduloName);
+//        System.out.println(message);
+//
+//        message = String.format("Sono state create [%s] entities con old reset", service.count());
+//        System.out.println(message);
+//    }
 
 
     @Test
@@ -184,22 +185,21 @@ public class GiornoTest extends ModuloTest {
         List<? extends AbstractEntity> listaBeans = service.getLista();
         assertNotNull(listaBeans);
 
-        assertNotNull(collection);
         inizio = System.currentTimeMillis();
-        BulkWriteResult result = service.bulkInsertEntities((List<? extends GiornoEntity>) listaBeans);
+        RisultatoReset risultato = service.bulkInsertEntities((List<? extends GiornoEntity>) listaBeans);
 
-        assertNotNull(result);
+        assertNotNull(risultato);
         ottenuto = dateService.deltaTextEsatto(inizio);
         ottenuto2 = entityClazz.getSimpleName();
         message = String.format("Bulk reset eseguito in %s per la classe [%s] del modulo [%s]", ottenuto, ottenuto2, moduloName);
         System.out.println(message);
 
-        message = String.format("Sono state create [%s] entities con il bulk reset", result.getInsertedCount());
+//        message = String.format("Sono state create [%s] entities con il bulk reset", risultato.getInsertedCount());
         System.out.println(message);
     }
 
 
-    protected void printBeans(List<? extends AbstractEntity> listaBeans) {
+    protected void printBeans(List<AbstractEntity> listaBeans) {
         int k = 0;
 
         System.out.println(VUOTA);

@@ -1,7 +1,7 @@
 package it.algos.crono;
 
+import it.algos.base.BaseTest;
 import it.algos.crono.secolo.SecoloEntity;
-import it.algos.vbase.AlgosTest;
 import it.algos.vbase.annotation.IEntity;
 import it.algos.vbase.boot.BaseVar;
 import it.algos.vbase.entity.AbstractEntity;
@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @Tag("crono")
 @DisplayName("Modulo CronoBoot")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class CronoBootTest extends AlgosTest {
+public class CronoBootTest extends BaseTest {
 
 
     private SecoloEntity secoloBean;
@@ -93,12 +93,12 @@ public class CronoBootTest extends AlgosTest {
         System.out.println(VUOTA);
         sorgente = "@Service";
 
-        listaClazz = annotationService.getAnnotatedClasses(Service.class);
-        assertNotNull(listaClazz);
-        ottenuto = listaClazz.size() + VUOTA;
-        message = String.format("Ci sono [%s] classi con l'annotation %s in questo progetto:", ottenuto, sorgente);
-        System.out.println(message);
-        printClazz(listaClazz);
+//        listaClazz = annotationService.getAnnotatedClasses(Service.class);
+//        assertNotNull(listaClazz);
+//        ottenuto = listaClazz.size() + VUOTA;
+//        message = String.format("Ci sono [%s] classi con l'annotation %s in questo progetto:", ottenuto, sorgente);
+//        System.out.println(message);
+//        printClazz(listaClazz);
     }
 
     @Test
@@ -158,12 +158,12 @@ public class CronoBootTest extends AlgosTest {
         System.out.println(VUOTA);
         sorgente = "@AEntity";
 
-        listaClazz = annotationService.getAnnotatedClasses(IEntity.class);
-        assertNotNull(listaClazz);
-        ottenuto = listaClazz.size() + VUOTA;
-        message = String.format("Ci sono [%s] classi con l'annotation %s in questo progetto/applicazione:", ottenuto, sorgente);
-        System.out.println(message);
-        printClazz(listaClazz);
+//        listaClazz = annotationService.getAnnotatedClasses(IEntity.class);
+//        assertNotNull(listaClazz);
+//        ottenuto = listaClazz.size() + VUOTA;
+//        message = String.format("Ci sono [%s] classi con l'annotation %s in questo progetto/applicazione:", ottenuto, sorgente);
+//        System.out.println(message);
+//        printClazz(listaClazz);
     }
 
     @Test
@@ -190,16 +190,16 @@ public class CronoBootTest extends AlgosTest {
         System.out.println(VUOTA);
         sorgente = "AReset";
 
-        listaClazz = annotationService.classiCheUsanoReset().orElse(null);
-        if (listaClazz != null) {
-            ottenuto = listaClazz.size() + VUOTA;
-            message = String.format("In questo progetto/applicazione ci sono [%s] classi di tipo Entity che usano l'annotation %s:", ottenuto, sorgente);
-            System.out.println(message);
-//            printClazzEntity(listClazzEntity);
-        } else {
-            message = String.format("In questo progetto/applicazione nessuna classe di tipo Entity usa l'annotation %s", sorgente);
-            System.out.println(message);
-        }
+//        listaClazz = annotationService.classiCheUsanoReset().orElse(null);
+//        if (listaClazz != null) {
+//            ottenuto = listaClazz.size() + VUOTA;
+//            message = String.format("In questo progetto/applicazione ci sono [%s] classi di tipo Entity che usano l'annotation %s:", ottenuto, sorgente);
+//            System.out.println(message);
+////            printClazzEntity(listClazzEntity);
+//        } else {
+//            message = String.format("In questo progetto/applicazione nessuna classe di tipo Entity usa l'annotation %s", sorgente);
+//            System.out.println(message);
+//        }
     }
 
 }

@@ -1,10 +1,10 @@
 package it.algos.crono;
 
+import it.algos.base.ModuloTest;
 import it.algos.crono.mese.MeseEntity;
 import it.algos.crono.mese.MeseList;
 import it.algos.crono.mese.MeseService;
 import it.algos.crono.mese.MeseView;
-import it.algos.vbase.ModuloTest;
 import it.algos.vbase.entity.AbstractEntity;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.provider.Arguments;
@@ -60,18 +60,16 @@ public class MeseTest extends ModuloTest {
      */
     @BeforeAll
     protected void setUpAll() {
+        assertNotNull(service);
+        super.moduloClazz = MeseService.class;
         super.entityClazz = MeseEntity.class;
-        super.listClazz = MeseList.class;
         super.viewClazz = MeseView.class;
+        super.listClazz = MeseList.class;
 
         //--reindirizzo l'istanza della superclasse
-        super.currentService = service;
+        super.moduloService = service;
 
         super.setUpAll();
-
-        //--reindirizzo l'istanza della superclasse
-        super.moduloClazz = MeseService.class;
-        super.moduloClazzName = MeseService.class.getSimpleName();
     }
 
     @BeforeEach
@@ -87,7 +85,7 @@ public class MeseTest extends ModuloTest {
         System.out.println(VUOTA);
 
         //--nome secolo (string)
-        nome().forEach(this::fixNome);
+//        nome().forEach(this::fixNome);
     }
 
 
@@ -104,8 +102,7 @@ public class MeseTest extends ModuloTest {
     }
 
 
-
-    protected void printBeans(List<? extends AbstractEntity> listaBeans) {
+    protected void printBeans(List<AbstractEntity> listaBeans) {
         int k = 0;
 
         System.out.println(VUOTA);

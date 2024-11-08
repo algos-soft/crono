@@ -1,10 +1,10 @@
 package it.algos.crono;
 
+import it.algos.base.ModuloTest;
 import it.algos.crono.secolo.SecoloEntity;
 import it.algos.crono.secolo.SecoloList;
 import it.algos.crono.secolo.SecoloService;
 import it.algos.crono.secolo.SecoloView;
-import it.algos.vbase.ModuloTest;
 import it.algos.vbase.entity.AbstractEntity;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.provider.Arguments;
@@ -161,7 +161,7 @@ public class SecoloTest extends ModuloTest {
         super.viewClazz = SecoloView.class;
 
         //--reindirizzo l'istanza della superclasse
-        super.currentService = modulo;
+//        super.currentService = modulo;
 
         super.setUpAll();
 
@@ -207,9 +207,9 @@ public class SecoloTest extends ModuloTest {
         System.out.println("103 - findAllForNome (ascendente)");
         System.out.println(VUOTA);
 
-        listaStr = modulo.findAllForNome();
-        assertNotNull(listaStr);
-        print(listaStr);
+        stringArray = modulo.findAllForNome();
+        assertNotNull(stringArray);
+        print(stringArray);
     }
 
 
@@ -220,9 +220,9 @@ public class SecoloTest extends ModuloTest {
         System.out.println("104 - findAllForNome (discendente)");
         System.out.println(VUOTA);
 
-        listaStr = modulo.findAllForNomeReverse();
-        assertNotNull(listaStr);
-        print(listaStr);
+        stringArray = modulo.findAllForNomeReverse();
+        assertNotNull(stringArray);
+        print(stringArray);
     }
 
     @Test

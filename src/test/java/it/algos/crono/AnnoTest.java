@@ -1,10 +1,10 @@
 package it.algos.crono;
 
+import it.algos.base.ModuloTest;
 import it.algos.crono.anno.AnnoEntity;
 import it.algos.crono.anno.AnnoList;
 import it.algos.crono.anno.AnnoService;
 import it.algos.crono.anno.AnnoView;
-import it.algos.vbase.ModuloTest;
 import it.algos.vbase.entity.AbstractEntity;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.provider.Arguments;
@@ -58,7 +58,7 @@ public class AnnoTest extends ModuloTest {
         super.viewClazz = AnnoView.class;
 
         //--reindirizzo l'istanza della superclasse
-        super.currentService = service;
+//        super.currentService = service;
 
         super.setUpAll();
 
@@ -146,7 +146,7 @@ public class AnnoTest extends ModuloTest {
         System.out.println(message);
     }
 
-    protected void printBeans(List<? extends AbstractEntity> listaBeans) {
+    protected void printBeans(List<AbstractEntity> listaBeans) {
         int k = 0;
 
         System.out.println(VUOTA);
