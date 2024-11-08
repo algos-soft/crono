@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Document(collection = "mese")
 @IReset()
-@IEntity(keyProperty = "sigla", sortProperty = "ordine")
+@IEntity(keyProperty = "sigla")
 public class MeseEntity extends AbstractEntity {
 
     @Indexed(unique = true)

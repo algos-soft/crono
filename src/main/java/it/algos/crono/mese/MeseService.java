@@ -88,8 +88,11 @@ public class MeseService extends CronoService<MeseEntity> {
                 listaBeans.add(newBean);
             }
         }
+        List<MeseEntity> listaBeansInverse=listaBeans.reversed();
 
-        return super.bulkInsertEntitiesDelete(listaBeans);
+
+        return super.bulkInsertEntitiesDelete(listaBeansInverse);
+//        return super.bulkInsertEntitiesDelete(listaBeans);
     }
 
 
