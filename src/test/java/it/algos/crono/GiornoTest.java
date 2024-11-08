@@ -1,6 +1,5 @@
 package it.algos.crono;
 
-import com.mongodb.bulk.BulkWriteResult;
 import it.algos.base.ModuloTest;
 import it.algos.crono.giorno.GiornoEntity;
 import it.algos.crono.giorno.GiornoList;

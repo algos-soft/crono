@@ -2,13 +2,10 @@ package it.algos.crono;
 
 import it.algos.base.BaseTest;
 import it.algos.crono.secolo.SecoloEntity;
-import it.algos.vbase.annotation.IEntity;
-import it.algos.vbase.boot.BaseVar;
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.logic.ModuloService;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
