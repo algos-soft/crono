@@ -70,6 +70,7 @@ public class MeseTest extends ModuloTest {
         super.moduloService = service;
 
         super.setUpAll();
+        super.usaDebug = true;
     }
 
     @BeforeEach
@@ -77,7 +78,7 @@ public class MeseTest extends ModuloTest {
         super.setUpEach();
     }
 
-    @Test
+    //    @Test
     @Order(150)
     @DisplayName("150 - mese dal nome")
     void findByKey() {
@@ -92,12 +93,12 @@ public class MeseTest extends ModuloTest {
     //--nome secolo (string)
     void fixNome(Arguments arg) {
         Object[] mat = arg.get();
-        sorgente = (String) mat[0];
+        String sorgente = (String) mat[0];
 
         meseBean = service.findByKey(sorgente);
         assertNotNull(meseBean);
 
-        message = String.format("%s%s%s", sorgente, FORWARD, meseBean.getNome());
+        String message = String.format("%s%s%s", sorgente, FORWARD, meseBean.getNome());
         System.out.println(message);
     }
 

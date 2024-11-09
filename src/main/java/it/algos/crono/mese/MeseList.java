@@ -12,8 +12,8 @@ import static it.algos.vbase.boot.BaseCost.*;
                 "nome",
                 "giorni",
                 "primo",
-                "ultimo"}
-)
+                "ultimo"},
+        sortProperty = "ordine")
 public class MeseList extends CronoList<MeseEntity> {
 
     public MeseList() {

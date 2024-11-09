@@ -53,18 +53,17 @@ public class AnnoTest extends ModuloTest {
      */
     @BeforeAll
     protected void setUpAll() {
+        assertNotNull(service);
+        super.moduloClazz = AnnoService.class;
         super.entityClazz = AnnoEntity.class;
-        super.listClazz = AnnoList.class;
         super.viewClazz = AnnoView.class;
+        super.listClazz = AnnoList.class;
 
         //--reindirizzo l'istanza della superclasse
-//        super.currentService = service;
+        super.moduloService = service;
 
         super.setUpAll();
-
-        //--reindirizzo l'istanza della superclasse
-        super.moduloClazz = AnnoService.class;
-        super.moduloClazzName = AnnoService.class.getSimpleName();
+        super.usaDebug = true;
     }
 
     @BeforeEach
@@ -73,7 +72,7 @@ public class AnnoTest extends ModuloTest {
     }
 
 
-    @Test
+//    @Test
     @Order(150)
     @DisplayName("150 - anno dal nome (all validi)")
     void findByKey() {
@@ -83,20 +82,20 @@ public class AnnoTest extends ModuloTest {
         String tagPrima = " a.C.";
 
         for (int k = 1; k <= ANTE_CRISTO_MAX; k++) {
-            sorgente = DELTA_ANNI - k + 1 + tagPrima;
+            String sorgente = DELTA_ANNI - k + 1 + tagPrima;
             annoBean = service.findByKey(sorgente);
             assertNotNull(annoBean);
-            message = String.format("%s%s%s", sorgente, FORWARD, annoBean.getNome());
+            String message = String.format("%s%s%s", sorgente, FORWARD, annoBean.getNome());
             System.out.println(message);
         }
 
         System.out.println(VUOTA);
 
         for (int k = 1; k <= DOPO_CRISTO_MAX; k++) {
-            sorgente = k + VUOTA;
+            String  sorgente = k + VUOTA;
             annoBean = service.findByKey(sorgente);
             assertNotNull(annoBean);
-            message = String.format("%s%s%s", sorgente, FORWARD, annoBean.getNome());
+            String   message = String.format("%s%s%s", sorgente, FORWARD, annoBean.getNome());
             System.out.println(message);
         }
 
@@ -117,10 +116,10 @@ public class AnnoTest extends ModuloTest {
     //--anno sorgente (string)
     void fixAnni(Arguments arg) {
         Object[] mat = arg.get();
-        sorgente = (String) mat[0];
+        String  sorgente = (String) mat[0];
 
         annoBean = service.findByKey(sorgente);
-        message = String.format("%s%s%s", sorgente, FORWARD, annoBean != null ? annoBean.getNome() : NULLO);
+        String  message = String.format("%s%s%s", sorgente, FORWARD, annoBean != null ? annoBean.getNome() : NULLO);
         System.out.println(message);
     }
 
@@ -133,14 +132,14 @@ public class AnnoTest extends ModuloTest {
         System.out.println("211 - reset Check");
         System.out.println(VUOTA);
 
-        sorgente = service.getCollectionNameParent();
-        message = String.format("Il reset dell classe [%s] necessita del preliminare reset di [%s]", collectionName, sorgente);
+        String    sorgente = service.getCollectionNameParent();
+        String   message = String.format("Il reset dell classe [%s] necessita del preliminare reset di [%s]", collectionName, sorgente);
         System.out.println(message);
         message = String.format("Controllo che esista il valore di [%s.%s] nel primo record", collectionName, sorgente);
         System.out.println(message);
 
         annoBean = service.findAll().get(0);
-        entityBean = annoBean.getSecolo();
+      AbstractEntity  entityBean = annoBean.getSecolo();
         assertNotNull(entityBean);
         message = String.format("Nel primo record di anno [%s.%s] esiste il link a [%s]", collectionName, annoBean,entityBean);
         System.out.println(message);

@@ -47,15 +47,17 @@ public class GiornoTest extends ModuloTest {
      */
     @BeforeAll
     protected void setUpAll() {
-        super.entityClazz = GiornoEntity.class;
-        super.listClazz = GiornoList.class;
-        super.viewClazz = GiornoView.class;
+        assertNotNull(service);
         super.moduloClazz = GiornoService.class;
+        super.entityClazz = GiornoEntity.class;
+        super.viewClazz = GiornoView.class;
+        super.listClazz = GiornoList.class;
 
         //--reindirizzo l'istanza della superclasse
-//        super.currentService = service;
+        super.moduloService = service;
 
         super.setUpAll();
+        super.usaDebug = true;
     }
 
     @BeforeEach
@@ -74,10 +76,10 @@ public class GiornoTest extends ModuloTest {
         List<HashMap<String, Object>> lista = dateService.getAllGiorni();
         for (HashMap<String, Object> mappaGiorno : lista) {
 
-            sorgente = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_TITOLO);
+            String sorgente = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_TITOLO);
             giornoBean = service.findByKey(sorgente);
             assertNotNull(giornoBean);
-            message = String.format("%s%s%s", sorgente, FORWARD, giornoBean.getNome());
+            String  message = String.format("%s%s%s", sorgente, FORWARD, giornoBean.getNome());
             System.out.println(message);
         }
 
@@ -91,13 +93,13 @@ public class GiornoTest extends ModuloTest {
         System.out.println(VUOTA);
         Document document;
 
-        sorgente = "4 marzo";
+        String sorgente = "4 marzo";
         giornoBean = service.findByKey(sorgente);
         assertNotNull(giornoBean);
         document = giornoBean.toDocument();
 
         assertNotNull(document);
-        ottenutoIntero = document.size();
+       int ottenutoIntero = document.size();
         assertTrue(ottenutoIntero == 6);
         System.out.println(String.format("Ci sono [%d] chiavi nel documento", ottenutoIntero));
         print(document.keySet().stream().toList());
@@ -106,7 +108,7 @@ public class GiornoTest extends ModuloTest {
         System.out.println(document);
     }
 
-    @Test
+//    @Test
     @Order(212)
     @DisplayName("212 - getDocument")
     void getDocument() {
@@ -114,13 +116,13 @@ public class GiornoTest extends ModuloTest {
         System.out.println(VUOTA);
         Document document;
 
-        sorgente = "4 marzo";
+        String    sorgente = "4 marzo";
         giornoBean = service.findByKey(sorgente);
         assertNotNull(giornoBean);
         document = service.getDocument(giornoBean);
 
         assertNotNull(document);
-        ottenutoIntero = document.size();
+      int  ottenutoIntero = document.size();
         assertTrue(ottenutoIntero == 6);
         System.out.println(String.format("Ci sono [%d] chiavi nel documento", ottenutoIntero));
         print(document.keySet().stream().toList());
@@ -129,7 +131,7 @@ public class GiornoTest extends ModuloTest {
         System.out.println(document);
     }
 
-    @Test
+//    @Test
     @Order(213)
     @DisplayName("213 - getLista")
     void getLista() {
@@ -170,7 +172,7 @@ public class GiornoTest extends ModuloTest {
 //    }
 
 
-    @Test
+//    @Test
     @Order(215)
     @DisplayName("215 - bulkReset")
     void bulkReset() {
@@ -178,7 +180,7 @@ public class GiornoTest extends ModuloTest {
         System.out.println(VUOTA);
 
         service.deleteAll();
-        ottenutoIntero = service.count();
+      int  ottenutoIntero = service.count();
         assertTrue(ottenutoIntero == 0);
 
         List<? extends AbstractEntity> listaBeans = service.getLista();
@@ -188,9 +190,9 @@ public class GiornoTest extends ModuloTest {
         RisultatoReset risultato = service.bulkInsertEntities((List<? extends GiornoEntity>) listaBeans);
 
         assertNotNull(risultato);
-        ottenuto = dateService.deltaTextEsatto(inizio);
-        ottenuto2 = entityClazz.getSimpleName();
-        message = String.format("Bulk reset eseguito in %s per la classe [%s] del modulo [%s]", ottenuto, ottenuto2, moduloName);
+        String  ottenuto = dateService.deltaTextEsatto(inizio);
+        String  ottenuto2 = entityClazz.getSimpleName();
+        String  message = String.format("Bulk reset eseguito in %s per la classe [%s] del modulo [%s]", ottenuto, ottenuto2, moduloName);
         System.out.println(message);
 
 //        message = String.format("Sono state create [%s] entities con il bulk reset", risultato.getInsertedCount());

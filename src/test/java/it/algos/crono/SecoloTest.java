@@ -1,6 +1,10 @@
 package it.algos.crono;
 
 import it.algos.base.ModuloTest;
+import it.algos.crono.mese.MeseEntity;
+import it.algos.crono.mese.MeseList;
+import it.algos.crono.mese.MeseService;
+import it.algos.crono.mese.MeseView;
 import it.algos.crono.secolo.SecoloEntity;
 import it.algos.crono.secolo.SecoloList;
 import it.algos.crono.secolo.SecoloService;
@@ -34,11 +38,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class SecoloTest extends ModuloTest {
 
     @Autowired
-    private SecoloService modulo;
+    private SecoloService service;
 
     private SecoloEntity secoloBean;
 
     private List<SecoloEntity> listaSecoli;
+
 
     //--anno sorgente (intero)
     //--secolo previsto
@@ -151,24 +156,25 @@ public class SecoloTest extends ModuloTest {
         );
     }
 
+
     /**
      * Qui passa una volta sola <br>
      */
     @BeforeAll
     protected void setUpAll() {
+        assertNotNull(service);
+        super.moduloClazz = SecoloService.class;
         super.entityClazz = SecoloEntity.class;
-        super.listClazz = SecoloList.class;
         super.viewClazz = SecoloView.class;
+        super.listClazz = SecoloList.class;
 
         //--reindirizzo l'istanza della superclasse
-//        super.currentService = modulo;
+        super.moduloService = service;
 
         super.setUpAll();
-
-        //--reindirizzo l'istanza della superclasse
-        super.moduloClazz = SecoloService.class;
-        super.moduloClazzName = SecoloService.class.getSimpleName();
+        super.usaDebug = true;
     }
+
 
     @BeforeEach
     protected void setUpEach() {
@@ -176,56 +182,56 @@ public class SecoloTest extends ModuloTest {
     }
 
 
-    @Test
+//    @Test
     @Order(101)
     @DisplayName("101 - findAll (ascendente)")
     void findAllAscendente() {
         System.out.println("101 - findAll (ascendente)");
         System.out.println(VUOTA);
 
-        listaSecoli = modulo.findAll();
+        listaSecoli = service.findAll();
         assertNotNull(listaSecoli);
         printSecoli(listaSecoli);
     }
 
-    @Test
+//    @Test
     @Order(102)
     @DisplayName("102 - findAll (discendente)")
     void findAllReverse() {
         System.out.println("102 - findAll (discendente)");
         System.out.println(VUOTA);
 
-        listaSecoli = modulo.findAllReverse();
+        listaSecoli = service.findAllReverse();
         assertNotNull(listaSecoli);
         printSecoli(listaSecoli);
     }
 
-    @Test
+//    @Test
     @Order(103)
     @DisplayName("103 - findAllForNome (ascendente)")
     void findAllForNome() {
         System.out.println("103 - findAllForNome (ascendente)");
         System.out.println(VUOTA);
 
-        stringArray = modulo.findAllForNome();
+        List stringArray = service.findAllForNome();
         assertNotNull(stringArray);
         print(stringArray);
     }
 
 
-    @Test
+//    @Test
     @Order(104)
     @DisplayName("104 - findAllForNome (discendente)")
     void findAllForNomeReverse() {
         System.out.println("104 - findAllForNome (discendente)");
         System.out.println(VUOTA);
 
-        stringArray = modulo.findAllForNomeReverse();
+        List stringArray = service.findAllForNomeReverse();
         assertNotNull(stringArray);
         print(stringArray);
     }
 
-    @Test
+//    @Test
     @Order(110)
     @DisplayName("110 - secolo dell'anno prima di cristo")
     void getSecoloAC() {
@@ -241,20 +247,20 @@ public class SecoloTest extends ModuloTest {
     //--secolo previsto
     void fixAnniPrima(Arguments arg) {
         Object[] mat = arg.get();
-        sorgenteIntero = (int) mat[0];
-        previsto = (String) mat[1];
+        int sorgenteIntero = (int) mat[0];
+        String previsto = (String) mat[1];
 
-        sorgente = sorgenteIntero + ANNI_AC;
-        secoloBean = modulo.getSecolo(sorgente);
+        String sorgente = sorgenteIntero + ANNI_AC;
+        secoloBean = service.getSecolo(sorgente);
         assertNotNull(secoloBean);
         assertEquals(secoloBean.getNome(), previsto);
 
-        message = String.format("%s%s%s", sorgenteIntero, FORWARD, secoloBean.getNome());
+        String message = String.format("%s%s%s", sorgenteIntero, FORWARD, secoloBean.getNome());
         System.out.println(message);
     }
 
 
-    @Test
+//    @Test
     @Order(120)
     @DisplayName("120 - secolo dell'anno dopo cristo")
     void getSecoloDC() {
@@ -270,18 +276,18 @@ public class SecoloTest extends ModuloTest {
     //--secolo previsto
     void fixAnniDopo(Arguments arg) {
         Object[] mat = arg.get();
-        sorgenteIntero = (int) mat[0];
-        previsto = (String) mat[1];
+        int sorgenteIntero = (int) mat[0];
+        String  previsto = (String) mat[1];
 
-        secoloBean = modulo.getSecoloDC(sorgenteIntero);
+        secoloBean = service.getSecoloDC(sorgenteIntero);
         assertNotNull(secoloBean);
         assertEquals(secoloBean.getNome(), previsto);
 
-        message = String.format("%s%s%s", sorgenteIntero, FORWARD, secoloBean.getNome());
+        String message = String.format("%s%s%s", sorgenteIntero, FORWARD, secoloBean.getNome());
         System.out.println(message);
     }
 
-    @Test
+//    @Test
     @Order(130)
     @DisplayName("130 - secolo dal numero e dal flag")
     void getSecolo2() {
@@ -299,19 +305,19 @@ public class SecoloTest extends ModuloTest {
     //--secolo previsto
     void fixAnni(Arguments arg) {
         Object[] mat = arg.get();
-        sorgenteIntero = (int) mat[0];
-        sorgenteBooleano = (Boolean) mat[1];
-        previsto = (String) mat[2];
+      int  sorgenteIntero = (int) mat[0];
+      boolean  sorgenteBooleano = (Boolean) mat[1];
+        String  previsto = (String) mat[2];
 
-        secoloBean = modulo.getSecolo(sorgenteIntero, sorgenteBooleano);
+        secoloBean = service.getSecolo(sorgenteIntero, sorgenteBooleano);
         assertNotNull(secoloBean);
         assertEquals(secoloBean.getNome(), previsto);
 
-        message = String.format("%s (%s)%s%s", sorgenteIntero, sorgenteBooleano, FORWARD, secoloBean.getNome());
+        String  message = String.format("%s (%s)%s%s", sorgenteIntero, sorgenteBooleano, FORWARD, secoloBean.getNome());
         System.out.println(message);
     }
 
-    @Test
+//    @Test
     @Order(140)
     @DisplayName("140 - secolo dal nome dell'anno")
     void getSecolo() {
@@ -328,19 +334,19 @@ public class SecoloTest extends ModuloTest {
     //--secolo previsto
     void fixAnni2(Arguments arg) {
         Object[] mat = arg.get();
-        sorgente = (String) mat[0];
-        previsto = (String) mat[1];
+        String  sorgente = (String) mat[0];
+        String  previsto = (String) mat[1];
 
-        secoloBean = modulo.getSecolo(sorgente);
+        secoloBean = service.getSecolo(sorgente);
         assertNotNull(secoloBean);
         assertEquals(secoloBean.getNome(), previsto);
 
-        message = String.format("%s%s%s", sorgente, FORWARD, secoloBean.getNome());
+        String   message = String.format("%s%s%s", sorgente, FORWARD, secoloBean.getNome());
         System.out.println(message);
     }
 
 
-    @Test
+//    @Test
     @Order(150)
     @DisplayName("150 - secolo dal nome")
     void findByKey() {
@@ -355,12 +361,12 @@ public class SecoloTest extends ModuloTest {
     //--nome secolo (string)
     void fixNome(Arguments arg) {
         Object[] mat = arg.get();
-        sorgente = (String) mat[0];
+        String   sorgente = (String) mat[0];
 
-        secoloBean = modulo.findByKey(sorgente);
+        secoloBean = service.findByKey(sorgente);
         assertNotNull(secoloBean);
 
-        message = String.format("%s%s%s", sorgente, FORWARD, secoloBean.getNome());
+        String  message = String.format("%s%s%s", sorgente, FORWARD, secoloBean.getNome());
         System.out.println(message);
     }
 

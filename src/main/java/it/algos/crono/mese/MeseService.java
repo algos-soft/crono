@@ -30,7 +30,7 @@ public class MeseService extends CronoService<MeseEntity> {
 
     private static final String KEY_NAME = FIELD_NAME_NOME;
 
-    private  List<MeseEntity> listaBeans;
+    private List<MeseEntity> listaBeans;
 
     /**
      * Costruttore invocato dalla sottoclasse concreta obbligatoriamente con due parametri <br>
@@ -88,7 +88,7 @@ public class MeseService extends CronoService<MeseEntity> {
                 listaBeans.add(newBean);
             }
         }
-        List<MeseEntity> listaBeansInverse=listaBeans.reversed();
+        List<MeseEntity> listaBeansInverse = listaBeans.reversed();
 
 
         return super.bulkInsertEntitiesDelete(listaBeansInverse);

@@ -56,7 +56,7 @@ public class CronoBootTest extends BaseTest {
     void getClazzService() {
         System.out.println("10 - getClazzService");
         System.out.println(VUOTA);
-        sorgente = "Service";
+        String sorgente = "Service";
 
 //        listClazzService = reflectionService.getClazzService();
 //        assertNotNull(listClazzService);
@@ -72,7 +72,7 @@ public class CronoBootTest extends BaseTest {
     void getClazzServiceProject() {
         System.out.println("11 - getClazzServiceProject");
         System.out.println(VUOTA);
-        sorgente = "Service";
+        String  sorgente = "Service";
 
 //        listClazzService = reflectionService.getClazzService(BaseVar.projectModulo);
 //        assertNotNull(listClazzService);
@@ -88,7 +88,7 @@ public class CronoBootTest extends BaseTest {
     void getAnnotatedService() {
         System.out.println("12 - getAnnotatedService");
         System.out.println(VUOTA);
-        sorgente = "@Service";
+        String  sorgente = "@Service";
 
 //        listaClazz = annotationService.getAnnotatedClasses(Service.class);
 //        assertNotNull(listaClazz);
@@ -104,7 +104,7 @@ public class CronoBootTest extends BaseTest {
     void getAnnotatedServiceClasses() {
         System.out.println("13 - getAnnotatedServiceClasses");
         System.out.println(VUOTA);
-        sorgente = "@Service";
+        String   sorgente = "@Service";
 
 //        listaClazz = annotationService.getAnnotatedServiceClasses();
 //        assertNotNull(listaClazz);
@@ -121,7 +121,7 @@ public class CronoBootTest extends BaseTest {
     void getClazzEntity() {
         System.out.println("20 - getClazzEntity");
         System.out.println(VUOTA);
-        sorgente = "AEntity";
+        String  sorgente = "AEntity";
 
 //        listClazzEntity = reflectionService.getClazzEntity();
 //        assertNotNull(listClazzEntity);
@@ -137,7 +137,7 @@ public class CronoBootTest extends BaseTest {
     void getClazzEntityProject() {
         System.out.println("21 - getClazzEntityProject");
         System.out.println(VUOTA);
-        sorgente = "AEntity";
+        String  sorgente = "AEntity";
 
 //        listClazzEntity = reflectionService.getClazzEntity(BaseVar.projectModulo);
 //        assertNotNull(listClazzEntity);
@@ -153,7 +153,7 @@ public class CronoBootTest extends BaseTest {
     void getAnnotatedEntity() {
         System.out.println("22 - getAnnotatedEntity");
         System.out.println(VUOTA);
-        sorgente = "@AEntity";
+        String   sorgente = "@AEntity";
 
 //        listaClazz = annotationService.getAnnotatedClasses(IEntity.class);
 //        assertNotNull(listaClazz);
@@ -169,7 +169,7 @@ public class CronoBootTest extends BaseTest {
     void getAnnotatedEntityClasses() {
         System.out.println("23 - getAnnotatedEntityClasses");
         System.out.println(VUOTA);
-        sorgente = "AEntity";
+        String   sorgente = "AEntity";
 
 //        listaClazz = annotationService.getAnnotatedEntityClasses();
 //        assertNotNull(listaClazz);
@@ -185,7 +185,7 @@ public class CronoBootTest extends BaseTest {
     void classiCheUsanoReset() {
         System.out.println("24 - classiCheUsanoReset");
         System.out.println(VUOTA);
-        sorgente = "AReset";
+        String  sorgente = "AReset";
 
 //        listaClazz = annotationService.classiCheUsanoReset().orElse(null);
 //        if (listaClazz != null) {
