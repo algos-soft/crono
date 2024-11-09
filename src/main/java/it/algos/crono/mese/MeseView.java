@@ -23,8 +23,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class MeseView extends AView {
 
 
-    MeseView(@Autowired MeseService moduloService) {
+    public MeseView(@Autowired MeseService moduloService) {
         super(moduloService, MeseList.class, MeseForm.class);
     }
 
-}// end of @Route CrudView class
+}// end of @Route AView class

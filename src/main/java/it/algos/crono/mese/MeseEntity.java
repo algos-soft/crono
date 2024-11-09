@@ -1,12 +1,12 @@
 package it.algos.crono.mese;
 
 import com.vaadin.flow.data.provider.SortDirection;
+import com.vaadin.flow.spring.annotation.SpringComponent;
 import it.algos.vbase.annotation.*;
 import it.algos.vbase.entity.AbstractEntity;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
