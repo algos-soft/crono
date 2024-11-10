@@ -17,4 +17,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 @DisplayName("Annotation Service")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class AnnotationServiceTest extends AnnotationServiceBaseTest {
+
+    @BeforeAll
+    protected void setUpAll() {
+        super.setUpAll();
+    }
+
+
+    @BeforeEach
+    protected void setUpEach() {
+        super.setUpEach();
+    }
+
 }
