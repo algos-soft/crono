@@ -21,8 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Route(value = "giorno", layout = MainLayout.class)
 @IView(menuGroup = Gruppo.CRONO, menuName = "Giorni", vaadin = VaadinIcon.CALENDAR)
-@IEntity(keyProperty = "sigla", sortProperty = "ordine")
-
 public class GiornoView extends AView {
 
     GiornoView(@Autowired GiornoService moduloService) {
