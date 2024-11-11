@@ -3,9 +3,9 @@ package it.algos.crono.anno;
 import it.algos.crono.secolo.SecoloEntity;
 import it.algos.vbase.annotation.*;
 import it.algos.vbase.entity.AbstractEntity;
-import it.algos.vbase.enumeration.TriState;
 import it.algos.vbase.enumeration.RefSearchType;
 import it.algos.vbase.enumeration.TBool;
+import it.algos.vbase.enumeration.TriState;
 import it.algos.vbase.enumeration.TypeBool;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -19,7 +19,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Document(collection = "anno")
 @IReset()
-@IEntity(keyProperty = "nome", sortProperty = "ordine")
+@IEntity(pluralName = "Anni", keyProperty = "nome", sortProperty = "ordine")
 public class AnnoEntity extends AbstractEntity {
 
 
