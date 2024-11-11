@@ -1,6 +1,6 @@
 package it.algos.crono;
 
-import it.algos.base.service.AnnotationServiceBaseTest;
+import it.algos.base.AnnotationServiceBaseTest;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
