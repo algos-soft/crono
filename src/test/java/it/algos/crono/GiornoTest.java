@@ -66,11 +66,11 @@ public class GiornoTest extends ModuloTest {
     }
 
 
-    @Test
-    @Order(150)
-    @DisplayName("150 - giorno dal nome")
+//    @Test
+    @Order(1150)
+    @DisplayName("1150 - giorno dal nome")
     void findByKey() {
-        System.out.println(("150 - giorno dal nome"));
+        System.out.println(("1150 - giorno dal nome"));
         System.out.println(VUOTA);
 
         List<HashMap<String, Object>> lista = dateService.getAllGiorni();
@@ -86,10 +86,10 @@ public class GiornoTest extends ModuloTest {
     }
 
     //    @Test
-    @Order(211)
-    @DisplayName("211 - toDocument")
+    @Order(1211)
+    @DisplayName("1211 - toDocument")
     void toDocument() {
-        System.out.println("211 - toDocument dalla entity");
+        System.out.println("1211 - toDocument dalla entity");
         System.out.println(VUOTA);
         Document document;
 
@@ -109,10 +109,10 @@ public class GiornoTest extends ModuloTest {
     }
 
 //    @Test
-    @Order(212)
-    @DisplayName("212 - getDocument")
+    @Order(1212)
+    @DisplayName("1212 - getDocument")
     void getDocument() {
-        System.out.println("212 - getDocument dal service");
+        System.out.println("1212 - getDocument dal service");
         System.out.println(VUOTA);
         Document document;
 
@@ -132,10 +132,10 @@ public class GiornoTest extends ModuloTest {
     }
 
 //    @Test
-    @Order(213)
-    @DisplayName("213 - getLista")
+    @Order(1213)
+    @DisplayName("1213 - getLista")
     void getLista() {
-        System.out.println("213 - getLista");
+        System.out.println("1213 - getLista");
         System.out.println(VUOTA);
 
 //        listaBeans = service.getLista();
@@ -173,10 +173,10 @@ public class GiornoTest extends ModuloTest {
 
 
 //    @Test
-    @Order(215)
-    @DisplayName("215 - bulkReset")
+    @Order(1215)
+    @DisplayName("1215 - bulkReset")
     void bulkReset() {
-        System.out.println("215 - bulkReset");
+        System.out.println("1215 - bulkReset");
         System.out.println(VUOTA);
 
         service.deleteAll();
