@@ -3,14 +3,14 @@ package it.algos.crono.secolo;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.html.Span;
 import it.algos.crono.list.CronoList;
-import it.algos.vbase.annotation.IViewList;
+import it.algos.vbase.annotation.IList;
 import it.algos.vbase.components.BAnchor;
 import it.algos.vbase.ui.dialog.BSpan;
 import it.algos.vbase.ui.wrapper.ASpan;
 
 import static it.algos.vbase.boot.BaseCost.*;
 
-@IViewList(espandiUltimaColonnaVisibile = false,
+@IList(espandiUltimaColonnaVisibile = false,
         columns = {"ordine",
                 "nome",
                 "primo",

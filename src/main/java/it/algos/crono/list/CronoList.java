@@ -1,8 +1,6 @@
 package it.algos.crono.list;
 
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.html.Span;
-import it.algos.vbase.annotation.IViewList;
+import it.algos.vbase.annotation.IList;
 import it.algos.vbase.constant.Bottone;
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.grid.AGrid;
@@ -11,8 +9,6 @@ import it.algos.vbase.list.RecordCounter;
 import it.algos.vbase.list.SelectedRecordCounter;
 import it.algos.vbase.ui.view.AView;
 
-import java.text.DecimalFormat;
-
 /**
  * Project wiki24
  * Created by Algos
@@ -20,7 +16,7 @@ import java.text.DecimalFormat;
  * Date: Tue, 28-Nov-2023
  * Time: 18:32
  */
-@IViewList(bottoni = {Bottone.RESET_DELETE, Bottone.SHOW})
+@IList(bottoni = {Bottone.RESET_DELETE, Bottone.SHOW})
 public class CronoList<T extends AbstractEntity> extends AList<T> {
 
     protected String infoCreazione;

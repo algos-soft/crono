@@ -1,12 +1,12 @@
 package it.algos.crono.mese;
 
 import it.algos.crono.list.CronoList;
-import it.algos.vbase.annotation.IViewList;
+import it.algos.vbase.annotation.IList;
 import it.algos.vbase.ui.wrapper.ASpan;
 
 import static it.algos.vbase.boot.BaseCost.*;
 
-@IViewList(espandiUltimaColonnaVisibile = false,
+@IList(espandiUltimaColonnaVisibile = false,
         columns = {"ordine",
                 "sigla",
                 "nome",
