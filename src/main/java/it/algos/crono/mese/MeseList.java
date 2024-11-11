@@ -28,7 +28,7 @@ public class MeseList extends CronoList<MeseEntity> {
     }
 
     protected void fixPreferenze() {
-        super.readOnly = true;
+//        super.readOnly = true;
     }
 
 
