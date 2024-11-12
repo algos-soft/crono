@@ -1,7 +1,6 @@
 package it.algos.crono.mese;
 
 import com.vaadin.flow.data.provider.SortDirection;
-import com.vaadin.flow.spring.annotation.SpringComponent;
 import it.algos.vbase.annotation.*;
 import it.algos.vbase.entity.AbstractEntity;
 import lombok.*;
@@ -14,7 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Document(collection = "mese")
 @IReset()
-@IEntity(keyProperty = "sigla", sortProperty = "ordine", sortDirection = SortDirection.DESCENDING)
+@IEntity(keyUniqueProperty = "sigla", sortProperty = "ordine", sortDirection = SortDirection.DESCENDING)
 public class MeseEntity extends AbstractEntity {
 
     @Indexed(unique = true)

@@ -19,7 +19,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Document(collection = "anno")
 @IReset()
-@IEntity(pluralName = "Anni", keyProperty = "nome", sortProperty = "ordine")
+@IEntity(pluralName = "Anni", keyUniqueProperty = "nome", sortProperty = "ordine")
 public class AnnoEntity extends AbstractEntity {
 
 
