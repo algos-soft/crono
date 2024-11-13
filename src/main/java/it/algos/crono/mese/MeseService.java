@@ -66,7 +66,6 @@ public class MeseService extends CronoService<MeseEntity> {
 
     @Override
     public RisultatoReset reset() {
-        String collectionName = annotationService.getCollectionName(MeseEntity.class);
         listaBeans = new ArrayList<>();
         MeseEntity newBean;
         int ordine;
@@ -90,9 +89,7 @@ public class MeseService extends CronoService<MeseEntity> {
         }
         List<MeseEntity> listaBeansInverse = listaBeans.reversed();
 
-
         return super.bulkInsertEntitiesDelete(listaBeansInverse);
-//        return super.bulkInsertEntitiesDelete(listaBeans);
     }
 
 
