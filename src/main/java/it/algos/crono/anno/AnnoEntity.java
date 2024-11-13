@@ -37,7 +37,7 @@ public class AnnoEntity extends AbstractEntity {
     @DBRef
     @ICombo(sortProperty = "ordine")
     @ISearch(refSearchType = RefSearchType.combo, placeholder = "Secoli")
-    @IFieldList(headerText = "Secolo", width = 12)
+    @IFieldList(linkedProperty = "nome",headerText = "Secolo", width = 12)
     @IFieldForm(linkedProperty = "nome", placeholder = "Mesi", clearButtonVisible = TBool.falso)
     private SecoloEntity secolo;
 

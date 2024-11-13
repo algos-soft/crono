@@ -29,7 +29,7 @@ public class AnnoList extends CronoList<AnnoEntity> {
     }
 
     protected void fixPreferenze() {
-        super.readOnly = true;
+//        super.readOnly = true;
     }
 
 
