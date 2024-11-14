@@ -29,8 +29,8 @@ public abstract class CronoService<T extends AbstractEntity> extends ModuloServi
     @Getter
     protected String collectionNameParent;
 
-    public CronoService(final Class entityClazz, final Class viewClazz) {
-        super(entityClazz, viewClazz);
+    public CronoService(final Class entityClazz) {
+        super(entityClazz);
     }
 
     protected ObjectId getObjectId(final String idStringValue) {

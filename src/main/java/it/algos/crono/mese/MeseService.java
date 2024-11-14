@@ -38,7 +38,7 @@ public class MeseService extends CronoService<MeseEntity> {
      * Regola la viewClazz @Route associata a questo Modulo <br>
      */
     public MeseService() {
-        super(MeseEntity.class, MeseView.class);
+        super(MeseEntity.class);
     }
 
     protected void fixPreferenze() {

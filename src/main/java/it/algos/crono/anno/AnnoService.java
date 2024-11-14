@@ -43,7 +43,7 @@ public class AnnoService extends CronoService<AnnoEntity> {
      * Regola la viewClazz @Route associata a questo Modulo <br>
      */
     public AnnoService() {
-        super(AnnoEntity.class, AnnoView.class);
+        super(AnnoEntity.class);
     }
 
     protected void fixPreferenze() {

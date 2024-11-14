@@ -45,7 +45,7 @@ public class SecoloService extends CronoService<SecoloEntity> {
      * Regola la viewClazz @Route associata a questo Modulo e la passa alla superclasse <br>
      */
     public SecoloService() {
-        super(SecoloEntity.class, SecoloView.class);
+        super(SecoloEntity.class);
     }
 
     protected void fixPreferenze() {

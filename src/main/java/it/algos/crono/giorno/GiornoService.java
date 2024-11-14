@@ -45,7 +45,7 @@ public class GiornoService extends CronoService<GiornoEntity> {
      * Regola la viewClazz @Route associata a questo Modulo <br>
      */
     public GiornoService() {
-        super(GiornoEntity.class, GiornoView.class);
+        super(GiornoEntity.class);
         super.collectionNameParent = "mese";
     }
 
