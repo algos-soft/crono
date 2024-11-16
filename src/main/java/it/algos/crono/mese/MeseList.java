@@ -27,9 +27,9 @@ public class MeseList extends CronoList<MeseEntity> {
         super(parentView);
     }
 
-    public MeseList( ModuloService moduloService) {
-        super(MeseEntity.class, moduloService, MeseForm.class);
-    }
+//    public MeseList( ModuloService moduloService) {
+//        super(MeseEntity.class, moduloService, MeseForm.class);
+//    }
 
     protected void fixPreferenze() {
 //        super.readOnly = true;
