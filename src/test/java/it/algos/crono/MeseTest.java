@@ -1,10 +1,7 @@
 package it.algos.crono;
 
 import it.algos.base.ModuloTest;
-import it.algos.crono.mese.MeseEntity;
-import it.algos.crono.mese.MeseList;
-import it.algos.crono.mese.MeseService;
-import it.algos.crono.mese.MeseView;
+import it.algos.crono.mese.*;
 import it.algos.vbase.entity.AbstractEntity;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.provider.Arguments;
@@ -65,6 +62,7 @@ public class MeseTest extends ModuloTest {
         super.entityClazz = MeseEntity.class;
         super.viewClazz = MeseView.class;
         super.listClazz = MeseList.class;
+        super.formClazz = MeseForm.class;
 
         //--reindirizzo l'istanza della superclasse
         super.moduloService = service;

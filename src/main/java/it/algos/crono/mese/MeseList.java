@@ -2,7 +2,10 @@ package it.algos.crono.mese;
 
 import it.algos.crono.list.CronoList;
 import it.algos.vbase.annotation.IList;
+import it.algos.vbase.form.AForm;
+import it.algos.vbase.logic.ModuloService;
 import it.algos.vbase.ui.wrapper.ASpan;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static it.algos.vbase.boot.BaseCost.*;
 
@@ -16,15 +19,16 @@ import static it.algos.vbase.boot.BaseCost.*;
         sortProperty = "ordine")
 public class MeseList extends CronoList<MeseEntity> {
 
-    public MeseList() {
-        this(null);
-    }
 
     /**
      * @param parentView che crea questa istanza
      */
     public MeseList(final MeseView parentView) {
         super(parentView);
+    }
+
+    public MeseList( ModuloService moduloService) {
+        super(MeseEntity.class, moduloService, MeseForm.class);
     }
 
     protected void fixPreferenze() {

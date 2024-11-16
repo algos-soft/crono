@@ -28,9 +28,8 @@ import static it.algos.vbase.boot.BaseCost.FIELD_NAME_NOME;
 @Service
 public class MeseService extends CronoService<MeseEntity> {
 
-    private static final String KEY_NAME = FIELD_NAME_NOME;
 
-    private List<MeseEntity> listaBeans;
+
 
     /**
      * Costruttore invocato dalla sottoclasse concreta obbligatoriamente con due parametri <br>
@@ -41,32 +40,10 @@ public class MeseService extends CronoService<MeseEntity> {
         super(MeseEntity.class);
     }
 
-    protected void fixPreferenze() {
-    }
-
-    /**
-     * Creazione in memoria di una nuova entity che NON viene salvata <br>
-     *
-     * @param nome (obbligatorio, unico)
-     * @return la nuova entity appena creata (con keyID ma non salvata)
-     */
-    public MeseEntity newEntity(int ordine, String sigla, String nome, int giorni, int primo, int ultimo) {
-        MeseEntity newEntityBean = MeseEntity.builder()
-                .ordine(ordine == 0 ? nextOrdine() : ordine)
-                .sigla(textService.isValid(sigla) ? sigla : null)
-                .nome(textService.isValid(nome) ? nome : null)
-                .giorni(giorni)
-                .primo(primo)
-                .ultimo(ultimo)
-                .build();
-
-        return newEntityBean;
-    }
-
 
     @Override
     public RisultatoReset reset() {
-        listaBeans = new ArrayList<>();
+        List<MeseEntity> listaBeans = new ArrayList<>();
         MeseEntity newBean;
         int ordine;
         String sigla;
@@ -82,14 +59,21 @@ public class MeseService extends CronoService<MeseEntity> {
             primo = ultimo + 1;
             giorni = meseEnum.getGiorniBisestili();
             ultimo = primo + giorni - 1;
-            newBean = newEntity(ordine, sigla, nome, giorni, primo, ultimo);
-            if (newBean != null) {
-                listaBeans.add(newBean);
-            }
-        }
-        List<MeseEntity> listaBeansInverse = listaBeans.reversed();
 
-        return super.bulkInsertEntitiesDelete(listaBeansInverse);
+            newBean = MeseEntity.builder()
+                    .ordine(ordine)
+                    .sigla(sigla)
+                    .nome(nome)
+                    .giorni(giorni)
+                    .primo(primo)
+                    .ultimo(ultimo)
+                    .build();
+
+            listaBeans.add(newBean);
+
+        }
+
+        return super.bulkInsertEntitiesDelete(listaBeans);
     }
 
 

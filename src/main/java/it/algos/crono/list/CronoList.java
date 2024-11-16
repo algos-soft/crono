@@ -1,5 +1,7 @@
 package it.algos.crono.list;
 
+import it.algos.crono.mese.MeseEntity;
+import it.algos.crono.mese.MeseForm;
 import it.algos.vbase.annotation.IList;
 import it.algos.vbase.constant.Bottone;
 import it.algos.vbase.entity.AbstractEntity;
@@ -7,6 +9,7 @@ import it.algos.vbase.grid.AGrid;
 import it.algos.vbase.list.AList;
 import it.algos.vbase.list.RecordCounter;
 import it.algos.vbase.list.SelectedRecordCounter;
+import it.algos.vbase.logic.ModuloService;
 import it.algos.vbase.ui.view.AView;
 
 /**
@@ -33,6 +36,10 @@ public class CronoList<T extends AbstractEntity> extends AList<T> {
      */
     public CronoList(final AView parentView) {
         super(parentView);
+    }
+
+    public CronoList(Class<MeseEntity> entityClass, ModuloService<MeseEntity> moduloService, Class<MeseForm> formClass) {
+        super(entityClass, moduloService, formClass);
     }
 
     @Override
