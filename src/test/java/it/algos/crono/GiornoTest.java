@@ -85,51 +85,7 @@ public class GiornoTest extends ModuloTest {
 
     }
 
-    //    @Test
-    @Order(1211)
-    @DisplayName("1211 - toDocument")
-    void toDocument() {
-        System.out.println("1211 - toDocument dalla entity");
-        System.out.println(VUOTA);
-        Document document;
 
-        String sorgente = "4 marzo";
-        giornoBean = service.findByKey(sorgente);
-        assertNotNull(giornoBean);
-        document = giornoBean.toDocument();
-
-        assertNotNull(document);
-       int ottenutoIntero = document.size();
-        assertTrue(ottenutoIntero == 6);
-        System.out.println(String.format("Ci sono [%d] chiavi nel documento", ottenutoIntero));
-        print(document.keySet().stream().toList());
-        System.out.println(VUOTA);
-        System.out.println(document.toJson());
-        System.out.println(document);
-    }
-
-//    @Test
-    @Order(1212)
-    @DisplayName("1212 - getDocument")
-    void getDocument() {
-        System.out.println("1212 - getDocument dal service");
-        System.out.println(VUOTA);
-        Document document;
-
-        String    sorgente = "4 marzo";
-        giornoBean = service.findByKey(sorgente);
-        assertNotNull(giornoBean);
-        document = service.getDocument(giornoBean);
-
-        assertNotNull(document);
-      int  ottenutoIntero = document.size();
-        assertTrue(ottenutoIntero == 6);
-        System.out.println(String.format("Ci sono [%d] chiavi nel documento", ottenutoIntero));
-        print(document.keySet().stream().toList());
-        System.out.println(VUOTA);
-        System.out.println(document.toJson());
-        System.out.println(document);
-    }
 
 //    @Test
     @Order(1213)

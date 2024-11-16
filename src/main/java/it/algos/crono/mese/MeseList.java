@@ -2,10 +2,7 @@ package it.algos.crono.mese;
 
 import it.algos.crono.list.CronoList;
 import it.algos.vbase.annotation.IList;
-import it.algos.vbase.form.AForm;
-import it.algos.vbase.logic.ModuloService;
 import it.algos.vbase.ui.wrapper.ASpan;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static it.algos.vbase.boot.BaseCost.*;
 
@@ -27,12 +24,9 @@ public class MeseList extends CronoList<MeseEntity> {
         super(parentView);
     }
 
-//    public MeseList( ModuloService moduloService) {
-//        super(MeseEntity.class, moduloService, MeseForm.class);
-//    }
 
     protected void fixPreferenze() {
-//        super.readOnly = true;
+        super.readOnly = true;
     }
 
 
@@ -46,10 +40,5 @@ public class MeseList extends CronoList<MeseEntity> {
         super.infoReset = TEXT_RESET_DELETE;
     }
 
-//    @Override
-//    protected void fixGrid(AGrid grid) {
-//        HeaderRow headerRow = grid.prependHeaderRow();
-//        headerRow.join(grid.getColumnByKey("primo"), grid.getColumnByKey("ultimo")).setText("Giorni da inizio anno");
-//    }
 
 }// end of AList class

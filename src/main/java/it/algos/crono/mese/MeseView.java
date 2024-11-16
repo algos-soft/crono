@@ -24,7 +24,7 @@ public class MeseView extends AView {
 
 
     public MeseView(@Autowired MeseService moduloService) {
-        super(moduloService, MeseList.class, MeseForm.class);
+        super(moduloService, MeseList.class);
     }
 
 }// end of @Route AView class

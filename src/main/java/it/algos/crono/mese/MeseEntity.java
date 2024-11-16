@@ -44,15 +44,4 @@ public class MeseEntity extends AbstractEntity {
         return nome;
     }
 
-    // Metodo che converte l'oggetto Entity in un Document MongoDB
-    public org.bson.Document toDocument() {
-        return new org.bson.Document("id", getId())
-                .append("ordine", getOrdine())
-                .append("sigla", getSigla())
-                .append("nome", getNome())
-                .append("giorni", getGiorni())
-                .append("primo", getPrimo())
-                .append("ultimo", getUltimo());
-    }
-
 }// end of Entity class

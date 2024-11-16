@@ -62,7 +62,6 @@ public class MeseTest extends ModuloTest {
         super.entityClazz = MeseEntity.class;
         super.viewClazz = MeseView.class;
         super.listClazz = MeseList.class;
-        super.formClazz = MeseForm.class;
 
         //--reindirizzo l'istanza della superclasse
         super.moduloService = service;
