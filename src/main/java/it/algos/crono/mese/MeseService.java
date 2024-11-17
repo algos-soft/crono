@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-import static it.algos.vbase.boot.BaseCost.FIELD_NAME_NOME;
-
 /**
  * Project base24
  * Created by Algos
@@ -27,8 +25,6 @@ import static it.algos.vbase.boot.BaseCost.FIELD_NAME_NOME;
 @Slf4j
 @Service
 public class MeseService extends CronoService<MeseEntity> {
-
-
 
 
     /**
@@ -68,7 +64,6 @@ public class MeseService extends CronoService<MeseEntity> {
                     .primo(primo)
                     .ultimo(ultimo)
                     .build();
-
             listaBeans.add(newBean);
 
         }

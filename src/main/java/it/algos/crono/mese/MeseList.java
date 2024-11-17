@@ -6,13 +6,13 @@ import it.algos.vbase.ui.wrapper.ASpan;
 
 import static it.algos.vbase.boot.BaseCost.*;
 
-@IList(espandiUltimaColonnaVisibile = false,
-        columns = {"ordine",
-                "sigla",
-                "nome",
-                "giorni",
-                "primo",
-                "ultimo"},
+@IList(columns = {
+        "ordine",
+        "nome",
+        "giorni",
+        "primo",
+        "ultimo"},
+        espandiUltimaColonnaVisibile = false,
         sortProperty = "ordine")
 public class MeseList extends CronoList<MeseEntity> {
 

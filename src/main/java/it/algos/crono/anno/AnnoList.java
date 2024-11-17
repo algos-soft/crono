@@ -6,14 +6,13 @@ import it.algos.vbase.ui.wrapper.ASpan;
 
 import static it.algos.vbase.boot.BaseCost.*;
 
-@IList(espandiUltimaColonnaVisibile = false,
-        columns = {
-                "ordine",
-                "nome",
-                "secolo.nome",
-                "dopoCristo",
-                "bisestile"
-        },
+@IList(columns = {
+        "ordine",
+        "nome",
+        "secolo.nome",
+        "dopoCristo",
+        "bisestile"},
+        espandiUltimaColonnaVisibile = false,
         sortProperty = "ordine")
 public class AnnoList extends CronoList<AnnoEntity> {
 
@@ -29,7 +28,7 @@ public class AnnoList extends CronoList<AnnoEntity> {
     }
 
     protected void fixPreferenze() {
-//        super.readOnly = true;
+        super.readOnly = true;
     }
 
 

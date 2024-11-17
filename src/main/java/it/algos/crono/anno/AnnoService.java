@@ -1,5 +1,6 @@
 package it.algos.crono.anno;
 
+import it.algos.crono.giorno.GiornoEntity;
 import it.algos.crono.logic.CronoService;
 import it.algos.crono.secolo.SecoloEntity;
 import it.algos.crono.secolo.SecoloService;
@@ -27,11 +28,8 @@ import static it.algos.vbase.boot.BaseCost.*;
 @Service
 public class AnnoService extends CronoService<AnnoEntity> {
 
-    private static final String KEY_NAME = FIELD_NAME_NOME;
 
     public static final String ORDINE = "Ordinamento a partire dall'anno 1.000 a.C.";
-
-    private List<AnnoEntity> listaBeans;
 
     @Autowired
     public SecoloService secoloService;
@@ -50,36 +48,36 @@ public class AnnoService extends CronoService<AnnoEntity> {
         super.collectionNameParent = "secolo";
     }
 
-    /**
-     * Creazione in memoria di una nuova entity che NON viene salvata <br>
-     * Usa il @Builder di Lombok <br>
-     * Eventuali regolazioni iniziali delle property <br>
-     * All properties <br>
-     *
-     * @param ordine     di presentazione nel popup/combobox (obbligatorio, unico)
-     * @param nome       corrente
-     * @param secolo     di appartenenza
-     * @param dopoCristo flag per gli anni prima/dopo cristo
-     * @param bisestile  flag per gli anni bisestili
-     * @return la nuova entity appena creata (non salvata e senza keyID)
-     */
-    public AnnoEntity newEntity(final int ordine, final String nome, final SecoloEntity secolo, final boolean dopoCristo, final boolean bisestile) {
-        AnnoEntity newEntityBean = AnnoEntity.builder()
-                .ordine(ordine == 0 ? nextOrdine() : ordine)
-                .nome(textService.isValid(nome) ? nome : null)
-                .secolo(secolo)
-                .dopoCristo(dopoCristo)
-                .bisestile(bisestile)
-                .build();
-
-        return newEntityBean;
-    }
+//    /**
+//     * Creazione in memoria di una nuova entity che NON viene salvata <br>
+//     * Usa il @Builder di Lombok <br>
+//     * Eventuali regolazioni iniziali delle property <br>
+//     * All properties <br>
+//     *
+//     * @param ordine     di presentazione nel popup/combobox (obbligatorio, unico)
+//     * @param nome       corrente
+//     * @param secolo     di appartenenza
+//     * @param dopoCristo flag per gli anni prima/dopo cristo
+//     * @param bisestile  flag per gli anni bisestili
+//     * @return la nuova entity appena creata (non salvata e senza keyID)
+//     */
+//    public AnnoEntity newEntity(final int ordine, final String nome, final SecoloEntity secolo, final boolean dopoCristo, final boolean bisestile) {
+//        AnnoEntity newEntityBean = AnnoEntity.builder()
+//                .ordine(ordine == 0 ? nextOrdine() : ordine)
+//                .nome(textService.isValid(nome) ? nome : null)
+//                .secolo(secolo)
+//                .dopoCristo(dopoCristo)
+//                .bisestile(bisestile)
+//                .build();
+//
+//        return newEntityBean;
+//    }
 
 
     @Override
     public RisultatoReset reset() {
         String collectionName = annotationService.getCollectionName(AnnoEntity.class);
-        listaBeans = new ArrayList<>();
+        List<AnnoEntity> listaBeans = new ArrayList<>();
         String message;
 
         if (secoloService.count() < 1 && annotationService.usaResetStartup(SecoloEntity.class)) {
@@ -94,45 +92,66 @@ public class AnnoService extends CronoService<AnnoEntity> {
 
         //--costruisce gli anni prima di cristo partendo da ANTE_CRISTO_MAX che coincide con DELTA_ANNI
         for (int k = 1; k <= ANTE_CRISTO_MAX; k++) {
-            creaPrima(k);
+            listaBeans.add(creaPrima(k));
         }
 
         //--costruisce gli anni dopo cristo fino all'anno DOPO_CRISTO_MAX
         for (int k = 1; k <= DOPO_CRISTO_MAX; k++) {
-            creaDopo(k);
+            listaBeans.add(creaDopo(k));
         }
 
         return super.bulkInsertEntitiesDelete(listaBeans);
     }
 
-    public void creaPrima(int numeroProgressivo) {
+    public AnnoEntity creaPrima(int numeroProgressivo) {
+        AnnoEntity newBean;
         int delta = DELTA_ANNI;
         int numeroAnno = delta - numeroProgressivo + 1;
         int ordine = numeroProgressivo;
         String tagPrima = " a.C.";
         String nome = numeroAnno + tagPrima;
         SecoloEntity secolo = secoloService.getSecolo(nome);
-        AnnoEntity newBean;
 
-        newBean = newEntity(ordine, nome, secolo, false, false);
-        if (newBean != null) {
-            listaBeans.add(newBean);
-        }
+        newBean = AnnoEntity.builder()
+                .ordine(ordine)
+                .nome(nome)
+                .secolo(secolo)
+                .dopoCristo(false)
+                .bisestile(false)
+                .build();
+
+
+//        newBean = newEntity(ordine, nome, secolo, false, false);
+//        if (newBean != null) {
+//            listaBeans.add(newBean);
+//        }
+
+        return newBean;
     }
 
-    public void creaDopo(int numeroProgressivo) {
+    public AnnoEntity creaDopo(int numeroProgressivo) {
+        AnnoEntity newBean;
         int delta = DELTA_ANNI;
         int numeroAnno = numeroProgressivo;
         int ordine = numeroProgressivo + delta;
         String nome = numeroProgressivo + VUOTA;
         SecoloEntity secolo = secoloService.getSecolo(nome);
         boolean bisestile = dateService.isBisestile(numeroAnno);
-        AnnoEntity newBean;
 
-        newBean = newEntity(ordine, nome, secolo, true, bisestile);
-        if (newBean != null) {
-            listaBeans.add(newBean);
-        }
+        newBean = AnnoEntity.builder()
+                .ordine(ordine)
+                .nome(nome)
+                .secolo(secolo)
+                .dopoCristo(true)
+                .bisestile(bisestile)
+                .build();
+
+//        newBean = newEntity(ordine, nome, secolo, true, bisestile);
+//        if (newBean != null) {
+//            listaBeans.add(newBean);
+//        }
+
+        return newBean;
     }
 
 }// end of CrudService class

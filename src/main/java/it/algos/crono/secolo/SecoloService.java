@@ -1,6 +1,7 @@
 package it.algos.crono.secolo;
 
 import it.algos.crono.logic.CronoService;
+import it.algos.crono.mese.MeseEntity;
 import it.algos.vbase.enumeration.RisultatoReset;
 import it.algos.vbase.enumeration.TypeLog;
 import it.algos.vbase.exception.AlgosException;
@@ -28,8 +29,6 @@ import static it.algos.vbase.boot.BaseCost.*;
 @Service
 public class SecoloService extends CronoService<SecoloEntity> {
 
-    private static final String KEY_NAME = FIELD_NAME_NOME;
-
     public static final String PRIMO = "primo";
 
     public static final String ULTIMO = "ultimo";
@@ -48,30 +47,28 @@ public class SecoloService extends CronoService<SecoloEntity> {
         super(SecoloEntity.class);
     }
 
-    protected void fixPreferenze() {
-    }
 
-    /**
-     * Creazione in memoria di una nuova entity che NON viene salvata <br>
-     *
-     * @param ordine     di presentazione nel popup/combobox (obbligatorio, unico)
-     * @param nome       descrittivo e visualizzabile
-     * @param primo      primo anno del secolo
-     * @param ultimo     ultimo anno del secolo
-     * @param dopoCristo secolo prima o dopo Cristo
-     * @return la nuova entity appena creata (con keyID ma non salvata)
-     */
-    public SecoloEntity newEntity(final int ordine, final String nome, final int primo, final int ultimo, final boolean dopoCristo) {
-        SecoloEntity newEntityBean = SecoloEntity.builder()
-                .ordine(ordine == 0 ? nextOrdine() : ordine)
-                .nome(textService.isValid(nome) ? nome : null)
-                .primo(primo)
-                .ultimo(ultimo)
-                .dopoCristo(dopoCristo)
-                .build();
-
-        return newEntityBean;
-    }
+//    /**
+//     * Creazione in memoria di una nuova entity che NON viene salvata <br>
+//     *
+//     * @param ordine     di presentazione nel popup/combobox (obbligatorio, unico)
+//     * @param nome       descrittivo e visualizzabile
+//     * @param primo      primo anno del secolo
+//     * @param ultimo     ultimo anno del secolo
+//     * @param dopoCristo secolo prima o dopo Cristo
+//     * @return la nuova entity appena creata (con keyID ma non salvata)
+//     */
+//    public SecoloEntity newEntity(final int ordine, final String nome, final int primo, final int ultimo, final boolean dopoCristo) {
+//        SecoloEntity newEntityBean = SecoloEntity.builder()
+//                .ordine(ordine == 0 ? nextOrdine() : ordine)
+//                .nome(textService.isValid(nome) ? nome : null)
+//                .primo(primo)
+//                .ultimo(ultimo)
+//                .dopoCristo(dopoCristo)
+//                .build();
+//
+//        return newEntityBean;
+//    }
 
 
     public List<SecoloEntity> findAll() {
@@ -150,8 +147,7 @@ public class SecoloService extends CronoService<SecoloEntity> {
     @Override
     public RisultatoReset reset() {
         String nomeFileCSV = "secoli.csv";
-        String collectionName = annotationService.getCollectionName(SecoloEntity.class);
-        listaBeans = new ArrayList<>();
+        List<SecoloEntity> listaBeans = new ArrayList<>();
         int ordine;
         String nome;
         int inizio2;
@@ -168,41 +164,42 @@ public class SecoloService extends CronoService<SecoloEntity> {
                     try {
                         ordine = Integer.decode(riga.get(0));
                     } catch (Exception unErrore) {
-                        logger.error(new WrapLog().exception(unErrore).usaDb().type(TypeLog.startup));
+                        log.error(unErrore.toString());
                         ordine = 0;
                     }
                     nome = riga.get(1);
                     try {
                         inizio2 = Integer.decode(riga.get(2));
                     } catch (Exception unErrore) {
-                        logger.error(new WrapLog().exception(unErrore).usaDb().type(TypeLog.startup));
+                        log.error(unErrore.toString());
                         inizio2 = 0;
                     }
                     try {
                         fine = Integer.decode(riga.get(3));
                     } catch (Exception unErrore) {
-                        logger.error(new WrapLog().exception(unErrore).usaDb().type(TypeLog.startup));
+                        log.error(unErrore.toString());
                         fine = 0;
                     }
                     anteCristoText = riga.get(4);
                     anteCristo = anteCristoText.equals("true") || anteCristoText.equals("vero") || anteCristoText.equals("si");
                 } else {
-                    logger.error(new WrapLog().exception(new AlgosException("I dati non sono congruenti")).usaDb().type(TypeLog.startup));
+                    log.error("I dati non sono congruenti");
                     return RisultatoReset.nonCostruito;
                 }
                 nome += anteCristo ? " secolo a.C." : " secolo";
 
-                newBean = newEntity(ordine, nome, inizio2, fine, !anteCristo);
-                if (newBean != null) {
-                    listaBeans.add(newBean);
-                } else {
-                    message = String.format("La entity %s non è stata salvata", nome);
-                    logger.error(new WrapLog().exception(new AlgosException(message)).usaDb().type(TypeLog.startup));
-                }
+                newBean = SecoloEntity.builder()
+                        .ordine(ordine)
+                        .nome(nome)
+                        .primo(inizio2)
+                        .ultimo(fine)
+                        .dopoCristo(!anteCristo)
+                        .build();
+                listaBeans.add(newBean);
             }
         } else {
-            message = String.format("Manca il file [%s] nella directory /config o sul server", nomeFileCSV);
-            logger.error(new WrapLog().exception(new AlgosException(message)).usaDb().type(TypeLog.startup));
+            message = String.format("Manca il file [%s] nella directory/config o sul server", nomeFileCSV);
+            log.warn(message);
             return RisultatoReset.nonCostruito;
         }
 

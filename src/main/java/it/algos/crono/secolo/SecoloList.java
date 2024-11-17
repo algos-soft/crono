@@ -10,12 +10,13 @@ import it.algos.vbase.ui.wrapper.ASpan;
 
 import static it.algos.vbase.boot.BaseCost.*;
 
-@IList(espandiUltimaColonnaVisibile = false,
-        columns = {"ordine",
-                "nome",
-                "primo",
-                "ultimo",
-                "dopoCristo"},
+@IList(columns = {
+        "ordine",
+        "nome",
+        "primo",
+        "ultimo",
+        "dopoCristo"},
+        espandiUltimaColonnaVisibile = false,
         sortProperty = "ordine")
 public class SecoloList extends CronoList<SecoloEntity> {
 
@@ -47,12 +48,6 @@ public class SecoloList extends CronoList<SecoloEntity> {
         headerPlaceHolder.add(ASpan.text(SecoloService.ORDINE).blue().bold());
         headerPlaceHolder.add(ASpan.text("L'anno [zero] non esiste").blue().bold());
     }
-
-//    @Override
-//    protected void fixGrid(AGrid grid) {
-//        HeaderRow headerRow = grid.prependHeaderRow();
-//        headerRow.join(grid.getColumnByKey("primo"), grid.getColumnByKey("ultimo")).setText("Anni del secolo");
-//    }
 
 }// end of AList class
 

@@ -28,13 +28,8 @@ import static it.algos.vbase.boot.BaseCost.*;
 @Service
 public class GiornoService extends CronoService<GiornoEntity> {
 
-    private static String KEY_NAME = FIELD_NAME_NOME;
 
     public static final String ORDINE = "Ordinamento da inizio anno";
-
-    private List<GiornoEntity> listaBeans;
-
-    protected String nonMiServe;
 
     @Autowired
     public MeseService meseService;
@@ -50,65 +45,30 @@ public class GiornoService extends CronoService<GiornoEntity> {
     }
 
 
-    protected void fixPreferenze() {
-    }
-
-    /**
-     * Creazione in memoria di una nuova entity che NON viene salvata <br>
-     * Usa il @Builder di Lombok <br>
-     * Eventuali regolazioni iniziali delle property <br>
-     * All properties <br>
-     *
-     * @param ordine    di presentazione nel popup/combobox (obbligatorio, unico)
-     * @param nome      corrente
-     * @param mese      di appartenenza
-     * @param trascorsi di inizio anno
-     * @param mancanti  alla fine dell'anno
-     * @return la nuova entity appena creata (non salvata e senza keyID)
-     */
-    public GiornoEntity newEntity(final int ordine, final String nome, final MeseEntity mese, final int trascorsi, final int mancanti) {
-        GiornoEntity newEntityBean = GiornoEntity.builder()
-                .ordine(ordine == 0 ? nextOrdine() : ordine)
-                .nome(textService.isValid(nome) ? nome : null)
-                .mese(mese)
-                .trascorsi(trascorsi)
-                .mancanti(mancanti)
-                .build();
-
-        return newEntityBean;
-    }
-
-
     @Override
     public RisultatoReset reset() {
         String collectionName = mongoTemplate.getCollectionName(GiornoEntity.class);
-        listaBeans = new ArrayList<>();
+        List<GiornoEntity> listaBeans = new ArrayList<>();
+        GiornoEntity newBean;
         String message;
+        int ordine;
+        String nome;
+        int trascorsi;
+        int mancanti;
+        String meseTxt;
+        MeseEntity mese;
+        List<HashMap<String, Object>> lista = dateService.getAllGiorni();
 
         if (meseService.count() < 1 && annotationService.usaResetStartup(MeseEntity.class)) {
             meseService.reset();
         }
+
         if (meseService.count() < 1) {
             message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
             logger.warn(new WrapLog().exception(new AlgosException(message)).type(TypeLog.startup));
             return RisultatoReset.nonCostruito;
             //@todo valutare se 'rompere' il programma
         }
-
-        listaBeans = getLista();
-        return super.bulkInsertEntitiesDelete(listaBeans);
-    }
-
-
-    public List<GiornoEntity> getLista() {
-        int ordine;
-        String nome;
-        String meseTxt;
-        MeseEntity mese;
-        int trascorsi;
-        int mancanti;
-        GiornoEntity newBean;
-        List<HashMap<String, Object>> lista = dateService.getAllGiorni();
 
         if (lista != null && lista.size() == NUM_GIORNI_ANNO) {
             for (HashMap<String, Object> mappaGiorno : lista) {
@@ -122,12 +82,18 @@ public class GiornoService extends CronoService<GiornoEntity> {
                 trascorsi = (int) mappaGiorno.get(KEY_MAPPA_GIORNI_NORMALE);
                 mancanti = NUM_GIORNI_ANNO - trascorsi;
 
-                newBean = newEntity(ordine, nome, mese, trascorsi, mancanti);
+                newBean = GiornoEntity.builder()
+                        .ordine(ordine)
+                        .nome(nome)
+                        .mese(mese)
+                        .trascorsi(trascorsi)
+                        .mancanti(mancanti)
+                        .build();
                 listaBeans.add(newBean);
             }
         }
 
-        return listaBeans;
+        return super.bulkInsertEntitiesDelete(listaBeans);
     }
 
 
