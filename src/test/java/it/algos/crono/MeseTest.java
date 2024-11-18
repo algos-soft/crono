@@ -1,7 +1,10 @@
 package it.algos.crono;
 
 import it.algos.base.ModuloTest;
-import it.algos.crono.mese.*;
+import it.algos.crono.mese.MeseEntity;
+import it.algos.crono.mese.MeseList;
+import it.algos.crono.mese.MeseService;
+import it.algos.crono.mese.MeseView;
 import it.algos.vbase.entity.AbstractEntity;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.provider.Arguments;
@@ -31,8 +34,6 @@ public class MeseTest extends ModuloTest {
 
     @Autowired
     private MeseService service;
-
-    private MeseEntity meseBean;
 
 
     //--nome mese (string)
@@ -92,10 +93,10 @@ public class MeseTest extends ModuloTest {
         Object[] mat = arg.get();
         String sorgente = (String) mat[0];
 
-        meseBean = service.findByKey(sorgente);
-        assertNotNull(meseBean);
+        MeseEntity istanza = service.findByKey(sorgente);
+        assertNotNull(istanza);
 
-        String message = String.format("%s%s%s", sorgente, FORWARD, meseBean.getNome());
+        String message = String.format("%s%s%s", sorgente, FORWARD, istanza.getNome());
         System.out.println(message);
     }
 

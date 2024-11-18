@@ -37,8 +37,6 @@ public class GiornoTest extends ModuloTest {
     @Autowired
     private GiornoService service;
 
-    private GiornoEntity giornoBean;
-
 
     /**
      * Qui passa una volta sola <br>
@@ -75,9 +73,9 @@ public class GiornoTest extends ModuloTest {
         for (HashMap<String, Object> mappaGiorno : lista) {
 
             String sorgente = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_TITOLO);
-            giornoBean = service.findByKey(sorgente);
-            assertNotNull(giornoBean);
-            String message = String.format("%s%s%s", sorgente, FORWARD, giornoBean.getNome());
+            GiornoEntity istanza = service.findByKey(sorgente);
+            assertNotNull(istanza);
+            String message = String.format("%s%s%s", sorgente, FORWARD, istanza.getNome());
             System.out.println(message);
         }
 
