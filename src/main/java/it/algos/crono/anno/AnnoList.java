@@ -2,19 +2,31 @@ package it.algos.crono.anno;
 
 import it.algos.crono.list.CronoList;
 import it.algos.vbase.annotation.IList;
+import it.algos.vbase.searchfield.CheckBoxSearch;
+import it.algos.vbase.searchfield.ComboSearch;
+import it.algos.vbase.searchfield.SearchFieldListener;
+import it.algos.vbase.service.CriteriaService;
 import it.algos.vbase.ui.wrapper.ASpan;
+import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Criteria;
 
 import static it.algos.vbase.boot.BaseCost.*;
 
+@Slf4j
 @IList(columns = {
         "ordine",
         "nome",
-        "secolo.nome",
+        "secolo",
         "dopoCristo",
         "bisestile"},
         espandiUltimaColonnaVisibile = false,
         sortProperty = "ordine")
 public class AnnoList extends CronoList<AnnoEntity> {
+
+    @Autowired
+    CriteriaService criteriaService;
 
     public AnnoList() {
         this(null);
@@ -31,6 +43,37 @@ public class AnnoList extends CronoList<AnnoEntity> {
         super.readOnly = true;
     }
 
+    @PostConstruct
+    public void postConstruct() {
+        CheckBoxSearch box = (CheckBoxSearch) getGrid().getSearchField("dopoCristo");
+        ComboSearch combo = (ComboSearch) getGrid().getSearchField("secolo");
+        combo.setBaseFilter(Criteria.where("dopoCristo").is(true));
+
+        box.addSearchFieldListener(new SearchFieldListener() {
+            @Override
+            public void doSearch(Object key, Criteria criteria) {
+                getCriteria(box);
+            }
+        });
+    }
+
+    public  Criteria getCriteria(CheckBoxSearch box) {
+        Criteria comboCriteria = null;
+
+        switch (box.getTriState()) {
+            case indeterminate -> {
+            }
+            case vero -> {
+                comboCriteria = Criteria.where("dopoCristo").is(true);
+
+            }
+            case falso -> {
+                comboCriteria = Criteria.where("dopoCristo").is(false);
+            }
+        }
+
+        return comboCriteria;
+    }
 
     @Override
     public void fixHeader() {
