@@ -28,7 +28,6 @@ public class CheckProjectTest extends CheckTest {
      */
     @BeforeAll
     protected void setUpAll() {
-        librerie.add("crono");
         librerie.add("utility");
 
         super.setUpAll();
