@@ -48,31 +48,6 @@ public class AnnoService extends CronoService<AnnoEntity> {
         super.collectionNameParent = "secolo";
     }
 
-//    /**
-//     * Creazione in memoria di una nuova entity che NON viene salvata <br>
-//     * Usa il @Builder di Lombok <br>
-//     * Eventuali regolazioni iniziali delle property <br>
-//     * All properties <br>
-//     *
-//     * @param ordine     di presentazione nel popup/combobox (obbligatorio, unico)
-//     * @param nome       corrente
-//     * @param secolo     di appartenenza
-//     * @param dopoCristo flag per gli anni prima/dopo cristo
-//     * @param bisestile  flag per gli anni bisestili
-//     * @return la nuova entity appena creata (non salvata e senza keyID)
-//     */
-//    public AnnoEntity newEntity(final int ordine, final String nome, final SecoloEntity secolo, final boolean dopoCristo, final boolean bisestile) {
-//        AnnoEntity newEntityBean = AnnoEntity.builder()
-//                .ordine(ordine == 0 ? nextOrdine() : ordine)
-//                .nome(textService.isValid(nome) ? nome : null)
-//                .secolo(secolo)
-//                .dopoCristo(dopoCristo)
-//                .bisestile(bisestile)
-//                .build();
-//
-//        return newEntityBean;
-//    }
-
 
     @Override
     public RisultatoReset reset() {
