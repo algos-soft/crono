@@ -21,7 +21,6 @@ import static it.algos.vbase.boot.BaseCost.*;
         "secolo",
         "dopoCristo",
         "bisestile"},
-        espandiUltimaColonnaVisibile = false,
         sortProperty = "ordine")
 public class AnnoList extends CronoList<AnnoEntity> {
 

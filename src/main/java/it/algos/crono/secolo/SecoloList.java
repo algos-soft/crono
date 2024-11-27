@@ -16,7 +16,6 @@ import static it.algos.vbase.boot.BaseCost.*;
         "primo",
         "ultimo",
         "dopoCristo"},
-        espandiUltimaColonnaVisibile = false,
         sortProperty = "ordine")
 public class SecoloList extends CronoList<SecoloEntity> {
 

@@ -12,7 +12,6 @@ import static it.algos.vbase.boot.BaseCost.*;
         "mese.nome",
         "trascorsi",
         "mancanti"},
-        espandiUltimaColonnaVisibile = false,
         sortProperty = "ordine")
 public class GiornoList extends CronoList<GiornoEntity> {
 
