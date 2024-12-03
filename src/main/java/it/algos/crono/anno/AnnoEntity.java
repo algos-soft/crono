@@ -29,25 +29,25 @@ public class AnnoEntity extends AbstractEntity {
     private int ordine;
 
     @Indexed(unique = true)
-    @ISearch()
+    @IFieldSearch()
     @IFieldList(headerText = "Anno")
     @IFieldForm(label = "Anno corrente")
     private String nome;
 
     @DBRef
     @ICombo(sortProperty = "ordine")
-    @ISearch(refSearchType = RefSearchType.combo, placeholder = "Secoli")
+    @IFieldSearch(refSearchType = RefSearchType.combo, placeholder = "Secoli")
     @IFieldList(linkedProperty = "nome",headerText = "Secolo", width = 12)
     @IFieldForm(linkedProperty = "nome", placeholder = "Mesi", clearButtonVisible = TBool.falso)
     private SecoloEntity secolo;
 
     @IBoolean(type = TypeBool.checkIcon)
-    @ISearch(checkBoxInitialStatus = TriState.vero, tooltip = "Anni dopoCristo/anteCristo")
+    @IFieldSearch(checkBoxInitialStatus = TriState.vero, tooltip = "Anni dopoCristo/anteCristo")
     @IFieldList(headerText = "D.C.")
     private boolean dopoCristo;
 
     @IBoolean(type = TypeBool.checkIcon)
-    @ISearch(tooltip = "Anni bisestili (esistenti solo dopoCristo)")
+    @IFieldSearch(tooltip = "Anni bisestili (esistenti solo dopoCristo)")
     @IFieldList(headerText = "B")
     private boolean bisestile;
 

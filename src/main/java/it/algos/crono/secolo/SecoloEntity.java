@@ -23,7 +23,7 @@ public class SecoloEntity extends AbstractEntity {
     private int ordine;
 
     @Indexed(unique = true)
-    @ISearch()
+    @IFieldSearch()
     @IFieldList(width = 12, headerText = "Secolo")
     @IFieldForm(label = "Secolo corrente")
     private String nome;
@@ -35,7 +35,7 @@ public class SecoloEntity extends AbstractEntity {
     private int ultimo;
 
     @IBoolean()
-    @ISearch(checkBoxInitialStatus = TriState.vero, tooltip = "Secoli dopoCristo/anteCristo")
+    @IFieldSearch(checkBoxInitialStatus = TriState.vero, tooltip = "Secoli dopoCristo/anteCristo")
     @IFieldList(headerText = "D.C.")
     private boolean dopoCristo;
 

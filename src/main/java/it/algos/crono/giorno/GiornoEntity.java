@@ -31,14 +31,14 @@ public class GiornoEntity extends AbstractEntity {
     private int ordine;
 
     @Indexed(unique = true)
-    @ISearch()
+    @IFieldSearch()
     @IFieldList(headerText = "Giorno")
     @IFieldForm(label = "Giorno corrente", width = LAR)
     private String nome;
 
     @DBRef
     @ICombo(sortProperty = "ordine")
-    @ISearch(refSearchType = RefSearchType.combo, placeholder = "Mesi")
+    @IFieldSearch(refSearchType = RefSearchType.combo, placeholder = "Mesi")
     @IFieldList(linkedProperty = "nome", headerText = "Mese", width = 14)
     @IFieldForm(linkedProperty = "nome", placeholder = "Mesi", clearButtonVisible = TBool.falso)
     private MeseEntity mese;

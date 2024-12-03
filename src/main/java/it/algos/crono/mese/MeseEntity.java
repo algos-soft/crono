@@ -25,7 +25,7 @@ public class MeseEntity extends AbstractEntity {
     private String sigla;
 
     @Indexed(unique = true)
-    @ISearch()
+    @IFieldSearch()
     @IFieldList(headerText = "Mese")
     @IFieldForm(label = "Mese corrente")
     private String nome;
