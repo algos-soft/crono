@@ -38,7 +38,7 @@ public class AnnoList extends CronoList<AnnoEntity> {
         super(parentView);
     }
 
-    protected void fixPreferenze() {
+    protected void preInit() {
         super.readOnly = true;
     }
 

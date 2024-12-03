@@ -25,7 +25,9 @@ public class GiornoList extends CronoList<GiornoEntity> {
     }
 
 
-    protected void fixPreferenze() {
+    @Override
+    protected void preInit() {
+        super.preInit();
         super.readOnly = true;
     }
 

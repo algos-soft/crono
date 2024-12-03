@@ -30,7 +30,8 @@ public class SecoloList extends CronoList<SecoloEntity> {
         super(parentView);
     }
 
-    protected void fixPreferenze() {
+    protected void preInit() {
+        super.preInit();
         super.readOnly = true;
     }
 
