@@ -1,6 +1,5 @@
 package it.algos.crono.anno;
 
-import it.algos.crono.giorno.GiornoEntity;
 import it.algos.crono.logic.CronoService;
 import it.algos.crono.secolo.SecoloEntity;
 import it.algos.crono.secolo.SecoloService;
@@ -44,7 +43,8 @@ public class AnnoService extends CronoService<AnnoEntity> {
         super(AnnoEntity.class);
     }
 
-    protected void fixPreferenze() {
+    protected void preInit() {
+        super.preInit();
         super.collectionNameParent = "secolo";
     }
 
