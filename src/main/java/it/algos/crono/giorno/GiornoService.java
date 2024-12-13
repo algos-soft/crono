@@ -65,7 +65,7 @@ public class GiornoService extends CronoService<GiornoEntity> {
 
         if (meseService.count() < 1) {
             message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);
-            logger.warn(new WrapLog().exception(new AlgosException(message)).type(TypeLog.startup));
+            log.warn(message);
             return RisultatoReset.nonCostruito;
             //@todo valutare se 'rompere' il programma
         }

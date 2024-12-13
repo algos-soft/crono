@@ -3,8 +3,8 @@ package it.algos.crono.logic;
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.logic.ModuloService;
 import it.algos.vbase.service.DateService;
-import it.algos.vbase.wrapper.WrapLog;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,7 @@ import static it.algos.vbase.boot.BaseCost.VUOTA;
  * Date: lun, 13-mag-2024
  * Time: 11:40
  */
+@Slf4j
 public abstract class CronoService<T extends AbstractEntity> extends ModuloService<T> {
 
 //    protected String keyPropertyName;
@@ -54,11 +55,12 @@ public abstract class CronoService<T extends AbstractEntity> extends ModuloServi
     }
 
     public T findByKey(final String keyValue) {
-        String keyPropertyName= annotationService.getKeyUniqueProperty(entityClass).orElse(VUOTA);
+        String keyPropertyName = annotationService.getKeyUniqueProperty(entityClass).orElse(VUOTA);
         if (textService.isValid(keyPropertyName)) {
             return super.findOneByProperty(keyPropertyName, keyValue);
         } else {
-            logger.warn(new WrapLog().message("Manca la keyPropertyName del modulo"));
+            String message = "Manca la keyPropertyName del modulo";
+            log.warn(message);
             return null;
         }
     }
