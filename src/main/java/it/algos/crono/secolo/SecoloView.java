@@ -24,7 +24,7 @@ public class SecoloView extends AView {
 
 
     SecoloView(@Autowired SecoloService moduloCrudService) {
-        super(moduloCrudService, SecoloList.class);
+        super(SecoloEntity.class, moduloCrudService, SecoloList.class);
     }
 
 

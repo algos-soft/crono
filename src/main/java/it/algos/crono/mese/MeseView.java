@@ -1,7 +1,6 @@
 package it.algos.crono.mese;
 
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import it.algos.vbase.annotation.IView;
 import it.algos.vbase.constant.Gruppo;
@@ -25,7 +24,7 @@ public class MeseView extends AView {
 
 
     public MeseView(@Autowired MeseService moduloService) {
-        super(moduloService, MeseList.class);
+        super(MeseEntity.class, moduloService, MeseList.class);
     }
 
 }// end of @Route AView class

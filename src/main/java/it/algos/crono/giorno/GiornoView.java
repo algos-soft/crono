@@ -2,7 +2,6 @@ package it.algos.crono.giorno;
 
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.router.Route;
-import it.algos.vbase.annotation.IEntity;
 import it.algos.vbase.annotation.IView;
 import it.algos.vbase.constant.Gruppo;
 import it.algos.vbase.ui.view.AView;
@@ -24,7 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class GiornoView extends AView {
 
     GiornoView(@Autowired GiornoService moduloService) {
-        super(moduloService, GiornoList.class,GiornoForm.class);
+        super(GiornoEntity.class, moduloService, GiornoList.class, GiornoForm.class);
     }
 
 }// end of @Route CrudView class

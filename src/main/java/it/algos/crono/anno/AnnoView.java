@@ -1,7 +1,6 @@
 package it.algos.crono.anno;
 
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import it.algos.vbase.annotation.IView;
 import it.algos.vbase.constant.Gruppo;
@@ -24,7 +23,7 @@ public class AnnoView extends AView {
 
 
     AnnoView(@Autowired AnnoService moduloService) {
-        super(moduloService, AnnoList.class, AnnoForm.class);
+        super(AnnoEntity.class, moduloService, AnnoList.class, AnnoForm.class);
     }
 
 
