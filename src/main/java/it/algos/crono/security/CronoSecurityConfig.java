@@ -19,17 +19,17 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CronoSecurityConfig extends SecurityConfig {
 
-    // Provide a custom authentication service
-    // Optional, if not provided a standard AuthenticationService will be used
-    @Bean
-    public IAuthenticationService authService() {
-        return new CronoAuthenticationService();
-    }
-
-    // Provide an optional header for the Login  view
-    @Bean
-    public LoginViewHeader loginViewHeader() {
-        return new CronoLoginViewHeader();
-    }
+//    // Provide a custom authentication service
+//    // Optional, if not provided a standard AuthenticationService will be used
+//    @Bean
+//    public IAuthenticationService authService() {
+//        return new CronoAuthenticationService();
+//    }
+//
+//    // Provide an optional header for the Login  view
+//    @Bean
+//    public LoginViewHeader loginViewHeader() {
+//        return new CronoLoginViewHeader();
+//    }
 
 }
