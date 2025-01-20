@@ -1,6 +1,5 @@
 package it.algos.crono;
 
-import it.algos.base.ModuloTest;
 import it.algos.crono.anno.AnnoEntity;
 import it.algos.crono.anno.AnnoList;
 import it.algos.crono.anno.AnnoService;
