@@ -8,7 +8,7 @@ import it.algos.vbase.grid.AGrid;
 import it.algos.vbase.list.AList;
 import it.algos.vbase.list.RecordCounter;
 import it.algos.vbase.list.SelectedRecordCounter;
-import it.algos.vbase.logic.ModuloService;
+import it.algos.vbase.service.ModuloService;
 import it.algos.vbase.ui.view.AView;
 
 /**

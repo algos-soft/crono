@@ -3,7 +3,7 @@ package it.algos.crono;
 import it.algos.base.BaseTest;
 import it.algos.crono.secolo.SecoloEntity;
 import it.algos.vbase.entity.AbstractEntity;
-import it.algos.vbase.logic.ModuloService;
+import it.algos.vbase.service.ModuloService;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 

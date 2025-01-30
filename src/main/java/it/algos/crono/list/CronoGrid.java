@@ -4,7 +4,7 @@ import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.form.AForm;
 import it.algos.vbase.grid.AGrid;
 import it.algos.vbase.grid.ColumnDefinition;
-import it.algos.vbase.logic.ModuloService;
+import it.algos.vbase.service.ModuloService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

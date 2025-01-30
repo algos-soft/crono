@@ -1,7 +1,7 @@
 package it.algos.crono.logic;
 
 import it.algos.vbase.entity.AbstractEntity;
-import it.algos.vbase.logic.ModuloService;
+import it.algos.vbase.service.ModuloService;
 import it.algos.vbase.service.DateService;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
