@@ -47,7 +47,7 @@ public class GiornoService extends CronoService<GiornoEntity> {
 
     @Override
     public RisultatoReset reset() {
-        String collectionName = mongoTemplate.getCollectionName(GiornoEntity.class);
+        String collectionName = getMongoTemplate().getCollectionName(GiornoEntity.class);
         List<GiornoEntity> listaBeans = new ArrayList<>();
         GiornoEntity newBean;
         String message;
