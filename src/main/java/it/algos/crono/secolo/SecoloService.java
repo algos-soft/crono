@@ -8,6 +8,7 @@ import it.algos.vbase.exception.AlgosException;
 import it.algos.vbase.wrapper.WrapLog;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
@@ -145,7 +146,7 @@ public class SecoloService extends CronoService<SecoloEntity> {
 
 
     @Override
-    public RisultatoReset reset() {
+    public RisultatoReset reset(MongoTemplate mongoTemplate) {
         String nomeFileCSV = "secoli.csv";
         List<SecoloEntity> listaBeans = new ArrayList<>();
         int ordine;

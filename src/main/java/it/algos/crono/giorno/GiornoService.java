@@ -9,6 +9,7 @@ import it.algos.vbase.exception.AlgosException;
 import it.algos.vbase.wrapper.WrapLog;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class GiornoService extends CronoService<GiornoEntity> {
 
 
     @Override
-    public RisultatoReset reset() {
+    public RisultatoReset reset(MongoTemplate mongoTemplate) {
         String collectionName = getMongoTemplate().getCollectionName(GiornoEntity.class);
         List<GiornoEntity> listaBeans = new ArrayList<>();
         GiornoEntity newBean;

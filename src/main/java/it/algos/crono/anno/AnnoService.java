@@ -9,6 +9,7 @@ import it.algos.vbase.exception.AlgosException;
 import it.algos.vbase.wrapper.WrapLog;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -50,13 +51,13 @@ public class AnnoService extends CronoService<AnnoEntity> {
 
 
     @Override
-    public RisultatoReset reset() {
+    public RisultatoReset reset(MongoTemplate mongoTemplate) {
         String collectionName = annotationService.getCollectionName(AnnoEntity.class);
         List<AnnoEntity> listaBeans = new ArrayList<>();
         String message;
 
         if (secoloService.count() < 1 && annotationService.usaResetStartup(SecoloEntity.class)) {
-            secoloService.reset();
+            secoloService.reset(mongoTemplate);
         }
         if (secoloService.count() < 1) {
             message = String.format("Collection [%s] non costruita. Probabilmente manca la collection [%s].", collectionName, collectionNameParent);

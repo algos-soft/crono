@@ -4,6 +4,7 @@ import it.algos.crono.logic.CronoService;
 import it.algos.vbase.enumeration.MeseEnum;
 import it.algos.vbase.enumeration.RisultatoReset;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class MeseService extends CronoService<MeseEntity> {
 
 
     @Override
-    public RisultatoReset reset() {
+    public RisultatoReset reset(MongoTemplate mongoTemplate) {
         List<MeseEntity> listaBeans = new ArrayList<>();
         MeseEntity newBean;
         int ordine;
