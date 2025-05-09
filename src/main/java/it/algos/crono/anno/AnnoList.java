@@ -1,11 +1,14 @@
 package it.algos.crono.anno;
 
 import it.algos.crono.list.CronoList;
+import it.algos.crono.mese.MeseEntity;
+import it.algos.crono.mese.MeseService;
 import it.algos.vbase.annotation.IList;
 import it.algos.vbase.searchfield.CheckBoxSearch;
 import it.algos.vbase.searchfield.ComboSearch;
 import it.algos.vbase.searchfield.SearchFieldListener;
 import it.algos.vbase.service.CriteriaService;
+import it.algos.vbase.ui.view.AView;
 import it.algos.vbase.ui.wrapper.ASpan;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
@@ -28,14 +31,23 @@ public class AnnoList extends CronoList<AnnoEntity> {
     CriteriaService criteriaService;
 
     public AnnoList() {
-        this(null);
+        this((AView) null);
     }
 
     /**
      * @param parentView che crea questa istanza
      */
-    public AnnoList(final AnnoView parentView) {
+    public AnnoList(final AView parentView) {
         super(parentView);
+    }
+
+    /**
+     * Costruttore per creare una list autonoma dalla view
+     *
+     * @param moduloService specifico di quest modulo
+     */
+    public AnnoList(final AnnoService moduloService) {
+        super(AnnoEntity.class, moduloService);
     }
 
     protected void preInit() {
@@ -56,7 +68,7 @@ public class AnnoList extends CronoList<AnnoEntity> {
         });
     }
 
-    public  Criteria getCriteria(CheckBoxSearch box) {
+    public Criteria getCriteria(CheckBoxSearch box) {
         Criteria comboCriteria = null;
 
         switch (box.getTriState()) {

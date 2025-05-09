@@ -11,10 +11,12 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import static it.algos.vbase.boot.BaseCost.*;
 import static java.lang.System.out;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Project base24
@@ -32,9 +34,10 @@ import static java.lang.System.out;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class MeseTest extends ModuloTest {
 
+    protected List<MeseEntity> listMesi;
     @Autowired
     private MeseService meseService;
-
+    private MeseEntity istanza;
 
     //--nome mese (string)
     private static Stream<Arguments> nome() {
@@ -75,6 +78,40 @@ public class MeseTest extends ModuloTest {
     @BeforeEach
     protected void setUpEach() {
         super.setUpEach();
+        istanza = null;
+    }
+
+
+    protected void printMesiGiorni(List<MeseEntity> listMesi) {
+        for (MeseEntity bean : listMesi) {
+            printMeseGiorni(bean);
+        }
+    }
+
+    protected void printMeseGiorni(MeseEntity meseBean) {
+        out.print(meseBean.getNome());
+        out.print(FORWARD);
+        out.print("giorni: ");
+        out.print(meseBean.getGiorni());
+        out.println(VUOTA);
+    }
+
+    protected void printMesiPosizione(List<MeseEntity> listMesi) {
+        for (MeseEntity bean : listMesi) {
+            printMesePosizione(bean);
+        }
+    }
+
+    protected void printMesePosizione(MeseEntity meseBean) {
+        out.print(meseBean.getNome());
+        out.print(FORWARD);
+        out.print("da ");
+        out.print(meseBean.getPrimo());
+        out.print(VUOTA);
+        out.print(SPAZIO);
+        out.print("a ");
+        out.print(meseBean.getUltimo());
+        out.println(VUOTA);
     }
 
     @Nested
@@ -85,14 +122,34 @@ public class MeseTest extends ModuloTest {
     @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
     class serviceMese {
 
-
         @Test
         @Order(1)
-        @DisplayName("1 - count")
-        void count() {
-            out.println("1 - count");
+        @DisplayName("1 - durata")
+        void durata() {
+            out.println("1 - durata");
             out.println(VUOTA);
-            log.info("Mesi totali nel database -> [{}]", service.count());
+            log.info("Tabella durata");
+
+            listMesi = service.findAll();
+            assertNotNull(listMesi);
+            out.println(VUOTA);
+            printMesiGiorni(listMesi);
+        }
+
+
+        @Test
+        @Order(2)
+        @DisplayName("2 - collocazione")
+        void collocazione() {
+            out.println("2 - collocazione");
+            out.println(VUOTA);
+            log.info("Tabella posizionamento come giorni nell'anno");
+            log.info("Considerando febbraio con 29 giorni");
+
+            listMesi = service.findAll();
+            assertNotNull(listMesi);
+            out.println(VUOTA);
+            printMesiPosizione(listMesi);
         }
     }
 

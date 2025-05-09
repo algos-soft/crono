@@ -1,7 +1,10 @@
 package it.algos.crono.giorno;
 
+import it.algos.crono.anno.AnnoEntity;
+import it.algos.crono.anno.AnnoService;
 import it.algos.crono.list.CronoList;
 import it.algos.vbase.annotation.IList;
+import it.algos.vbase.ui.view.AView;
 import it.algos.vbase.ui.wrapper.ASpan;
 
 import static it.algos.vbase.boot.BaseCost.*;
@@ -17,13 +20,21 @@ public class GiornoList extends CronoList<GiornoEntity> {
 
 
     public GiornoList() {
-        this(null);
+        this((AView) null);
     }
 
-    public GiornoList(final GiornoView parentView) {
+    public GiornoList(final AView parentView) {
         super(parentView);
     }
 
+    /**
+     * Costruttore per creare una list autonoma dalla view
+     *
+     * @param moduloService specifico di quest modulo
+     */
+    public GiornoList(final GiornoService moduloService) {
+        super(GiornoEntity.class, moduloService);
+    }
 
     @Override
     protected void preInit() {

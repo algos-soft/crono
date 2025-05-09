@@ -2,10 +2,13 @@ package it.algos.crono.secolo;
 
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.html.Span;
+import it.algos.crono.giorno.GiornoEntity;
+import it.algos.crono.giorno.GiornoService;
 import it.algos.crono.list.CronoList;
 import it.algos.vbase.annotation.IList;
 import it.algos.vbase.components.BAnchor;
 import it.algos.vbase.ui.dialog.BSpan;
+import it.algos.vbase.ui.view.AView;
 import it.algos.vbase.ui.wrapper.ASpan;
 
 import static it.algos.vbase.boot.BaseCost.*;
@@ -20,14 +23,23 @@ import static it.algos.vbase.boot.BaseCost.*;
 public class SecoloList extends CronoList<SecoloEntity> {
 
     public SecoloList() {
-        this(null);
+        this((AView) null);
     }
 
     /**
      * @param parentView che crea questa istanza
      */
-    public SecoloList(final SecoloView parentView) {
+    public SecoloList(final AView parentView) {
         super(parentView);
+    }
+
+    /**
+     * Costruttore per creare una list autonoma dalla view
+     *
+     * @param moduloService specifico di quest modulo
+     */
+    public SecoloList(final SecoloService moduloService) {
+        super(SecoloEntity.class, moduloService);
     }
 
     protected void preInit() {

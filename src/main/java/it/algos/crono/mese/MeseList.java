@@ -21,11 +21,10 @@ import static it.algos.vbase.boot.BaseCost.*;
         sortProperty = "ordine")
 public class MeseList extends CronoList<MeseEntity> {
 
-    public MeseList() {
-        this((AView) null);
-    }
 
     /**
+     * Lista creata dalla view
+     *
      * @param parentView che crea questa istanza
      */
     public MeseList(final AView parentView) {
@@ -33,7 +32,12 @@ public class MeseList extends CronoList<MeseEntity> {
     }
 
 
-    public MeseList(final MeseService moduloService) {
+    /**
+     * Lista autonoma dalla view
+     *
+     * @param moduloService specifico di quest modulo
+     */
+    public MeseList(final ModuloService moduloService) {
         super(MeseEntity.class, moduloService);
     }
 
