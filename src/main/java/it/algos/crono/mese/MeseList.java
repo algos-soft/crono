@@ -4,11 +4,14 @@ import it.algos.crono.list.CronoList;
 import it.algos.vbase.annotation.IList;
 import it.algos.vbase.form.AForm;
 import it.algos.vbase.service.ModuloService;
+import it.algos.vbase.ui.view.AView;
 import it.algos.vbase.ui.wrapper.ASpan;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import static it.algos.vbase.boot.BaseCost.*;
 
+@Component
 @IList(columns = {
         "ordine",
         "nome",
@@ -18,16 +21,19 @@ import static it.algos.vbase.boot.BaseCost.*;
         sortProperty = "ordine")
 public class MeseList extends CronoList<MeseEntity> {
 
+    public MeseList() {
+        this((AView) null);
+    }
 
     /**
      * @param parentView che crea questa istanza
      */
-    public MeseList(final MeseView parentView) {
+    public MeseList(final AView parentView) {
         super(parentView);
     }
 
-    @Autowired
-    public MeseList(MeseService moduloService) {
+
+    public MeseList(final MeseService moduloService) {
         super(MeseEntity.class, moduloService);
     }
 
