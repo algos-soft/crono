@@ -160,10 +160,9 @@ public class SecoloTest extends ModuloTest {
         super.listClazz = SecoloList.class;
 
         //--reindirizzo l'istanza della superclasse
-        super.moduloService = service;
+        super.service = service;
 
         super.setUpAll();
-        super.usaTestDebug = true;
         super.usaTestResetStartup = true;
         super.usaTestResetDelete = true;
     }

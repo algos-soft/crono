@@ -1,6 +1,5 @@
 package it.algos.crono;
 
-import it.algos.base.ModuloTest;
 import it.algos.crono.giorno.GiornoEntity;
 import it.algos.crono.giorno.GiornoList;
 import it.algos.crono.giorno.GiornoService;
@@ -50,7 +49,7 @@ public class GiornoTest extends ModuloTest {
         super.listClazz = GiornoList.class;
 
         //--reindirizzo l'istanza della superclasse
-        super.moduloService = service;
+        super.service = service;
 
         super.setUpAll();
         super.usaTestDebug = true;

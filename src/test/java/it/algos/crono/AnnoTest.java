@@ -57,7 +57,7 @@ public class AnnoTest extends ModuloTest {
         super.listClazz = AnnoList.class;
 
         //--reindirizzo l'istanza della superclasse
-        super.moduloService = service;
+        super.service = service;
 
         super.setUpAll();
         super.usaTestDebug = true;

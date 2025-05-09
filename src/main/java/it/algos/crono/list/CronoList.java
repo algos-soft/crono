@@ -4,6 +4,7 @@ import it.algos.crono.mese.MeseEntity;
 import it.algos.vbase.annotation.IList;
 import it.algos.vbase.constant.Bottone;
 import it.algos.vbase.entity.AbstractEntity;
+import it.algos.vbase.form.AForm;
 import it.algos.vbase.grid.AGrid;
 import it.algos.vbase.list.AList;
 import it.algos.vbase.list.RecordCounter;
@@ -35,6 +36,10 @@ public class CronoList<T extends AbstractEntity> extends AList<T> {
      */
     public CronoList(final AView parentView) {
         super(parentView);
+    }
+
+    public CronoList(Class<T> entityClass, ModuloService<T> moduloService) {
+        super(entityClass, moduloService);
     }
 
 

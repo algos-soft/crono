@@ -2,7 +2,10 @@ package it.algos.crono.mese;
 
 import it.algos.crono.list.CronoList;
 import it.algos.vbase.annotation.IList;
+import it.algos.vbase.form.AForm;
+import it.algos.vbase.service.ModuloService;
 import it.algos.vbase.ui.wrapper.ASpan;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static it.algos.vbase.boot.BaseCost.*;
 
@@ -23,6 +26,10 @@ public class MeseList extends CronoList<MeseEntity> {
         super(parentView);
     }
 
+    @Autowired
+    public MeseList(MeseService moduloService) {
+        super(MeseEntity.class, moduloService);
+    }
 
     @Override
     protected void preInit() {

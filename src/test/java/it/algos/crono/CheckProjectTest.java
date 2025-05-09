@@ -1,6 +1,5 @@
 package it.algos.crono;
 
-import it.algos.base.CheckTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +18,7 @@ import java.util.Arrays;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DisplayName("Check")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class CheckProjectTest extends CheckTest {
+public class CheckProjectTest  {
 
     /**
      * Qui passa una volta sola, chiamato dalle sottoclassi <br>
@@ -28,9 +27,9 @@ public class CheckProjectTest extends CheckTest {
      */
     @BeforeAll
     protected void setUpAll() {
-        librerie.add("utility");
-
-        super.setUpAll();
+//        librerie.add("utility");
+//
+//        super.setUpAll();
     }
 
 
@@ -41,7 +40,7 @@ public class CheckProjectTest extends CheckTest {
      */
     @BeforeEach
     protected void setUpEach() {
-        super.setUpEach();
+//        super.setUpEach();
     }
 
 }

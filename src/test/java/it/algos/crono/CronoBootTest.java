@@ -1,6 +1,5 @@
 package it.algos.crono;
 
-import it.algos.base.BaseTest;
 import it.algos.crono.secolo.SecoloEntity;
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.service.ModuloService;
@@ -24,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @Tag("crono")
 @DisplayName("Modulo CronoBoot")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class CronoBootTest extends BaseTest {
+public class CronoBootTest  {
 
 
     private SecoloEntity secoloBean;
@@ -44,7 +43,6 @@ public class CronoBootTest extends BaseTest {
 
     @BeforeEach
     protected void setUpEach() {
-        super.setUpEach();
 
         this.listClazzService = null;
     }
