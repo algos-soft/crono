@@ -1,5 +1,6 @@
 package it.algos.crono;
 
+import it.algos.base.ModuloTest;
 import it.algos.crono.giorno.GiornoEntity;
 import it.algos.crono.giorno.GiornoList;
 import it.algos.crono.giorno.GiornoService;

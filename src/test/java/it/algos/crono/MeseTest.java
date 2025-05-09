@@ -1,28 +1,20 @@
 package it.algos.crono;
 
+import it.algos.base.ModuloTest;
 import it.algos.crono.mese.MeseEntity;
 import it.algos.crono.mese.MeseList;
 import it.algos.crono.mese.MeseService;
 import it.algos.crono.mese.MeseView;
-import it.algos.vbase.entity.AbstractEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 
 import static it.algos.vbase.boot.BaseCost.*;
 import static java.lang.System.out;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Project base24

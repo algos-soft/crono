@@ -1,5 +1,6 @@
 package it.algos.crono;
 
+import it.algos.base.ModuloTest;
 import it.algos.crono.secolo.SecoloEntity;
 import it.algos.crono.secolo.SecoloList;
 import it.algos.crono.secolo.SecoloService;
