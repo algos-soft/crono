@@ -227,6 +227,8 @@ public class MeseTest extends ModuloTest {
         assertNotNull(listMesi);
         printAllBeans(listaBeans);
     }
+
+
 }
 
 
