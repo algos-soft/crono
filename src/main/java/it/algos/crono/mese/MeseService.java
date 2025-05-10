@@ -4,11 +4,14 @@ import it.algos.crono.logic.CronoService;
 import it.algos.vbase.enumeration.MeseEnum;
 import it.algos.vbase.enumeration.RisultatoReset;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static it.algos.vbase.boot.BaseCost.VUOTA;
 
 /**
  * Project base24
@@ -37,6 +40,19 @@ public class MeseService extends CronoService<MeseEntity> {
         super(MeseEntity.class);
     }
 
+    public List<MeseEntity> findAllOrdine() {
+        String sortPropertyName = annotationService.getEntitySortProperty(entityClass).orElse(VUOTA);
+        Sort sort = annotationService.getListSort(MeseList.class).orElse(Sort.by(Sort.Direction.ASC, sortPropertyName));
+
+        return mongoService.findAll(entityClass, sort);
+    }
+
+    public List<MeseEntity> findAllAlfabetici() {
+        String sortPropertyName = "nome";
+        Sort sort = Sort.by(Sort.Direction.ASC, sortPropertyName);
+
+        return mongoService.findAll(entityClass, sort);
+    }
 
     @Override
     public RisultatoReset reset(MongoTemplate mongoTemplate) {

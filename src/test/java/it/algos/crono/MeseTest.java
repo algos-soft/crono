@@ -83,6 +83,7 @@ public class MeseTest extends ModuloTest {
 
 
     protected void printMesiGiorni(List<MeseEntity> listMesi) {
+        out.println("[nome, giorni]");
         for (MeseEntity bean : listMesi) {
             printMeseGiorni(bean);
         }
@@ -97,6 +98,7 @@ public class MeseTest extends ModuloTest {
     }
 
     protected void printMesiPosizione(List<MeseEntity> listMesi) {
+        out.println("[nome, primo, ultimo]");
         for (MeseEntity bean : listMesi) {
             printMesePosizione(bean);
         }
@@ -110,6 +112,30 @@ public class MeseTest extends ModuloTest {
         out.print(VUOTA);
         out.print(SPAZIO);
         out.print("a ");
+        out.print(meseBean.getUltimo());
+        out.println(VUOTA);
+    }
+
+
+    protected void printMesiTabella(List<MeseEntity> listMesi) {
+        out.println("[sigla, nome, giorni, primo, ultimo]");
+
+        for (MeseEntity bean : listMesi) {
+            printMeseTabella(bean);
+        }
+    }
+
+    protected void printMeseTabella(MeseEntity meseBean) {
+        out.print(meseBean.getOrdine());
+        out.print(SPAZIO);
+        out.print(meseBean.getSigla());
+        out.print(SPAZIO);
+        out.print(meseBean.getNome());
+        out.print(SPAZIO);
+        out.print(meseBean.getGiorni());
+        out.print(SPAZIO);
+        out.print(meseBean.getPrimo());
+        out.print(SPAZIO);
         out.print(meseBean.getUltimo());
         out.println(VUOTA);
     }
@@ -139,9 +165,9 @@ public class MeseTest extends ModuloTest {
 
         @Test
         @Order(2)
-        @DisplayName("2 - collocazione")
-        void collocazione() {
-            out.println("2 - collocazione");
+        @DisplayName("2 - posizionamento")
+        void posizionamento() {
+            out.println("2 - posizionamento nell'anno");
             out.println(VUOTA);
             log.info("Tabella posizionamento come giorni nell'anno");
             log.info("Considerando febbraio con 29 giorni");
@@ -150,6 +176,57 @@ public class MeseTest extends ModuloTest {
             assertNotNull(listMesi);
             out.println(VUOTA);
             printMesiPosizione(listMesi);
+        }
+
+        @Test
+        @Order(3)
+        @DisplayName("3 - tabella")
+        void tabella() {
+            out.println("3 - tabella");
+            out.println(VUOTA);
+            log.info("Tabella");
+
+            listMesi = service.findAll();
+            assertNotNull(listMesi);
+            out.println(VUOTA);
+            printMesiTabella(listMesi);
+        }
+
+
+        @Test
+        @Order(4)
+        @DisplayName("4 - sortDatabase")
+        void sortDatabase() {
+            out.println("4 - sortDatabase");
+            out.println("Mesi estratti nell'ordine in cui sono registrati nel database (senza ordine)");
+
+            listaBeans = service.findAll();
+            assertNotNull(listMesi);
+            printAllBeans(listaBeans);
+        }
+
+        @Test
+        @Order(5)
+        @DisplayName("5 - sortOrdine")
+        void sortOrdine() {
+            out.println("4 - sortOrdine");
+            out.println("Mesi ordinati secondo la property [ordine]");
+
+            listaBeans = meseService.findAllOrdine();
+            assertNotNull(listMesi);
+            printAllBeans(listaBeans);
+        }
+
+        @Test
+        @Order(6)
+        @DisplayName("6 - sortAlfabetico")
+        void sortAlfabetico() {
+            out.println("6 - sortAlfabetico");
+            out.println("Mesi ordinati secondo la property [nome] - ordine alfabetico");
+
+            listaBeans = meseService.findAllAlfabetici();
+            assertNotNull(listMesi);
+            printAllBeans(listaBeans);
         }
     }
 

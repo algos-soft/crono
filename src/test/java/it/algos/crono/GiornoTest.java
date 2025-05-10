@@ -84,7 +84,7 @@ public class GiornoTest extends ModuloTest {
     }
 
 
-    protected void printBeans(List<AbstractEntity> listaBeans) {
+    protected void printBeans(List<? extends AbstractEntity> listaBeans) {
         int k = 0;
 
         System.out.println(VUOTA);
