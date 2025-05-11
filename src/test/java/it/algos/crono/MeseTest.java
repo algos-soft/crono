@@ -140,94 +140,95 @@ public class MeseTest extends ModuloTest {
         out.println(VUOTA);
     }
 
-    @Test
-    @Order(550)
+    @Nested
+    @Order(52)
     @DisplayName("SERVICE - MESE")
-    void cinquecentocinquanta() {
+    @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+    class serviceAttività {
+
+
+        @Test
+        @Order(521)
+        @DisplayName("521 - durata")
+        void durata() {
+            out.println("521 - durata");
+            out.println(VUOTA);
+            log.info("Tabella durata");
+
+            listMesi = service.findAll();
+            assertNotNull(listMesi);
+            out.println(VUOTA);
+            printMesiGiorni(listMesi);
+        }
+
+
+        @Test
+        @Order(522)
+        @DisplayName("522 - posizionamento")
+        void posizionamento() {
+            out.println("522 - posizionamento nell'anno");
+            out.println(VUOTA);
+            log.info("Tabella posizionamento come giorni nell'anno");
+            log.info("Considerando febbraio con 29 giorni");
+
+            listMesi = service.findAll();
+            assertNotNull(listMesi);
+            out.println(VUOTA);
+            printMesiPosizione(listMesi);
+        }
+
+        @Test
+        @Order(523)
+        @DisplayName("523 - tabella")
+        void tabella() {
+            out.println("523 - tabella");
+            out.println(VUOTA);
+            log.info("Tabella");
+
+            listMesi = service.findAll();
+            assertNotNull(listMesi);
+            out.println(VUOTA);
+            printMesiTabella(listMesi);
+        }
+
+
+        @Test
+        @Order(524)
+        @DisplayName("524 - sortDatabase")
+        void sortDatabase() {
+            out.println("524 - sortDatabase");
+            out.println("Mesi estratti nell'ordine in cui sono registrati nel database (senza ordine)");
+
+            listaBeans = service.findAll();
+            assertNotNull(listMesi);
+            printAllBeans(listaBeans);
+        }
+
+        @Test
+        @Order(525)
+        @DisplayName("525 - sortOrdine")
+        void sortOrdine() {
+            out.println("525 - sortOrdine");
+            out.println("Mesi ordinati secondo la property [ordine]");
+
+            listaBeans = meseService.findAllOrdine();
+            assertNotNull(listMesi);
+            printAllBeans(listaBeans);
+        }
+
+        @Test
+        @Order(526)
+        @DisplayName("526 - sortAlfabetico")
+        void sortAlfabetico() {
+            out.println("526 - sortAlfabetico");
+            out.println("Mesi ordinati secondo la property [nome] - ordine alfabetico");
+
+            listaBeans = meseService.findAllAlfabetici();
+            assertNotNull(listMesi);
+            printAllBeans(listaBeans);
+        }
+
     }
-
-
-    @Test
-    @Order(551)
-    @DisplayName("551 - durata")
-    void durata() {
-        out.println("551 - durata");
-        out.println(VUOTA);
-        log.info("Tabella durata");
-
-        listMesi = service.findAll();
-        assertNotNull(listMesi);
-        out.println(VUOTA);
-        printMesiGiorni(listMesi);
-    }
-
-
-    @Test
-    @Order(552)
-    @DisplayName("552 - posizionamento")
-    void posizionamento() {
-        out.println("552 - posizionamento nell'anno");
-        out.println(VUOTA);
-        log.info("Tabella posizionamento come giorni nell'anno");
-        log.info("Considerando febbraio con 29 giorni");
-
-        listMesi = service.findAll();
-        assertNotNull(listMesi);
-        out.println(VUOTA);
-        printMesiPosizione(listMesi);
-    }
-
-    @Test
-    @Order(553)
-    @DisplayName("553 - tabella")
-    void tabella() {
-        out.println("553 - tabella");
-        out.println(VUOTA);
-        log.info("Tabella");
-
-        listMesi = service.findAll();
-        assertNotNull(listMesi);
-        out.println(VUOTA);
-        printMesiTabella(listMesi);
-    }
-
-
-    @Test
-    @Order(554)
-    @DisplayName("554 - sortDatabase")
-    void sortDatabase() {
-        out.println("554 - sortDatabase");
-        out.println("Mesi estratti nell'ordine in cui sono registrati nel database (senza ordine)");
-
-        listaBeans = service.findAll();
-        assertNotNull(listMesi);
-        printAllBeans(listaBeans);
-    }
-
-    @Test
-    @Order(555)
-    @DisplayName("555 - sortOrdine")
-    void sortOrdine() {
-        out.println("555 - sortOrdine");
-        out.println("Mesi ordinati secondo la property [ordine]");
-
-        listaBeans = meseService.findAllOrdine();
-        assertNotNull(listMesi);
-        printAllBeans(listaBeans);
-    }
-
-    @Test
-    @Order(556)
-    @DisplayName("556 - sortAlfabetico")
-    void sortAlfabetico() {
-        out.println("556 - sortAlfabetico");
-        out.println("Mesi ordinati secondo la property [nome] - ordine alfabetico");
-
-        listaBeans = meseService.findAllAlfabetici();
-        assertNotNull(listMesi);
-        printAllBeans(listaBeans);
-    }
-
 
 }
 
