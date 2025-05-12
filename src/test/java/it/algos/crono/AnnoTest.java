@@ -62,8 +62,8 @@ public class AnnoTest extends ModuloTest {
 
         super.setUpAll();
         super.usaTestDebug = true;
-        super.usaTestResetStartup = true;
-        super.usaTestResetDelete = true;
+//        super.usaTestResetStartup = true;
+//        super.usaTestResetDelete = true;
     }
 
     @BeforeEach

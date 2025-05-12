@@ -71,8 +71,8 @@ public class MeseTest extends ModuloTest {
 
         super.setUpAll();
         super.usaTestDebug = true;
-        super.usaTestResetStartup = true;
-        super.usaTestResetDelete = true;
+        super.usaTestReset = true;
+//        super.usaTestResetDelete = true;
     }
 
     @BeforeEach

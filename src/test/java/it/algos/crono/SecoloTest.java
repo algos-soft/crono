@@ -164,8 +164,8 @@ public class SecoloTest extends ModuloTest {
         super.service = service;
 
         super.setUpAll();
-        super.usaTestResetStartup = true;
-        super.usaTestResetDelete = true;
+//        super.usaTestResetStartup = true;
+//        super.usaTestResetDelete = true;
     }
 
 
