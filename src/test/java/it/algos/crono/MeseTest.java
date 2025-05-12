@@ -34,9 +34,9 @@ import static org.junit.Assert.assertNotNull;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class MeseTest extends ModuloTest {
 
-    protected List<MeseEntity> listMesi;
     @Autowired
     private MeseService meseService;
+    protected List<MeseEntity> listMesi;
     private MeseEntity istanza;
 
     //--nome mese (string)
