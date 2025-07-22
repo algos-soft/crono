@@ -19,7 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Route(value = "anno", layout = MainLayout.class)
 @IView(menuGroup = Gruppo.CRONO, menuName = "Anni", vaadin = VaadinIcon.CALENDAR)
-public class AnnoView extends AView {
+public class
+AnnoView extends AView {
 
 
     AnnoView(@Autowired AnnoService moduloService) {
