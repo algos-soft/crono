@@ -20,7 +20,7 @@ public class MeseList extends CronoList<MeseEntity> {
 
 
     /**
-     * ListaBase creata dalla view
+     * BaseLista creata dalla view
      *
      * @param parentView che crea questa istanza
      */
@@ -30,7 +30,7 @@ public class MeseList extends CronoList<MeseEntity> {
 
 
     /**
-     * ListaBase autonoma dalla view
+     * BaseLista autonoma dalla view
      *
      * @param moduloService specifico di quest modulo
      */
