@@ -54,6 +54,13 @@ public class MeseService extends CronoService<MeseEntity> {
         return mongoService.findAll(entityClass, sort);
     }
 
+    public List<String> findAllForNome() {
+        return findAllOrdine().stream().map(mese -> mese.getNome()).toList();
+    }
+    public List<String> findAllForNomeMaiuscolo() {
+        return findAllForNome().stream().map(mese -> textService.primaMaiuscola(mese)).toList();
+    }
+
     @Override
     public RisultatoReset reset(MongoTemplate mongoTemplate) {
         List<MeseEntity> listaBeans = new ArrayList<>();
