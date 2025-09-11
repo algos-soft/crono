@@ -2,8 +2,6 @@ package it.algos.crono.secolo;
 
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.html.Span;
-import it.algos.crono.giorno.GiornoEntity;
-import it.algos.crono.giorno.GiornoService;
 import it.algos.crono.list.CronoList;
 import it.algos.vbase.annotation.IList;
 import it.algos.vbase.components.BAnchor;

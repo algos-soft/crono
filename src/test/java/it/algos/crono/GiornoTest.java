@@ -1,10 +1,10 @@
 package it.algos.crono;
 
 import it.algos.base.ModuloTest;
-import it.algos.crono.giorno.GiornoEntity;
-import it.algos.crono.giorno.GiornoList;
-import it.algos.crono.giorno.GiornoService;
-import it.algos.crono.giorno.GiornoView;
+import it.algos.crono.giorno.GiornoCronoEntity;
+import it.algos.crono.giorno.GiornoCronoList;
+import it.algos.crono.giorno.GiornoCronoService;
+import it.algos.crono.giorno.GiornoCronoView;
 import it.algos.vbase.entity.AbstractEntity;
 import org.bson.Document;
 import org.junit.jupiter.api.*;
@@ -35,7 +35,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class GiornoTest extends ModuloTest {
 
     @Autowired
-    private GiornoService service;
+    private GiornoCronoService service;
 
 
     /**
@@ -44,10 +44,10 @@ public class GiornoTest extends ModuloTest {
     @BeforeAll
     protected void setUpAll() {
         assertNotNull(service);
-        super.moduloClazz = GiornoService.class;
-        super.entityClazz = GiornoEntity.class;
-        super.viewClazz = GiornoView.class;
-        super.listClazz = GiornoList.class;
+        super.moduloClazz = GiornoCronoService.class;
+        super.entityClazz = GiornoCronoEntity.class;
+        super.viewClazz = GiornoCronoView.class;
+        super.listClazz = GiornoCronoList.class;
 
         //--reindirizzo l'istanza della superclasse
         super.service = service;
@@ -75,7 +75,7 @@ public class GiornoTest extends ModuloTest {
         for (HashMap<String, Object> mappaGiorno : lista) {
 
             String sorgente = (String) mappaGiorno.get(KEY_MAPPA_GIORNI_TITOLO);
-            GiornoEntity istanza = service.findByKey(sorgente);
+            GiornoCronoEntity istanza = service.findByKey(sorgente);
             assertNotNull(istanza);
             String message = String.format("%s%s%s", sorgente, FORWARD, istanza.getNome());
             System.out.println(message);
@@ -90,7 +90,7 @@ public class GiornoTest extends ModuloTest {
         System.out.println(VUOTA);
 
         for (AbstractEntity genericBean : listaBeans) {
-            if (genericBean instanceof GiornoEntity bean) {
+            if (genericBean instanceof GiornoCronoEntity bean) {
                 System.out.print(++k);
                 System.out.print(PARENTESI_TONDA_END);
                 System.out.print(SPAZIO);

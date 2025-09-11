@@ -4,8 +4,6 @@ import it.algos.crono.logic.CronoService;
 import it.algos.crono.secolo.SecoloEntity;
 import it.algos.crono.secolo.SecoloService;
 import it.algos.vbase.enumeration.RisultatoReset;
-import it.algos.vbase.enumeration.TypeLog;
-import it.algos.vbase.exception.AlgosException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -25,7 +23,7 @@ import static it.algos.vbase.boot.BaseCost.*;
  */
 @Slf4j
 @Service
-public class AnnoService extends CronoService<AnnoEntity> {
+public class AnnoCronoService extends CronoService<AnnoCronoEntity> {
 
 
     public static final String ORDINE = "Ordinamento a partire dall'anno 1.000 a.C.";
@@ -39,8 +37,8 @@ public class AnnoService extends CronoService<AnnoEntity> {
      * Regola la entityClazz associata a questo Modulo <br>
      * Regola la viewClazz @Route associata a questo Modulo <br>
      */
-    public AnnoService() {
-        super(AnnoEntity.class);
+    public AnnoCronoService() {
+        super(AnnoCronoEntity.class);
     }
 
     protected void preInit() {
@@ -51,8 +49,8 @@ public class AnnoService extends CronoService<AnnoEntity> {
 
     @Override
     public RisultatoReset reset(MongoTemplate mongoTemplate) {
-        String collectionName = annotationService.getCollectionName(AnnoEntity.class);
-        List<AnnoEntity> listaBeans = new ArrayList<>();
+        String collectionName = annotationService.getCollectionName(AnnoCronoEntity.class);
+        List<AnnoCronoEntity> listaBeans = new ArrayList<>();
         String message;
 
         if (secoloService.count() < 1 && annotationService.usaResetStartup(SecoloEntity.class)) {
@@ -78,8 +76,8 @@ public class AnnoService extends CronoService<AnnoEntity> {
         return super.bulkInsertEntitiesDelete(listaBeans);
     }
 
-    public AnnoEntity creaPrima(int numeroProgressivo) {
-        AnnoEntity newBean;
+    public AnnoCronoEntity creaPrima(int numeroProgressivo) {
+        AnnoCronoEntity newBean;
         int delta = DELTA_ANNI;
         int numeroAnno = delta - numeroProgressivo + 1;
         int ordine = numeroProgressivo;
@@ -87,7 +85,7 @@ public class AnnoService extends CronoService<AnnoEntity> {
         String nome = numeroAnno + tagPrima;
         SecoloEntity secolo = secoloService.getSecolo(nome);
 
-        newBean = AnnoEntity.builder()
+        newBean = AnnoCronoEntity.builder()
                 .ordine(ordine)
                 .nome(nome)
                 .secolo(secolo)
@@ -104,8 +102,8 @@ public class AnnoService extends CronoService<AnnoEntity> {
         return newBean;
     }
 
-    public AnnoEntity creaDopo(int numeroProgressivo) {
-        AnnoEntity newBean;
+    public AnnoCronoEntity creaDopo(int numeroProgressivo) {
+        AnnoCronoEntity newBean;
         int delta = DELTA_ANNI;
         int numeroAnno = numeroProgressivo;
         int ordine = numeroProgressivo + delta;
@@ -113,7 +111,7 @@ public class AnnoService extends CronoService<AnnoEntity> {
         SecoloEntity secolo = secoloService.getSecolo(nome);
         boolean bisestile = dateService.isBisestile(numeroAnno);
 
-        newBean = AnnoEntity.builder()
+        newBean = AnnoCronoEntity.builder()
                 .ordine(ordine)
                 .nome(nome)
                 .secolo(secolo)

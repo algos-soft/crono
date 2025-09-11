@@ -20,10 +20,10 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @Route(value = "giorno", layout = MainLayout.class)
 @IView(menuGroup = Gruppo.CRONO, menuName = "Giorni", vaadin = VaadinIcon.CALENDAR)
-public class GiornoView extends AView {
+public class GiornoCronoView extends AView {
 
-    GiornoView(@Autowired GiornoService moduloService) {
-        super(GiornoEntity.class, moduloService, GiornoList.class, GiornoForm.class);
+    GiornoCronoView(@Autowired GiornoCronoService moduloService) {
+        super(GiornoCronoEntity.class, moduloService, GiornoCronoList.class, GiornoCronoForm.class);
     }
 
 }// end of @Route CrudView class

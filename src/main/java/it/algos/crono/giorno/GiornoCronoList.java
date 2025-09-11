@@ -1,7 +1,5 @@
 package it.algos.crono.giorno;
 
-import it.algos.crono.anno.AnnoEntity;
-import it.algos.crono.anno.AnnoService;
 import it.algos.crono.list.CronoList;
 import it.algos.vbase.annotation.IList;
 import it.algos.vbase.ui.view.AView;
@@ -16,14 +14,14 @@ import static it.algos.vbase.boot.BaseCost.*;
         "trascorsi",
         "mancanti"},
         sortProperty = "ordine")
-public class GiornoList extends CronoList<GiornoEntity> {
+public class GiornoCronoList extends CronoList<GiornoCronoEntity> {
 
 
-    public GiornoList() {
+    public GiornoCronoList() {
         this((AView) null);
     }
 
-    public GiornoList(final AView parentView) {
+    public GiornoCronoList(final AView parentView) {
         super(parentView);
     }
 
@@ -32,8 +30,8 @@ public class GiornoList extends CronoList<GiornoEntity> {
      *
      * @param moduloService specifico di quest modulo
      */
-    public GiornoList(final GiornoService moduloService) {
-        super(GiornoEntity.class, moduloService);
+    public GiornoCronoList(final GiornoCronoService moduloService) {
+        super(GiornoCronoEntity.class, moduloService);
     }
 
     @Override

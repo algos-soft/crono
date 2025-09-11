@@ -4,8 +4,6 @@ import it.algos.crono.logic.CronoService;
 import it.algos.crono.mese.MeseEntity;
 import it.algos.crono.mese.MeseService;
 import it.algos.vbase.enumeration.RisultatoReset;
-import it.algos.vbase.enumeration.TypeLog;
-import it.algos.vbase.exception.AlgosException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -26,7 +24,7 @@ import static it.algos.vbase.boot.BaseCost.*;
  */
 @Slf4j
 @Service
-public class GiornoService extends CronoService<GiornoEntity> {
+public class GiornoCronoService extends CronoService<GiornoCronoEntity> {
 
 
     public static final String ORDINE = "Ordinamento da inizio anno";
@@ -39,17 +37,17 @@ public class GiornoService extends CronoService<GiornoEntity> {
      * Regola la entityClazz associata a questo Modulo <br>
      * Regola la viewClazz @Route associata a questo Modulo <br>
      */
-    public GiornoService() {
-        super(GiornoEntity.class);
+    public GiornoCronoService() {
+        super(GiornoCronoEntity.class);
         super.collectionNameParent = "mese";
     }
 
 
     @Override
     public RisultatoReset reset(MongoTemplate mongoTemplate) {
-        String collectionName = getMongoTemplate().getCollectionName(GiornoEntity.class);
-        List<GiornoEntity> listaBeans = new ArrayList<>();
-        GiornoEntity newBean;
+        String collectionName = getMongoTemplate().getCollectionName(GiornoCronoEntity.class);
+        List<GiornoCronoEntity> listaBeans = new ArrayList<>();
+        GiornoCronoEntity newBean;
         String message;
         int ordine;
         String nome;
@@ -82,7 +80,7 @@ public class GiornoService extends CronoService<GiornoEntity> {
                 trascorsi = (int) mappaGiorno.get(KEY_MAPPA_GIORNI_NORMALE);
                 mancanti = NUM_GIORNI_ANNO - trascorsi;
 
-                newBean = GiornoEntity.builder()
+                newBean = GiornoCronoEntity.builder()
                         .ordine(ordine)
                         .nome(nome)
                         .mese(mese)

@@ -23,10 +23,10 @@ import static it.algos.vbase.boot.BaseCost.FIELD_NAME_ORDINE;
  */
 @SpringComponent
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class GiornoForm<T extends AbstractEntity> extends DefaultForm<T> {
+public class GiornoCronoForm<T extends AbstractEntity> extends DefaultForm<T> {
 
 
-    public GiornoForm(T bean) {
+    public GiornoCronoForm(T bean) {
         super(bean);
     }
 

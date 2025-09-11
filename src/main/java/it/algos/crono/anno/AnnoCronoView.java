@@ -20,11 +20,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Route(value = "anno", layout = MainLayout.class)
 @IView(menuGroup = Gruppo.CRONO, menuName = "Anni", vaadin = VaadinIcon.CALENDAR)
 public class
-AnnoView extends AView {
+AnnoCronoView extends AView {
 
 
-    AnnoView(@Autowired AnnoService moduloService) {
-        super(AnnoEntity.class, moduloService, AnnoList.class, AnnoForm.class);
+    AnnoCronoView(@Autowired AnnoCronoService moduloService) {
+        super(AnnoCronoEntity.class, moduloService, AnnoCronoList.class, AnnoCronoForm.class);
     }
 
 

@@ -1,8 +1,6 @@
 package it.algos.crono.anno;
 
 import it.algos.crono.list.CronoList;
-import it.algos.crono.mese.MeseEntity;
-import it.algos.crono.mese.MeseService;
 import it.algos.vbase.annotation.IList;
 import it.algos.vbase.searchfield.CheckBoxSearch;
 import it.algos.vbase.searchfield.ComboSearch;
@@ -25,19 +23,19 @@ import static it.algos.vbase.boot.BaseCost.*;
         "dopoCristo",
         "bisestile"},
         sortProperty = "ordine")
-public class AnnoList extends CronoList<AnnoEntity> {
+public class AnnoCronoList extends CronoList<AnnoCronoEntity> {
 
     @Autowired
     CriteriaService criteriaService;
 
-    public AnnoList() {
+    public AnnoCronoList() {
         this((AView) null);
     }
 
     /**
      * @param parentView che crea questa istanza
      */
-    public AnnoList(final AView parentView) {
+    public AnnoCronoList(final AView parentView) {
         super(parentView);
     }
 
@@ -46,8 +44,8 @@ public class AnnoList extends CronoList<AnnoEntity> {
      *
      * @param moduloService specifico di quest modulo
      */
-    public AnnoList(final AnnoService moduloService) {
-        super(AnnoEntity.class, moduloService);
+    public AnnoCronoList(final AnnoCronoService moduloService) {
+        super(AnnoCronoEntity.class, moduloService);
     }
 
     protected void preInit() {
@@ -94,7 +92,7 @@ public class AnnoList extends CronoList<AnnoEntity> {
         super.infoReset = TEXT_RESET_DELETE;
 
         headerPlaceHolder.add(ASpan.text("Previsti 1000 anni anteCristo e 2030 dopoCristo").blue().bold());
-        headerPlaceHolder.add(ASpan.text(AnnoService.ORDINE).blue().bold());
+        headerPlaceHolder.add(ASpan.text(AnnoCronoService.ORDINE).blue().bold());
         headerPlaceHolder.add(ASpan.text("L'anno [zero] non esiste").blue().bold());
     }
 

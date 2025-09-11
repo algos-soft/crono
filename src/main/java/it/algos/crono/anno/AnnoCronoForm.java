@@ -17,10 +17,10 @@ import org.springframework.context.annotation.Scope;
  */
 @SpringComponent
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class AnnoForm<T extends AbstractEntity> extends DefaultForm<T> {
+public class AnnoCronoForm<T extends AbstractEntity> extends DefaultForm<T> {
 
 
-    public AnnoForm(T bean) {
+    public AnnoCronoForm(T bean) {
         super(bean);
     }
 

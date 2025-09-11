@@ -20,14 +20,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "giorno")
 @IReset()
 @IEntity(pluralName = "Giorni", keyUniqueProperty = "nome", sortProperty = "ordine")
-public class GiornoEntity extends AbstractEntity {
+public class GiornoCronoEntity extends AbstractEntity {
 
     @Transient
     private static final int LAR = 12;
 
     @Indexed(unique = true)
     @IFieldList(width = 4, headerText = "#")
-    @IFieldForm(label = GiornoService.ORDINE, width = 14)
+    @IFieldForm(label = GiornoCronoService.ORDINE, width = 14)
     private int ordine;
 
     @Indexed(unique = true)

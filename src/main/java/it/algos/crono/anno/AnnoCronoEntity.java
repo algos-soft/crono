@@ -20,12 +20,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "anno")
 @IReset()
 @IEntity(pluralName = "Anni", keyUniqueProperty = "nome", sortProperty = "ordine")
-public class AnnoEntity extends AbstractEntity {
+public class AnnoCronoEntity extends AbstractEntity {
 
 
     @Indexed(unique = true)
     @IFieldList(width = 5, headerText = "#")
-    @IFieldForm(label = AnnoService.ORDINE, width = 20)
+    @IFieldForm(label = AnnoCronoService.ORDINE, width = 20)
     private int ordine;
 
     @Indexed(unique = true)

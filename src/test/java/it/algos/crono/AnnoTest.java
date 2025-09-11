@@ -1,10 +1,10 @@
 package it.algos.crono;
 
 import it.algos.base.ModuloTest;
-import it.algos.crono.anno.AnnoEntity;
-import it.algos.crono.anno.AnnoList;
-import it.algos.crono.anno.AnnoService;
-import it.algos.crono.anno.AnnoView;
+import it.algos.crono.anno.AnnoCronoEntity;
+import it.algos.crono.anno.AnnoCronoList;
+import it.algos.crono.anno.AnnoCronoService;
+import it.algos.crono.anno.AnnoCronoView;
 import it.algos.vbase.entity.AbstractEntity;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.provider.Arguments;
@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class AnnoTest extends ModuloTest {
 
     @Autowired
-    private AnnoService service;
+    private AnnoCronoService service;
 
 
     //--anno sorgente (string)
@@ -52,10 +52,10 @@ public class AnnoTest extends ModuloTest {
     @BeforeAll
     protected void setUpAll() {
         assertNotNull(service);
-        super.moduloClazz = AnnoService.class;
-        super.entityClazz = AnnoEntity.class;
-        super.viewClazz = AnnoView.class;
-        super.listClazz = AnnoList.class;
+        super.moduloClazz = AnnoCronoService.class;
+        super.entityClazz = AnnoCronoEntity.class;
+        super.viewClazz = AnnoCronoView.class;
+        super.listClazz = AnnoCronoList.class;
 
         //--reindirizzo l'istanza della superclasse
         super.service = service;
@@ -78,7 +78,7 @@ public class AnnoTest extends ModuloTest {
     void findByKey() {
         System.out.println(("150 - anno dal nome (all validi)"));
         System.out.println(VUOTA);
-        AnnoEntity istanza;
+        AnnoCronoEntity istanza;
         String tagPrima = " a.C.";
 
         for (int k = 1; k <= ANTE_CRISTO_MAX; k++) {
@@ -118,7 +118,7 @@ public class AnnoTest extends ModuloTest {
         Object[] mat = arg.get();
         String sorgente = (String) mat[0];
 
-        AnnoEntity istanza = service.findByKey(sorgente);
+        AnnoCronoEntity istanza = service.findByKey(sorgente);
         String message = String.format("%s%s%s", sorgente, FORWARD, istanza != null ? istanza.getNome() : NULLO);
         System.out.println(message);
     }
@@ -138,7 +138,7 @@ public class AnnoTest extends ModuloTest {
         message = String.format("Controllo che esista il valore di [%s.%s] nel primo record", collectionName, sorgente);
         System.out.println(message);
 
-        AnnoEntity istanza = service.findAll().get(0);
+        AnnoCronoEntity istanza = service.findAll().get(0);
         AbstractEntity entityBean = istanza.getSecolo();
         assertNotNull(entityBean);
         message = String.format("Nel primo record di anno [%s.%s] esiste il link a [%s]", collectionName, istanza, entityBean);
@@ -151,7 +151,7 @@ public class AnnoTest extends ModuloTest {
         System.out.println(VUOTA);
 
         for (AbstractEntity genericBean : listaBeans) {
-            if (genericBean instanceof AnnoEntity bean) {
+            if (genericBean instanceof AnnoCronoEntity bean) {
                 System.out.print(++k);
                 System.out.print(PARENTESI_TONDA_END);
                 System.out.print(SPAZIO);
