@@ -1,10 +1,10 @@
 package it.algos.crono;
 
-import it.algos.base.ModuloTest;
 import it.algos.crono.anno.AnnoCronoEntity;
 import it.algos.crono.anno.AnnoCronoList;
 import it.algos.crono.anno.AnnoCronoService;
 import it.algos.crono.anno.AnnoCronoView;
+import it.algos.vbase.ModuloTest;
 import it.algos.vbase.entity.AbstractEntity;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.provider.Arguments;

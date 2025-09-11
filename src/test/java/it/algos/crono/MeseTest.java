@@ -1,10 +1,10 @@
 package it.algos.crono;
 
-import it.algos.base.ModuloTest;
 import it.algos.crono.mese.MeseEntity;
 import it.algos.crono.mese.MeseList;
 import it.algos.crono.mese.MeseService;
 import it.algos.crono.mese.MeseView;
+import it.algos.vbase.ModuloTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.provider.Arguments;

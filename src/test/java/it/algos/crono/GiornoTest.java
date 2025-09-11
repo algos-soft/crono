@@ -1,10 +1,10 @@
 package it.algos.crono;
 
-import it.algos.base.ModuloTest;
 import it.algos.crono.giorno.GiornoCronoEntity;
 import it.algos.crono.giorno.GiornoCronoList;
 import it.algos.crono.giorno.GiornoCronoService;
 import it.algos.crono.giorno.GiornoCronoView;
+import it.algos.vbase.ModuloTest;
 import it.algos.vbase.entity.AbstractEntity;
 import org.bson.Document;
 import org.junit.jupiter.api.*;

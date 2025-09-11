@@ -4,6 +4,7 @@ import it.algos.crono.secolo.SecoloEntity;
 import it.algos.crono.secolo.SecoloList;
 import it.algos.crono.secolo.SecoloService;
 import it.algos.crono.secolo.SecoloView;
+import it.algos.vbase.ModuloTest;
 import it.algos.vbase.entity.AbstractEntity;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.provider.Arguments;
