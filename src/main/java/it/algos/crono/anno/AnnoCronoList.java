@@ -86,7 +86,7 @@ public class AnnoCronoList extends CronoList<AnnoCronoEntity> {
 
     @Override
     public void fixHeader() {
-        headerPlaceHolder.add(ASpan.text(String.format(TEXT_TAVOLA + SPAZIO + TEXT_CODE, "Anno")).verde().bold());
+        headerPlaceHolder.add(ASpan.text(String.format(TEXT_TAVOLA + SPAZIO + TEXT_CODE, "AnnoCrono")).verde().bold());
 
         super.infoCreazione = TEXT_HARD;
         super.infoReset = TEXT_RESET_DELETE;

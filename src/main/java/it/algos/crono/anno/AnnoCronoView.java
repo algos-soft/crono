@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Route chiamata dal menu generale o dalla barra del browser <br>
  */
 @Route(value = "annocrono", layout = MainLayout.class)
-@IView(menuGroup = Gruppo.CRONO, menuName = "Anni", vaadin = VaadinIcon.CALENDAR)
+@IView(menuGroup = Gruppo.CRONO, menuName = "Anni/Crono", vaadin = VaadinIcon.CALENDAR)
 public class
 AnnoCronoView extends AView {
 

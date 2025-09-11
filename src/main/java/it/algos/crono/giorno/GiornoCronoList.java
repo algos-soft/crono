@@ -42,7 +42,7 @@ public class GiornoCronoList extends CronoList<GiornoCronoEntity> {
 
     @Override
     public void fixHeader() {
-        headerPlaceHolder.add(ASpan.text(String.format(TEXT_TAVOLA + SPAZIO + TEXT_CODE, "Giorno")).verde().bold());
+        headerPlaceHolder.add(ASpan.text(String.format(TEXT_TAVOLA + SPAZIO + TEXT_CODE, "GiornoCrono")).verde().bold());
         headerPlaceHolder.add(ASpan.text("Previsti 366 giorni per gestire il 29 febbraio degli anni bisestili").blue().bold());
 
         super.infoCreazione = TEXT_HARD;
