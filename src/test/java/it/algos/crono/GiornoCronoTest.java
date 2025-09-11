@@ -32,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @Tag("modulo")
 @DisplayName("Modulo Giorno")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class GiornoTest extends ModuloTest {
+public class GiornoCronoTest extends ModuloTest {
 
     @Autowired
     private GiornoCronoService service;

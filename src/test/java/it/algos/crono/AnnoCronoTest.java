@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @Tag("modulo")
 @DisplayName("Modulo Anno")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class AnnoTest extends ModuloTest {
+public class AnnoCronoTest extends ModuloTest {
 
     @Autowired
     private AnnoCronoService service;

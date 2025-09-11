@@ -17,7 +17,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(collection = "anno")
+@Document(collection = "annocrono")
 @IReset()
 @IEntity(pluralName = "Anni", keyUniqueProperty = "nome", sortProperty = "ordine")
 public class AnnoCronoEntity extends AbstractEntity {
