@@ -16,7 +16,6 @@ import java.util.stream.Stream;
 
 import static it.algos.vbase.boot.BaseCost.*;
 import static java.lang.System.out;
-import static org.junit.Assert.assertNotNull;
 
 /**
  * Project base24
