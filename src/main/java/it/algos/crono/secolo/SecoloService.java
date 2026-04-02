@@ -1,11 +1,10 @@
 package it.algos.crono.secolo;
 
 import it.algos.crono.logic.CronoService;
-import it.algos.crono.mese.MeseEntity;
 import it.algos.vbase.enumeration.RisultatoReset;
-import it.algos.vbase.enumeration.TypeLog;
-import it.algos.vbase.exception.AlgosException;
+import it.algos.vbase.service.ResourceService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -36,7 +35,8 @@ public class SecoloService extends CronoService<SecoloEntity> {
     public static final String CRISTO = "dopoCristo";
 
     public static final String ORDINE = "Ordinamento a partire dal secolo X a.C.";
-
+    @Autowired
+    ResourceService resourceService;
     private List<SecoloEntity> listaBeans;
 
     /**
@@ -205,6 +205,5 @@ public class SecoloService extends CronoService<SecoloEntity> {
 
         return super.bulkInsertEntitiesDelete(listaBeans);
     }
-
 
 }// end of CrudService class

@@ -55,7 +55,7 @@ public class GiornoCronoService extends CronoService<GiornoCronoEntity> {
         int mancanti;
         String meseTxt;
         MeseEntity mese;
-        List<HashMap<String, Object>> lista = dateService.getAllGiorni();
+        List<HashMap<String, Object>> lista = calendarService.getAllGiorni();
 
         if (meseService.count() < 1 && annotationService.usaResetStartup(MeseEntity.class)) {
             meseService.reset();

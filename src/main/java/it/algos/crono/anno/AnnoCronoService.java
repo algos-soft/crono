@@ -3,6 +3,7 @@ package it.algos.crono.anno;
 import it.algos.crono.logic.CronoService;
 import it.algos.crono.secolo.SecoloEntity;
 import it.algos.crono.secolo.SecoloService;
+import it.algos.vbase.datetime.service.CalendarService;
 import it.algos.vbase.enumeration.RisultatoReset;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,7 +110,7 @@ public class AnnoCronoService extends CronoService<AnnoCronoEntity> {
         int ordine = numeroProgressivo + delta;
         String nome = numeroProgressivo + VUOTA;
         SecoloEntity secolo = secoloService.getSecolo(nome);
-        boolean bisestile = dateService.isBisestile(numeroAnno);
+        boolean bisestile = calendarService.isBisestile(numeroAnno);
 
         newBean = AnnoCronoEntity.builder()
                 .ordine(ordine)

@@ -1,8 +1,9 @@
 package it.algos.crono.logic;
 
+import it.algos.vbase.date.DateService;
+import it.algos.vbase.datetime.service.CalendarService;
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.service.ModuloService;
-import it.algos.vbase.service.DateService;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -25,7 +26,10 @@ public abstract class CronoService<T extends AbstractEntity> extends ModuloServi
 //    protected String keyPropertyName;
 
     @Autowired
-    public DateService dateService;
+    protected DateService dateService;
+
+    @Autowired
+    protected CalendarService calendarService;
 
     @Getter
     protected String collectionNameParent;
