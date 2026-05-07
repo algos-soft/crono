@@ -5,7 +5,7 @@ import com.vaadin.flow.component.html.Span;
 import it.algos.crono.list.CronoList;
 import it.algos.vbase.annotation.IList;
 import it.algos.vbase.components.BAnchor;
-import it.algos.vbase.ui.dialog.BSpan;
+import it.algos.vbase.ui.dialogs.BSpan;
 import it.algos.vbase.ui.view.AView;
 import it.algos.vbase.ui.wrapper.ASpan;
 
