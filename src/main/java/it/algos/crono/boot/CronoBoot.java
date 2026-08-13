@@ -1,8 +1,11 @@
 package it.algos.crono.boot;
 
 import it.algos.vbase.boot.BaseBoot;
+import it.algos.vbase.scanner.Scanner;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * Project wiki24
@@ -13,22 +16,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Component("cronoBoot")
-public class CronoBoot extends BaseBoot {
+public class CronoBoot  {
 
-
-    public CronoBoot() {
-    }
-
-    /**
-     * Controllo del resetStartup <br>
-     * Chiamato da BaseBoot ad avvio programma (ContextRefreshedEvent) <br>
-     * Esegue solo se il flag usaCheckResetStartup=true (default false) <br>
-     * Esegue il metodo xxxService.checkResetStartup() di ogni modulo dell'applicazione <br>
-     */
-    @Override
-    protected void checkResetStartup() {
-        super.checkResetStartup();
-    }
 }
 
 
