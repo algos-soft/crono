@@ -1,7 +1,9 @@
 package it.algos.crono.anno;
 
 import it.algos.crono.secolo.SecoloEntity;
-import it.algos.vbase.annotation.*;
+import it.algos.vbase.annotation.clazz.IEntity;
+import it.algos.vbase.annotation.clazz.IReset;
+import it.algos.vbase.annotation.field.*;
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.enumeration.RefSearchType;
 import it.algos.vbase.enumeration.TBool;

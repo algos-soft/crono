@@ -2,12 +2,10 @@ package it.algos.crono.mese;
 
 import com.vaadin.flow.data.provider.SortDirection;
 import it.algos.crono.list.CronoList;
-import it.algos.vbase.annotation.IList;
-import it.algos.vbase.form.AForm;
+import it.algos.vbase.annotation.clazz.IList;
 import it.algos.vbase.service.ModuloService;
 import it.algos.vbase.ui.view.AView;
 import it.algos.vbase.ui.wrapper.ASpan;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import static it.algos.vbase.boot.BaseCost.*;

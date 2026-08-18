@@ -1,6 +1,11 @@
 package it.algos.crono.secolo;
 
-import it.algos.vbase.annotation.*;
+import it.algos.vbase.annotation.clazz.IEntity;
+import it.algos.vbase.annotation.clazz.IReset;
+import it.algos.vbase.annotation.field.IBoolean;
+import it.algos.vbase.annotation.field.IFieldForm;
+import it.algos.vbase.annotation.field.IFieldList;
+import it.algos.vbase.annotation.field.IFieldSearch;
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.enumeration.TriState;
 import lombok.*;

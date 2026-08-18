@@ -1,7 +1,7 @@
 package it.algos.crono.giorno;
 
 import it.algos.crono.list.CronoList;
-import it.algos.vbase.annotation.IList;
+import it.algos.vbase.annotation.clazz.IList;
 import it.algos.vbase.ui.view.AView;
 import it.algos.vbase.ui.wrapper.ASpan;
 

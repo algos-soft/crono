@@ -3,7 +3,7 @@ package it.algos.crono.secolo;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.html.Span;
 import it.algos.crono.list.CronoList;
-import it.algos.vbase.annotation.IList;
+import it.algos.vbase.annotation.clazz.IList;
 import it.algos.vbase.components.BAnchor;
 import it.algos.vbase.ui.dialogs.BSpan;
 import it.algos.vbase.ui.view.AView;

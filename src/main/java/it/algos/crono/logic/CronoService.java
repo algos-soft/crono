@@ -59,7 +59,7 @@ public abstract class CronoService<T extends AbstractEntity> extends ModuloServi
     }
 
     public T findByKey(final String keyValue) {
-        String keyPropertyName = annotationService.getKeyUniqueProperty(entityClass).orElse(VUOTA);
+        String keyPropertyName = annotationEntityService.getKeyUniqueProperty(entityClass).orElse(VUOTA);
         if (textService.isValid(keyPropertyName)) {
             return super.findOneByProperty(keyPropertyName, keyValue);
         } else {

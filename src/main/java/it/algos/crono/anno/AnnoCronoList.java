@@ -1,7 +1,7 @@
 package it.algos.crono.anno;
 
 import it.algos.crono.list.CronoList;
-import it.algos.vbase.annotation.IList;
+import it.algos.vbase.annotation.clazz.IList;
 import it.algos.vbase.searchfield.CheckBoxSearch;
 import it.algos.vbase.searchfield.ComboSearch;
 import it.algos.vbase.searchfield.SearchFieldListener;

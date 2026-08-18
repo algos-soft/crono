@@ -1,10 +1,9 @@
 package it.algos.crono.list;
 
-import it.algos.crono.mese.MeseEntity;
-import it.algos.vbase.annotation.IList;
+
+import it.algos.vbase.annotation.clazz.IList;
 import it.algos.vbase.constant.Bottone;
 import it.algos.vbase.entity.AbstractEntity;
-import it.algos.vbase.form.AForm;
 import it.algos.vbase.grid.AGrid;
 import it.algos.vbase.list.AList;
 import it.algos.vbase.list.RecordCounter;
