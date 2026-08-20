@@ -50,11 +50,11 @@ public class AnnoCronoService extends CronoService<AnnoCronoEntity> {
 
     @Override
     public RisultatoReset reset(MongoTemplate mongoTemplate) {
-        String collectionName = annotationService.getCollectionName(AnnoCronoEntity.class);
+        String collectionName = annotationEntityService.getCollectionName(AnnoCronoEntity.class);
         List<AnnoCronoEntity> listaBeans = new ArrayList<>();
         String message;
 
-        if (secoloService.count() < 1 && annotationService.usaResetStartup(SecoloEntity.class)) {
+        if (secoloService.count() < 1 && annotationEntityService.usaIReset(SecoloEntity.class)) {
             secoloService.reset(mongoTemplate);
         }
         if (secoloService.count() < 1) {
