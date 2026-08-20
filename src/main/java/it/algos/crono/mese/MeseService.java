@@ -42,7 +42,7 @@ public class MeseService extends CronoService<MeseEntity> {
 
     public List<MeseEntity> findAllOrdine() {
         String sortPropertyName = annotationEntityService.getEntitySortProperty(entityClass).orElse(VUOTA);
-        Sort sort = annotationService.getListSort(MeseList.class).orElse(Sort.by(Sort.Direction.ASC, sortPropertyName));
+        Sort sort = annotationListService.getListSort(MeseList.class).orElse(Sort.by(Sort.Direction.ASC, sortPropertyName));
 
         return mongoService.findAll(entityClass, sort);
     }
