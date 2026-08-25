@@ -12,12 +12,12 @@ import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Data
-@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+@Document(collection = "secolo")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(collection = "secolo")
 @IReset()
 @IEntity(keyUniqueProperty = "nome", sortProperty = "ordine")
 public class SecoloEntity extends AbstractEntity {

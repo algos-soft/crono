@@ -10,12 +10,13 @@ import it.algos.vbase.entity.AbstractEntity;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-@Data
-@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+
+@Document(collection = "mese")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(collection = "mese")
 @IReset()
 @IEntity(keyUniqueProperty = "sigla", sortProperty = "ordine", sortDirection = SortDirection.DESCENDING)
 public class MeseEntity extends AbstractEntity {

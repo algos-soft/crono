@@ -14,12 +14,12 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Data
-@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+@Document(collection = "annocrono")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(collection = "annocrono")
 @IReset()
 @IEntity(pluralName = "Anni", keyUniqueProperty = "nome", sortProperty = "ordine")
 public class AnnoCronoEntity extends AbstractEntity {
