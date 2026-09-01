@@ -19,7 +19,7 @@ import it.algos.vbase.ui.view.AView;
  * Time: 18:32
  */
 @IList(bottoni = {Bottone.RESET_DELETE, Bottone.SHOW})
-public class CronoList<T extends AbstractEntity> extends AList<T> {
+public abstract class CronoList<T extends AbstractEntity> extends AList<T> {
 
     protected String infoCreazione;
 
