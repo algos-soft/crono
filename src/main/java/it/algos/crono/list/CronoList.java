@@ -2,7 +2,7 @@ package it.algos.crono.list;
 
 
 import it.algos.vbase.annotation.clazz.IList;
-import it.algos.vbase.constant.Bottone;
+import it.algos.vbase.button.ABottoni;
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.grid.AGrid;
 import it.algos.vbase.list.AList;
@@ -18,7 +18,7 @@ import it.algos.vbase.ui.view.AView;
  * Date: Tue, 28-Nov-2023
  * Time: 18:32
  */
-@IList(bottoni = {Bottone.RESET_DELETE, Bottone.SHOW})
+@IList(bottoni = {ABottoni.RESET_DELETE, ABottoni.VIEW_ITEM})
 public abstract class CronoList<T extends AbstractEntity> extends AList<T> {
 
     protected String infoCreazione;
