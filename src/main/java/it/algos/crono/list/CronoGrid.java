@@ -1,5 +1,6 @@
 package it.algos.crono.list;
 
+import com.vaadin.flow.spring.annotation.SpringComponent;
 import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.form.AForm;
 import it.algos.vbase.grid.AGrid;
@@ -20,7 +21,7 @@ import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROT
  * Date: gio, 25-lug-2024
  * Time: 14:39
  */
-@Component
+@SpringComponent
 @Scope(value = SCOPE_PROTOTYPE)
 public class CronoGrid extends AGrid<AbstractEntity> {
 

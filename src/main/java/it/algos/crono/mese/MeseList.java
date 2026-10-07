@@ -1,6 +1,7 @@
 package it.algos.crono.mese;
 
 import com.vaadin.flow.data.provider.SortDirection;
+import com.vaadin.flow.spring.annotation.SpringComponent;
 import it.algos.crono.list.CronoList;
 import it.algos.vbase.annotation.clazz.IList;
 import it.algos.vbase.service.ModuloService;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import static it.algos.vbase.boot.BaseCost.*;
 
-@Component
+@SpringComponent
 @IList(columns = {"ordine", "nome", "giorni", "primo", "ultimo"},
         sortProperty = "ordine",
         sortDirection = SortDirection.ASCENDING)

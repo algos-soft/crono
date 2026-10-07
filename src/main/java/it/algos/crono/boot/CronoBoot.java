@@ -1,5 +1,6 @@
 package it.algos.crono.boot;
 
+import com.vaadin.flow.spring.annotation.SpringComponent;
 import it.algos.vbase.boot.BaseBoot;
 import it.algos.vbase.scanner.Scanner;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ import java.util.Map;
  * Time: 13:55
  */
 @Service
-@Component("cronoBoot")
+@SpringComponent("cronoBoot")
 public class CronoBoot  {
 
 }
