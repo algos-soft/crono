@@ -16,7 +16,7 @@ import java.util.Map;
  * Time: 13:55
  */
 @Service
-@SpringComponent("cronoBoot")
+@Component("cronoBoot")
 public class CronoBoot  {
 
 }

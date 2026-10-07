@@ -21,7 +21,7 @@ import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROT
  * Date: gio, 25-lug-2024
  * Time: 14:39
  */
-@SpringComponent
+@Component
 @Scope(value = SCOPE_PROTOTYPE)
 public class CronoGrid extends AGrid<AbstractEntity> {
 

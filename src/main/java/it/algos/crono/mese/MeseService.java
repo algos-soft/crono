@@ -23,7 +23,7 @@ import static it.algos.vbase.boot.BaseCost.VUOTA;
  * Garantisce i metodi di collegamento per accedere al database <br>
  * Non mantiene lo stato di una istanza entityBean <br>
  * Mantiene lo stato della entityClazz <br>
- * NOT annotated with @SpringComponent (inutile, esiste già @Service) <br>
+ * NOT annotated with @Component (inutile, esiste già @Service) <br>
  * NOT annotated with @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON) (inutile, esiste già @Service) <br>
  */
 @Slf4j

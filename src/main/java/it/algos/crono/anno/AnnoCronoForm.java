@@ -5,6 +5,7 @@ import it.algos.vbase.entity.AbstractEntity;
 import it.algos.vbase.form.DefaultForm;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -15,7 +16,7 @@ import org.springframework.context.annotation.Scope;
  * Time: 14:35
  * <p>
  */
-@SpringComponent
+@Component
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class AnnoCronoForm<T extends AbstractEntity> extends DefaultForm<T> {
 

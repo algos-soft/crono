@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import static it.algos.vbase.boot.BaseCost.*;
 
-@SpringComponent
+@Component
 @IList(columns = {"ordine", "nome", "giorni", "primo", "ultimo"},
         sortProperty = "ordine",
         sortDirection = SortDirection.ASCENDING)
