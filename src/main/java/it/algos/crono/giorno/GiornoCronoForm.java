@@ -21,7 +21,7 @@ import static it.algos.vbase.boot.BaseCost.FIELD_NAME_ORDINE;
  * Time: 18:07
  * <p>
  */
-@Component
+@SpringComponent
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class GiornoCronoForm<T extends AbstractEntity> extends DefaultForm<T> {
 
