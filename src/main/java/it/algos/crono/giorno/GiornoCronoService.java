@@ -3,9 +3,11 @@ package it.algos.crono.giorno;
 import it.algos.crono.logic.CronoService;
 import it.algos.crono.mese.MeseEntity;
 import it.algos.crono.mese.MeseService;
+import it.algos.crono.secolo.SecoloEntity;
 import it.algos.vbase.enumeration.RisultatoReset;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +44,13 @@ public class GiornoCronoService extends CronoService<GiornoCronoEntity> {
         super.collectionNameParent = "mese";
     }
 
+    public List<GiornoCronoEntity> findAll() {
+        return mongoService.findAll(GiornoCronoEntity.class, Sort.by(Sort.Direction.ASC, FIELD_NAME_ORDINE));
+    }
+
+    public List<GiornoCronoEntity> findAllReverse() {
+        return mongoService.findAll(GiornoCronoEntity.class, Sort.by(Sort.Direction.DESC, FIELD_NAME_ORDINE));
+    }
 
     @Override
     public RisultatoReset reset(MongoTemplate mongoTemplate) {

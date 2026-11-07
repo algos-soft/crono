@@ -17,13 +17,13 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Document(collection = "giornocrono")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @IReset()
+@Document(collection = "giornocrono")
 @IEntity(pluralName = "Giorni", keyUniqueProperty = "nome", sortProperty = "ordine")
 public class GiornoCronoEntity extends AbstractEntity {
 
